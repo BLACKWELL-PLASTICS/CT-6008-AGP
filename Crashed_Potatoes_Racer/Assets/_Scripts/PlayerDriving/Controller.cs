@@ -5,8 +5,8 @@ using UnityEngine;
 public class Controller : MonoBehaviour
 {
     [SerializeField] Rigidbody rb;
-    float forwardAcceleration = 8000f;
-    float reverseAcceleration = 4000f;
+    float forwardAcceleration = 3000f;
+    float reverseAcceleration = 1500f;
     float maxSpeed = 50f;
     float turnStrength = 100f;
     float gravityForce = 10f;
