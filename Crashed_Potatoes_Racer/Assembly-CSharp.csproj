@@ -64,6 +64,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\_Scripts\MoveRocket.cs" />
+    <Compile Include="Assets\_Scripts\PowerUpScript.cs" />
+    <Compile Include="Assets\_Scripts\RocketTest.cs" />
     <Compile Include="Assets\_Scripts\Test.cs" />
     <Compile Include="Assets\_Scripts\WayPointTest.cs" />
     <Reference Include="UnityEngine">
