@@ -15,6 +15,12 @@ public class BezierSpline : MonoBehaviour
 		}
 	}
 
+	public int CurveCount {
+		get {
+			return (points.Length - 1) / 3;
+		}
+	}
+
 	public Vector3 GetControlPoint(int index) {
 		return points[index];
 	}
@@ -63,6 +69,7 @@ public class BezierSpline : MonoBehaviour
 			points[i], points[i + 1], points[i + 2], points[i + 3], t));
 	}
 
+	// Forward Facing functions
 	public Vector3 GetVelocity(float t) {
 		int i;
 		if (t >= 1f) {
@@ -82,13 +89,7 @@ public class BezierSpline : MonoBehaviour
 		return GetVelocity(t).normalized;
 	}
 
-	public int CurveCount {
-		get {
-			return (points.Length - 1) / 3;
-		}
-	}
-
-	// MODE FUNCTIONS
+	// Mode Functions
 	public BezierControlPointMode GetControlPointMode(int index) {
 		return modes[(index + 1) / 3];
 	}

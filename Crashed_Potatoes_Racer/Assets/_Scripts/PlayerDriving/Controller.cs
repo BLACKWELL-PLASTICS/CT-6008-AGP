@@ -5,7 +5,7 @@ using UnityEngine;
 public class Controller : MonoBehaviour
 {
     [SerializeField] Rigidbody rb;
-    float forwardAcceleration = 3000f;
+    float forwardAcceleration = 4000f;
     float reverseAcceleration = 1500f;
     float maxSpeed = 50f;
     float turnStrength = 100f;
@@ -18,6 +18,8 @@ public class Controller : MonoBehaviour
     [SerializeField] LayerMask notTrack;
     float groundRayLength = .5f;
     [SerializeField] Transform groundRayPoint;
+
+    Vector3 v3;
 
     // Start is called before the first frame update
     void Start()
@@ -32,9 +34,9 @@ public class Controller : MonoBehaviour
         // Reset Speed input each frame
         speedInput = 0f;
         // set speed input depending on movement
-        if (Input.GetAxis("Vertical") > 0) {
+        if (Input.GetAxis("Vertical") > 0 && speedInput != maxSpeed) {
             speedInput = Input.GetAxis("Vertical") * forwardAcceleration;
-        } else if (Input.GetAxis("Vertical") < 0) {
+        } else if (Input.GetAxis("Vertical") < 0 && speedInput != maxSpeed) {
             speedInput = Input.GetAxis("Vertical") * reverseAcceleration;
         }
 
@@ -46,8 +48,9 @@ public class Controller : MonoBehaviour
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * Input.GetAxis("Vertical"), 0f));
         }
 
-        //Set Posiition
-        transform.position = rb.transform.position;
+        //Set Position
+        v3 = new Vector3(rb.transform.position.x, 2.5f, rb.transform.position.z);
+        transform.position = v3;
     }
 
     // All Physics calculations will take place in the fixed update
