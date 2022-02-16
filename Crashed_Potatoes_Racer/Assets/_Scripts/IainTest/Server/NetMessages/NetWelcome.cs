@@ -9,11 +9,11 @@ public class NetWelcome : NetMessage
 
     public NetWelcome()
     {
-        Code = OpCode.WELCOME;
+        Code = ServerOpCode.WELCOME;
     }
     public NetWelcome(DataStreamReader a_reader)
     {
-        Code = OpCode.WELCOME;
+        Code = ServerOpCode.WELCOME;
         Deserialize(a_reader);
     }
 

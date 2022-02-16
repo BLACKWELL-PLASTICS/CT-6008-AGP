@@ -14,11 +14,11 @@ public class NetMakeMove : NetMessage
 
     public NetMakeMove()
     {
-        Code = OpCode.MAKE_MOVE;
+        Code = ServerOpCode.MAKE_MOVE;
     }
     public NetMakeMove(DataStreamReader a_reader)
     {
-        Code = OpCode.MAKE_MOVE;
+        Code = ServerOpCode.MAKE_MOVE;
         Deserialize(a_reader);
     }
 

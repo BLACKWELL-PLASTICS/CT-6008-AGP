@@ -4,11 +4,11 @@ public class NetKeepAlive : NetMessage
 {
     public NetKeepAlive()
     {
-        Code = OpCode.KEEP_ALIVE;
+        Code = ServerOpCode.KEEP_ALIVE;
     }
     public NetKeepAlive(DataStreamReader a_reader)
     {
-        Code = OpCode.KEEP_ALIVE;
+        Code = ServerOpCode.KEEP_ALIVE;
         Deserialize(a_reader);
     }
 

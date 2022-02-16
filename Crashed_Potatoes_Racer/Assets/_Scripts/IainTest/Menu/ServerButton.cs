@@ -15,7 +15,7 @@ public class ServerButton : MonoBehaviour
     public GameObject m_passwordProtectedTextField;
     [SerializeField]
     public GameObject m_pingTextField;
-    private void Start()
+    public void SetUI()
     {
         m_nameTextField.GetComponent<UnityEngine.UI.Text>().text = m_nameText;
         m_passwordProtectedTextField.GetComponent<UnityEngine.UI.Text>().text = m_passwordProtectedText;

@@ -1,5 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using Unity.Networking.Transport;
 using UnityEngine;
 
 public class MenuButtons : MonoBehaviour
@@ -50,8 +53,12 @@ public class MenuButtons : MonoBehaviour
         m_mainMenuPanel.SetActive(true);
         m_profileMenuPanel.SetActive(false);
     }
-    public void OnHostButton()
+    public void OnHostButton(GameObject a_inputField)
     {
+        ServerHostStart serverHostStart = new ServerHostStart();
+        serverHostStart.m_ServerName = a_inputField.GetComponent<UnityEngine.UI.Text>().text;
+        serverHostStart.m_ServerIP = GetLocalIPv4();
+        MenuClient.Instance.SendToServer(serverHostStart);
         Server.Instance.Initlialise(8008);
         Client.Instance.m_clientName = PersistentInfo.Instance.m_currentPlayerName;
         Client.Instance.Initlialise("127.0.0.1", 8008);
@@ -102,5 +109,10 @@ public class MenuButtons : MonoBehaviour
     public void OnStartGameButton()
     {
         Server.Instance.Broadcast(new NetStartGame());
+    }
+
+    string GetLocalIPv4()
+    {
+        return Dns.GetHostEntry(Dns.GetHostName()).AddressList.First(f => f.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork).ToString();
     }
 }

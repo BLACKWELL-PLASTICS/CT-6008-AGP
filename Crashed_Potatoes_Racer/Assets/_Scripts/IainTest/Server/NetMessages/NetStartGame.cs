@@ -4,11 +4,11 @@ public class NetStartGame : NetMessage
 {
     public NetStartGame()
     {
-        Code = OpCode.START_GAME;
+        Code = ServerOpCode.START_GAME;
     }
     public NetStartGame(DataStreamReader a_reader)
     {
-        Code = OpCode.START_GAME;
+        Code = ServerOpCode.START_GAME;
         Deserialize(a_reader);
     }
 

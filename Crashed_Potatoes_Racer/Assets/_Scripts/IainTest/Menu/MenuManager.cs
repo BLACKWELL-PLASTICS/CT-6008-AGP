@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    //Menu Server
+    [SerializeField]
+    string m_severAdress;
     //Panels
     [SerializeField]
     GameObject m_serversPanel;
@@ -23,7 +26,14 @@ public class MenuManager : MonoBehaviour
     GameObject m_connectedCloseServerButton;
     [SerializeField]
     GameObject m_connectedStartButton;
+    //Server List
+    [SerializeField]
+    GameObject m_serverList;
 
+    private void Start()
+    {
+        MenuClient.Instance.Initlialise(m_severAdress, 8009);
+    }
 
     void Awake()
     {
@@ -38,6 +48,10 @@ public class MenuManager : MonoBehaviour
         //Client
         NetUtility.C_WELCOME += OnWelcomeClient;
         NetUtility.C_START_GAME += OnStartGameClient;
+
+        //Menu Client
+        ServerUtility.C_SERVER_START += OnServerStart;
+        ServerUtility.C_SERVER_END += OnServerEnd;
     }
     void UnregisterEvenets()
     {
@@ -92,5 +106,17 @@ public class MenuManager : MonoBehaviour
         Client.Instance.Initlialise(a_adress, 8008);
         m_connectingPanel.SetActive(true);
         m_serversPanel.SetActive(false);
+    }
+
+    //Menu Client
+    void OnServerStart(ServerMessage a_msg)
+    {
+        ServerHostStart serverStart = a_msg as ServerHostStart;
+        m_serverList.GetComponent<ServerListManager>().AddServer(serverStart.m_ServerName, serverStart.m_ServerIP);
+    }
+    void OnServerEnd(ServerMessage a_msg)
+    {
+        ServerHostEnd serverEnd = a_msg as ServerHostEnd;
+        m_serverList.GetComponent<ServerListManager>().RemoveServer(serverEnd.m_ServerIP);
     }
 }

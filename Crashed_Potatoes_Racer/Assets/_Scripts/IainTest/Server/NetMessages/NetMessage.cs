@@ -2,7 +2,7 @@
 
 public class NetMessage
 {
-    public OpCode Code { set; get; }
+    public ServerOpCode Code { set; get; }
 
     public virtual void Serialize(ref DataStreamWriter a_writer)
     {

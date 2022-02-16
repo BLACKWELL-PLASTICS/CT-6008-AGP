@@ -114,7 +114,7 @@ public class Server : MonoBehaviour
                     Debug.Log("Client disconnected from server");
                     m_connections[i] = default(NetworkConnection);
                     m_connectionDropped?.Invoke();
-                    Shutdown();
+                    //Shutdown();
                 }
             }
         }

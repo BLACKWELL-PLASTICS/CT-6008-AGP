@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.Networking.Transport;
 using UnityEngine;
 
-public enum OpCode
+public enum ServerOpCode
 {
     KEEP_ALIVE = 1,
     WELCOME = 2,
@@ -16,19 +16,19 @@ public static class NetUtility
     public static void OnData(DataStreamReader a_stream, NetworkConnection a_connection, Server a_server = null)
     {
         NetMessage msg = null;
-        OpCode opCode = (OpCode)a_stream.ReadByte();
+        ServerOpCode opCode = (ServerOpCode)a_stream.ReadByte();
         switch (opCode)
         {
-            case OpCode.KEEP_ALIVE:
+            case ServerOpCode.KEEP_ALIVE:
                 msg = new NetKeepAlive(a_stream);
                 break;
-            case OpCode.WELCOME:
+            case ServerOpCode.WELCOME:
                 msg = new NetWelcome(a_stream);
                 break;
-            case OpCode.START_GAME:
+            case ServerOpCode.START_GAME:
                 msg = new NetStartGame(a_stream);
                 break;
-            case OpCode.MAKE_MOVE:
+            case ServerOpCode.MAKE_MOVE:
                 msg = new NetMakeMove(a_stream);
                 break;
             default:
@@ -52,12 +52,10 @@ public static class NetUtility
     public static Action<NetMessage> C_WELCOME;
     public static Action<NetMessage> C_START_GAME;
     public static Action<NetMessage> C_MAKE_MOVE;
-    public static Action<NetMessage> C_REMATCH;
 
     //Server
     public static Action<NetMessage, NetworkConnection> S_KEEP_ALIVE;
     public static Action<NetMessage, NetworkConnection> S_WELCOME;
     public static Action<NetMessage, NetworkConnection> S_START_GAME;
     public static Action<NetMessage, NetworkConnection> S_MAKE_MOVE;
-    public static Action<NetMessage, NetworkConnection> S_REMATCH;
 }

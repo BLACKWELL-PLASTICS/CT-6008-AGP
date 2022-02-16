@@ -67,9 +67,10 @@
     <Compile Include="Assets\_Scripts\IainTest\Menu\MenuButtons.cs" />
     <Compile Include="Assets\_Scripts\IainTest\Menu\MenuManager.cs" />
     <Compile Include="Assets\_Scripts\IainTest\Menu\ServerButton.cs" />
-    <Compile Include="Assets\_Scripts\IainTest\Menu\Temp\AddSever.cs" />
+    <Compile Include="Assets\_Scripts\IainTest\Menu\ServerListManager.cs" />
     <Compile Include="Assets\_Scripts\IainTest\PersistentInfo.cs" />
     <Compile Include="Assets\_Scripts\IainTest\Server\Client.cs" />
+    <Compile Include="Assets\_Scripts\IainTest\Server\MenuClient.cs" />
     <Compile Include="Assets\_Scripts\IainTest\Server\NetMessages\NetKeepAlive.cs" />
     <Compile Include="Assets\_Scripts\IainTest\Server\NetMessages\NetMakeMove.cs" />
     <Compile Include="Assets\_Scripts\IainTest\Server\NetMessages\NetMessage.cs" />
@@ -77,6 +78,12 @@
     <Compile Include="Assets\_Scripts\IainTest\Server\NetMessages\NetUtility.cs" />
     <Compile Include="Assets\_Scripts\IainTest\Server\NetMessages\NetWelcome.cs" />
     <Compile Include="Assets\_Scripts\IainTest\Server\Server.cs" />
+    <Compile Include="Assets\_Scripts\IainTest\Server\ServerMessages\ServerConnectionRequest.cs" />
+    <Compile Include="Assets\_Scripts\IainTest\Server\ServerMessages\ServerHostEnd.cs" />
+    <Compile Include="Assets\_Scripts\IainTest\Server\ServerMessages\ServerHostStart.cs" />
+    <Compile Include="Assets\_Scripts\IainTest\Server\ServerMessages\ServerKeepAlive.cs" />
+    <Compile Include="Assets\_Scripts\IainTest\Server\ServerMessages\ServerMessage.cs" />
+    <Compile Include="Assets\_Scripts\IainTest\Server\ServerMessages\ServerUtility.cs" />
     <Compile Include="Assets\_Scripts\Test.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.14f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
