@@ -76,9 +76,8 @@ public class MenuClient : MonoBehaviour
         {
             if (cmd == NetworkEvent.Type.Connect)
             {
-                //NetWelcome netWelcome = new NetWelcome();
-                //netWelcome.m_PlayerName = m_clientName;
-                //SendToServer(netWelcome);
+                ServerListRequest serverListRequest = new ServerListRequest();
+                SendToServer(serverListRequest);
                 Debug.Log("Connected to Menu Server");
             }
             else if (cmd == NetworkEvent.Type.Data)

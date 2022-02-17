@@ -65,10 +65,10 @@
   <ItemGroup>
     <Compile Include="Assets\_Scripts\Manager.cs" />
     <Compile Include="Assets\_Scripts\Server.cs" />
-    <Compile Include="Assets\_Scripts\ServerMessages\ServerConnectionRequest.cs" />
     <Compile Include="Assets\_Scripts\ServerMessages\ServerHostEnd.cs" />
     <Compile Include="Assets\_Scripts\ServerMessages\ServerHostStart.cs" />
     <Compile Include="Assets\_Scripts\ServerMessages\ServerKeepAlive.cs" />
+    <Compile Include="Assets\_Scripts\ServerMessages\ServerListRequest.cs" />
     <Compile Include="Assets\_Scripts\ServerMessages\ServerMessage.cs" />
     <Compile Include="Assets\_Scripts\ServerMessages\ServerUtility.cs" />
     <Reference Include="UnityEngine">

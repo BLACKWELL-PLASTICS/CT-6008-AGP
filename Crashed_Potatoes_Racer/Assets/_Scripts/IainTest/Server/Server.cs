@@ -45,6 +45,7 @@ public class Server : MonoBehaviour
     {
         if (m_isActive)
         {
+            PersistentInfo.Instance.Clear();
             m_driver.Dispose();
             m_connections.Dispose();
             m_isActive = false;
@@ -114,7 +115,6 @@ public class Server : MonoBehaviour
                     Debug.Log("Client disconnected from server");
                     m_connections[i] = default(NetworkConnection);
                     m_connectionDropped?.Invoke();
-                    //Shutdown();
                 }
             }
         }
@@ -126,6 +126,20 @@ public class Server : MonoBehaviour
         writer = m_driver.BeginSend(a_connection, 0);
         a_msg.Serialize(ref writer);
         m_driver.EndSend(writer);
+    }
+    public void SendToOtherClients(NetworkConnection a_connection, NetMessage a_msg)
+    {
+        for (int i = 0; i < m_connections.Length; i++)
+        {
+            if (m_connections[i] == a_connection)
+            {
+                if (m_connections[i].IsCreated)
+                {
+                    Debug.Log($"Sending {a_msg.Code} to : {m_connections[i].InternalId}");
+                    SendToClient(m_connections[i], a_msg);
+                }
+            }
+        }
     }
     public void Broadcast(NetMessage a_msg)
     {

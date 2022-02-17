@@ -26,12 +26,12 @@ public class ServerListManager : MonoBehaviour
     }
     public void RemoveServer(string a_serverAdress)
     {
-        foreach (GameObject button in m_serverButtons)
+        for (int i = 0; i < m_serverButtons.Count; i++)
         {
-            if (button.GetComponent<ServerButton>().m_adress == a_serverAdress)
+            if (m_serverButtons[i].GetComponent<ServerButton>().m_adress == a_serverAdress)
             {
-                m_serverButtons.Remove(button);
-                Destroy(button);
+                Destroy(m_serverButtons[i]);
+                m_serverButtons.Remove(m_serverButtons[i]);
             }
         }
     }

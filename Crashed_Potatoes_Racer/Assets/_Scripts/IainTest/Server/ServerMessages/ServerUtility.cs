@@ -9,7 +9,7 @@ public enum OpCode
     KEEP_ALIVE = 1,
     SERVER_START = 2,
     SERVER_END = 3,
-    CONNECTION_REQUEST = 4
+    LIST_REQUEST = 4
 }
 public static class ServerUtility
 {
@@ -28,9 +28,9 @@ public static class ServerUtility
             case OpCode.SERVER_END:
                 msg = new ServerHostEnd(a_stream);
                 break;
-            //case OpCode.CONNECTION_REQUEST:
-            //    msg = new ServerHostEnd(a_stream);
-            //    break;
+            case OpCode.LIST_REQUEST:
+                msg = new ServerListRequest(a_stream);
+                break;
             default:
                 Debug.LogError("Message received has unrecognised OpCode");
                 break;
@@ -51,11 +51,11 @@ public static class ServerUtility
     public static Action<ServerMessage> C_KEEP_ALIVE;
     public static Action<ServerMessage> C_SERVER_START;
     public static Action<ServerMessage> C_SERVER_END;
-    //public static Action<ServerMessage> C_CONNECTION_REQUEST;
+    public static Action<ServerMessage> C_LIST_REQUEST;
 
     //Server
     public static Action<ServerMessage, NetworkConnection> S_KEEP_ALIVE;
     public static Action<ServerMessage, NetworkConnection> S_SERVER_START;
     public static Action<ServerMessage, NetworkConnection> S_SERVER_END;
-    //public static Action<ServerMessage, NetworkConnection> S_CONNECTION_REQUEST;
+    public static Action<ServerMessage, NetworkConnection> S_LIST_REQUEST;
 }

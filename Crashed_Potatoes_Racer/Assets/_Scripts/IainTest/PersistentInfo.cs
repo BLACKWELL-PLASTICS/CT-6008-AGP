@@ -14,5 +14,12 @@ class PersistentInfo : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        m_connectedNames = new List<string>();
+    }
+    public void Clear()
+    {
+        m_connectedUsers = 0;
+        m_connectedNames.Clear();
+        m_currentPlayerNum = 0;
     }
 }

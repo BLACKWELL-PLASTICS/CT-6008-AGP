@@ -101,6 +101,9 @@ public class MenuButtons : MonoBehaviour
     }
     public void OnCloseServerButton()
     {
+        ServerHostEnd serverHostEnd = new ServerHostEnd();
+        serverHostEnd.m_ServerIP = GetLocalIPv4();
+        MenuClient.Instance.SendToServer(serverHostEnd);
         Client.Instance.Shutdown();
         Server.Instance.Shutdown();
         m_onlineMenuPanel.SetActive(true);
@@ -114,5 +117,11 @@ public class MenuButtons : MonoBehaviour
     string GetLocalIPv4()
     {
         return Dns.GetHostEntry(Dns.GetHostName()).AddressList.First(f => f.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork).ToString();
+    }
+    private void OnDestroy()
+    {
+        ServerHostEnd serverHostEnd = new ServerHostEnd();
+        serverHostEnd.m_ServerIP = GetLocalIPv4();
+        MenuClient.Instance.SendToServer(serverHostEnd);
     }
 }

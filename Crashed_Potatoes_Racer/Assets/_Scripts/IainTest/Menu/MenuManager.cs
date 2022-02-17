@@ -52,6 +52,7 @@ public class MenuManager : MonoBehaviour
         //Menu Client
         ServerUtility.C_SERVER_START += OnServerStart;
         ServerUtility.C_SERVER_END += OnServerEnd;
+        ServerUtility.C_LIST_REQUEST += OnListRequest;
     }
     void UnregisterEvenets()
     {
@@ -118,5 +119,10 @@ public class MenuManager : MonoBehaviour
     {
         ServerHostEnd serverEnd = a_msg as ServerHostEnd;
         m_serverList.GetComponent<ServerListManager>().RemoveServer(serverEnd.m_ServerIP);
+    }
+    void OnListRequest(ServerMessage a_msg)
+    {
+        ServerListRequest serverListRequest = a_msg as ServerListRequest;
+        m_serverList.GetComponent<ServerListManager>().AddServer(serverListRequest.m_ServerName, serverListRequest.m_ServerIP);
     }
 }
