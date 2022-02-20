@@ -131,7 +131,7 @@ public class Server : MonoBehaviour
     {
         for (int i = 0; i < m_connections.Length; i++)
         {
-            if (m_connections[i] == a_connection)
+            if (m_connections[i] != a_connection)
             {
                 if (m_connections[i].IsCreated)
                 {

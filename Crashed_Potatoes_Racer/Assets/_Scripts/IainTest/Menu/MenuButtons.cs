@@ -20,6 +20,11 @@ public class MenuButtons : MonoBehaviour
     GameObject m_connectingPanel;
     [SerializeField]
     GameObject m_connectedPanel;
+    //Info
+    [SerializeField]
+    GameObject m_connectedPlayerText;
+    [SerializeField]
+    GameObject[] m_connectedOtherTexts;
 
     private void Start()
     {
@@ -96,6 +101,10 @@ public class MenuButtons : MonoBehaviour
     public void OnConnectedDisconnectButton()
     {
         Client.Instance.Shutdown();
+        foreach (GameObject text in m_connectedOtherTexts)
+        {
+            text.GetComponent<UnityEngine.UI.Text>().text = "Empty";
+        }
         m_onlineMenuPanel.SetActive(true);
         m_connectedPanel.SetActive(false);
     }
@@ -106,6 +115,10 @@ public class MenuButtons : MonoBehaviour
         MenuClient.Instance.SendToServer(serverHostEnd);
         Client.Instance.Shutdown();
         Server.Instance.Shutdown();
+        foreach (GameObject text in m_connectedOtherTexts)
+        {
+            text.GetComponent<UnityEngine.UI.Text>().text = "Empty";
+        }
         m_onlineMenuPanel.SetActive(true);
         m_connectedPanel.SetActive(false);
     }

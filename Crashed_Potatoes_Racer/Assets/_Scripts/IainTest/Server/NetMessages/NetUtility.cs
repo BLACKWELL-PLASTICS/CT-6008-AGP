@@ -8,8 +8,9 @@ public enum ServerOpCode
 {
     KEEP_ALIVE = 1,
     WELCOME = 2,
-    START_GAME = 3,
-    MAKE_MOVE = 4,
+    OTHER_CONNECTED = 3,
+    START_GAME = 4,
+    MAKE_MOVE = 5,
 }
 public static class NetUtility
 {
@@ -24,6 +25,9 @@ public static class NetUtility
                 break;
             case ServerOpCode.WELCOME:
                 msg = new NetWelcome(a_stream);
+                break;
+            case ServerOpCode.OTHER_CONNECTED:
+                msg = new NetOtherConnected(a_stream);
                 break;
             case ServerOpCode.START_GAME:
                 msg = new NetStartGame(a_stream);
@@ -50,12 +54,14 @@ public static class NetUtility
     //Client
     public static Action<NetMessage> C_KEEP_ALIVE;
     public static Action<NetMessage> C_WELCOME;
+    public static Action<NetMessage> C_OTHER_CONNECTED;
     public static Action<NetMessage> C_START_GAME;
     public static Action<NetMessage> C_MAKE_MOVE;
 
     //Server
     public static Action<NetMessage, NetworkConnection> S_KEEP_ALIVE;
     public static Action<NetMessage, NetworkConnection> S_WELCOME;
+    public static Action<NetMessage, NetworkConnection> S_OTHER_CONNECTED;
     public static Action<NetMessage, NetworkConnection> S_START_GAME;
     public static Action<NetMessage, NetworkConnection> S_MAKE_MOVE;
 }

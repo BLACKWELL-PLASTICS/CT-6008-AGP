@@ -19,6 +19,8 @@ public class MenuManager : MonoBehaviour
     //Info
     [SerializeField]
     GameObject m_connectedPlayerText;
+    [SerializeField]
+    GameObject[] m_connectedOtherTexts;
     //Host Specific Fields
     [SerializeField]
     GameObject m_connectedDisconnectButton;
@@ -47,6 +49,7 @@ public class MenuManager : MonoBehaviour
 
         //Client
         NetUtility.C_WELCOME += OnWelcomeClient;
+        NetUtility.C_OTHER_CONNECTED += OnOtherConnectedClient;
         NetUtility.C_START_GAME += OnStartGameClient;
 
         //Menu Client
@@ -64,10 +67,22 @@ public class MenuManager : MonoBehaviour
     {
         NetWelcome netWelcome = a_msg as NetWelcome;
         PersistentInfo.Instance.m_connectedUsers++;
+
+        for (int i = 0; i < PersistentInfo.Instance.m_connectedNames.Count; i++)
+        {
+            NetOtherConnected netOthersConnected = new NetOtherConnected();
+            netOthersConnected.m_PlayerCount = PersistentInfo.Instance.m_connectedUsers;
+            netOthersConnected.m_PlayerName = PersistentInfo.Instance.m_connectedNames[i];
+            Server.Instance.SendToClient(a_connection, netOthersConnected);
+        }
+
         netWelcome.m_PlayerCount = PersistentInfo.Instance.m_connectedUsers;
         netWelcome.m_PlayerNumber = PersistentInfo.Instance.m_connectedUsers;
-        //PersistentInfo.Instance.m_connectedNames.Add(netWelcome.m_PlayerName);
         Server.Instance.SendToClient(a_connection, netWelcome);
+        NetOtherConnected netOtherConnected = new NetOtherConnected();
+        netOtherConnected.m_PlayerCount = PersistentInfo.Instance.m_connectedUsers;
+        netOtherConnected.m_PlayerName = netWelcome.m_PlayerName;
+        Server.Instance.SendToOtherClients(a_connection, netOtherConnected);
     }
 
     //Client
@@ -76,9 +91,13 @@ public class MenuManager : MonoBehaviour
         NetWelcome netWelcome = a_msg as NetWelcome;
         PersistentInfo.Instance.m_connectedUsers = netWelcome.m_PlayerCount;
         PersistentInfo.Instance.m_currentPlayerNum = netWelcome.m_PlayerNumber;
-        //PersistentInfo.Instance.m_connectedNames.Add(netWelcome.m_PlayerName);
+        PersistentInfo.Instance.m_connectedNames.Add(netWelcome.m_PlayerName);
 
         m_connectedPlayerText.GetComponent<UnityEngine.UI.Text>().text = $"You are player {PersistentInfo.Instance.m_currentPlayerNum} of {PersistentInfo.Instance.m_connectedUsers}";
+        for (int i = 0; i < PersistentInfo.Instance.m_connectedNames.Count; i++)
+        {
+            m_connectedOtherTexts[i].GetComponent<UnityEngine.UI.Text>().text = $"{PersistentInfo.Instance.m_connectedNames[i]}";
+        }
 
         if (PersistentInfo.Instance.m_currentPlayerNum == 1)
         {
@@ -96,18 +115,24 @@ public class MenuManager : MonoBehaviour
         m_connectedPanel.SetActive(true);
         m_connectingPanel.SetActive(false);
     }
+    void OnOtherConnectedClient(NetMessage a_msg)
+    {
+        NetOtherConnected netOtherConnected = a_msg as NetOtherConnected;
+        PersistentInfo.Instance.m_connectedUsers = netOtherConnected.m_PlayerCount;
+        PersistentInfo.Instance.m_connectedNames.Add(netOtherConnected.m_PlayerName);
+
+        m_connectedPlayerText.GetComponent<UnityEngine.UI.Text>().text = $"You are player {PersistentInfo.Instance.m_currentPlayerNum} of {PersistentInfo.Instance.m_connectedUsers}";
+        for (int i = 0; i < PersistentInfo.Instance.m_connectedNames.Count; i++)
+        {
+            m_connectedOtherTexts[i].GetComponent<UnityEngine.UI.Text>().text = $"{PersistentInfo.Instance.m_connectedNames[i]}";
+        }
+    }
     void OnStartGameClient(NetMessage a_msg)
     {
         SceneManager.LoadScene(1);
     }
 
-    public void ConnectToServer(string a_adress)
-    {
-        Client.Instance.m_clientName = PersistentInfo.Instance.m_currentPlayerName;
-        Client.Instance.Initlialise(a_adress, 8008);
-        m_connectingPanel.SetActive(true);
-        m_serversPanel.SetActive(false);
-    }
+
 
     //Menu Client
     void OnServerStart(ServerMessage a_msg)
@@ -124,5 +149,14 @@ public class MenuManager : MonoBehaviour
     {
         ServerListRequest serverListRequest = a_msg as ServerListRequest;
         m_serverList.GetComponent<ServerListManager>().AddServer(serverListRequest.m_ServerName, serverListRequest.m_ServerIP);
+    }
+
+    //Utilities
+    public void ConnectToServer(string a_adress)
+    {
+        Client.Instance.m_clientName = PersistentInfo.Instance.m_currentPlayerName;
+        Client.Instance.Initlialise(a_adress, 8008);
+        m_connectingPanel.SetActive(true);
+        m_serversPanel.SetActive(false);
     }
 }
