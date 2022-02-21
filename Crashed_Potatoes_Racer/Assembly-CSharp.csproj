@@ -65,6 +65,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_Scripts\PlayerDriving\Controller.cs" />
+    <Compile Include="Assets\_Scripts\Powerups\InventoryScript.cs" />
+    <Compile Include="Assets\_Scripts\Powerups\SeedPacketScript.cs" />
     <Compile Include="Assets\_Scripts\SplineEditor\Bezier.cs" />
     <Compile Include="Assets\_Scripts\SplineEditor\BezierControlPointsMode.cs" />
     <Compile Include="Assets\_Scripts\SplineEditor\BezierCurve.cs" />
