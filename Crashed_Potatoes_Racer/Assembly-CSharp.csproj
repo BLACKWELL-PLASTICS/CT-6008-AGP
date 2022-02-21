@@ -64,11 +64,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\_Scripts\MoveRocket.cs" />
-    <Compile Include="Assets\_Scripts\PowerUpScript.cs" />
-    <Compile Include="Assets\_Scripts\RocketTest.cs" />
-    <Compile Include="Assets\_Scripts\Test.cs" />
-    <Compile Include="Assets\_Scripts\WayPointTest.cs" />
+    <Compile Include="Assets\_Scripts\AI\MoveRocket.cs" />
+    <Compile Include="Assets\_Scripts\AI\PowerUpScript.cs" />
+    <Compile Include="Assets\_Scripts\AI\RocketTest.cs" />
+    <Compile Include="Assets\_Scripts\AI\Test.cs" />
+    <Compile Include="Assets\_Scripts\AI\WayPointTest.cs" />
+    <Compile Include="Assets\_Scripts\AI\bahaviourTree\AIPlayer.cs" />
+    <Compile Include="Assets\_Scripts\AI\bahaviourTree\BT.cs" />
+    <Compile Include="Assets\_Scripts\AI\bahaviourTree\BTBase.cs" />
+    <Compile Include="Assets\_Scripts\AI\bahaviourTree\Node.cs" />
+    <Compile Include="Assets\_Scripts\AI\bahaviourTree\composites\BaseComp.cs" />
+    <Compile Include="Assets\_Scripts\AI\bahaviourTree\composites\Selector.cs" />
+    <Compile Include="Assets\_Scripts\AI\bahaviourTree\composites\Sequencer.cs" />
     <Reference Include="UnityEngine">
       <HintPath>E:/unity install/Unity/19.4.14/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
