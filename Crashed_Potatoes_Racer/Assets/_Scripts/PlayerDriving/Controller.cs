@@ -21,6 +21,11 @@ public class Controller : MonoBehaviour
 
     Vector3 v3;
 
+    // BOOSTING POWERUP
+    bool isBoosting = false;
+    float timer = 0f;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +36,18 @@ public class Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // BOOSTING CODE
+        if (isBoosting == true && timer <= 3f) {
+            timer += Time.deltaTime;
+            forwardAcceleration = 6000f;
+            maxSpeed = 80f;
+        } else {
+            isBoosting = false;
+            timer = 0f;
+            maxSpeed = 50f;
+            forwardAcceleration = 4000f;
+        }
+
         // Reset Speed input each frame
         speedInput = 0f;
         // set speed input depending on movement
@@ -49,7 +66,7 @@ public class Controller : MonoBehaviour
         }
 
         //Set Position
-        v3 = new Vector3(rb.transform.position.x, 2.5f, rb.transform.position.z);
+        v3 = new Vector3(rb.transform.position.x, transform.position.y, rb.transform.position.z);
         transform.position = v3;
     }
 
@@ -79,5 +96,10 @@ public class Controller : MonoBehaviour
             rb.drag = 0.1f;
             rb.AddForce(Vector3.up * -gravityForce * 100f);
         }
+    }
+
+    public void Boost() {
+        timer = 0f;
+        isBoosting = true;
     }
 }

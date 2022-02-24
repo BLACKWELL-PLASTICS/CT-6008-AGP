@@ -9,12 +9,6 @@ public class InventoryScript : MonoBehaviour
 
     public GameObject[] prefabs;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update() {
         if (Input.GetKeyDown(KeyCode.F)) {
@@ -23,22 +17,24 @@ public class InventoryScript : MonoBehaviour
                     Debug.Log("FP");
                     break;
                 case SeedPacketScript.POWERUPS.Hot_Potato:
-
+                    Debug.Log("HP");
                     break;
                 case SeedPacketScript.POWERUPS.Blind:
-
+                    Debug.Log("BLIND");
                     break;
                 case SeedPacketScript.POWERUPS.Boost:
-
+                    Debug.Log("BOOST");
+                    GetComponent<Controller>().Boost();
                     break;
                 case SeedPacketScript.POWERUPS.Gum:
-
+                    Debug.Log("GUM");
                     break;
                 case SeedPacketScript.POWERUPS.Obsticles:
-                    
+                    Debug.Log("OBSTICLE");
                     break;
                 case SeedPacketScript.POWERUPS.Size_Increase:
-                    //gameObject.AddComponent<SizeIncrease>();
+                    gameObject.AddComponent<SizeIncrease>();
+                    Debug.Log("SIZE INCREASE");
                     break;
                 default:
                     break;
