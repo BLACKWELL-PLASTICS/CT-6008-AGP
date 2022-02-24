@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class BT : BTBase
 {
+    //composities
+    private Selector rootSelector; //power up or none
+
+    //nodes
+    private WaypointState waypointNode;
     public BT(AIPlayer owner) : base(owner)
     {
-        //brake, power up, waypoint
 
+        rootSelector = new Selector(owner);
+
+        waypointNode = new WaypointState(owner);
     }
 }
