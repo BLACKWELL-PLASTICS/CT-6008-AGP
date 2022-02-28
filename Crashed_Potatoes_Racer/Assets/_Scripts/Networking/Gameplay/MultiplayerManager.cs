@@ -12,23 +12,33 @@ public class MultiplayerManager : MonoBehaviour
     [SerializeField]
     GameObject m_onlineCar;
     [SerializeField]
+    GameObject m_AICar;
+    [SerializeField]
     GameObject[] m_startPoints;
 
     private void Start()
     {
-        for (int i = 0; i < PersistentInfo.Instance.m_connectedUsers; i++)
+        for (int i = 0; i < m_startPoints.Length; i++)
         {
             Vector3 pos = m_startPoints[i].transform.position;
             Quaternion rot = m_startPoints[i].transform.rotation;
-
-            if (i == PersistentInfo.Instance.m_currentPlayerNum - 1)
+            GameObject car;
+            if (i < PersistentInfo.Instance.m_connectedUsers)
             {
-                Instantiate(m_DivableCar, pos, rot);
+                if (i == PersistentInfo.Instance.m_currentPlayerNum - 1)
+                {
+                    car = Instantiate(m_DivableCar, pos, rot);
+                }
+                else
+                {
+                    car = Instantiate(m_onlineCar, pos, rot);
+                }
             }
             else
             {
-                Instantiate(m_onlineCar, pos, rot);
+                car = Instantiate(m_AICar, pos, rot);
             }
+            m_activeCars.Add(car);
         }
     }
 

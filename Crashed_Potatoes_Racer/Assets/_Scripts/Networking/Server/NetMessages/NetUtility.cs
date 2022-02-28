@@ -11,6 +11,9 @@ public enum ServerOpCode
     OTHER_CONNECTED = 3,
     START_GAME = 4,
     MAKE_MOVE = 5,
+    PICKED_UP = 6,
+    GROW = 7,
+    WALL = 8
 }
 public static class NetUtility
 {
@@ -35,6 +38,15 @@ public static class NetUtility
             case ServerOpCode.MAKE_MOVE:
                 msg = new NetMakeMove(a_stream);
                 break;
+            case ServerOpCode.PICKED_UP:
+                msg = new NetPickedUp(a_stream);
+                break;
+            case ServerOpCode.GROW:
+                msg = new NetGrow(a_stream);
+                break;
+            case ServerOpCode.WALL:
+                msg = new NetWall(a_stream);
+                break;
             default:
                 Debug.LogError("Message received has unrecognised OpCode");
                 break;
@@ -57,6 +69,9 @@ public static class NetUtility
     public static Action<NetMessage> C_OTHER_CONNECTED;
     public static Action<NetMessage> C_START_GAME;
     public static Action<NetMessage> C_MAKE_MOVE;
+    public static Action<NetMessage> C_PICKED_UP;
+    public static Action<NetMessage> C_GROW;
+    public static Action<NetMessage> C_WALL;
 
     //Server
     public static Action<NetMessage, NetworkConnection> S_KEEP_ALIVE;
@@ -64,4 +79,7 @@ public static class NetUtility
     public static Action<NetMessage, NetworkConnection> S_OTHER_CONNECTED;
     public static Action<NetMessage, NetworkConnection> S_START_GAME;
     public static Action<NetMessage, NetworkConnection> S_MAKE_MOVE;
+    public static Action<NetMessage, NetworkConnection> S_PCICKED_UP;
+    public static Action<NetMessage, NetworkConnection> S_GROW;
+    public static Action<NetMessage, NetworkConnection> S_WALL;
 }
