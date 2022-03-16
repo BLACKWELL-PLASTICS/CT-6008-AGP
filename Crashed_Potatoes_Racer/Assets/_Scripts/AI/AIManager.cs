@@ -10,8 +10,8 @@ public class AIManager : MonoBehaviour
     public float speedIncrease;
 
     private static AIManager instance;
-    public static float GetMaxSpeed { get { return instance.maxSpeed; } }
-    public static float GetSpeedIncrease { get { return instance.speedIncrease; } }
+    public static float GetMaxAcc { get { return instance.maxSpeed; } }
+    public static float GetIncrease { get { return instance.speedIncrease; } }
     public static Transform[] GetWaypoints {get {return instance.wayPoints; } }
     //public static Transform[] GetCorners { get { return instance.corners; } }
 

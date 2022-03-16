@@ -13,7 +13,7 @@ public class WaypointState : Node
     {
         if(IsCorner() == true)
         {
-            owner.DecreaseSpeed();
+            owner.decreaseCheck = true;
         }
         else
         {
