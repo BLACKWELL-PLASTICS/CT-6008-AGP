@@ -17,6 +17,8 @@ public class WayPointTest : MonoBehaviour
     private int counter = 0;
     private float rand;
 
+    private float vel = 0;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -28,7 +30,7 @@ public class WayPointTest : MonoBehaviour
         
         if(rand == 0)
         {
-            agent.speed = speed;
+            agent.speed = Mathf.Lerp(agent.speed, 25, Time.deltaTime * 0.2f); 
             float dist = Vector3.Distance(transform.position, wayPoints[counter].transform.position);
             if (dist <= stoppingDist)
             {
@@ -43,7 +45,7 @@ public class WayPointTest : MonoBehaviour
         }
         else if (rand == 1)
         {
-            agent.speed = speed;
+            agent.speed = Mathf.Lerp(agent.speed, 25, Time.deltaTime * 0.2f);
             float dist = Vector3.Distance(transform.position, wayPoints2[counter].transform.position);
             if (dist <= stoppingDist)
             {
