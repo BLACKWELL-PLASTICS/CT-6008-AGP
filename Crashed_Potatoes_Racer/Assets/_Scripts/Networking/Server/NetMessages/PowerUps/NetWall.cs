@@ -5,13 +5,16 @@ public class NetWall : NetMessage
 {
     public enum ACTION
     {
-        HOLD = 1,
-        THROW = 2,
+        //HOLD = 1,
+        //THROW = 2,
         LAND = 3
     }
 
     public int m_Player { get; set; }
     public ACTION m_Action { get; set; }
+    public float m_XPos { get; set; }
+    public float m_YPos { get; set; }
+    public float m_ZPos { get; set; }
 
     public NetWall()
     {
