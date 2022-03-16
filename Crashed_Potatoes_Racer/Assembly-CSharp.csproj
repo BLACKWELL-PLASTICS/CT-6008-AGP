@@ -74,6 +74,11 @@
     <Compile Include="Assets\_Scripts\AI\bahaviourTree\composites\BaseComp.cs" />
     <Compile Include="Assets\_Scripts\AI\bahaviourTree\composites\Selector.cs" />
     <Compile Include="Assets\_Scripts\AI\bahaviourTree\composites\Sequencer.cs" />
+    <Compile Include="Assets\_Scripts\Merging\CarManagerScript.cs" />
+    <Compile Include="Assets\_Scripts\Merging\GameManagerScript.cs" />
+    <Compile Include="Assets\_Scripts\Merging\MergeControllerScript.cs" />
+    <Compile Include="Assets\_Scripts\Merging\MergeTriggerScript.cs" />
+    <Compile Include="Assets\_Scripts\Merging\MergedShootingControllerScript.cs" />
     <Compile Include="Assets\_Scripts\Networking\DontDestroyOnLoad.cs" />
     <Compile Include="Assets\_Scripts\Networking\Gameplay\MultiplayerManager.cs" />
     <Compile Include="Assets\_Scripts\Networking\Gameplay\UpdateMovement.cs" />
@@ -84,6 +89,7 @@
     <Compile Include="Assets\_Scripts\Networking\PersistentInfo.cs" />
     <Compile Include="Assets\_Scripts\Networking\Server\Client.cs" />
     <Compile Include="Assets\_Scripts\Networking\Server\MenuClient.cs" />
+    <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\Merging\NetMerge.cs" />
     <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\NetKeepAlive.cs" />
     <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\NetMakeMove.cs" />
     <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\NetMessage.cs" />

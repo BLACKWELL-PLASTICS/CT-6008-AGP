@@ -14,7 +14,8 @@ public enum ServerOpCode
     PICKED_UP = 6,
     GROW = 7,
     WALL = 8,
-    ROCKET = 9
+    ROCKET = 9,
+    MERGE = 10
 }
 public static class NetUtility
 {
@@ -51,6 +52,9 @@ public static class NetUtility
             case ServerOpCode.ROCKET:
                 msg = new NetRocket(a_stream);
                 break;
+            case ServerOpCode.MERGE:
+                msg = new NetMerge(a_stream);
+                break;
             default:
                 Debug.LogError("Message received has unrecognised OpCode");
                 break;
@@ -77,6 +81,7 @@ public static class NetUtility
     public static Action<NetMessage> C_GROW;
     public static Action<NetMessage> C_WALL;
     public static Action<NetMessage> C_ROCKET;
+    public static Action<NetMessage> C_MERGE;
 
     //Server
     public static Action<NetMessage, NetworkConnection> S_KEEP_ALIVE;
@@ -88,4 +93,5 @@ public static class NetUtility
     public static Action<NetMessage, NetworkConnection> S_GROW;
     public static Action<NetMessage, NetworkConnection> S_WALL;
     public static Action<NetMessage, NetworkConnection> S_ROCKET;
+    public static Action<NetMessage, NetworkConnection> S_MERGE;
 }
