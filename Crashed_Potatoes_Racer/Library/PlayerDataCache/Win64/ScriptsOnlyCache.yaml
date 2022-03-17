@@ -1,15 +1,21 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - BezierSpline
     - Client
+    - Controller
     - DontDestroyOnLoad
+    - InventoryScript
     - MenuButtons
     - MenuClient
     - MenuManager
+    - MultiplayerManager
     - PersistentInfo
     - Server
     - ServerButton
     - ServerListManager
+    - SplineDecorator
+    - UpdateMovement
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     UnityEditor.TestRunner.dll:
@@ -31,7 +37,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Scrollbar
     - UnityEngine.UI.Text
   sceneClasses:
-    Assets/_Scenes/IainTest/GameplayScene.unity:
+    Assets/_Scenes/IainTestScene.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -40,15 +46,43 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 21
       Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
     - Class: 28
       Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
     - Class: 48
+      Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
+    - Class: 65
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11326}
+    - Class: 114
+      Script: {instanceID: 11368}
+    - Class: 114
+      Script: {instanceID: 11412}
+    - Class: 114
+      Script: {instanceID: 11586}
+    - Class: 114
+      Script: {instanceID: 13692}
+    - Class: 114
+      Script: {instanceID: 13956}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 135
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -76,47 +110,47 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11256}
     - Class: 114
-      Script: {instanceID: 11282}
+      Script: {instanceID: 11284}
     - Class: 114
-      Script: {instanceID: 11530}
+      Script: {instanceID: 11546}
     - Class: 114
-      Script: {instanceID: 11534}
+      Script: {instanceID: 11550}
     - Class: 114
-      Script: {instanceID: 11582}
+      Script: {instanceID: 11600}
     - Class: 114
-      Script: {instanceID: 11626}
+      Script: {instanceID: 11644}
     - Class: 114
-      Script: {instanceID: 11664}
+      Script: {instanceID: 11682}
     - Class: 114
-      Script: {instanceID: 11666}
+      Script: {instanceID: 11684}
     - Class: 114
-      Script: {instanceID: 11732}
+      Script: {instanceID: 11750}
     - Class: 114
-      Script: {instanceID: 12014}
+      Script: {instanceID: 12038}
     - Class: 114
-      Script: {instanceID: 12152}
+      Script: {instanceID: 12184}
     - Class: 114
-      Script: {instanceID: 12158}
+      Script: {instanceID: 12190}
     - Class: 114
-      Script: {instanceID: 12438}
+      Script: {instanceID: 12472}
     - Class: 114
-      Script: {instanceID: 12990}
+      Script: {instanceID: 13024}
     - Class: 114
-      Script: {instanceID: 13194}
+      Script: {instanceID: 13228}
     - Class: 114
-      Script: {instanceID: 13218}
+      Script: {instanceID: 13252}
     - Class: 114
-      Script: {instanceID: 13294}
+      Script: {instanceID: 13334}
     - Class: 114
-      Script: {instanceID: 13312}
+      Script: {instanceID: 13352}
     - Class: 114
-      Script: {instanceID: 13418}
+      Script: {instanceID: 13458}
     - Class: 114
-      Script: {instanceID: 13436}
+      Script: {instanceID: 13476}
     - Class: 114
-      Script: {instanceID: 13448}
+      Script: {instanceID: 13488}
     - Class: 114
-      Script: {instanceID: 13918}
+      Script: {instanceID: 13966}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -154,6 +188,18 @@ ScriptsOnlyBuild:
     className: TMP_SelectionCaret
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MoveRocket
+  - hash:
+      serializedVersion: 2
+      Hash: ffc72b4fa29906ed3652e4cf48b6dc4c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BezierSpline
+  - hash:
+      serializedVersion: 2
       Hash: 87ff43d2baf3385cba327d8f803a4ebb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -164,6 +210,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_Dropdown
+  - hash:
+      serializedVersion: 2
+      Hash: 05f6f09f88f9928aead29f7b9ecc3e99
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SplineDecorator
+  - hash:
+      serializedVersion: 2
+      Hash: 9922f039e98410ba7b59a4018d1c993a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: InventoryScript
   - hash:
       serializedVersion: 2
       Hash: e7a73f5f78ba6445195ec23b74a1ce2d
@@ -212,6 +270,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: TouchInputModule
+  - hash:
+      serializedVersion: 2
+      Hash: 00db64ea508d56d90df1dbbd5de475d4
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MultiplayerManager
   - hash:
       serializedVersion: 2
       Hash: 89f9a1b4c64db9559e39f4a2e3bfaadd
@@ -280,6 +344,12 @@ ScriptsOnlyBuild:
     className: AnimationTrack
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SeedPacketScript
+  - hash:
+      serializedVersion: 2
       Hash: cf9f5cf2c3145a37ac07f00e50e460f9
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -316,6 +386,12 @@ ScriptsOnlyBuild:
     className: Shadow
   - hash:
       serializedVersion: 2
+      Hash: b89ca8c8ae7041500fa1df2b061f55c9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Line
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -338,6 +414,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SpriteAsset
+  - hash:
+      serializedVersion: 2
+      Hash: af6aa1e0b1477cda0b1e70b25f010902
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: WayPointTest
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -380,12 +462,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TextContainer
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Test
   - hash:
       serializedVersion: 2
       Hash: f84d945e5e1ca985698660fc26e9657f
@@ -463,6 +539,12 @@ ScriptsOnlyBuild:
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
+    className: AIPlayer
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
     className: Server
   - hash:
       serializedVersion: 2
@@ -521,6 +603,12 @@ ScriptsOnlyBuild:
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UpdateMovement
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.PerformanceTesting.dll
     namespaceName: Unity.PerformanceTesting.Measurements
     className: ProfilerMarkerMeasurement
@@ -536,6 +624,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_ColorGradient
+  - hash:
+      serializedVersion: 2
+      Hash: 71519298729161d5890aab6e682a2775
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RocketTest
+  - hash:
+      serializedVersion: 2
+      Hash: 72f0e262cec16c9f4520dc3bf2b81796
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BezierCurve
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -586,6 +686,12 @@ ScriptsOnlyBuild:
     className: Dropdown
   - hash:
       serializedVersion: 2
+      Hash: 98d9cde36067fc2dd8de177b864382bc
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Controller
+  - hash:
+      serializedVersion: 2
       Hash: 748dd2a2a28da4e618912da5ac45684b
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
@@ -616,6 +722,12 @@ ScriptsOnlyBuild:
     className: ToggleGroup
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PowerUpScript
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -623,5 +735,5 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/_Scenes/MenuScene.unity
-  - Assets/_Scenes/IainTest/GameplayScene.unity
+  - Assets/_Scenes/IainTestScene.unity
   playerPath: C:/UniStuff/CT-6008-AGP/Crashed_Potatoes_Racer/Build/Crashed_Potatoes_Racer.exe
