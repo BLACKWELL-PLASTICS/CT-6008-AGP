@@ -14,13 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 0
     y: 43.2
     width: 1536
     height: 772.8
+=======
+    x: 74
+    y: 43
+    width: 1846
+    height: 1037
+>>>>>>> Anna_Branch
   m_ShowMode: 4
 <<<<<<< HEAD
   m_Title: 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
   m_Title: Project
@@ -31,6 +39,10 @@ MonoBehaviour:
   m_RootView: {fileID: 7}
   m_MinSize: {x: 875, y: 542}
 >>>>>>> Iain_Branch
+=======
+  m_RootView: {fileID: 8}
+  m_MinSize: {x: 875, y: 300}
+>>>>>>> Anna_Branch
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -48,6 +60,7 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 742
     y: 0
     width: 511
@@ -57,6 +70,17 @@ MonoBehaviour:
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
+=======
+    x: 981
+    y: 0
+    width: 491
+    height: 390
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 20}
+  m_Panes:
+  - {fileID: 20}
+>>>>>>> Anna_Branch
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &3
@@ -67,17 +91,51 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
+<<<<<<< HEAD
+=======
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Children:
+  - {fileID: 7}
+  - {fileID: 2}
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 597
+    width: 1472
+    height: 390
+  m_MinSize: {x: 301, y: 200}
+  m_MaxSize: {x: 8001, y: 4021}
+  vertical: 0
+  controlID: 3531
+--- !u!114 &4
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+>>>>>>> Anna_Branch
   m_EditorHideFlags: 1
   m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children:
+<<<<<<< HEAD
   - {fileID: 10}
   - {fileID: 4}
+=======
+  - {fileID: 11}
+  - {fileID: 5}
+>>>>>>> Anna_Branch
   m_Position:
     serializedVersion: 2
     x: 0
     y: 30
+<<<<<<< HEAD
 <<<<<<< HEAD
     width: 1536
     height: 723
@@ -103,6 +161,15 @@ MonoBehaviour:
   controlID: 140
 --- !u!114 &3
 >>>>>>> Henry_Branch
+=======
+    width: 1846
+    height: 987
+  m_MinSize: {x: 677, y: 421}
+  m_MaxSize: {x: 12002, y: 8042}
+  vertical: 0
+  controlID: 47
+--- !u!114 &5
+>>>>>>> Anna_Branch
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,6 +184,7 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     x: 1225
@@ -156,6 +224,21 @@ MonoBehaviour:
   m_LastSelected: 2
 --- !u!114 &4
 >>>>>>> Henry_Branch
+=======
+    x: 1472
+    y: 0
+    width: 374
+    height: 987
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 17}
+  m_Panes:
+  - {fileID: 17}
+  - {fileID: 14}
+  m_Selected: 0
+  m_LastSelected: 1
+--- !u!114 &6
+>>>>>>> Anna_Branch
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,6 +255,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 403
     height: 563
   m_MinSize: {x: 201, y: 221}
@@ -196,6 +280,18 @@ MonoBehaviour:
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &6
+=======
+    width: 364
+    height: 597
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 18}
+  m_Panes:
+  - {fileID: 18}
+  m_Selected: 0
+  m_LastSelected: 0
+--- !u!114 &7
+>>>>>>> Anna_Branch
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -207,6 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_Name: ConsoleWindow
 =======
   m_Name: ProjectBrowser
@@ -214,11 +311,15 @@ MonoBehaviour:
 =======
   m_Name: ProjectBrowser
 >>>>>>> Henry_Branch
+=======
+  m_Name: ConsoleWindow
+>>>>>>> Anna_Branch
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
     x: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
     y: 437
     width: 1253
@@ -258,6 +359,20 @@ MonoBehaviour:
   m_LastSelected: 1
 --- !u!114 &7
 >>>>>>> Iain_Branch
+=======
+    y: 0
+    width: 981
+    height: 390
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 21}
+  m_Panes:
+  - {fileID: 16}
+  - {fileID: 21}
+  m_Selected: 1
+  m_LastSelected: 0
+--- !u!114 &8
+>>>>>>> Anna_Branch
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -270,22 +385,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children:
+<<<<<<< HEAD
   - {fileID: 8}
   - {fileID: 3}
   - {fileID: 9}
+=======
+  - {fileID: 9}
+  - {fileID: 4}
+  - {fileID: 10}
+>>>>>>> Anna_Branch
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 1536
     height: 773
 <<<<<<< HEAD
+=======
+    width: 1846
+    height: 1037
+>>>>>>> Anna_Branch
   m_MinSize: {x: 875, y: 300}
 =======
   m_MinSize: {x: 875, y: 542}
 >>>>>>> Iain_Branch
   m_MaxSize: {x: 10000, y: 10000}
+<<<<<<< HEAD
 --- !u!114 &8
+=======
+--- !u!114 &9
+>>>>>>> Anna_Branch
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -303,14 +433,19 @@ MonoBehaviour:
     x: 0
     y: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 1536
 =======
     width: 1920
 >>>>>>> Henry_Branch
+=======
+    width: 1846
+>>>>>>> Anna_Branch
     height: 30
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
   m_LastLoadedLayoutName: 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!114 &8
@@ -320,6 +455,9 @@ MonoBehaviour:
 =======
 --- !u!114 &8
 >>>>>>> Henry_Branch
+=======
+--- !u!114 &10
+>>>>>>> Anna_Branch
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -336,6 +474,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     y: 753
     width: 1536
     height: 20
@@ -350,6 +489,14 @@ MonoBehaviour:
   m_MaxSize: {x: 0, y: 0}
 --- !u!114 &9
 >>>>>>> Henry_Branch
+=======
+    y: 1017
+    width: 1846
+    height: 20
+  m_MinSize: {x: 0, y: 0}
+  m_MaxSize: {x: 0, y: 0}
+--- !u!114 &11
+>>>>>>> Anna_Branch
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -362,12 +509,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children:
+<<<<<<< HEAD
   - {fileID: 11}
   - {fileID: 6}
+=======
+  - {fileID: 12}
+  - {fileID: 3}
+>>>>>>> Anna_Branch
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
     width: 1253
     height: 723
@@ -393,6 +546,15 @@ MonoBehaviour:
   controlID: 88
 --- !u!114 &10
 >>>>>>> Henry_Branch
+=======
+    width: 1472
+    height: 987
+  m_MinSize: {x: 402, y: 421}
+  m_MaxSize: {x: 8002, y: 8042}
+  vertical: 1
+  controlID: 48
+--- !u!114 &12
+>>>>>>> Anna_Branch
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -405,13 +567,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children:
+<<<<<<< HEAD
   - {fileID: 5}
   - {fileID: 12}
   - {fileID: 2}
+=======
+  - {fileID: 6}
+  - {fileID: 13}
+>>>>>>> Anna_Branch
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     width: 1225
@@ -437,6 +605,15 @@ MonoBehaviour:
   controlID: 82
 --- !u!114 &12
 >>>>>>> Iain_Branch
+=======
+    width: 1472
+    height: 597
+  m_MinSize: {x: 402, y: 221}
+  m_MaxSize: {x: 8002, y: 4021}
+  vertical: 0
+  controlID: 49
+--- !u!114 &13
+>>>>>>> Anna_Branch
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -451,6 +628,7 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     x: 303
@@ -482,6 +660,47 @@ MonoBehaviour:
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &13
+=======
+    x: 364
+    y: 0
+    width: 1108
+    height: 597
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
+  m_ActualView: {fileID: 19}
+  m_Panes:
+  - {fileID: 19}
+  - {fileID: 15}
+  m_Selected: 0
+  m_LastSelected: 0
+--- !u!114 &14
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12141, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 300, y: 360}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Navigation
+    m_Image: {fileID: 1087843850482249999, guid: 0000000000000000d000000000000000,
+      type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 1546
+    y: 73
+    width: 373
+    height: 966
+  m_ViewDataDictionary: {fileID: 0}
+--- !u!114 &15
+>>>>>>> Anna_Branch
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -497,12 +716,17 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Text: Asset Store
     m_Image: {fileID: -7444545952099596278, guid: 0000000000000000d000000000000000,
 =======
     m_Text: Animation
     m_Image: {fileID: -8166618308981325432, guid: 0000000000000000d000000000000000,
 >>>>>>> Henry_Branch
+=======
+    m_Text: Asset Store
+    m_Image: {fileID: -8693916549880196297, guid: 0000000000000000d000000000000000,
+>>>>>>> Anna_Branch
       type: 0}
     m_Tooltip: 
   m_Pos:
@@ -512,6 +736,7 @@ MonoBehaviour:
     width: 1368
     height: 363
   m_ViewDataDictionary: {fileID: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!114 &14
 =======
@@ -704,6 +929,9 @@ MonoBehaviour:
   m_Scope: 1
   m_SplitterFlex: 0.2
 --- !u!114 &17
+=======
+--- !u!114 &16
+>>>>>>> Anna_Branch
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -725,6 +953,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 0
     y: 510.4
     width: 1252
@@ -735,6 +964,12 @@ MonoBehaviour:
     width: 1368
     height: 363
 >>>>>>> Henry_Branch
+=======
+    x: 74
+    y: 670
+    width: 980
+    height: 369
+>>>>>>> Anna_Branch
   m_ViewDataDictionary: {fileID: 0}
   m_SearchFilter:
     m_NameFilter: 
@@ -751,13 +986,18 @@ MonoBehaviour:
     m_Folders:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     - Assets/_Scripts/Powerups
 =======
     - Assets/_Scripts/MenuScripts
 >>>>>>> Henry_Branch
+=======
+    - Assets/_Scenes/AITestScene
+>>>>>>> Anna_Branch
   m_ViewMode: 1
   m_StartGridSize: 63
   m_LastFolders:
+<<<<<<< HEAD
 <<<<<<< HEAD
   - Assets/_Scripts/Powerups
   m_LastFoldersGridSize: -1
@@ -797,6 +1037,18 @@ MonoBehaviour:
     m_LastClickedID: 15082
     m_ExpandedIDs: 00000000d63a0000d83a0000da3a000000ca9a3b
 >>>>>>> Henry_Branch
+=======
+  - Assets/_Scenes/AITestScene
+  m_LastFoldersGridSize: -1
+  m_LastProjectPath: E:\github\CT-6008-AGP\Crashed_Potatoes_Racer
+  m_LockTracker:
+    m_IsLocked: 0
+  m_FolderTreeState:
+    scrollPos: {x: 0, y: 103}
+    m_SelectedIDs: 4e380000
+    m_LastClickedID: 14414
+    m_ExpandedIDs: 0000000036380000383800003a3800003c3800003e380000403800005238000000ca9a3b
+>>>>>>> Anna_Branch
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -826,6 +1078,7 @@ MonoBehaviour:
     m_LastClickedID: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_ExpandedIDs: 000000009a3800009c3800009e380000
 =======
     m_ExpandedIDs: 00000000383a00003a3a00003c3a00003e3a0000403a0000
@@ -833,6 +1086,9 @@ MonoBehaviour:
 =======
     m_ExpandedIDs: 00000000d63a0000d83a0000da3a0000
 >>>>>>> Henry_Branch
+=======
+    m_ExpandedIDs: 0000000036380000383800003a3800003c3800003e38000040380000
+>>>>>>> Anna_Branch
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -857,14 +1113,21 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
+<<<<<<< HEAD
     m_SelectedInstanceIDs: 2e380000
     m_LastClickedInstanceID: 14382
+=======
+    m_SelectedInstanceIDs: ec650000
+    m_LastClickedInstanceID: 26092
+>>>>>>> Anna_Branch
     m_HadKeyboardFocusLastEvent: 1
-<<<<<<< HEAD
     m_ExpandedInstanceIDs: c6230000
+<<<<<<< HEAD
 =======
     m_ExpandedInstanceIDs: c623000000000000aa5d0000
 >>>>>>> Henry_Branch
+=======
+>>>>>>> Anna_Branch
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -880,7 +1143,11 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
+<<<<<<< HEAD
       m_ClientGUIView: {fileID: 6}
+=======
+      m_ClientGUIView: {fileID: 0}
+>>>>>>> Anna_Branch
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -891,8 +1158,8 @@ MonoBehaviour:
     m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 63
   m_SkipHiddenPackages: 0
-<<<<<<< HEAD
   m_DirectoriesAreaWidth: 115
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!114 &14
 =======
@@ -902,6 +1169,9 @@ MonoBehaviour:
   m_DirectoriesAreaWidth: 207
 --- !u!114 &18
 >>>>>>> Henry_Branch
+=======
+--- !u!114 &17
+>>>>>>> Anna_Branch
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -924,6 +1194,7 @@ MonoBehaviour:
     serializedVersion: 2
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 1224.8
 =======
     x: 1252.8
@@ -937,6 +1208,12 @@ MonoBehaviour:
     width: 550
     height: 926
 >>>>>>> Henry_Branch
+=======
+    x: 1546
+    y: 73
+    width: 373
+    height: 966
+>>>>>>> Anna_Branch
   m_ViewDataDictionary: {fileID: 0}
   m_OpenAddComponentMenu: 0
   m_ObjectsLockedBeforeSerialization: []
@@ -951,6 +1228,7 @@ MonoBehaviour:
   m_LastInspectedObjectInstanceID: -1
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_LastVerticalScrollValue: 38
 --- !u!114 &15
 =======
@@ -961,6 +1239,10 @@ MonoBehaviour:
   m_LastVerticalScrollValue: 0
 --- !u!114 &19
 >>>>>>> Henry_Branch
+=======
+  m_LastVerticalScrollValue: 100
+--- !u!114 &18
+>>>>>>> Anna_Branch
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -981,6 +1263,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
 <<<<<<< HEAD
     x: 0
     y: 73.6
@@ -1011,21 +1294,35 @@ MonoBehaviour:
       m_LastClickedID: 0
       m_ExpandedIDs: 68fbffff94380000e0380000
 >>>>>>> Henry_Branch
+=======
+    x: 74
+    y: 73
+    width: 363
+    height: 576
+  m_ViewDataDictionary: {fileID: 0}
+  m_SceneHierarchy:
+    m_TreeViewState:
+      scrollPos: {x: 0, y: 21}
+      m_SelectedIDs: 6e660000
+      m_LastClickedID: 26222
+      m_ExpandedIDs: 828ffcffac8ffcffe4f5ffff44fbffffce370000ec650000
+>>>>>>> Anna_Branch
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Cube
+        m_OriginalName: Cube
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: -225536
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         m_ClientGUIView: {fileID: 4}
@@ -1035,12 +1332,16 @@ MonoBehaviour:
 =======
         m_ClientGUIView: {fileID: 4}
 >>>>>>> Henry_Branch
+=======
+        m_ClientGUIView: {fileID: 6}
+>>>>>>> Anna_Branch
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
     m_LockTracker:
       m_IsLocked: 0
     m_CurrentSortingName: TransformSorting
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   m_WindowGUID: 5fd973c71b81ed04f981d5a8940afa3c
@@ -1053,6 +1354,10 @@ MonoBehaviour:
   m_WindowGUID: 4c969a2b90040154d917609493e03593
 --- !u!114 &20
 >>>>>>> Henry_Branch
+=======
+  m_WindowGUID: 7b7d4fb25440b0d47a23a03254fd8e76
+--- !u!114 &19
+>>>>>>> Anna_Branch
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1073,6 +1378,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     x: 303.2
@@ -1098,14 +1404,24 @@ MonoBehaviour:
   m_ShowContextualTools: 0
   m_WindowGUID: cc27987af1a868c49b0894db9c0f5429
 >>>>>>> Henry_Branch
+=======
+    x: 438
+    y: 73
+    width: 1106
+    height: 576
+  m_ViewDataDictionary: {fileID: 0}
+  m_ShowContextualTools: 0
+  m_WindowGUID: 4fd8dc8fd99db9c4493aa9d6e870b0d2
+>>>>>>> Anna_Branch
   m_Gizmos: 1
-  m_SceneIsLit: 1
+  m_SceneIsLit: 0
   m_SceneLighting: 1
   m_2DMode: 0
   m_isRotationLocked: 0
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     m_Target: {x: 3.75, y: 2.5, z: -8.25}
@@ -1121,6 +1437,11 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0.9260142, y: -0.14455462, z: -3.8897572}
 >>>>>>> Henry_Branch
+=======
+    m_Target: {x: -11.088139, y: 7.110768, z: 107.76555}
+    speed: 2
+    m_Value: {x: -11.088139, y: 7.110768, z: 107.76555}
+>>>>>>> Anna_Branch
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1162,6 +1483,7 @@ MonoBehaviour:
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
       m_Size: {x: 0, y: 0}
 =======
       m_Size: {x: 1, y: 1}
@@ -1169,10 +1491,14 @@ MonoBehaviour:
 >>>>>>> Iain_Branch
 =======
 >>>>>>> Henry_Branch
+=======
+      m_Size: {x: 0, y: 0}
+>>>>>>> Anna_Branch
     m_ShowGrid: 1
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     m_Target: {x: -0.34436047, y: 0.11422923, z: -0.042256143, w: -0.93090594}
@@ -1200,6 +1526,15 @@ MonoBehaviour:
     speed: 2
     m_Value: 5.3216157
 >>>>>>> Henry_Branch
+=======
+    m_Target: {x: -0.2882444, y: -0.5305973, z: 0.19810843, w: -0.7721184}
+    speed: 2
+    m_Value: {x: -0.2882398, y: -0.53058887, z: 0.19810528, w: -0.77210605}
+  m_Size:
+    m_Target: 105.64718
+    speed: 2
+    m_Value: 105.64718
+>>>>>>> Anna_Branch
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1208,6 +1543,9 @@ MonoBehaviour:
     m_Speed: 1
     m_SpeedNormalized: 0.5
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Anna_Branch
     m_SpeedMin: 0.01
 =======
     m_SpeedMin: 0.001
@@ -1223,6 +1561,7 @@ MonoBehaviour:
     m_OcclusionCulling: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_LastSceneViewRotation: {x: 0, y: 0, z: 0, w: 0}
 =======
   m_LastSceneViewRotation: {x: -0.03852018, y: 0.944118, z: -0.30483383, w: -0.11930385}
@@ -1230,12 +1569,16 @@ MonoBehaviour:
 =======
   m_LastSceneViewRotation: {x: -0.1177649, y: 0.59040785, z: -0.08760731, w: -0.79364675}
 >>>>>>> Henry_Branch
+=======
+  m_LastSceneViewRotation: {x: 0, y: 0, z: 0, w: 0}
+>>>>>>> Anna_Branch
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
   m_SceneVisActive: 1
   m_LastLockedObject: {fileID: 0}
   m_ViewIsLockedToObject: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!114 &18
 =======
@@ -1267,6 +1610,9 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
 --- !u!114 &22
 >>>>>>> Henry_Branch
+=======
+--- !u!114 &20
+>>>>>>> Anna_Branch
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1282,15 +1628,12 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Game
-<<<<<<< HEAD
-    m_Image: {fileID: 4621777727084837110, guid: 0000000000000000d000000000000000,
-=======
     m_Image: {fileID: -6423792434712278376, guid: 0000000000000000d000000000000000,
->>>>>>> Henry_Branch
       type: 0}
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     x: 303.2
@@ -1306,6 +1649,12 @@ MonoBehaviour:
     width: 964
     height: 542
 >>>>>>> Henry_Branch
+=======
+    x: 1055
+    y: 670
+    width: 489
+    height: 369
+>>>>>>> Anna_Branch
   m_ViewDataDictionary: {fileID: 0}
   m_SerializedViewNames:
   - UnityEditor.DeviceSimulation.SimulatorWindow
@@ -1319,6 +1668,7 @@ MonoBehaviour:
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_TargetSize: {x: 920, y: 395}
 =======
   m_TargetSize: {x: 509, y: 286}
@@ -1326,6 +1676,9 @@ MonoBehaviour:
 =======
   m_TargetSize: {x: 926, y: 521}
 >>>>>>> Henry_Branch
+=======
+  m_TargetSize: {x: 489, y: 348}
+>>>>>>> Anna_Branch
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -1336,6 +1689,7 @@ MonoBehaviour:
   m_Stats: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_SelectedSizes: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
 =======
   m_SelectedSizes: 05000000000000000000000000000000000000000000000000000000000000000000000000000000
@@ -1343,11 +1697,15 @@ MonoBehaviour:
 =======
   m_SelectedSizes: 0500000000000000000000000d000000000000000000000000000000000000000000000000000000
 >>>>>>> Henry_Branch
+=======
+  m_SelectedSizes: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+>>>>>>> Anna_Branch
   m_ZoomArea:
     m_HRangeLocked: 0
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     m_HBaseRangeMin: -368
@@ -1366,6 +1724,12 @@ MonoBehaviour:
     m_VBaseRangeMin: -260.5
     m_VBaseRangeMax: 260.5
 >>>>>>> Henry_Branch
+=======
+    m_HBaseRangeMin: -244.5
+    m_HBaseRangeMax: 244.5
+    m_VBaseRangeMin: -174
+    m_VBaseRangeMax: 174
+>>>>>>> Anna_Branch
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -1385,6 +1749,7 @@ MonoBehaviour:
       y: 21
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       width: 920
       height: 395
     m_Scale: {x: 1, y: 1}
@@ -1401,12 +1766,19 @@ MonoBehaviour:
     m_Scale: {x: 1, y: 1}
     m_Translation: {x: 482, y: 260.5}
 >>>>>>> Henry_Branch
+=======
+      width: 489
+      height: 348
+    m_Scale: {x: 1, y: 1}
+    m_Translation: {x: 244.5, y: 174}
+>>>>>>> Anna_Branch
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
+<<<<<<< HEAD
       x: -482
       y: -260.5
       width: 964
@@ -1424,12 +1796,25 @@ MonoBehaviour:
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 636.25, y: 520}
 >>>>>>> Iain_Branch
+=======
+      x: -244.5
+      y: -174
+      width: 489
+      height: 348
+    m_MinimalGUI: 1
+  m_defaultScale: 1
+  m_LastWindowPixelSize: {x: 489, y: 369}
+>>>>>>> Anna_Branch
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
   m_XRRenderMode: 0
   m_RenderTexture: {fileID: 0}
+<<<<<<< HEAD
 --- !u!114 &19
+=======
+--- !u!114 &21
+>>>>>>> Anna_Branch
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1445,11 +1830,16 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Console
+<<<<<<< HEAD
     m_Image: {fileID: -4950941429401207979, guid: 0000000000000000d000000000000000,
+=======
+    m_Image: {fileID: -4327648978806127646, guid: 0000000000000000d000000000000000,
+>>>>>>> Anna_Branch
       type: 0}
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 0
     y: 510.4
 <<<<<<< HEAD
@@ -1469,6 +1859,14 @@ MonoBehaviour:
   m_RenderTexture: {fileID: 0}
 --- !u!114 &23
 >>>>>>> Henry_Branch
+=======
+    x: 74
+    y: 670
+    width: 980
+    height: 369
+  m_ViewDataDictionary: {fileID: 0}
+--- !u!114 &22
+>>>>>>> Anna_Branch
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
