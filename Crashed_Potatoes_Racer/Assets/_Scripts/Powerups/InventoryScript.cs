@@ -14,27 +14,29 @@ public class InventoryScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F)) {
             switch (p1) {
                 case SeedPacketScript.POWERUPS.Forward_Projectile:
+
                     Debug.Log("FP");
                     break;
                 case SeedPacketScript.POWERUPS.Hot_Potato:
+
                     Debug.Log("HP");
                     break;
                 case SeedPacketScript.POWERUPS.Blind:
+
                     Debug.Log("BLIND");
                     break;
                 case SeedPacketScript.POWERUPS.Boost:
-                    Debug.Log("BOOST");
                     GetComponent<Controller>().Boost();
                     break;
                 case SeedPacketScript.POWERUPS.Gum:
+
                     Debug.Log("GUM");
                     break;
                 case SeedPacketScript.POWERUPS.Obsticles:
-                    Debug.Log("OBSTICLE");
+                    gameObject.GetComponent<Obsticle>().SpawnGO();
                     break;
                 case SeedPacketScript.POWERUPS.Size_Increase:
                     gameObject.AddComponent<SizeIncrease>();
-                    Debug.Log("SIZE INCREASE");
                     break;
                 default:
                     break;
