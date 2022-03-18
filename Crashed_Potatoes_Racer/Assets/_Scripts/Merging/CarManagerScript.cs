@@ -36,10 +36,32 @@ public class CarManagerScript : MonoBehaviour
         if (m_mergeOn)
         {
             GetComponent<Renderer>().material = m_canMergeMaterial;
+            NetMerge netMerge = new NetMerge();
+            netMerge.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+            netMerge.m_Action = NetMerge.ACTION.ACTIVATE;
+            netMerge.m_XPos = 0;
+            netMerge.m_YPos = 0;
+            netMerge.m_ZPos = 0;
+            netMerge.m_XRot = 0;
+            netMerge.m_YRot = 0;
+            netMerge.m_ZRot = 0;
+            netMerge.m_WRot = 0;
+            Client.Instance.SendToServer(netMerge);
         }
         else
         {
             GetComponent<Renderer>().material = m_normalMaterial;
+            NetMerge netMerge = new NetMerge();
+            netMerge.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+            netMerge.m_Action = NetMerge.ACTION.DEACTIVATE;
+            netMerge.m_XPos = 0;
+            netMerge.m_YPos = 0;
+            netMerge.m_ZPos = 0;
+            netMerge.m_XRot = 0;
+            netMerge.m_YRot = 0;
+            netMerge.m_ZRot = 0;
+            netMerge.m_WRot = 0;
+            Client.Instance.SendToServer(netMerge);
         }
     }
     public void EnteredMerge(GameObject a_other)

@@ -37,6 +37,7 @@ public class GameManagerScript : MonoBehaviour
             }
             else
             {
+                //Merge - Demerge
                 m_hasMerged = false;
                 m_timer = m_maxTimer;
                 Vector3 pos = (m_mergedCar.transform.position + (m_mergedCar.transform.right));
@@ -56,6 +57,7 @@ public class GameManagerScript : MonoBehaviour
 
     public void MergeCars(GameObject a_car1, GameObject a_car2)
     {
+        //Merge - Merge
         if (m_mergedCar == null)
         {
             Vector3 pos = a_car1.transform.position + (a_car2.transform.position - a_car1.transform.position) / 2;

@@ -33,7 +33,17 @@ public class MergedShootingControllerScript : MonoBehaviour
         {
             Debug.Log("Fire");
         }
-
         transform.Rotate(verticalRotation, horizontalRotation, 0);
+        NetMerge netMerge = new NetMerge();
+        netMerge.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+        netMerge.m_Action = NetMerge.ACTION.SHOOT;
+        netMerge.m_XPos = gameObject.transform.position.x;
+        netMerge.m_YPos = gameObject.transform.position.y;
+        netMerge.m_ZPos = gameObject.transform.position.z;
+        netMerge.m_XRot = gameObject.transform.rotation.x;
+        netMerge.m_YRot = gameObject.transform.rotation.y;
+        netMerge.m_ZRot = gameObject.transform.rotation.z;
+        netMerge.m_WRot = gameObject.transform.rotation.w;
+        Client.Instance.SendToServer(netMerge);
     }
 }

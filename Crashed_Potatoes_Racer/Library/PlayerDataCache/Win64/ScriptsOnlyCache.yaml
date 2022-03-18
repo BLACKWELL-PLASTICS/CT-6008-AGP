@@ -2,13 +2,17 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - BezierSpline
+    - CarManagerScript
     - Client
     - Controller
     - DontDestroyOnLoad
+    - GameManagerScript
     - InventoryScript
     - MenuButtons
     - MenuClient
     - MenuManager
+    - MergeControllerScript
+    - MergeTriggerScript
     - MultiplayerManager
     - PersistentInfo
     - Server
@@ -18,6 +22,11 @@ ScriptsOnlyBuild:
     - UpdateMovement
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    Unity.TextMeshPro.dll:
+    - TMPro.TMP_FontAsset
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -69,17 +78,25 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11326}
+      Script: {instanceID: 11612}
     - Class: 114
-      Script: {instanceID: 11368}
+      Script: {instanceID: 11654}
     - Class: 114
-      Script: {instanceID: 11412}
+      Script: {instanceID: 11698}
     - Class: 114
-      Script: {instanceID: 11586}
+      Script: {instanceID: 11876}
     - Class: 114
-      Script: {instanceID: 13692}
+      Script: {instanceID: 13134}
     - Class: 114
-      Script: {instanceID: 13956}
+      Script: {instanceID: 13234}
+    - Class: 114
+      Script: {instanceID: 14006}
+    - Class: 114
+      Script: {instanceID: 14126}
+    - Class: 114
+      Script: {instanceID: 14240}
+    - Class: 114
+      Script: {instanceID: 14276}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 135
@@ -101,6 +118,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 104
@@ -108,49 +127,57 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11256}
+      Script: {instanceID: 11570}
     - Class: 114
-      Script: {instanceID: 11284}
+      Script: {instanceID: 11836}
     - Class: 114
-      Script: {instanceID: 11546}
+      Script: {instanceID: 11840}
     - Class: 114
-      Script: {instanceID: 11550}
+      Script: {instanceID: 11890}
     - Class: 114
-      Script: {instanceID: 11600}
+      Script: {instanceID: 11934}
     - Class: 114
-      Script: {instanceID: 11644}
+      Script: {instanceID: 11974}
     - Class: 114
-      Script: {instanceID: 11682}
+      Script: {instanceID: 11976}
     - Class: 114
-      Script: {instanceID: 11684}
+      Script: {instanceID: 12044}
     - Class: 114
-      Script: {instanceID: 11750}
+      Script: {instanceID: 12332}
     - Class: 114
-      Script: {instanceID: 12038}
+      Script: {instanceID: 12478}
     - Class: 114
-      Script: {instanceID: 12184}
+      Script: {instanceID: 12484}
     - Class: 114
-      Script: {instanceID: 12190}
+      Script: {instanceID: 12530}
     - Class: 114
-      Script: {instanceID: 12472}
+      Script: {instanceID: 12774}
     - Class: 114
-      Script: {instanceID: 13024}
-    - Class: 114
-      Script: {instanceID: 13228}
-    - Class: 114
-      Script: {instanceID: 13252}
+      Script: {instanceID: 13078}
     - Class: 114
       Script: {instanceID: 13334}
     - Class: 114
-      Script: {instanceID: 13352}
+      Script: {instanceID: 13378}
     - Class: 114
-      Script: {instanceID: 13458}
+      Script: {instanceID: 13394}
     - Class: 114
-      Script: {instanceID: 13476}
+      Script: {instanceID: 13538}
     - Class: 114
-      Script: {instanceID: 13488}
+      Script: {instanceID: 13562}
     - Class: 114
-      Script: {instanceID: 13966}
+      Script: {instanceID: 13644}
+    - Class: 114
+      Script: {instanceID: 13662}
+    - Class: 114
+      Script: {instanceID: 13768}
+    - Class: 114
+      Script: {instanceID: 13786}
+    - Class: 114
+      Script: {instanceID: 13800}
+    - Class: 114
+      Script: {instanceID: 13992}
+    - Class: 114
+      Script: {instanceID: 14286}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -168,12 +195,6 @@ ScriptsOnlyBuild:
     - Class: 224
       Script: {instanceID: 0}
   scriptHashData:
-  - hash:
-      serializedVersion: 2
-      Hash: 5f1752ed2092162f016c19510c28a8b9
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Button
   - hash:
       serializedVersion: 2
       Hash: 4bc4346a71a8df53a6b106f68ef3a190
@@ -248,6 +269,12 @@ ScriptsOnlyBuild:
     className: ActivationTrack
   - hash:
       serializedVersion: 2
+      Hash: bcb3ff7a2997375feed8e099a2d3be60
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameMenuManager
+  - hash:
+      serializedVersion: 2
       Hash: aeb62f729c52c814dec86c47dcac1471
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -312,6 +339,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DontDestroyOnLoad
+  - hash:
+      serializedVersion: 2
+      Hash: b67184271a93ac2910a595a23dbbd7c1
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AIManager
   - hash:
       serializedVersion: 2
       Hash: 8aa3d6ccbcb54ee8db6c1229854adaaa
@@ -434,6 +467,18 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
+      Hash: 0a1162bc7899d057769f7850f29491c2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MergedShootingControllerScript
+  - hash:
+      serializedVersion: 2
+      Hash: 58910e17215c027898a034017d5ed9f1
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: KartPreview
+  - hash:
+      serializedVersion: 2
       Hash: d4020bafcd3ccbb5601a6e6c8ac78be0
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -464,16 +509,34 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
+      Hash: 5f1752ed2092162f016c19510c28a8b9
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Button
+  - hash:
+      serializedVersion: 2
       Hash: f84d945e5e1ca985698660fc26e9657f
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: RawImage
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MergeControllerScript
+  - hash:
+      serializedVersion: 2
       Hash: 5ad4aa237d47ac2bab17bacb672edf7a
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: VerticalLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: d2fc81cbd4174c3225c123787c817de1
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CarManagerScript
   - hash:
       serializedVersion: 2
       Hash: 783f593b9380cf72d0f7ebfd4a0d4bcd
@@ -536,7 +599,7 @@ ScriptsOnlyBuild:
     className: ServerButton
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 8fbc25e773c89003582cd966abe20d71
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: AIPlayer
@@ -590,6 +653,12 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SizeIncrease
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -626,10 +695,22 @@ ScriptsOnlyBuild:
     className: TMP_ColorGradient
   - hash:
       serializedVersion: 2
+      Hash: 8d13b1575bd8ec4035821c9d746108f2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameManagerScript
+  - hash:
+      serializedVersion: 2
       Hash: 71519298729161d5890aab6e682a2775
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RocketTest
+  - hash:
+      serializedVersion: 2
+      Hash: 220bd265f54cc4cee8f1539ad2b2c64a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Obsticle
   - hash:
       serializedVersion: 2
       Hash: 72f0e262cec16c9f4520dc3bf2b81796
@@ -666,6 +747,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SubMesh
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MergeTriggerScript
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
