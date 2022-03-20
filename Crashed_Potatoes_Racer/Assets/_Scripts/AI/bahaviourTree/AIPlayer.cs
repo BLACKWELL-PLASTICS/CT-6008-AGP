@@ -23,7 +23,7 @@ public class AIPlayer : MonoBehaviour
     public Transform target;
     public bool decreaseCheck = false;
 
-    private float speed = 50;
+    private float speed = 0;
     private float accel = 0;
 
     private BT bahaviourTree;
@@ -52,16 +52,19 @@ public class AIPlayer : MonoBehaviour
 
     public void IncreaseSpeed()
     {
-        accel = Mathf.Lerp(speed, AIManager.GetMaxAcc, Time.deltaTime * AIManager.GetIncrease);
+        accel = Mathf.Lerp(accel, AIManager.GetMaxAcc, Time.deltaTime * AIManager.GetIncrease);
+        speed = Mathf.Lerp(speed, AIManager.GetMaxSpeed, Time.deltaTime * AIManager.GetIncrease);
+
     }
 
     public IEnumerator DecreaseSpeed()
     {
-        speed = Mathf.Lerp(speed, 1.0f, Time.deltaTime * AIManager.GetIncrease * 2);
+        accel = Mathf.Lerp(accel, 10.0f, Time.deltaTime * AIManager.GetDecrease);
+        speed = Mathf.Lerp(speed, 10.0f, Time.deltaTime * AIManager.GetDecrease);
 
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(AIManager.GetSlowDownPeriod);
 
-        speed = 50;
+        IncreaseSpeed();
         decreaseCheck = false;
     }
 
