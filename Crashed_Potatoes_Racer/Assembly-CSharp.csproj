@@ -55,7 +55,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\JMO Assets\Toony Colors\Demo 2.0\TCF_Demo.cs" />
+     <Compile Include="Assets\Shaders\JMO Assets\Toony Colors\Demo 2.0\TCF_Demo.cs" />
+     <Compile Include="Assets\Shaders\MobileDepthWater\Scripts\AnimationStarter.cs" />
+     <Compile Include="Assets\Shaders\MobileDepthWater\Scripts\CameraDepthSlider.cs" />
+     <Compile Include="Assets\Shaders\MobileDepthWater\Scripts\CameraRotator.cs" />
+     <Compile Include="Assets\Shaders\MobileDepthWater\Scripts\FPSCounter.cs" />
+     <Compile Include="Assets\Shaders\MobileDepthWater\Scripts\FPSUI.cs" />
+     <Compile Include="Assets\Shaders\MobileDepthWater\Scripts\TouchRotator.cs" />
+     <Compile Include="Assets\Shaders\MobileDepthWater\Scripts\Water\WaterArea.cs" />
+     <Compile Include="Assets\Shaders\MobileDepthWater\Scripts\Water\WaterMaterialSwitcher.cs" />
+     <Compile Include="Assets\Shaders\MobileDepthWater\Scripts\Water\WaterPropertyBlockSetter.cs" />
      <Compile Include="Assets\_Scripts\AI\AIManager.cs" />
      <Compile Include="Assets\_Scripts\AI\MoveRocket.cs" />
      <Compile Include="Assets\_Scripts\AI\PowerUpScript.cs" />
@@ -118,15 +127,22 @@
      <Compile Include="Assets\_Scripts\SplineEditor\SplineDecorator.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
-     <None Include="Assets\JMO Assets\Toony Colors\Shaders 2.0\Rim Lighting.shader" />
+     <None Include="Assets\Shaders\JMO Assets\Toony Colors\Shaders 2.0\Rim Lighting.shader" />
+     <None Include="Assets\Shaders\MobileDepthWater\Shaders\WaterTwoSide\Height\DiffuseColorHeightWaterTwoSide.shader" />
+     <None Include="Assets\Shaders\MobileDepthWater\Shaders\WaterOpaque\DiffuseWaterOpaque.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+     <None Include="Assets\Shaders\MobileDepthWater\Shaders\WaterTwoSide\Depth\DiffuseColorDepthWaterTwoSide.shader" />
+     <None Include="Assets\Shaders\MobileDepthWater\Shaders\WaterTwoSide\Depth\DiffuseDepthWaterTwoSide.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
-     <None Include="Assets\TSF\Shaders\TSF.shader" />
-     <None Include="Assets\JMO Assets\Toony Colors\Shaders 2.0\Rim Alpha.shader" />
+     <None Include="Assets\Shaders\TSF\Shaders\TSF.shader" />
+     <None Include="Assets\Shaders\MobileDepthWater\Shaders\WaterOpaque\Height\DiffuseHeightWater.shader" />
+     <None Include="Assets\Shaders\JMO Assets\Toony Colors\Shaders 2.0\Rim Alpha.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
-     <None Include="Assets\JMO Assets\Toony Colors\Shaders 2.0\Regular.shader" />
-     <None Include="Assets\TSF\Shaders\TSFOutline.shader" />
+     <None Include="Assets\Shaders\JMO Assets\Toony Colors\Shaders 2.0\Regular.shader" />
+     <None Include="Assets\Shaders\TSF\Shaders\TSFOutline.shader" />
+     <None Include="Assets\Shaders\MobileDepthWater\Shaders\WaterTwoSide\Height\DiffuseHeightWaterTwoSide.shader" />
+     <None Include="Assets\Shaders\MobileDepthWater\Shaders\WaterOpaque\Depth\DiffuseDepthWater.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
      <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
@@ -136,8 +152,10 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-     <None Include="Assets\JMO Assets\Toony Colors\!ToonyColors Readme.txt" />
-     <None Include="Assets\JMO Assets\Toony Colors\Shaders 2.0\Rim Outline.shader" />
+     <None Include="Assets\Shaders\MobileDepthWater\Shaders\WaterOpaque\Height\DiffuseColorHeightWater.shader" />
+     <None Include="Assets\Shaders\MobileDepthWater\Shaders\WaterOpaque\Depth\DiffuseColorDepthWater.shader" />
+     <None Include="Assets\Shaders\JMO Assets\Toony Colors\!ToonyColors Readme.txt" />
+     <None Include="Assets\Shaders\JMO Assets\Toony Colors\Shaders 2.0\Rim Outline.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
