@@ -5,7 +5,8 @@ using UnityEngine;
 public class AIManager : MonoBehaviour
 {
     public Transform[] wayPoints;
-    //public Transform[] corners;
+    public Transform[] spawnLocation;
+    public GameObject AICarPrefab;
     public float maxSpeed;
     public float maxAcc;
     public float speedIncrease;
@@ -32,5 +33,10 @@ public class AIManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        for(int i = 0; i < 2; i++)
+        {
+            Instantiate(AICarPrefab, spawnLocation[i].position, Quaternion.identity);
+
+        }
     }
 }
