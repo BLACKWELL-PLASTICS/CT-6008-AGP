@@ -16,6 +16,7 @@ public class UpdateMovementMerged : MonoBehaviour
         NetMerge netMerge = new NetMerge();
         netMerge.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
         netMerge.m_Action = NetMerge.ACTION.DRIVE;
+        netMerge.m_Other = 0;
         netMerge.m_XPos = gameObject.transform.position.x;
         netMerge.m_YPos = gameObject.transform.position.y;
         netMerge.m_ZPos = gameObject.transform.position.z;

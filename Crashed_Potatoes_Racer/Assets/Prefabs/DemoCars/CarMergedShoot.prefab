@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e32c68d53d9705144ac6becfec11ba51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerNum: 0
+  m_active: 1
   m_turnSpeed: 100
 --- !u!1 &8039822775038387203
 GameObject:
@@ -56,8 +58,8 @@ GameObject:
   - component: {fileID: 8039822775095069206}
   - component: {fileID: 8039822775095069201}
   - component: {fileID: 8039822775095069194}
-  - component: {fileID: 8039822775095069205}
-  - component: {fileID: 8039822775095069195}
+  - component: {fileID: -2971877769260630631}
+  - component: {fileID: 5796764131143327997}
   m_Layer: 0
   m_Name: CarMergedShoot
   m_TagString: Player
@@ -158,7 +160,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8039822775095069205
+--- !u!114 &-2971877769260630631
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,18 +169,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 8039822775095069200}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55c3d33f7aebff54fb03b1079eab9224, type: 3}
+  m_Script: {fileID: 11500000, guid: 74bc688940b92484e8471e1839ee7a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 8039822775936427786}
-  track:
-    serializedVersion: 2
-    m_Bits: 256
-  notTrack:
-    serializedVersion: 2
-    m_Bits: 512
-  groundRayPoint: {fileID: 8039822775038387200}
---- !u!114 &8039822775095069195
+  m_playerNum: 0
+  m_mergeOn: 0
+  m_gameManagerHolder: {fileID: 0}
+  m_canMergeMaterial: {fileID: 0}
+  m_normalMaterial: {fileID: 0}
+  m_mergeTrigger: {fileID: 0}
+--- !u!114 &5796764131143327997
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -187,19 +187,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8039822775095069200}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d2beab06c18f7b499eed1770a42807b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d4a4ab0655122e4abd80ecd23098a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p1: 6
-  p2: 0
-  prefabs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  m_maxTimer: 15
+  m_drivingVarient: 0
 --- !u!1 &8039822775898125867
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,6 +392,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8039822775095069204}
     m_Modifications:
+    - target: {fileID: 320687141451278834, guid: 8d23d614d0505f841bb7c6a6bed5a773,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2600927122686577576, guid: 8d23d614d0505f841bb7c6a6bed5a773,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3273024890896628370, guid: 8d23d614d0505f841bb7c6a6bed5a773,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -460,7 +462,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gun
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 320687141451278834, guid: 8d23d614d0505f841bb7c6a6bed5a773, type: 3}
+    - {fileID: 2600927122686577576, guid: 8d23d614d0505f841bb7c6a6bed5a773, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8d23d614d0505f841bb7c6a6bed5a773, type: 3}
 --- !u!1 &7045599414417151810 stripped
 GameObject:

@@ -6,7 +6,7 @@ public class MergeTriggerScript : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Car")
+        if (other.gameObject.tag == "Player")
         {
             if (other.GetComponent<CarManagerScript>().m_mergeOn)
             {
