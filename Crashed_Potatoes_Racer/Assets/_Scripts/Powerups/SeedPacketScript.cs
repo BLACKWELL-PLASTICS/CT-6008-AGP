@@ -27,7 +27,7 @@ public class SeedPacketScript : MonoBehaviour
         if (other.transform.tag != "Player") {
             return;
         }
-        int i = 1/*Random.Range(1, 9)*/;
+        int i = Random.Range(1, 9);
         choice = (POWERUPS)i;
         other.gameObject.GetComponent<InventoryScript>().AddPowerup(choice);
         Destroy(gameObject);
