@@ -8,8 +8,14 @@ public class Obsticle : MonoBehaviour {
     float timer;
     bool isSpawned = false;
 
+    Vector3 eulerAngle;
+    Quaternion currentRot;
+
     public void SpawnGO() {
         wall = Instantiate(prefab, transform.position - transform.forward, Quaternion.identity);
+        eulerAngle = new Vector3(-90f, 0f, 0f);
+        currentRot.eulerAngles = eulerAngle;
+        wall.transform.rotation = currentRot;
         isSpawned = true;
     }
 
@@ -17,7 +23,7 @@ public class Obsticle : MonoBehaviour {
     void Update() {
         if (isSpawned == true) {
             timer += Time.deltaTime;
-            wall.transform.localScale = wall.transform.localScale * 1.009f;
+            wall.transform.localScale = wall.transform.localScale * 1.0009f;
 
             if (timer > 5f) {
                 isSpawned = false;
