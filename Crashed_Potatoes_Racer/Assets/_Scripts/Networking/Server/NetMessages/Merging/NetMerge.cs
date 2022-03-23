@@ -39,7 +39,7 @@ public class NetMerge : NetMessage
         a_writer.WriteByte((byte)Code);
         a_writer.WriteInt(m_Player);
         a_writer.WriteByte((byte)m_Action);
-        a_writer.WriteFloat(m_Other);
+        a_writer.WriteInt(m_Other);
         a_writer.WriteFloat(m_XPos);
         a_writer.WriteFloat(m_YPos);
         a_writer.WriteFloat(m_ZPos);

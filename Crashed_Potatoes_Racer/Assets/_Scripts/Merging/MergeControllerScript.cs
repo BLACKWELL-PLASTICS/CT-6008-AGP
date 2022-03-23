@@ -9,7 +9,7 @@ public class MergeControllerScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GetComponent<CarManagerScript>().ToggleMerging();
+            GetComponent<CarManagerScript>().ToggleMerging(true);
         }
     }
 }

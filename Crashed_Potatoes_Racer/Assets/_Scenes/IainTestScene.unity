@@ -1267,11 +1267,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_activeCars: []
-  m_DivableCar: {fileID: 6328528544376957201, guid: 45cd7b7d1fe41f9438db10657d1a32bc,
+  m_DivableCar: {fileID: 6328528544376957201, guid: ff799baaf1c6ca14f93d47692729f3a7,
     type: 3}
   m_onlineCar: {fileID: 7133951292741039552, guid: b9ae422831ea54246aec94256276227d,
     type: 3}
   m_AICar: {fileID: 6072728026548954694, guid: f2d3f152392be954b900639bfa52e281, type: 3}
+  m_mergedDrivePrefab: {fileID: 8039822775095069200, guid: 65ac49b6ea33c404089122bcef5a27d8,
+    type: 3}
+  m_mergedShootPrefab: {fileID: 8039822775095069200, guid: fce04523e510b784cb84a6ba57fdb6e8,
+    type: 3}
   m_startPoints:
   - {fileID: 679429582}
   - {fileID: 1390672024}
@@ -1281,6 +1285,7 @@ MonoBehaviour:
   - {fileID: 589744973}
   - {fileID: 850930572}
   - {fileID: 1412313808}
+  m_maxTimer: 15
 --- !u!4 &1780109757
 Transform:
   m_ObjectHideFlags: 0

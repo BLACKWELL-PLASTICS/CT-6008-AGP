@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &8187564560688494269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240317615051937278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e32c68d53d9705144ac6becfec11ba51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerNum: 0
+  m_active: 0
+  m_turnSpeed: 0
 --- !u!1 &8039822775038387203
 GameObject:
   m_ObjectHideFlags: 0
@@ -45,7 +60,9 @@ GameObject:
   - component: {fileID: 8039822775095069194}
   - component: {fileID: 8039822775095069205}
   - component: {fileID: 8039822775095069195}
-  - component: {fileID: 1981489112709530066}
+  - component: {fileID: -3586690565967441798}
+  - component: {fileID: 8889968116086600120}
+  - component: {fileID: 7987837459709040100}
   m_Layer: 0
   m_Name: CarMergedDrive
   m_TagString: Player
@@ -189,7 +206,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
---- !u!114 &1981489112709530066
+--- !u!114 &-3586690565967441798
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -198,7 +215,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 8039822775095069200}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70fb3ebd905d37449bf86384515fee9a, type: 3}
+  m_Script: {fileID: 11500000, guid: 74bc688940b92484e8471e1839ee7a5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerNum: 0
+  m_mergeOn: 0
+  m_gameManagerHolder: {fileID: 0}
+  m_canMergeMaterial: {fileID: 0}
+  m_normalMaterial: {fileID: 0}
+  m_mergeTrigger: {fileID: 0}
+--- !u!114 &8889968116086600120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8039822775095069200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d4a4ab0655122e4abd80ecd23098a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_maxTimer: 15
+  m_drivingVarient: 1
+--- !u!114 &7987837459709040100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8039822775095069200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f19ae8c4dc383f4084d817844bdc63e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8039822775898125867
@@ -401,6 +450,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8039822775095069204}
     m_Modifications:
+    - target: {fileID: 320687141451278834, guid: 8d23d614d0505f841bb7c6a6bed5a773,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2600927122686577576, guid: 8d23d614d0505f841bb7c6a6bed5a773,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3273024890896628370, guid: 8d23d614d0505f841bb7c6a6bed5a773,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -461,8 +520,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gun
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 320687141451278834, guid: 8d23d614d0505f841bb7c6a6bed5a773, type: 3}
+    - {fileID: 2600927122686577576, guid: 8d23d614d0505f841bb7c6a6bed5a773, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8d23d614d0505f841bb7c6a6bed5a773, type: 3}
+--- !u!1 &240317615051937278 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3803852901471274975, guid: 8d23d614d0505f841bb7c6a6bed5a773,
+    type: 3}
+  m_PrefabInstance: {fileID: 4008141647227933217}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1942134851853346995 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3273024890896628370, guid: 8d23d614d0505f841bb7c6a6bed5a773,
