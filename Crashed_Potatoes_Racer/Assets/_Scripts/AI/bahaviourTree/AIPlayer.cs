@@ -18,13 +18,17 @@ public class AIPlayer : MonoBehaviour
 
     public Rigidbody RBComponent { get; private set; }
 
-    public float stoppingDistance;
+    public float stoppingDistance = 15;
     public int currentWaypoint = 0;
     public Transform target;
     public bool decreaseCheck = false;
 
-    private float speed = 50;
+    [SerializeField]
+    private float speed = 0;
+    [SerializeField]
     private float accel = 0;
+    [SerializeField]
+    private float speedDecrease = 0;
 
     private BT bahaviourTree;
     private void Start()
@@ -34,6 +38,8 @@ public class AIPlayer : MonoBehaviour
         RBComponent = gameObject.GetComponent<Rigidbody>();
         bahaviourTree = new BT(this);
         RenderComponent = GetComponent<Renderer>();
+
+        speedDecrease = Random.Range(0.5f, 1.0f);
     }
 
     private void Update()
@@ -52,16 +58,19 @@ public class AIPlayer : MonoBehaviour
 
     public void IncreaseSpeed()
     {
-        accel = Mathf.Lerp(speed, AIManager.GetMaxAcc, Time.deltaTime * AIManager.GetIncrease);
+        accel = Mathf.Lerp(accel, AIManager.GetMaxAcc, Time.deltaTime * AIManager.GetIncrease);
+        speed = Mathf.Lerp(speed, AIManager.GetMaxSpeed, Time.deltaTime * AIManager.GetIncrease);
+
     }
 
     public IEnumerator DecreaseSpeed()
     {
-        speed = Mathf.Lerp(speed, 1.0f, Time.deltaTime * AIManager.GetIncrease * 2);
+        accel = Mathf.Lerp(accel, 10.0f, Time.deltaTime * speedDecrease);
+        speed = Mathf.Lerp(speed, 10.0f, Time.deltaTime * speedDecrease);
 
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(AIManager.GetSlowDownPeriod);
 
-        speed = 50;
+        IncreaseSpeed();
         decreaseCheck = false;
     }
 
