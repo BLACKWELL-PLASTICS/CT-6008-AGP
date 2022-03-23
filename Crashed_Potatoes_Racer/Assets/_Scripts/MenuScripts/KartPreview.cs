@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class KartPreview : MonoBehaviour, ISelectHandler
+public class KartPreview : MonoBehaviour, ISelectHandler, IPointerEnterHandler
 {
     [SerializeField]
     private GameObject targetObject;
@@ -18,7 +18,7 @@ public class KartPreview : MonoBehaviour, ISelectHandler
         UpdateSelection();
     }
 
-    public void OnHover(BaseEventData eventData)
+    public void OnPointerEnter(PointerEventData pointerEventData)
     {
         //When the player uses a mouse cursor to navigate the menu
         UpdateSelection();
