@@ -129,7 +129,7 @@ public class MultiplayerManager : MonoBehaviour
     void OnMoveServer(NetMessage a_msg, NetworkConnection a_connection)
     {
         NetMakeMove netMakeMove = a_msg as NetMakeMove;
-        Server.Instance.Broadcast(netMakeMove);
+        Server.Instance.SendToOtherClients(a_connection ,netMakeMove);
     }
     void OnMergeServer(NetMessage a_msg, NetworkConnection a_connection)
     {
