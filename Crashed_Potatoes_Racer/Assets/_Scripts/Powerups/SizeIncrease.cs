@@ -14,6 +14,11 @@ public class SizeIncrease : MonoBehaviour {
         transform.localScale = OriginalScale * 2f;
         pos = transform.position;
         transform.position = new Vector3(pos.x, pos.y + (OriginalScale.y / 2), pos.y);
+        //grow packet
+        NetGrow netGrow = new NetGrow();
+        netGrow.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+        netGrow.m_Action = NetGrow.ACTION.START;
+        Client.Instance.SendToServer(netGrow);
     }
 
     // Update is called once per frame
@@ -24,6 +29,11 @@ public class SizeIncrease : MonoBehaviour {
             transform.localScale = OriginalScale;
             timer = 0f;
             transform.position = new Vector3(pos.x, oPos.y, pos.z);
+            //shrink package
+            NetGrow netGrow = new NetGrow();
+            netGrow.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+            netGrow.m_Action = NetGrow.ACTION.END;
+            Client.Instance.SendToServer(netGrow);
             Destroy(gameObject.GetComponent<SizeIncrease>());
         }
     }

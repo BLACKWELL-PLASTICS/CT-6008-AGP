@@ -298,6 +298,7 @@ GameObject:
   - component: {fileID: 2540006826447610579}
   - component: {fileID: 2509802542156580956}
   - component: {fileID: 7309985545148140568}
+  - component: {fileID: 9035818023463541176}
   m_Layer: 0
   m_Name: CarMergable
   m_TagString: Player
@@ -465,6 +466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74bc688940b92484e8471e1839ee7a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerNum: 0
   m_mergeOn: 0
   m_gameManagerHolder: {fileID: 0}
   m_canMergeMaterial: {fileID: 2100000, guid: 3197185d72dde2f4facae85bf7cd2af9, type: 2}
@@ -482,3 +484,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9845e80b076f34daf0de73b79074d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9035818023463541176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6328528544376957201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1902f7eda12b5e4487a0ba854a763ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1490930886457616683, guid: 87e9c095f5bb0a246acc7fcc770913db, type: 3}

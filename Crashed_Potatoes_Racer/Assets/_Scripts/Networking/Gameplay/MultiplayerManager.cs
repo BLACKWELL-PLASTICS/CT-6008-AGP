@@ -22,18 +22,52 @@ public class MultiplayerManager : MonoBehaviour
     [SerializeField]
     float m_maxTimer;
 
+    [SerializeField]
+    GameObject m_obstacle;
+
     Dictionary<int, int> m_mergeCars = new Dictionary<int, int>();
     Dictionary<int, int> m_demergeCars = new Dictionary<int, int>();
+
+    Vector3 oPos;
+    Vector3 OriginalScale;
 
     private void Start()
     {
         for (int i = 0; i < m_startPoints.Length; i++)
         {
-            Vector3 pos = m_startPoints[i].transform.position;
-            Quaternion rot = m_startPoints[i].transform.rotation;
-            GameObject car;
-            if (i < PersistentInfo.Instance.m_connectedUsers)
+            if (PersistentInfo.Instance.m_currentPlayerNum == 1)
             {
+                Vector3 pos = m_startPoints[i].transform.position;
+                Quaternion rot = m_startPoints[i].transform.rotation;
+                GameObject car;
+                if (i < PersistentInfo.Instance.m_connectedUsers)
+                {
+                    if (i == PersistentInfo.Instance.m_currentPlayerNum - 1)
+                    {
+                        car = Instantiate(m_DivableCar, pos, rot);
+                        car.GetComponent<CarManagerScript>().m_playerNum = i + 1;
+                        car.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
+                    }
+                    else
+                    {
+                        car = Instantiate(m_onlineCar, pos, rot);
+                        car.GetComponent<CarManagerScript>().m_playerNum = i + 1;
+                        car.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
+                    }
+                }
+                else
+                {
+                    car = Instantiate(m_AICar, pos, rot);
+                    car.GetComponent<CarManagerScript>().m_playerNum = i + 1;
+                    car.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
+                }
+                m_activeCars.Add(car);
+            }
+            else
+            {
+                Vector3 pos = m_startPoints[i].transform.position;
+                Quaternion rot = m_startPoints[i].transform.rotation;
+                GameObject car;
                 if (i == PersistentInfo.Instance.m_currentPlayerNum - 1)
                 {
                     car = Instantiate(m_DivableCar, pos, rot);
@@ -46,14 +80,8 @@ public class MultiplayerManager : MonoBehaviour
                     car.GetComponent<CarManagerScript>().m_playerNum = i + 1;
                     car.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
                 }
+                m_activeCars.Add(car);
             }
-            else
-            {
-                car = Instantiate(m_AICar, pos, rot);
-                car.GetComponent<CarManagerScript>().m_playerNum = i + 1;
-                car.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
-            }
-            m_activeCars.Add(car);
         }
     }
 
@@ -66,11 +94,15 @@ public class MultiplayerManager : MonoBehaviour
     {
         //Server
         NetUtility.S_MAKE_MOVE += OnMoveServer;
-        NetUtility.S_MERGE += OnMergeServer;
+        //NetUtility.S_MERGE += OnMergeServer;
+        NetUtility.S_WALL += OnObstacleServer;
+        NetUtility.S_GROW += OnSizeIncreaseServer;
 
         //Client
         NetUtility.C_MAKE_MOVE += OnMoveClient;
-        NetUtility.C_MERGE += OnMergeClient;
+        //NetUtility.C_MERGE += OnMergeClient;
+        NetUtility.C_WALL += OnObstacleClient;
+        NetUtility.C_GROW += OnSizeIncreaseClient;
     }
     void UnregisterEvenets()
     {
@@ -133,6 +165,17 @@ public class MultiplayerManager : MonoBehaviour
                 break;
         }
     }
+    void OnObstacleServer(NetMessage a_msg, NetworkConnection a_connection)
+    {
+        NetWall netWall = a_msg as NetWall;
+        Server.Instance.Broadcast(netWall);
+    }
+    void OnSizeIncreaseServer(NetMessage a_msg, NetworkConnection a_connection)
+    {
+        NetGrow netGrow = a_msg as NetGrow;
+        Server.Instance.Broadcast(netGrow);
+    }
+
 
     //Client
     void OnMoveClient(NetMessage a_msg)
@@ -293,6 +336,53 @@ public class MultiplayerManager : MonoBehaviour
             default:
                 Debug.LogError("Unknown Action");
                 break;
+        }
+    }
+    void OnObstacleClient(NetMessage a_msg)
+    {
+        NetWall netWall = a_msg as NetWall;
+        if (netWall.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
+        {
+            Vector3 pos = new Vector3(netWall.m_XPos, netWall.m_YPos, netWall.m_ZPos);
+            Quaternion rot = new Quaternion(netWall.m_XRot, netWall.m_YRot, netWall.m_ZRot, netWall.m_WRot);
+            GameObject wall = Instantiate(m_obstacle, pos, rot);
+        }
+    }
+    void OnSizeIncreaseClient(NetMessage a_msg)
+    {
+        NetGrow netGrow = a_msg as NetGrow;
+        if (netGrow.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
+        {
+            switch (netGrow.m_Action)
+            {
+                case NetGrow.ACTION.START:
+                    foreach (GameObject car in m_activeCars)
+                    {
+                        if (car.GetComponent<CarManagerScript>().m_playerNum == netGrow.m_Player)
+                        {
+                            oPos = car.transform.position;
+                            OriginalScale = car.transform.localScale;
+                            car.transform.localScale = OriginalScale * 2f;
+                            Vector3 pos = transform.position;
+                            car.transform.position = new Vector3(pos.x, pos.y + (OriginalScale.y / 2), pos.y);
+                        }
+                    }
+                    break;
+                case NetGrow.ACTION.END:
+                    foreach (GameObject car in m_activeCars)
+                    {
+                        if (car.GetComponent<CarManagerScript>().m_playerNum == netGrow.m_Player)
+                        {
+                            Vector3 pos = car.transform.position;
+                            car.transform.localScale = OriginalScale;
+                            car.transform.position = new Vector3(pos.x, oPos.y, pos.z);
+                        }
+                    }
+                    break;
+                default:
+                    Debug.LogError("Unknown Action");
+                    break;
+            }
         }
     }
 }
