@@ -58,6 +58,9 @@ GameObject:
   - component: {fileID: 6072728026548954692}
   - component: {fileID: 6072728026548954695}
   - component: {fileID: 8081510866851729050}
+  - component: {fileID: 6987031706135637562}
+  - component: {fileID: -9168063663557973701}
+  - component: {fileID: -2572192751480517069}
   m_Layer: 0
   m_Name: CarAI
   m_TagString: Player
@@ -152,7 +155,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -174,3 +177,56 @@ MonoBehaviour:
   m_canMergeMaterial: {fileID: 2100000, guid: 4675dc852640c9d4abf3320893ba6de1, type: 2}
   m_normalMaterial: {fileID: 2100000, guid: 609b84f9338d1fe46939b89b4cab16c1, type: 2}
   m_mergeTrigger: {fileID: 1503383892791851832}
+--- !u!114 &6987031706135637562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6072728026548954694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb9a3e9bfbb040248b6d8d3651c4a08d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stoppingDistance: 15
+  currentWaypoint: 0
+  target: {fileID: 0}
+  decreaseCheck: 0
+  speed: 0
+  accel: 0
+  speedDecrease: 0
+--- !u!195 &-9168063663557973701
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6072728026548954694}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 0
+  m_Acceleration: 0
+  avoidancePriority: 50
+  m_AngularSpeed: 180
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &-2572192751480517069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6072728026548954694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70fb3ebd905d37449bf86384515fee9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

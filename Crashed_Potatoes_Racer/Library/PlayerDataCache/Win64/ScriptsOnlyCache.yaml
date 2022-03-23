@@ -1,6 +1,8 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - AIManager
+    - AIPlayer
     - BezierSpline
     - CarManagerScript
     - Client
@@ -15,6 +17,7 @@ ScriptsOnlyBuild:
     - MergedShootingControllerScript
     - MergedTimer
     - MultiplayerManager
+    - NavMeshBaker
     - Obsticle
     - ObsticleScaler
     - PersistentInfo
@@ -50,7 +53,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Scrollbar
     - UnityEngine.UI.Text
   sceneClasses:
-    Assets/_Scenes/IainTestScene.unity:
+    Assets/_Scenes/AITestScene/MapTest.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -82,40 +85,50 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11484}
+      Script: {instanceID: 11478}
     - Class: 114
-      Script: {instanceID: 11528}
+      Script: {instanceID: 11522}
     - Class: 114
-      Script: {instanceID: 11576}
+      Script: {instanceID: 11570}
     - Class: 114
-      Script: {instanceID: 11580}
+      Script: {instanceID: 11574}
     - Class: 114
-      Script: {instanceID: 11766}
+      Script: {instanceID: 11760}
     - Class: 114
-      Script: {instanceID: 12560}
+      Script: {instanceID: 11924}
     - Class: 114
-      Script: {instanceID: 13054}
+      Script: {instanceID: 12554}
     - Class: 114
-      Script: {instanceID: 13156}
+      Script: {instanceID: 13048}
     - Class: 114
-      Script: {instanceID: 13228}
+      Script: {instanceID: 13150}
     - Class: 114
-      Script: {instanceID: 13760}
+      Script: {instanceID: 13222}
     - Class: 114
-      Script: {instanceID: 13948}
+      Script: {instanceID: 13558}
     - Class: 114
-      Script: {instanceID: 14084}
+      Script: {instanceID: 13728}
     - Class: 114
-      Script: {instanceID: 14188}
+      Script: {instanceID: 13754}
     - Class: 114
-      Script: {instanceID: 14224}
+      Script: {instanceID: 13942}
+    - Class: 114
+      Script: {instanceID: 14078}
+    - Class: 114
+      Script: {instanceID: 14182}
+    - Class: 114
+      Script: {instanceID: 14218}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 135
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
+    - Class: 195
+      Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 238
       Script: {instanceID: 0}
     Assets/_Scenes/MenuScene.unity:
     - Class: 1
@@ -139,57 +152,57 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11442}
+      Script: {instanceID: 11436}
     - Class: 114
-      Script: {instanceID: 11724}
+      Script: {instanceID: 11718}
     - Class: 114
-      Script: {instanceID: 11728}
+      Script: {instanceID: 11722}
     - Class: 114
-      Script: {instanceID: 11780}
+      Script: {instanceID: 11774}
     - Class: 114
-      Script: {instanceID: 11826}
+      Script: {instanceID: 11820}
     - Class: 114
-      Script: {instanceID: 11866}
+      Script: {instanceID: 11860}
     - Class: 114
-      Script: {instanceID: 11868}
+      Script: {instanceID: 11862}
     - Class: 114
-      Script: {instanceID: 11936}
+      Script: {instanceID: 11930}
     - Class: 114
-      Script: {instanceID: 12230}
+      Script: {instanceID: 12224}
+    - Class: 114
+      Script: {instanceID: 12370}
     - Class: 114
       Script: {instanceID: 12376}
     - Class: 114
-      Script: {instanceID: 12382}
+      Script: {instanceID: 12422}
     - Class: 114
-      Script: {instanceID: 12428}
+      Script: {instanceID: 12680}
     - Class: 114
-      Script: {instanceID: 12686}
+      Script: {instanceID: 12992}
     - Class: 114
-      Script: {instanceID: 12998}
+      Script: {instanceID: 13252}
     - Class: 114
-      Script: {instanceID: 13258}
+      Script: {instanceID: 13298}
     - Class: 114
-      Script: {instanceID: 13304}
+      Script: {instanceID: 13314}
     - Class: 114
-      Script: {instanceID: 13320}
+      Script: {instanceID: 13458}
     - Class: 114
-      Script: {instanceID: 13464}
+      Script: {instanceID: 13482}
     - Class: 114
-      Script: {instanceID: 13488}
+      Script: {instanceID: 13564}
     - Class: 114
-      Script: {instanceID: 13570}
+      Script: {instanceID: 13582}
     - Class: 114
-      Script: {instanceID: 13588}
+      Script: {instanceID: 13692}
     - Class: 114
-      Script: {instanceID: 13698}
+      Script: {instanceID: 13712}
     - Class: 114
-      Script: {instanceID: 13718}
+      Script: {instanceID: 13726}
     - Class: 114
-      Script: {instanceID: 13732}
+      Script: {instanceID: 13928}
     - Class: 114
-      Script: {instanceID: 13934}
-    - Class: 114
-      Script: {instanceID: 14234}
+      Script: {instanceID: 14228}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -389,7 +402,7 @@ ScriptsOnlyBuild:
     className: DontDestroyOnLoad
   - hash:
       serializedVersion: 2
-      Hash: 126ac3184468672207f81913c7ec2ac4
+      Hash: 42a3b864bef21edeadfaef0462aa6f47
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: AIManager
@@ -930,5 +943,5 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/_Scenes/MenuScene.unity
-  - Assets/_Scenes/IainTestScene.unity
-  playerPath: C:/UniStuff/CT-6008-AGP/Crashed_Potatoes_Racer/Build/Crashed_Potatoes_Racer.exe
+  - Assets/_Scenes/AITestScene/MapTest.unity
+  playerPath: E:/github/CT-6008-AGP/Crashed_Potatoes_Racer/Build/Crashed_Potatoes_Racer.exe
