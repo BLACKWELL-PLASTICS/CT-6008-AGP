@@ -14,7 +14,7 @@ public class UpdateMovementMerged : MonoBehaviour
     void Update()
     {
         NetMerge netMerge = new NetMerge();
-        netMerge.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+        netMerge.m_Player = GetComponent<CarManagerScript>().m_playerNum;
         netMerge.m_Action = NetMerge.ACTION.DRIVE;
         netMerge.m_Other = 0;
         netMerge.m_XPos = gameObject.transform.position.x;

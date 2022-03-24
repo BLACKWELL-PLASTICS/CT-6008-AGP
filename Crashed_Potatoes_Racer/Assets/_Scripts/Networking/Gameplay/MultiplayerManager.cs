@@ -93,14 +93,20 @@ public class MultiplayerManager : MonoBehaviour
     void RegisterEvenets()
     {
         //Server
+            //Moving
         NetUtility.S_MAKE_MOVE += OnMoveServer;
-        //NetUtility.S_MERGE += OnMergeServer;
+            //Merging
+        NetUtility.S_MERGE += OnMergeServer;
+            //Power Ups
         NetUtility.S_WALL += OnObstacleServer;
         NetUtility.S_GROW += OnSizeIncreaseServer;
 
         //Client
+            //Moving
         NetUtility.C_MAKE_MOVE += OnMoveClient;
-        //NetUtility.C_MERGE += OnMergeClient;
+            //Merging
+        NetUtility.C_MERGE += OnMergeClient;
+            //Power Ups
         NetUtility.C_WALL += OnObstacleClient;
         NetUtility.C_GROW += OnSizeIncreaseClient;
     }
@@ -255,8 +261,8 @@ public class MultiplayerManager : MonoBehaviour
                 if (netMerge.m_Other == PersistentInfo.Instance.m_currentPlayerNum)
                 {
                     GameObject car = Instantiate(m_mergedShootPrefab, pos, dir);
-                    car.GetComponent<CarManagerScript>().m_playerNum = netMerge.m_Other;
-                    car.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum = netMerge.m_Player;
+                    car.GetComponent<CarManagerScript>().m_playerNum = netMerge.m_Player;
+                    car.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum = netMerge.m_Other;
                     car.GetComponent<MergedTimer>().m_maxTimer = m_maxTimer;
                     m_activeCars.Add(car);
                 }
@@ -286,13 +292,13 @@ public class MultiplayerManager : MonoBehaviour
                 else
                 {
                     GameObject newCar = Instantiate(m_onlineCar, leftPos, mergedCar.transform.rotation);
-                    newCar.GetComponent<CarManagerScript>().m_playerNum = PersistentInfo.Instance.m_currentPlayerNum;
+                    newCar.GetComponent<CarManagerScript>().m_playerNum = mergedCar.GetComponent<CarManagerScript>().m_playerNum;
                     m_activeCars.Add(newCar);
                 }
 
-                //Spawn drivers car
-                Vector3 rightPos = mergedCar.transform.position - (mergedCar.transform.right);
-                if (mergedCar.GetComponent<CarManagerScript>().m_playerNum == PersistentInfo.Instance.m_currentPlayerNum)
+                //Spawn gunners car
+                Vector3 rightPos = mergedCar.transform.position + (mergedCar.transform.right);
+                if (mergedCar.GetComponentInChildren<CarManagerScript>().m_playerNum == PersistentInfo.Instance.m_currentPlayerNum)
                 {
                     GameObject newCar = Instantiate(m_DivableCar, rightPos, mergedCar.transform.rotation);
                     newCar.GetComponent<CarManagerScript>().m_playerNum = PersistentInfo.Instance.m_currentPlayerNum;
@@ -301,7 +307,7 @@ public class MultiplayerManager : MonoBehaviour
                 else
                 {
                     GameObject newCar = Instantiate(m_onlineCar, rightPos, mergedCar.transform.rotation);
-                    newCar.GetComponent<CarManagerScript>().m_playerNum = PersistentInfo.Instance.m_currentPlayerNum;
+                    newCar.GetComponent<CarManagerScript>().m_playerNum = mergedCar.GetComponent<MergedShootingControllerScript>().m_playerNum;
                     m_activeCars.Add(newCar);
                 }
 
@@ -322,16 +328,19 @@ public class MultiplayerManager : MonoBehaviour
                 }
                 break;
             case NetMerge.ACTION.SHOOT:
-                //if (netMerge.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
-                //{
-                //    foreach (GameObject car in m_activeCars)
-                //    {
-                //        if (car.GetComponent<CarManagerScript>().m_playerNum == netMerge.m_Player)
-                //        {
-                //            car.transform.rotation = new Quaternion(netMerge.m_XRot, netMerge.m_YRot, netMerge.m_ZRot, netMerge.m_WRot);
-                //        }
-                //    }
-                //}
+                if (netMerge.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
+                {
+                    foreach (GameObject car in m_activeCars)
+                    {
+                        if (car.GetComponentInChildren<MergedShootingControllerScript>() != null)
+                        {
+                            if (car.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum == netMerge.m_Player)
+                            {
+                                car.transform.GetChild(car.transform.childCount - 1).transform.rotation = new Quaternion(netMerge.m_XRot, netMerge.m_YRot, netMerge.m_ZRot, netMerge.m_WRot);
+                            }
+                        }
+                    }
+                }
                 break;
             default:
                 Debug.LogError("Unknown Action");

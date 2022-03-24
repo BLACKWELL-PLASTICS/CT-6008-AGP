@@ -26,36 +26,36 @@ public class MergedTimer : MonoBehaviour
         }
         else
         {
-            if (m_drivingVarient)
-            {
-                NetMerge netMerge = new NetMerge();
-                netMerge.m_Player = GetComponent<CarManagerScript>().m_playerNum;
-                netMerge.m_Action = NetMerge.ACTION.DEMERGE;
-                netMerge.m_Other = GetComponentInChildren<MergedShootingControllerScript>().m_playerNum;
-                netMerge.m_XPos = 0;
-                netMerge.m_YPos = 0;
-                netMerge.m_ZPos = 0;
-                netMerge.m_XRot = 0;
-                netMerge.m_YRot = 0;
-                netMerge.m_ZRot = 0;
-                netMerge.m_WRot = 0;
-                Client.Instance.SendToServer(netMerge);
-            }
-            else
-            {
-                NetMerge netMerge = new NetMerge();
-                netMerge.m_Player = GetComponentInChildren<MergedShootingControllerScript>().m_playerNum;
-                netMerge.m_Action = NetMerge.ACTION.DEMERGE;
-                netMerge.m_Other = GetComponent<CarManagerScript>().m_playerNum;
-                netMerge.m_XPos = 0;
-                netMerge.m_YPos = 0;
-                netMerge.m_ZPos = 0;
-                netMerge.m_XRot = 0;
-                netMerge.m_YRot = 0;
-                netMerge.m_ZRot = 0;
-                netMerge.m_WRot = 0;
-                Client.Instance.SendToServer(netMerge);
-            }
+            //if (m_drivingVarient)
+            //{
+            //    NetMerge netMerge = new NetMerge();
+            //    netMerge.m_Player = GetComponent<CarManagerScript>().m_playerNum;
+            //    netMerge.m_Action = NetMerge.ACTION.DEMERGE;
+            //    netMerge.m_Other = GetComponentInChildren<MergedShootingControllerScript>().m_playerNum;
+            //    netMerge.m_XPos = 0;
+            //    netMerge.m_YPos = 0;
+            //    netMerge.m_ZPos = 0;
+            //    netMerge.m_XRot = 0;
+            //    netMerge.m_YRot = 0;
+            //    netMerge.m_ZRot = 0;
+            //    netMerge.m_WRot = 0;
+            //    Client.Instance.SendToServer(netMerge);
+            //}
+            //else
+            //{
+            //    NetMerge netMerge = new NetMerge();
+            //    netMerge.m_Player = GetComponentInChildren<MergedShootingControllerScript>().m_playerNum;
+            //    netMerge.m_Action = NetMerge.ACTION.DEMERGE;
+            //    netMerge.m_Other = GetComponent<CarManagerScript>().m_playerNum;
+            //    netMerge.m_XPos = 0;
+            //    netMerge.m_YPos = 0;
+            //    netMerge.m_ZPos = 0;
+            //    netMerge.m_XRot = 0;
+            //    netMerge.m_YRot = 0;
+            //    netMerge.m_ZRot = 0;
+            //    netMerge.m_WRot = 0;
+            //    Client.Instance.SendToServer(netMerge);
+            //}
         }
     }
 }
