@@ -1246,7 +1246,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1780109757}
   - component: {fileID: 1780109756}
-  - component: {fileID: 1780109758}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -1286,6 +1285,8 @@ MonoBehaviour:
   - {fileID: 850930572}
   - {fileID: 1412313808}
   m_maxTimer: 15
+  m_obstacle: {fileID: 1490930886457616683, guid: 87e9c095f5bb0a246acc7fcc770913db,
+    type: 3}
 --- !u!4 &1780109757
 Transform:
   m_ObjectHideFlags: 0
@@ -1300,26 +1301,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1780109758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1780109755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65b6e17eea3070a4fa1163d65e98a63b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_activeCars: []
-  m_carPrefab: {fileID: 6328528544376957201, guid: ff799baaf1c6ca14f93d47692729f3a7,
-    type: 3}
-  m_mergedDrivePrefab: {fileID: 8039822775095069200, guid: 65ac49b6ea33c404089122bcef5a27d8,
-    type: 3}
-  m_mergedShootPrefab: {fileID: 8039822775095069200, guid: fce04523e510b784cb84a6ba57fdb6e8,
-    type: 3}
-  m_maxTimer: 5
 --- !u!1 &1964375089
 GameObject:
   m_ObjectHideFlags: 0

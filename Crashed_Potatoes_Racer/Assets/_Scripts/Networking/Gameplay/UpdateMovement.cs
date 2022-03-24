@@ -14,7 +14,7 @@ public class UpdateMovement : MonoBehaviour
     void Update()
     {
         NetMakeMove netMakeMove = new NetMakeMove();
-        netMakeMove.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+        netMakeMove.m_Player = GetComponent<CarManagerScript>().m_playerNum;
         netMakeMove.m_XPos = gameObject.transform.position.x;
         netMakeMove.m_YPos = gameObject.transform.position.y;
         netMakeMove.m_ZPos = gameObject.transform.position.z;

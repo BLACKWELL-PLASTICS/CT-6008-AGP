@@ -6,10 +6,6 @@ public class ObsticleScaler : MonoBehaviour
 {
     float timer;
 
-    private void Awake() {
-        // send packet of position and rotation
-    }
-
     // Update is called once per frame
     void Update()
     {
