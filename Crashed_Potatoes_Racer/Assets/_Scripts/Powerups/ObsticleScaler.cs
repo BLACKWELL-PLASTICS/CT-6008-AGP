@@ -10,7 +10,7 @@ public class ObsticleScaler : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        transform.localScale = transform.localScale * 1.0009f;
+        transform.localScale = transform.localScale * 1.005f;
 
         if (timer > 5f) {
             Destroy(this.gameObject);
