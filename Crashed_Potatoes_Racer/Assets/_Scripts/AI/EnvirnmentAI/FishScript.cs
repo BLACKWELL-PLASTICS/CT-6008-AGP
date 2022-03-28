@@ -8,6 +8,7 @@ public class FishScript : MonoBehaviour
 
     private GameObject[] sceneObj;
     private List<GameObject> waterInScene = new List<GameObject>();
+    private GameObject fish;
 
     private void Start()
     {
@@ -25,7 +26,8 @@ public class FishScript : MonoBehaviour
         if (Random.Range(0, AIManager.GetFishRandomness) < 50)
         {
             int ran = Random.Range(0, waterInScene.Count);
-            Instantiate(fishPrefab, GetRandomPoint(waterInScene[ran]), Quaternion.identity);
+            fish = Instantiate(fishPrefab, GetRandomPoint(waterInScene[ran]), Quaternion.identity);
+            fish.GetComponent<FishMovement>().spawner = this;
         }
     }
 

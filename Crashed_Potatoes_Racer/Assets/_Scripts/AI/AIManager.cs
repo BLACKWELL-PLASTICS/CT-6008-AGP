@@ -32,6 +32,8 @@ public class AIManager : MonoBehaviour
     //fish variables
     [Header("Fish Variables")]
     public float fishRandomness;
+    public float fishSpeed;
+    public float fishJumpTime;
 
     //car get/set
     public static float GetMaxAcc { get { return instance.maxAcc; } }
@@ -53,6 +55,8 @@ public class AIManager : MonoBehaviour
 
     //fish get/set
     public static float GetFishRandomness { get { return instance.fishRandomness; } }
+    public static float GetFishSpeed { get { return instance.fishSpeed; } }
+    public static float GetFishTime { get { return instance.fishJumpTime; } }
 
     private void Awake()
     {
