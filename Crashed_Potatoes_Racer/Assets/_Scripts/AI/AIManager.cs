@@ -29,6 +29,9 @@ public class AIManager : MonoBehaviour
     public Vector3 goalPos;
     [HideInInspector]
     public GameObject[] boidArray;
+    //fish variables
+    [Header("Fish Variables")]
+    public float fishRandomness;
 
     //car get/set
     public static float GetMaxAcc { get { return instance.maxAcc; } }
@@ -47,6 +50,9 @@ public class AIManager : MonoBehaviour
     public static Vector3 GetGoalPos { get { return instance.goalPos; } }
     public static GameObject[] GetBoids { get { return instance.boidArray; } }
     public static Transform GetBoidStart { get { return instance.boidLocation; } }
+
+    //fish get/set
+    public static float GetFishRandomness { get { return instance.fishRandomness; } }
 
     private void Awake()
     {
