@@ -39,6 +39,7 @@ public class Client : MonoBehaviour
         {
             PersistentInfo.Instance.Clear();
             UnregisterToEvent();
+            m_driver.Disconnect(m_connection);
             m_driver.Dispose();
             m_connection = default(NetworkConnection);
             m_isActive = false;

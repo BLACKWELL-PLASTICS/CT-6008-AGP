@@ -95,7 +95,16 @@ public class Server : MonoBehaviour
         NetworkConnection networkConnection;
         while ((networkConnection = m_driver.Accept()) != default(NetworkConnection))
         {
-            m_connections.Add(networkConnection);
+            if (m_connections.Length < 8)
+            {
+                m_connections.Add(networkConnection);
+            }
+            else
+            {
+                NetUnwelcome netUnwelcome = new NetUnwelcome();
+                netUnwelcome.m_Reason = NetUnwelcome.REASON.FULL;
+                SendToClient(networkConnection, netUnwelcome);
+            }
         }
     }
     void UpdateMessagePump()
@@ -114,6 +123,9 @@ public class Server : MonoBehaviour
                 {
                     Debug.Log("Client disconnected from server");
                     m_connections[i] = default(NetworkConnection);
+                    NetOtherDisconnected otherDisconnected = new NetOtherDisconnected();
+                    otherDisconnected.m_PlayerNum = i;
+                    Broadcast(otherDisconnected);
                     m_connectionDropped?.Invoke();
                 }
             }

@@ -16,11 +16,15 @@ public class MenuManager : MonoBehaviour
     GameObject m_connectingPanel;
     [SerializeField]
     GameObject m_connectedPanel;
+    [SerializeField]
+    GameObject m_connectionFailedPanel;
     //Info
     [SerializeField]
     GameObject m_connectedPlayerText;
     [SerializeField]
     GameObject[] m_connectedOtherTexts;
+    [SerializeField]
+    GameObject m_connectionFailedReasonText;
     //Host Specific Fields
     [SerializeField]
     GameObject m_connectedDisconnectButton;
@@ -49,7 +53,9 @@ public class MenuManager : MonoBehaviour
 
         //Client
         NetUtility.C_WELCOME += OnWelcomeClient;
+        NetUtility.C_UNWELCOME += OnUnwelcomeClient;
         NetUtility.C_OTHER_CONNECTED += OnOtherConnectedClient;
+        NetUtility.C_OTHER_DISCONNECTED += OnOtherDisconnectedClient;
         NetUtility.C_START_GAME += OnStartGameClient;
 
         //Menu Client
@@ -115,6 +121,25 @@ public class MenuManager : MonoBehaviour
         m_connectedPanel.SetActive(true);
         m_connectingPanel.SetActive(false);
     }
+    void OnUnwelcomeClient(NetMessage a_msg)
+    {
+        NetUnwelcome netUnwelcome = a_msg as NetUnwelcome;
+        NetUnwelcome.REASON reason = netUnwelcome.m_Reason;
+
+        m_connectionFailedPanel.SetActive(true);
+        m_connectingPanel.SetActive(false);
+
+        switch (reason)
+        {
+            case NetUnwelcome.REASON.FULL:
+                m_connectionFailedReasonText.GetComponent<UnityEngine.UI.Text>().text = "Server Full";
+                break;
+            default:
+                Debug.LogError("Unrecognised reason for unwelcome");
+                break;
+        }
+    }
+
     void OnOtherConnectedClient(NetMessage a_msg)
     {
         NetOtherConnected netOtherConnected = a_msg as NetOtherConnected;
@@ -127,6 +152,23 @@ public class MenuManager : MonoBehaviour
             m_connectedOtherTexts[i].GetComponent<UnityEngine.UI.Text>().text = $"{PersistentInfo.Instance.m_connectedNames[i]}";
         }
     }
+    void OnOtherDisconnectedClient(NetMessage a_msg)
+    {
+        NetOtherDisconnected netOtherDisconnected = a_msg as NetOtherDisconnected;
+        PersistentInfo.Instance.m_connectedUsers--;
+        PersistentInfo.Instance.m_connectedNames.RemoveAt(netOtherDisconnected.m_PlayerNum);
+
+        m_connectedPlayerText.GetComponent<UnityEngine.UI.Text>().text = $"You are player {PersistentInfo.Instance.m_currentPlayerNum} of {PersistentInfo.Instance.m_connectedUsers}";
+        for (int i = 0; i < PersistentInfo.Instance.m_connectedNames.Count; i++)
+        {
+            m_connectedOtherTexts[i].GetComponent<UnityEngine.UI.Text>().text = $"{PersistentInfo.Instance.m_connectedNames[i]}";
+        }
+        for (int i = PersistentInfo.Instance.m_connectedNames.Count; i < m_connectedOtherTexts.Length; i++)
+        {
+            m_connectedOtherTexts[i].GetComponent<UnityEngine.UI.Text>().text = "Empty";
+        }
+    }
+
     void OnStartGameClient(NetMessage a_msg)
     {
         SceneManager.LoadScene(1);
