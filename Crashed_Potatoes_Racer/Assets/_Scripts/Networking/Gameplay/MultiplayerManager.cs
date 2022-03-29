@@ -18,6 +18,8 @@ public class MultiplayerManager : MonoBehaviour
     [SerializeField]
     GameObject m_mergedShootPrefab;
     [SerializeField]
+    GameObject m_mergedOnlinePrefab;
+    [SerializeField]
     GameObject[] m_startPoints;
     [SerializeField]
     float m_maxTimer;
@@ -27,9 +29,6 @@ public class MultiplayerManager : MonoBehaviour
 
     Dictionary<int, int> m_mergeCars = new Dictionary<int, int>();
     Dictionary<int, int> m_demergeCars = new Dictionary<int, int>();
-
-    Vector3 oPos;
-    Vector3 OriginalScale;
 
     private void Start()
     {
@@ -93,14 +92,20 @@ public class MultiplayerManager : MonoBehaviour
     void RegisterEvenets()
     {
         //Server
+            //Moving
         NetUtility.S_MAKE_MOVE += OnMoveServer;
-        //NetUtility.S_MERGE += OnMergeServer;
+            //Merging
+        NetUtility.S_MERGE += OnMergeServer;
+            //Power Ups
         NetUtility.S_WALL += OnObstacleServer;
         NetUtility.S_GROW += OnSizeIncreaseServer;
 
         //Client
+            //Moving
         NetUtility.C_MAKE_MOVE += OnMoveClient;
-        //NetUtility.C_MERGE += OnMergeClient;
+            //Merging
+        NetUtility.C_MERGE += OnMergeClient;
+            //Power Ups
         NetUtility.C_WALL += OnObstacleClient;
         NetUtility.C_GROW += OnSizeIncreaseClient;
     }
@@ -140,8 +145,11 @@ public class MultiplayerManager : MonoBehaviour
                 int mergePlayer;
                 if (m_mergeCars.TryGetValue(netMerge.m_Other, out mergePlayer))
                 {
-                    m_mergeCars.Remove(netMerge.m_Other);
-                    Server.Instance.Broadcast(netMerge);
+                    if (mergePlayer == netMerge.m_Player)
+                    {
+                        m_mergeCars.Remove(netMerge.m_Other);
+                        Server.Instance.Broadcast(netMerge);
+                    }
                 }
                 else
                 {
@@ -152,8 +160,11 @@ public class MultiplayerManager : MonoBehaviour
                 int demergePlayer;
                 if (m_demergeCars.TryGetValue(netMerge.m_Other, out demergePlayer))
                 {
-                    m_demergeCars.Remove(netMerge.m_Other);
-                    Server.Instance.Broadcast(netMerge);
+                    if (demergePlayer == netMerge.m_Player)
+                    {
+                        m_demergeCars.Remove(netMerge.m_Other);
+                        Server.Instance.Broadcast(netMerge);
+                    }
                 }
                 else
                 {
@@ -252,12 +263,19 @@ public class MultiplayerManager : MonoBehaviour
                     car.GetComponent<MergedTimer>().m_maxTimer = m_maxTimer;
                     m_activeCars.Add(car);
                 }
-                if (netMerge.m_Other == PersistentInfo.Instance.m_currentPlayerNum)
+                else if (netMerge.m_Other == PersistentInfo.Instance.m_currentPlayerNum)
                 {
                     GameObject car = Instantiate(m_mergedShootPrefab, pos, dir);
-                    car.GetComponent<CarManagerScript>().m_playerNum = netMerge.m_Other;
-                    car.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum = netMerge.m_Player;
+                    car.GetComponent<CarManagerScript>().m_playerNum = netMerge.m_Player;
+                    car.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum = netMerge.m_Other;
                     car.GetComponent<MergedTimer>().m_maxTimer = m_maxTimer;
+                    m_activeCars.Add(car);
+                }
+                else
+                {
+                    GameObject car = Instantiate(m_mergedOnlinePrefab, pos, dir);
+                    car.GetComponent<CarManagerScript>().m_playerNum = netMerge.m_Player;
+                    car.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum = netMerge.m_Other;
                     m_activeCars.Add(car);
                 }
                 m_activeCars.Remove(car1);
@@ -280,28 +298,32 @@ public class MultiplayerManager : MonoBehaviour
                 if (mergedCar.GetComponent<CarManagerScript>().m_playerNum == PersistentInfo.Instance.m_currentPlayerNum)
                 {
                     GameObject newCar = Instantiate(m_DivableCar, leftPos, mergedCar.transform.rotation);
-                    newCar.GetComponent<CarManagerScript>().m_playerNum = PersistentInfo.Instance.m_currentPlayerNum;
+                    newCar.GetComponent<CarManagerScript>().m_playerNum = mergedCar.GetComponent<CarManagerScript>().m_playerNum;
+                    newCar.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
                     m_activeCars.Add(newCar);
                 }
                 else
                 {
                     GameObject newCar = Instantiate(m_onlineCar, leftPos, mergedCar.transform.rotation);
-                    newCar.GetComponent<CarManagerScript>().m_playerNum = PersistentInfo.Instance.m_currentPlayerNum;
+                    newCar.GetComponent<CarManagerScript>().m_playerNum = mergedCar.GetComponent<CarManagerScript>().m_playerNum;
+                    newCar.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
                     m_activeCars.Add(newCar);
                 }
 
-                //Spawn drivers car
-                Vector3 rightPos = mergedCar.transform.position - (mergedCar.transform.right);
-                if (mergedCar.GetComponent<CarManagerScript>().m_playerNum == PersistentInfo.Instance.m_currentPlayerNum)
+                //Spawn gunners car
+                Vector3 rightPos = mergedCar.transform.position + (mergedCar.transform.right);
+                if (mergedCar.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum == PersistentInfo.Instance.m_currentPlayerNum)
                 {
                     GameObject newCar = Instantiate(m_DivableCar, rightPos, mergedCar.transform.rotation);
-                    newCar.GetComponent<CarManagerScript>().m_playerNum = PersistentInfo.Instance.m_currentPlayerNum;
+                    newCar.GetComponent<CarManagerScript>().m_playerNum = mergedCar.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum;
+                    newCar.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
                     m_activeCars.Add(newCar);
                 }
                 else
                 {
                     GameObject newCar = Instantiate(m_onlineCar, rightPos, mergedCar.transform.rotation);
-                    newCar.GetComponent<CarManagerScript>().m_playerNum = PersistentInfo.Instance.m_currentPlayerNum;
+                    newCar.GetComponent<CarManagerScript>().m_playerNum = mergedCar.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum;
+                    newCar.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
                     m_activeCars.Add(newCar);
                 }
 
@@ -322,16 +344,19 @@ public class MultiplayerManager : MonoBehaviour
                 }
                 break;
             case NetMerge.ACTION.SHOOT:
-                //if (netMerge.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
-                //{
-                //    foreach (GameObject car in m_activeCars)
-                //    {
-                //        if (car.GetComponent<CarManagerScript>().m_playerNum == netMerge.m_Player)
-                //        {
-                //            car.transform.rotation = new Quaternion(netMerge.m_XRot, netMerge.m_YRot, netMerge.m_ZRot, netMerge.m_WRot);
-                //        }
-                //    }
-                //}
+                if (netMerge.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
+                {
+                    foreach (GameObject car in m_activeCars)
+                    {
+                        if (car.GetComponentInChildren<MergedShootingControllerScript>() != null)
+                        {
+                            if (car.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum == netMerge.m_Player)
+                            {
+                                car.transform.GetChild(car.transform.childCount - 1).transform.rotation = new Quaternion(netMerge.m_XRot, netMerge.m_YRot, netMerge.m_ZRot, netMerge.m_WRot);
+                            }
+                        }
+                    }
+                }
                 break;
             default:
                 Debug.LogError("Unknown Action");
@@ -360,11 +385,11 @@ public class MultiplayerManager : MonoBehaviour
                     {
                         if (car.GetComponent<CarManagerScript>().m_playerNum == netGrow.m_Player)
                         {
-                            oPos = car.transform.position;
-                            OriginalScale = car.transform.localScale;
-                            car.transform.localScale = OriginalScale * 2f;
+                            car.GetComponent<CarManagerScript>().m_oPos = car.transform.position;
+                            car.GetComponent<CarManagerScript>().m_OriginalScale = car.transform.localScale;
+                            car.transform.localScale = car.GetComponent<CarManagerScript>().m_OriginalScale * 2f;
                             Vector3 pos = transform.position;
-                            car.transform.position = new Vector3(pos.x, pos.y + (OriginalScale.y / 2), pos.y);
+                            car.transform.position = new Vector3(pos.x, pos.y + (car.GetComponent<CarManagerScript>().m_OriginalScale.y / 2), pos.y);
                         }
                     }
                     break;
@@ -374,8 +399,8 @@ public class MultiplayerManager : MonoBehaviour
                         if (car.GetComponent<CarManagerScript>().m_playerNum == netGrow.m_Player)
                         {
                             Vector3 pos = car.transform.position;
-                            car.transform.localScale = OriginalScale;
-                            car.transform.position = new Vector3(pos.x, oPos.y, pos.z);
+                            car.transform.localScale = car.GetComponent<CarManagerScript>().m_OriginalScale;
+                            car.transform.position = new Vector3(pos.x, car.GetComponent<CarManagerScript>().m_oPos.y, pos.z);
                         }
                     }
                     break;

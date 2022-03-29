@@ -41,7 +41,7 @@ public class MergedShootingControllerScript : MonoBehaviour
 
             transform.Rotate(verticalRotation, horizontalRotation, 0);
             NetMerge netMerge = new NetMerge();
-            netMerge.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+            netMerge.m_Player = m_playerNum;
             netMerge.m_Action = NetMerge.ACTION.SHOOT;
             netMerge.m_Other = 0;
             netMerge.m_XPos = 0;

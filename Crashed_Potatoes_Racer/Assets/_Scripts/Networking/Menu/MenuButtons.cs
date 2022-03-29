@@ -20,6 +20,8 @@ public class MenuButtons : MonoBehaviour
     GameObject m_connectingPanel;
     [SerializeField]
     GameObject m_connectedPanel;
+    [SerializeField]
+    GameObject m_connectionFailedPanel;
     //Info
     [SerializeField]
     GameObject m_connectedPlayerText;
@@ -105,8 +107,15 @@ public class MenuButtons : MonoBehaviour
         {
             text.GetComponent<UnityEngine.UI.Text>().text = "Empty";
         }
+        PersistentInfo.Instance.Clear();
         m_onlineMenuPanel.SetActive(true);
         m_connectedPanel.SetActive(false);
+    }
+    public void OnConnectionFailedBackButton()
+    {
+        Client.Instance.Shutdown();
+        m_onlineMenuPanel.SetActive(true);
+        m_connectionFailedPanel.SetActive(false);
     }
     public void OnCloseServerButton()
     {
@@ -133,8 +142,11 @@ public class MenuButtons : MonoBehaviour
     }
     private void OnDestroy()
     {
-        ServerHostEnd serverHostEnd = new ServerHostEnd();
-        serverHostEnd.m_ServerIP = GetLocalIPv4();
-        MenuClient.Instance.SendToServer(serverHostEnd);
+        if (PersistentInfo.Instance.m_currentPlayerNum == 1)
+        {
+            ServerHostEnd serverHostEnd = new ServerHostEnd();
+            serverHostEnd.m_ServerIP = GetLocalIPv4();
+            MenuClient.Instance.SendToServer(serverHostEnd);
+        }
     }
 }

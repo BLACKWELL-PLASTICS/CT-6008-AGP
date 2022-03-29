@@ -56,6 +56,7 @@ public class MergedTimer : MonoBehaviour
                 netMerge.m_WRot = 0;
                 Client.Instance.SendToServer(netMerge);
             }
+            Destroy(this);
         }
     }
 }
