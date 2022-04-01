@@ -8,14 +8,16 @@ public enum ServerOpCode
 {
     KEEP_ALIVE = 1,
     WELCOME = 2,
-    OTHER_CONNECTED = 3,
-    START_GAME = 4,
-    MAKE_MOVE = 5,
-    PICKED_UP = 6,
-    GROW = 7,
-    WALL = 8,
-    ROCKET = 9,
-    MERGE = 10
+    UNWELCOME = 3,
+    OTHER_CONNECTED = 4,
+    OTHER_DISCONNECTED = 5,
+    START_GAME = 6,
+    MAKE_MOVE = 7,
+    PICKED_UP = 8,
+    GROW = 9,
+    WALL = 10,
+    ROCKET = 11,
+    MERGE = 12
 }
 public static class NetUtility
 {
@@ -31,8 +33,14 @@ public static class NetUtility
             case ServerOpCode.WELCOME:
                 msg = new NetWelcome(a_stream);
                 break;
+            case ServerOpCode.UNWELCOME:
+                msg = new NetUnwelcome(a_stream);
+                break;
             case ServerOpCode.OTHER_CONNECTED:
                 msg = new NetOtherConnected(a_stream);
+                break;
+            case ServerOpCode.OTHER_DISCONNECTED:
+                msg = new NetOtherDisconnected(a_stream);
                 break;
             case ServerOpCode.START_GAME:
                 msg = new NetStartGame(a_stream);
@@ -74,7 +82,9 @@ public static class NetUtility
     //Client
     public static Action<NetMessage> C_KEEP_ALIVE;
     public static Action<NetMessage> C_WELCOME;
+    public static Action<NetMessage> C_UNWELCOME;
     public static Action<NetMessage> C_OTHER_CONNECTED;
+    public static Action<NetMessage> C_OTHER_DISCONNECTED;
     public static Action<NetMessage> C_START_GAME;
     public static Action<NetMessage> C_MAKE_MOVE;
     public static Action<NetMessage> C_PICKED_UP;
@@ -86,7 +96,9 @@ public static class NetUtility
     //Server
     public static Action<NetMessage, NetworkConnection> S_KEEP_ALIVE;
     public static Action<NetMessage, NetworkConnection> S_WELCOME;
+    public static Action<NetMessage, NetworkConnection> S_UNWELCOME;
     public static Action<NetMessage, NetworkConnection> S_OTHER_CONNECTED;
+    public static Action<NetMessage, NetworkConnection> S_OTHER_DISCONNECTED;
     public static Action<NetMessage, NetworkConnection> S_START_GAME;
     public static Action<NetMessage, NetworkConnection> S_MAKE_MOVE;
     public static Action<NetMessage, NetworkConnection> S_PCICKED_UP;

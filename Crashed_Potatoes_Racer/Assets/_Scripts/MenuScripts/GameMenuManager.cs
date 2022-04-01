@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class GameMenuManager : MonoBehaviour
 {
     [SerializeField]
+    private bool usesIainScript = false;
+    [SerializeField]
     private TextMeshProUGUI menuTitle;
     [SerializeField]
     private string[] menuName;
@@ -20,7 +22,10 @@ public class GameMenuManager : MonoBehaviour
 
     void Start()
     {
-        SetActiveMenu(activeMenu);
+        if (!usesIainScript)
+        {
+            SetActiveMenu(activeMenu);
+        }
     }
 
     public void SetActiveMenu(int targetMenu)

@@ -8,6 +8,9 @@ public class CarManagerScript : MonoBehaviour
     public bool m_mergeOn;
     public GameObject m_gameManagerHolder;
 
+    public Vector3 m_oPos;
+    public Vector3 m_OriginalScale;
+
     [SerializeField]
     Material m_canMergeMaterial;
     [SerializeField]

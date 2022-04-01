@@ -1,7 +1,6 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - AIManager
     - AIPlayer
     - BezierSpline
     - CarManagerScript
@@ -17,7 +16,6 @@ ScriptsOnlyBuild:
     - MergedShootingControllerScript
     - MergedTimer
     - MultiplayerManager
-    - NavMeshBaker
     - Obsticle
     - ObsticleScaler
     - PersistentInfo
@@ -53,7 +51,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Scrollbar
     - UnityEngine.UI.Text
   sceneClasses:
-    Assets/_Scenes/AITestScene/MapTest.unity:
+    Assets/_Scenes/IainTestScene.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -85,39 +83,35 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
+      Script: {instanceID: 11388}
+    - Class: 114
+      Script: {instanceID: 11432}
+    - Class: 114
+      Script: {instanceID: 11480}
+    - Class: 114
       Script: {instanceID: 11484}
     - Class: 114
-      Script: {instanceID: 11528}
+      Script: {instanceID: 11670}
     - Class: 114
-      Script: {instanceID: 11576}
+      Script: {instanceID: 12466}
     - Class: 114
-      Script: {instanceID: 11580}
+      Script: {instanceID: 12958}
     - Class: 114
-      Script: {instanceID: 11766}
+      Script: {instanceID: 13060}
     - Class: 114
-      Script: {instanceID: 11930}
+      Script: {instanceID: 13132}
     - Class: 114
-      Script: {instanceID: 12560}
+      Script: {instanceID: 13466}
     - Class: 114
-      Script: {instanceID: 13054}
+      Script: {instanceID: 13662}
     - Class: 114
-      Script: {instanceID: 13156}
+      Script: {instanceID: 13852}
     - Class: 114
-      Script: {instanceID: 13228}
+      Script: {instanceID: 13988}
     - Class: 114
-      Script: {instanceID: 13562}
+      Script: {instanceID: 14092}
     - Class: 114
-      Script: {instanceID: 13732}
-    - Class: 114
-      Script: {instanceID: 13758}
-    - Class: 114
-      Script: {instanceID: 13946}
-    - Class: 114
-      Script: {instanceID: 14082}
-    - Class: 114
-      Script: {instanceID: 14186}
-    - Class: 114
-      Script: {instanceID: 14222}
+      Script: {instanceID: 14130}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 135
@@ -127,8 +121,6 @@ ScriptsOnlyBuild:
     - Class: 195
       Script: {instanceID: 0}
     - Class: 196
-      Script: {instanceID: 0}
-    - Class: 238
       Script: {instanceID: 0}
     Assets/_Scenes/MenuScene.unity:
     - Class: 1
@@ -152,57 +144,57 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11442}
+      Script: {instanceID: 11316}
     - Class: 114
-      Script: {instanceID: 11724}
+      Script: {instanceID: 11346}
     - Class: 114
-      Script: {instanceID: 11728}
+      Script: {instanceID: 11628}
     - Class: 114
-      Script: {instanceID: 11780}
+      Script: {instanceID: 11632}
     - Class: 114
-      Script: {instanceID: 11826}
+      Script: {instanceID: 11686}
     - Class: 114
-      Script: {instanceID: 11866}
+      Script: {instanceID: 11732}
     - Class: 114
-      Script: {instanceID: 11868}
+      Script: {instanceID: 11770}
     - Class: 114
-      Script: {instanceID: 11936}
+      Script: {instanceID: 11772}
     - Class: 114
-      Script: {instanceID: 12230}
+      Script: {instanceID: 11840}
     - Class: 114
-      Script: {instanceID: 12376}
+      Script: {instanceID: 12134}
     - Class: 114
-      Script: {instanceID: 12382}
+      Script: {instanceID: 12282}
     - Class: 114
-      Script: {instanceID: 12428}
+      Script: {instanceID: 12288}
     - Class: 114
-      Script: {instanceID: 12686}
+      Script: {instanceID: 12334}
     - Class: 114
-      Script: {instanceID: 12998}
+      Script: {instanceID: 12592}
     - Class: 114
-      Script: {instanceID: 13258}
+      Script: {instanceID: 13162}
     - Class: 114
-      Script: {instanceID: 13304}
+      Script: {instanceID: 13208}
     - Class: 114
-      Script: {instanceID: 13320}
+      Script: {instanceID: 13224}
     - Class: 114
-      Script: {instanceID: 13464}
+      Script: {instanceID: 13366}
     - Class: 114
-      Script: {instanceID: 13488}
+      Script: {instanceID: 13390}
     - Class: 114
-      Script: {instanceID: 13568}
+      Script: {instanceID: 13472}
     - Class: 114
-      Script: {instanceID: 13586}
+      Script: {instanceID: 13490}
     - Class: 114
-      Script: {instanceID: 13696}
+      Script: {instanceID: 13600}
     - Class: 114
-      Script: {instanceID: 13716}
+      Script: {instanceID: 13620}
     - Class: 114
-      Script: {instanceID: 13730}
+      Script: {instanceID: 13634}
     - Class: 114
-      Script: {instanceID: 13932}
+      Script: {instanceID: 13838}
     - Class: 114
-      Script: {instanceID: 14232}
+      Script: {instanceID: 14140}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -220,6 +212,12 @@ ScriptsOnlyBuild:
     - Class: 224
       Script: {instanceID: 0}
   scriptHashData:
+  - hash:
+      serializedVersion: 2
+      Hash: 5f1752ed2092162f016c19510c28a8b9
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Button
   - hash:
       serializedVersion: 2
       Hash: eaff205ef6bbce7900de030752683b5c
@@ -360,7 +358,7 @@ ScriptsOnlyBuild:
     className: TouchInputModule
   - hash:
       serializedVersion: 2
-      Hash: 81d753db8f52d988f30920823adbd569
+      Hash: 126548662fe54abc44c6ae1ee1121913
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MultiplayerManager
@@ -384,7 +382,7 @@ ScriptsOnlyBuild:
     className: TMP_InputField
   - hash:
       serializedVersion: 2
-      Hash: 251103b4a5c350e6730b3f2f7c1d7106
+      Hash: 694ccd08265b3a8d5723301dbc33fd98
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MenuButtons
@@ -588,12 +586,6 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
-      Hash: 5f1752ed2092162f016c19510c28a8b9
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Button
-  - hash:
-      serializedVersion: 2
       Hash: f84d945e5e1ca985698660fc26e9657f
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -618,7 +610,7 @@ ScriptsOnlyBuild:
     className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: 72e24f18926287acf8d1d8767b4d2dd6
+      Hash: d6276ceb60ce429e478103f2e331f3e0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CarManagerScript
@@ -702,7 +694,7 @@ ScriptsOnlyBuild:
     className: Server
   - hash:
       serializedVersion: 2
-      Hash: 3a9bd72e5f16c215a3af67a8c9bef118
+      Hash: 11a0309c79294d7a22255df1933847a1
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MenuManager
@@ -943,5 +935,5 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/_Scenes/MenuScene.unity
-  - Assets/_Scenes/AITestScene/MapTest.unity
+  - Assets/_Scenes/IainTestScene.unity
   playerPath: C:/UniStuff/CT-6008-AGP/Crashed_Potatoes_Racer/Build/Crashed_Potatoes_Racer.exe

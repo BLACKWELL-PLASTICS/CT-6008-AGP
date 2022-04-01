@@ -14,7 +14,7 @@ public class InventoryScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F)) {
             switch (p1) {
                 case SeedPacketScript.POWERUPS.Forward_Projectile:
-
+                    Instantiate(prefabs[0], transform.position + transform.forward, Quaternion.identity);
                     Debug.Log("FP");
                     break;
                 case SeedPacketScript.POWERUPS.Hot_Potato:
