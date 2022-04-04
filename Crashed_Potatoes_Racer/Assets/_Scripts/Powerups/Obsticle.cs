@@ -10,7 +10,6 @@ public class Obsticle : MonoBehaviour {
 
     public void SpawnGO() {
         Vector3 pos = transform.position - transform.forward;
-        pos.y = 2.3f;
         wall = Instantiate(prefab, pos, Quaternion.identity);
 
         eulerAngle = new Vector3(-90f, 0f, 0f);

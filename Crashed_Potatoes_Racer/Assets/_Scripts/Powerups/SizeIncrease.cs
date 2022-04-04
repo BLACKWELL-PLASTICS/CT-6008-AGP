@@ -13,7 +13,7 @@ public class SizeIncrease : MonoBehaviour {
         OriginalScale = transform.localScale;
         transform.localScale = OriginalScale * 2f;
         pos = transform.position;
-        transform.position = new Vector3(pos.x, pos.y + (OriginalScale.y / 2), pos.y);
+        transform.position = new Vector3(pos.x, pos.y + 1f, pos.z);
         //grow packet
         NetGrow netGrow = new NetGrow();
         netGrow.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
@@ -23,6 +23,7 @@ public class SizeIncrease : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        transform.position = new Vector3(transform.position.x, oPos.y + 0.5f, transform.position.z);
         timer += Time.deltaTime;
         if (timer > 3f) {
             pos = transform.position;
