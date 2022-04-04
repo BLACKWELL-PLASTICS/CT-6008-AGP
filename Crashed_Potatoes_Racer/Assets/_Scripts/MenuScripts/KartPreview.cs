@@ -4,6 +4,18 @@ using UnityEngine.EventSystems;
 
 public class KartPreview : MonoBehaviour, ISelectHandler, IPointerEnterHandler
 {
+    public enum TYPE
+    {
+        CAR = 1,
+        WHEEL = 2,
+        GUN = 3
+    }
+
+    [SerializeField]
+    private TYPE m_type;
+    [SerializeField]
+    private int m_choice;
+    
     [SerializeField]
     private GameObject targetObject;
     public Material objectMaterial;
@@ -33,5 +45,21 @@ public class KartPreview : MonoBehaviour, ISelectHandler, IPointerEnterHandler
         {
             targetText[i].text = textUpdate[i];
         }
+
+        //switch (m_type)
+        //{
+        //    case (TYPE.CAR):
+        //        PersistentInfo.Instance.m_carDesigns[0].m_carChoice = m_choice;
+        //        break;
+        //    case (TYPE.WHEEL):
+        //        PersistentInfo.Instance.m_carDesigns[0].m_wheelChoice = m_choice;
+        //        break;
+        //    case (TYPE.GUN):
+        //        PersistentInfo.Instance.m_carDesigns[0].m_gunChoice = m_choice;
+        //        break;
+        //    default:
+        //        Debug.LogError("Unknown Type!");
+        //        break;
+        //}
     }
 }
