@@ -6,6 +6,13 @@ public class FishMovement : MonoBehaviour
 {
     [HideInInspector]
     public FishScript spawner;
+
+    private Transform child;
+    private void Start()
+    {
+        child = GetComponentInChildren<Transform>();
+    }
+
     void Update()
     {
         StartCoroutine(Move());
@@ -14,11 +21,12 @@ public class FishMovement : MonoBehaviour
     private IEnumerator Move()
     {
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y + 10, transform.position.z), AIManager.GetFishSpeed * Time.deltaTime);
+        child.rotation = Quaternion.Lerp(transform.rotation, new Quaternion(transform.rotation.x, transform.rotation.y, -90, transform.rotation.w), Time.deltaTime * 0.005f);
 
         yield return new WaitForSeconds(AIManager.GetFishTime);
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, new Quaternion(180, 0, 0, 0), Time.deltaTime * 0.03f);
         transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y - 11, transform.position.z), (AIManager.GetFishSpeed * 2) * Time.deltaTime);
+        child.rotation = Quaternion.Lerp(transform.rotation, new Quaternion(transform.rotation.x, transform.rotation.y, -90, transform.rotation.w), Time.deltaTime * 0.025f);
 
         yield return new WaitForSeconds(AIManager.GetFishTime + 0.2f);
 

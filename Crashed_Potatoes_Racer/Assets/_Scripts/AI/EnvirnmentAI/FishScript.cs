@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class FishScript : MonoBehaviour
 {
-    public GameObject fishPrefab;
+    public GameObject[] fishPrefabs;
+    public Material[] fishSkins;
 
     private GameObject[] sceneObj;
     private List<GameObject> waterInScene = new List<GameObject>();
     private GameObject fish;
+    private float[] turn = new float[] { -90, 0, 90 };
 
     private void Start()
     {
@@ -26,7 +28,12 @@ public class FishScript : MonoBehaviour
         if (Random.Range(0, AIManager.GetFishRandomness) < 50)
         {
             int ran = Random.Range(0, waterInScene.Count);
-            fish = Instantiate(fishPrefab, GetRandomPoint(waterInScene[ran]), Quaternion.identity);
+            int ranFish = Random.Range(0, 2);
+            int ranSkin = Random.Range(0, 4);
+            int ranTurn = Random.Range(0, 3);
+            fish = Instantiate(fishPrefabs[ranFish], GetRandomPoint(waterInScene[ran]), new Quaternion(0, turn[ranTurn], 0, 0));
+            fish.GetComponentInChildren<MeshRenderer>().material = fishSkins[ranSkin];
+            fish.AddComponent<FishMovement>();
             fish.GetComponent<FishMovement>().spawner = this;
         }
     }

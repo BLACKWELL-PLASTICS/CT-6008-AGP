@@ -34,6 +34,11 @@ public class AIManager : MonoBehaviour
     public float fishRandomness;
     public float fishSpeed;
     public float fishJumpTime;
+    //Crab variables
+    [Header("Crab Variables")]
+    public float crabDistance;
+    public float crabTimer;
+    public float crabSpeed;
 
     //car get/set
     public static float GetMaxAcc { get { return instance.maxAcc; } }
@@ -57,6 +62,12 @@ public class AIManager : MonoBehaviour
     public static float GetFishRandomness { get { return instance.fishRandomness; } }
     public static float GetFishSpeed { get { return instance.fishSpeed; } }
     public static float GetFishTime { get { return instance.fishJumpTime; } }
+    //crabs get/set
+    public static float GetCrabDistance { get { return instance.crabDistance; } }
+    public static float GetCrabTimer { get { return instance.crabTimer; } }
+    public static float GetCrabSpeed { get { return instance.crabSpeed; } }
+
+
 
     private void Awake()
     {
