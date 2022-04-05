@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1878931043307468721}
   m_Layer: 0
   m_Name: FrontPipeShort_low
-  m_TagString: Untagged
+  m_TagString: FrontWheels
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,11 +90,11 @@ GameObject:
   - component: {fileID: 3150673623141454407}
   m_Layer: 0
   m_Name: thick_short_stance_wheels (1)
-  m_TagString: Untagged
+  m_TagString: DisplayWheels
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3150673623141454407
 Transform:
   m_ObjectHideFlags: 0
@@ -102,7 +102,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2374136266351069437}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.033672, y: 0.033672, z: 0.033672}
   m_Children:
@@ -114,7 +114,7 @@ Transform:
   - {fileID: 4456457388997645678}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
 --- !u!1 &2390691961184292346
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 1368851619433532022}
   m_Layer: 0
   m_Name: BackWheelsShortTwo_low
-  m_TagString: Untagged
+  m_TagString: BackWheels
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 1821103747587546017}
   m_Layer: 0
   m_Name: FrontWheelsShortOne_low
-  m_TagString: Untagged
+  m_TagString: FrontWheels
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 4960733558890798476}
   m_Layer: 0
   m_Name: BackWheelsShortOne_low
-  m_TagString: Untagged
+  m_TagString: BackWheels
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -365,7 +365,7 @@ GameObject:
   - component: {fileID: 2034518036199024874}
   m_Layer: 0
   m_Name: FrontWheelsShortTwo_low
-  m_TagString: Untagged
+  m_TagString: FrontWheels
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -444,7 +444,7 @@ GameObject:
   - component: {fileID: 6337450245607944241}
   m_Layer: 0
   m_Name: BackPipeShort_low
-  m_TagString: Untagged
+  m_TagString: BackWheels
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

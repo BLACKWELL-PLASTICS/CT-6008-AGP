@@ -18,6 +18,10 @@ public class Controller : MonoBehaviour {
     float groundRayLength = .5f;
     [SerializeField] Transform groundRayPoint;
 
+    // Wheels
+    [SerializeField] Transform frontLeftWheel, frontRightWheel;
+    float maxWheelTurn = 10;
+
     // BOOSTING POWERUP
     bool isBoosting = false;
     float timer = 0f;
@@ -26,6 +30,8 @@ public class Controller : MonoBehaviour {
     void Start() {
         // unparent sphere to smooth movement
         rb.transform.parent = null;
+        frontLeftWheel = GameObject.FindGameObjectWithTag("FLW").GetComponent<Transform>();
+        frontRightWheel = GameObject.FindGameObjectWithTag("FRW").GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -60,6 +66,9 @@ public class Controller : MonoBehaviour {
             q.eulerAngles = new Vector3(0.0f, q.eulerAngles.y, 0.0f);
             transform.rotation = q;
         }
+
+        frontLeftWheel.localRotation = Quaternion.Euler(frontLeftWheel.localRotation.eulerAngles.x, frontLeftWheel.localRotation.eulerAngles.y, (turnInput * maxWheelTurn));
+        frontRightWheel.localRotation = Quaternion.Euler(frontRightWheel.localRotation.eulerAngles.x, frontRightWheel.localRotation.eulerAngles.y, turnInput * maxWheelTurn);
 
         //Set Position
         transform.position = rb.transform.position;
