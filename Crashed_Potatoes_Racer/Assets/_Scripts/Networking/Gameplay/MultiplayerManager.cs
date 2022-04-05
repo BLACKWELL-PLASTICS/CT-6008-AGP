@@ -290,7 +290,7 @@ public class MultiplayerManager : MonoBehaviour
                 Vector3 pos = new Vector3(car1.transform.position.x + (car2.transform.position.x - car1.transform.position.x) / 2,
                     car1.transform.position.y + (car2.transform.position.y - car1.transform.position.y) / 2,
                     car1.transform.position.z + (car2.transform.position.z - car1.transform.position.z) / 2);
-                Vector3 midDir = (car1.transform.eulerAngles + car2.transform.eulerAngles);
+                Vector3 midDir = (car1.transform.eulerAngles + car2.transform.eulerAngles) / 2;
 
                 if (netMerge.m_Player == PersistentInfo.Instance.m_currentPlayerNum)
                 {
