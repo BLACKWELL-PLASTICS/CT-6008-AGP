@@ -1,14 +1,16 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - AIManager
     - AIPlayer
     - BezierSpline
     - CarManagerScript
     - Client
     - Controller
+    - CustomisedSpawning
     - DontDestroyOnLoad
+    - GameMenuManager
     - InventoryScript
+    - KartPreview
     - MenuButtons
     - MenuClient
     - MenuManager
@@ -17,7 +19,6 @@ ScriptsOnlyBuild:
     - MergedShootingControllerScript
     - MergedTimer
     - MultiplayerManager
-    - NavMeshBaker
     - Obsticle
     - ObsticleScaler
     - PersistentInfo
@@ -34,6 +35,7 @@ ScriptsOnlyBuild:
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
+    - TMPro.TextMeshProUGUI
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -53,7 +55,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Scrollbar
     - UnityEngine.UI.Text
   sceneClasses:
-    Assets/_Scenes/AITestScene/MapTest.unity:
+    Assets/_Scenes/IainTestScene.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -95,8 +97,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11670}
     - Class: 114
-      Script: {instanceID: 11834}
-    - Class: 114
       Script: {instanceID: 12466}
     - Class: 114
       Script: {instanceID: 12958}
@@ -107,8 +107,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13470}
     - Class: 114
-      Script: {instanceID: 13640}
-    - Class: 114
       Script: {instanceID: 13666}
     - Class: 114
       Script: {instanceID: 13858}
@@ -118,6 +116,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 14100}
     - Class: 114
       Script: {instanceID: 14138}
+    - Class: 114
+      Script: {instanceID: 35556}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 135
@@ -127,8 +127,6 @@ ScriptsOnlyBuild:
     - Class: 195
       Script: {instanceID: 0}
     - Class: 196
-      Script: {instanceID: 0}
-    - Class: 238
       Script: {instanceID: 0}
     Assets/_Scenes/MenuScene.unity:
     - Class: 1
@@ -201,6 +199,75 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13638}
     - Class: 114
       Script: {instanceID: 13844}
+    - Class: 114
+      Script: {instanceID: 14148}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/_Scenes/MenuScenes/KartSelectScene.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11316}
+    - Class: 114
+      Script: {instanceID: 11346}
+    - Class: 114
+      Script: {instanceID: 11602}
+    - Class: 114
+      Script: {instanceID: 11686}
+    - Class: 114
+      Script: {instanceID: 12288}
+    - Class: 114
+      Script: {instanceID: 12552}
+    - Class: 114
+      Script: {instanceID: 13208}
+    - Class: 114
+      Script: {instanceID: 13512}
+    - Class: 114
+      Script: {instanceID: 13604}
     - Class: 114
       Script: {instanceID: 14148}
     - Class: 115
@@ -390,7 +457,7 @@ ScriptsOnlyBuild:
     className: TMP_InputField
   - hash:
       serializedVersion: 2
-      Hash: 694ccd08265b3a8d5723301dbc33fd98
+      Hash: aeb5569ddc2dbcf9df70ab98157ce51c
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MenuButtons
@@ -552,7 +619,7 @@ ScriptsOnlyBuild:
     className: WaterArea
   - hash:
       serializedVersion: 2
-      Hash: a89c5ad4e19845fd54f3003a1a3efe86
+      Hash: 8e06487b184d9d9d48031d55c1678483
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: KartPreview
@@ -964,8 +1031,15 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 161932146b0caa2a1c53b57c992056bb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CustomisedSpawning
   platform: 19
   scenePathNames:
   - Assets/_Scenes/MenuScene.unity
-  - Assets/_Scenes/AITestScene/MapTest.unity
+  - Assets/_Scenes/MenuScenes/KartSelectScene.unity
+  - Assets/_Scenes/IainTestScene.unity
   playerPath: C:/UniStuff/CT-6008-AGP/Crashed_Potatoes_Racer/Build/Crashed_Potatoes_Racer.exe

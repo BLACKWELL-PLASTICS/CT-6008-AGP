@@ -65,7 +65,20 @@ public class MenuManager : MonoBehaviour
     }
     void UnregisterEvenets()
     {
+        //Server
+        NetUtility.S_WELCOME -= OnWelcomeServer;
 
+        //Client
+        NetUtility.C_WELCOME -= OnWelcomeClient;
+        NetUtility.C_UNWELCOME -= OnUnwelcomeClient;
+        NetUtility.C_OTHER_CONNECTED -= OnOtherConnectedClient;
+        NetUtility.C_OTHER_DISCONNECTED -= OnOtherDisconnectedClient;
+        NetUtility.C_START_GAME -= OnStartGameClient;
+
+        //Menu Client
+        ServerUtility.C_SERVER_START -= OnServerStart;
+        ServerUtility.C_SERVER_END -= OnServerEnd;
+        ServerUtility.C_LIST_REQUEST -= OnListRequest;
     }
 
     //Server
@@ -79,6 +92,9 @@ public class MenuManager : MonoBehaviour
             NetOtherConnected netOthersConnected = new NetOtherConnected();
             netOthersConnected.m_PlayerCount = PersistentInfo.Instance.m_connectedUsers;
             netOthersConnected.m_PlayerName = PersistentInfo.Instance.m_connectedNames[i];
+            netOthersConnected.m_CarBody = PersistentInfo.Instance.m_carDesigns[i].m_carChoice;
+            netOthersConnected.m_CarWheels = PersistentInfo.Instance.m_carDesigns[i].m_wheelChoice;
+            netOthersConnected.m_CarGun = PersistentInfo.Instance.m_carDesigns[i].m_gunChoice;
             Server.Instance.SendToClient(a_connection, netOthersConnected);
         }
 
@@ -88,6 +104,9 @@ public class MenuManager : MonoBehaviour
         NetOtherConnected netOtherConnected = new NetOtherConnected();
         netOtherConnected.m_PlayerCount = PersistentInfo.Instance.m_connectedUsers;
         netOtherConnected.m_PlayerName = netWelcome.m_PlayerName;
+        netOtherConnected.m_CarBody = netWelcome.m_CarBody;
+        netOtherConnected.m_CarWheels = netWelcome.m_CarWheels;
+        netOtherConnected.m_CarGun = netWelcome.m_CarGun;
         Server.Instance.SendToOtherClients(a_connection, netOtherConnected);
     }
 
@@ -98,6 +117,11 @@ public class MenuManager : MonoBehaviour
         PersistentInfo.Instance.m_connectedUsers = netWelcome.m_PlayerCount;
         PersistentInfo.Instance.m_currentPlayerNum = netWelcome.m_PlayerNumber;
         PersistentInfo.Instance.m_connectedNames.Add(netWelcome.m_PlayerName);
+        CarDesigns carDesign = new CarDesigns();
+        carDesign.m_carChoice = netWelcome.m_CarBody;
+        carDesign.m_wheelChoice = netWelcome.m_CarWheels;
+        carDesign.m_gunChoice = netWelcome.m_CarGun;
+        PersistentInfo.Instance.m_carDesigns.Add(carDesign);
 
         m_connectedPlayerText.GetComponent<UnityEngine.UI.Text>().text = $"You are player {PersistentInfo.Instance.m_currentPlayerNum} of {PersistentInfo.Instance.m_connectedUsers}";
         for (int i = 0; i < PersistentInfo.Instance.m_connectedNames.Count; i++)
@@ -145,6 +169,11 @@ public class MenuManager : MonoBehaviour
         NetOtherConnected netOtherConnected = a_msg as NetOtherConnected;
         PersistentInfo.Instance.m_connectedUsers = netOtherConnected.m_PlayerCount;
         PersistentInfo.Instance.m_connectedNames.Add(netOtherConnected.m_PlayerName);
+        CarDesigns carDesign = new CarDesigns();
+        carDesign.m_carChoice = netOtherConnected.m_CarBody;
+        carDesign.m_wheelChoice = netOtherConnected.m_CarWheels;
+        carDesign.m_gunChoice = netOtherConnected.m_CarGun;
+        PersistentInfo.Instance.m_carDesigns.Add(carDesign);
 
         m_connectedPlayerText.GetComponent<UnityEngine.UI.Text>().text = $"You are player {PersistentInfo.Instance.m_currentPlayerNum} of {PersistentInfo.Instance.m_connectedUsers}";
         for (int i = 0; i < PersistentInfo.Instance.m_connectedNames.Count; i++)
@@ -157,6 +186,7 @@ public class MenuManager : MonoBehaviour
         NetOtherDisconnected netOtherDisconnected = a_msg as NetOtherDisconnected;
         PersistentInfo.Instance.m_connectedUsers--;
         PersistentInfo.Instance.m_connectedNames.RemoveAt(netOtherDisconnected.m_PlayerNum);
+        PersistentInfo.Instance.m_carDesigns.RemoveAt(netOtherDisconnected.m_PlayerNum);
 
         m_connectedPlayerText.GetComponent<UnityEngine.UI.Text>().text = $"You are player {PersistentInfo.Instance.m_currentPlayerNum} of {PersistentInfo.Instance.m_connectedUsers}";
         for (int i = 0; i < PersistentInfo.Instance.m_connectedNames.Count; i++)
@@ -171,7 +201,7 @@ public class MenuManager : MonoBehaviour
 
     void OnStartGameClient(NetMessage a_msg)
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
 
@@ -200,5 +230,10 @@ public class MenuManager : MonoBehaviour
         Client.Instance.Initlialise(a_adress, 8008);
         m_connectingPanel.SetActive(true);
         m_serversPanel.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        UnregisterEvenets();
     }
 }

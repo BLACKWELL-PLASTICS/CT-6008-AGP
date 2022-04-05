@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using Unity.Networking.Transport;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuButtons : MonoBehaviour
 {
@@ -24,13 +25,19 @@ public class MenuButtons : MonoBehaviour
     GameObject m_connectionFailedPanel;
     //Info
     [SerializeField]
+    GameObject m_nameText;
+    [SerializeField]
     GameObject m_connectedPlayerText;
     [SerializeField]
     GameObject[] m_connectedOtherTexts;
 
     private void Start()
     {
-        PersistentInfo.Instance.m_currentPlayerName = "Guest";
+        if (PersistentInfo.Instance.m_currentPlayerName == null)
+        {
+            PersistentInfo.Instance.m_currentPlayerName = "Guest";
+        }
+        m_nameText.GetComponent<UnityEngine.UI.Text>().text = PersistentInfo.Instance.m_currentPlayerName;
     }
 
     public void OnProfileButton()
@@ -54,6 +61,10 @@ public class MenuButtons : MonoBehaviour
         {
             PersistentInfo.Instance.m_currentPlayerName = "Guest";
         }
+    }
+    public void OnProfileCustomiserButton()
+    {
+        SceneManager.LoadScene(1);
     }
     public void OnProfileBackButton()
     {

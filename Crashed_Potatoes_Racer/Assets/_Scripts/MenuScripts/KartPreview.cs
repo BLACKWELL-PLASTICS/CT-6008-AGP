@@ -1,9 +1,17 @@
-﻿using TMPro;
+﻿//////////////////////////////////////////////////
+/// Created:                                   ///
+/// Author:                                    ///
+/// Edited By: Iain Farlow                     ///
+/// Last Edited: 04/04/2022                    ///
+//////////////////////////////////////////////////
+
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class KartPreview : MonoBehaviour, ISelectHandler, IPointerEnterHandler
 {
+    //Each type of part
     public enum TYPE
     {
         CAR = 1,
@@ -11,11 +19,21 @@ public class KartPreview : MonoBehaviour, ISelectHandler, IPointerEnterHandler
         GUN = 3
     }
 
+    //Serialize Fields for assigning parts to script
     [SerializeField]
     private TYPE m_type;
     [SerializeField]
     private int m_choice;
-    
+    //Car this relates to
+    [SerializeField]
+    GameObject[] m_displayCars;
+
+    //Currently selected part
+    public static GameObject m_currentBody;
+    public static GameObject m_currentWheels;
+    public static GameObject m_currentGun;
+
+
     [SerializeField]
     private GameObject targetObject;
     public Material objectMaterial;
@@ -39,27 +57,92 @@ public class KartPreview : MonoBehaviour, ISelectHandler, IPointerEnterHandler
     void UpdateSelection()
     {
         //Updates the model and text when the player selects a customisable option
-        targetObject.GetComponent<Renderer>().material = objectMaterial;
+        //targetObject.GetComponent<Renderer>().material = objectMaterial;
 
         for (int i = 0; i < textUpdate.Length; i++)
         {
             targetText[i].text = textUpdate[i];
         }
 
-        //switch (m_type)
-        //{
-        //    case (TYPE.CAR):
-        //        PersistentInfo.Instance.m_carDesigns[0].m_carChoice = m_choice;
-        //        break;
-        //    case (TYPE.WHEEL):
-        //        PersistentInfo.Instance.m_carDesigns[0].m_wheelChoice = m_choice;
-        //        break;
-        //    case (TYPE.GUN):
-        //        PersistentInfo.Instance.m_carDesigns[0].m_gunChoice = m_choice;
-        //        break;
-        //    default:
-        //        Debug.LogError("Unknown Type!");
-        //        break;
-        //}
+        //Switch on part of the model being targeted
+        switch (m_type)
+        {
+            //for car/ body fo the car
+            case (TYPE.CAR):
+                //save current selection to persistent info's car
+                PersistentInfo.Instance.m_carDesign.m_carChoice = m_choice;
+                //ensure all others are hidden
+                foreach(GameObject displayCar in m_displayCars)
+                {
+                    displayCar.SetActive(false);
+                }
+                //show selected
+                m_displayCars[m_choice].SetActive(true);
+                //assign to current body
+                m_currentBody = m_displayCars[m_choice];
+                break;
+            case (TYPE.WHEEL):
+                //save current selection to persistent info's wheels
+                PersistentInfo.Instance.m_carDesign.m_wheelChoice = m_choice;
+                //Get all the wheels on the display car
+                GameObject[] wheels = new GameObject[12];
+                int wheelCount = 0;
+                for (int i = 0; i < m_currentBody.transform.childCount; i++)
+                {
+                    if (m_currentBody.transform.GetChild(i).gameObject.tag == "DisplayWheels")
+                    {
+                        wheels[wheelCount] = m_currentBody.transform.GetChild(i).gameObject;
+                        wheelCount++;
+                    }
+                }
+                //ensure all others are hidden
+                foreach (GameObject wheel in wheels)
+                {
+                    wheel.SetActive(false);
+                }
+                //show selected
+                wheels[m_choice].SetActive(true);
+                //assign to current body
+                m_currentWheels = wheels[m_choice];
+                break;
+            case (TYPE.GUN):
+                //save current selection to persistent info's gun
+                PersistentInfo.Instance.m_carDesign.m_gunChoice = m_choice;
+                //Get gun base for current car
+                GameObject gunBase = null;
+                for (int i = 0; i < m_currentBody.transform.childCount; i++)
+                {
+                    if (m_currentBody.transform.GetChild(i).gameObject.tag == "DisplayGunBase")
+                    {
+                        m_currentBody.transform.GetChild(i).gameObject.SetActive(true);
+                        gunBase = m_currentBody.transform.GetChild(i).gameObject;
+                    }
+                }
+                //Get all the guns on the display car's gun base
+                GameObject[] guns = new GameObject[3];
+                int gunCount = 0;
+                for (int i = 0; i < gunBase.transform.childCount; i++)
+                {
+                    if (gunBase.transform.GetChild(i).gameObject.tag == "DisplayGun")
+                    {
+                        guns[gunCount] = gunBase.transform.GetChild(i).gameObject;
+                        gunCount++;
+                    }
+                }
+                //ensure all others are hidden
+                foreach (GameObject gun in guns)
+                {
+                    gun.SetActive(false);
+                }
+                //show selected
+                guns[m_choice].SetActive(true);
+                //assign to current body
+                m_currentGun = guns[m_choice];
+                break;
+            default:
+                //Default means type passed in isn't expected
+                Debug.LogError("Unknown Type!");
+                break;
+        }
     }
 }
