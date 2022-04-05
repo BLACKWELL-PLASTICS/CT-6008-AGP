@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SeedPacketScript : MonoBehaviour
-{
+public class SeedPacketScript : MonoBehaviour {
     public enum POWERUPS {
         None,
         Forward_Projectile,
@@ -17,30 +16,48 @@ public class SeedPacketScript : MonoBehaviour
 
     POWERUPS choice;
 
+    bool isActive = true;
+    float timer = 0.0f;
+
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         transform.Rotate(-Vector3.forward, 75f * Time.deltaTime);
+        if (isActive == false) {
+            timer += Time.deltaTime;
+            if (timer > 5f) {
+                gameObject.GetComponent<MeshRenderer>().enabled = true;
+                gameObject.GetComponent<MeshCollider>().enabled = true;
+                timer = 0.0f;
+                isActive = true;
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision) {
+        Debug.Log("Collision" + collision.gameObject.name);
         if (collision.transform.tag != "Player") {
             return;
         }
         int i = Random.Range(1, 9);
         choice = (POWERUPS)i;
         collision.gameObject.GetComponent<InventoryScript>().AddPowerup(choice);
-        Destroy(gameObject);
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        gameObject.GetComponent<MeshCollider>().enabled = false;
+        isActive = false;
+        //Destroy(gameObject);
     }
 
-
     private void OnTriggerEnter(Collider other) {
+        Debug.Log("Trigger" + other.gameObject.name);
         if (other.transform.tag != "Player") {
             return;
         }
         int i = Random.Range(1, 9);
         choice = (POWERUPS)i;
         other.gameObject.GetComponent<InventoryScript>().AddPowerup(choice);
-        Destroy(gameObject);
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        gameObject.GetComponent<MeshCollider>().enabled = false;
+        isActive = false;
+        //Destroy(gameObject);
     }
 }

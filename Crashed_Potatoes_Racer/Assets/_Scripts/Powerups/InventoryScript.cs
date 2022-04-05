@@ -29,7 +29,6 @@ public class InventoryScript : MonoBehaviour
                     GetComponent<Controller>().Boost();
                     break;
                 case SeedPacketScript.POWERUPS.Gum:
-
                     Debug.Log("GUM");
                     break;
                 case SeedPacketScript.POWERUPS.Obsticles:
@@ -37,8 +36,6 @@ public class InventoryScript : MonoBehaviour
                     break;
                 case SeedPacketScript.POWERUPS.Size_Increase:
                     gameObject.AddComponent<SizeIncrease>();
-                    break;
-                default:
                     break;
             }
             UsePowerup();
@@ -59,6 +56,7 @@ public class InventoryScript : MonoBehaviour
         p1 = p2;
         p2 = SeedPacketScript.POWERUPS.None;
     }
+
     public void UsePowerup() {
         p1 = SeedPacketScript.POWERUPS.None;
         MovePowerup();

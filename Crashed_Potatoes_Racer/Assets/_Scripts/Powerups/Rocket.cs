@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Rocket : MonoBehaviour {
-    [SerializeField] Rigidbody rb;
     float timer = 0.0f;
 
     // Update is called once per frame

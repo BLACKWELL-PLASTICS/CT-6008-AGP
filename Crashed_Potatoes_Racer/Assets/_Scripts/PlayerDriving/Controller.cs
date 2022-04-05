@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Controller : MonoBehaviour
-{
+public class Controller : MonoBehaviour {
     [SerializeField] Rigidbody rb;
-    float forwardAcceleration = 4000f;
-    float reverseAcceleration = 1500f;
-    float maxSpeed = 50f;
+    float forwardAcceleration = 5500f;
+    float reverseAcceleration = 3000f;
+    float maxSpeed = 70f;
     float turnStrength = 100f;
     float gravityForce = 10f;
 
@@ -19,33 +18,28 @@ public class Controller : MonoBehaviour
     float groundRayLength = .5f;
     [SerializeField] Transform groundRayPoint;
 
-    Vector3 v3;
-
     // BOOSTING POWERUP
     bool isBoosting = false;
     float timer = 0f;
 
-
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         // unparent sphere to smooth movement
         rb.transform.parent = null;
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         // BOOSTING CODE
         if (isBoosting == true && timer <= 3f) {
             timer += Time.deltaTime;
-            forwardAcceleration = 6000f;
-            maxSpeed = 80f;
+            forwardAcceleration = 6500f;
+            maxSpeed = 85f;
         } else {
             isBoosting = false;
             timer = 0f;
-            maxSpeed = 50f;
-            forwardAcceleration = 4000f;
+            maxSpeed = 70f;
+            forwardAcceleration = 5500f;
         }
 
         // Reset Speed input each frame
@@ -62,21 +56,22 @@ public class Controller : MonoBehaviour
 
         if (grounded) {
             // Set Rotation
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * Input.GetAxis("Vertical"), 0f));
+            Quaternion q = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * Input.GetAxis("Vertical"), 0f));
+            q.eulerAngles = new Vector3(0.0f, q.eulerAngles.y, 0.0f);
+            transform.rotation = q;
         }
 
         //Set Position
-        v3 = new Vector3(rb.transform.position.x, transform.position.y, rb.transform.position.z);
-        transform.position = v3;
+        transform.position = rb.transform.position;
     }
 
     // All Physics calculations will take place in the fixed update
     private void FixedUpdate() {
         grounded = false;
         RaycastHit hit;
-        if (Physics.Raycast(groundRayPoint.position,-transform.up, out hit, groundRayLength, track)) {
+        if (Physics.Raycast(groundRayPoint.position, -transform.up, out hit, groundRayLength, track)) {
             grounded = true;
-            
+
             transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
         }
 
