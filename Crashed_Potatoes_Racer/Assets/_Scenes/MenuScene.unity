@@ -792,7 +792,6 @@ MonoBehaviour:
   m_connectingPanel: {fileID: 1176053816}
   m_connectedPanel: {fileID: 1587398499}
   m_connectionFailedPanel: {fileID: 1152075939}
-  m_nameText: {fileID: 119547807}
   m_connectedPlayerText: {fileID: 1580372979}
   m_connectedOtherTexts:
   - {fileID: 1716561640}
@@ -803,6 +802,9 @@ MonoBehaviour:
   - {fileID: 600010564}
   - {fileID: 170376128}
   - {fileID: 1085888466}
+  m_panelTitle: {fileID: 0}
+  m_activeButton: {fileID: 0}
+  m_activeInputField: {fileID: 0}
 --- !u!114 &98637460
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6108,7 +6110,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 98637459}
-        m_MethodName: OnProfileCustomiserButton
+        m_MethodName: OnProfileCustomiseButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -6,6 +6,7 @@ using TMPro; //Henry Addition
 using Unity.Networking.Transport;
 using UnityEngine;
 using UnityEngine.UI; //Henry Addition
+using UnityEngine.SceneManagement;
 
 public class MenuButtons : MonoBehaviour
 {
@@ -65,6 +66,10 @@ public class MenuButtons : MonoBehaviour
         {
             PersistentInfo.Instance.m_currentPlayerName = "Guest";
         }
+    }
+    public void OnProfileCustomiseButton()
+    {
+        SceneManager.LoadScene(1);
     }
     public void OnProfileBackButton()
     {
