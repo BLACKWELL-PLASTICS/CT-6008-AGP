@@ -44,21 +44,29 @@ public class MultiplayerManager : MonoBehaviour
                     if (i == PersistentInfo.Instance.m_currentPlayerNum - 1)
                     {
                         car = Instantiate(m_DivableCar, pos, rot);
-                        car.GetComponent<CarManagerScript>().m_playerNum = i + 1;
-                        car.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
                     }
                     else
                     {
                         car = Instantiate(m_onlineCar, pos, rot);
-                        car.GetComponent<CarManagerScript>().m_playerNum = i + 1;
-                        car.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
                     }
                 }
                 else
                 {
                     car = Instantiate(m_AICar, pos, rot);
-                    car.GetComponent<CarManagerScript>().m_playerNum = i + 1;
-                    car.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
+                }
+                car.GetComponent<CarManagerScript>().m_playerNum = i + 1;
+                car.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
+                if (i < PersistentInfo.Instance.m_carDesigns.Count)
+                {
+                    car.GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_carDesigns[i].m_carChoice,
+                                                                 PersistentInfo.Instance.m_carDesigns[i].m_wheelChoice,
+                                                                 PersistentInfo.Instance.m_carDesigns[i].m_gunChoice);
+                }
+                else
+                {
+                    car.GetComponent<CustomisedSpawning>().Spawn(0,
+                                                                 0,
+                                                                 0);
                 }
                 m_activeCars.Add(car);
             }
@@ -69,15 +77,25 @@ public class MultiplayerManager : MonoBehaviour
                 GameObject car;
                 if (i == PersistentInfo.Instance.m_currentPlayerNum - 1)
                 {
-                    car = Instantiate(m_DivableCar, pos, rot);
-                    car.GetComponent<CarManagerScript>().m_playerNum = i + 1;
-                    car.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
+                    car = Instantiate(m_DivableCar, pos, rot);;
                 }
                 else
                 {
                     car = Instantiate(m_onlineCar, pos, rot);
-                    car.GetComponent<CarManagerScript>().m_playerNum = i + 1;
-                    car.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
+                }
+                car.GetComponent<CarManagerScript>().m_playerNum = i + 1;
+                car.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
+                if (i < PersistentInfo.Instance.m_carDesigns.Count)
+                {
+                    car.GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_carDesigns[i].m_carChoice,
+                                                                 PersistentInfo.Instance.m_carDesigns[i].m_wheelChoice,
+                                                                 PersistentInfo.Instance.m_carDesigns[i].m_gunChoice);
+                }
+                else
+                {
+                    car.GetComponent<CustomisedSpawning>().Spawn(0,
+                                                                 0,
+                                                                 0);
                 }
                 m_activeCars.Add(car);
             }
@@ -111,7 +129,23 @@ public class MultiplayerManager : MonoBehaviour
     }
     void UnregisterEvenets()
     {
+        //Server
+            //Moving
+        NetUtility.S_MAKE_MOVE -= OnMoveServer;
+            //Merging
+        NetUtility.S_MERGE -= OnMergeServer;
+            //Power Ups
+        NetUtility.S_WALL -= OnObstacleServer;
+        NetUtility.S_GROW -= OnSizeIncreaseServer;
 
+        //Client
+            //Moving
+        NetUtility.C_MAKE_MOVE -= OnMoveClient;
+            //Merging
+        NetUtility.C_MERGE -= OnMergeClient;
+            //Power Ups
+        NetUtility.C_WALL -= OnObstacleClient;
+        NetUtility.C_GROW -= OnSizeIncreaseClient;
     }
 
     public void MergeCars(GameObject a_car1, GameObject a_car2)
@@ -142,13 +176,16 @@ public class MultiplayerManager : MonoBehaviour
         switch (netMerge.m_Action)
         {
             case NetMerge.ACTION.MERGE:
-                int mergePlayer;
-                if (m_mergeCars.TryGetValue(netMerge.m_Other, out mergePlayer))
+                if (m_mergeCars.ContainsKey(netMerge.m_Other))
                 {
-                    if (mergePlayer == netMerge.m_Player)
+                    if (m_mergeCars[netMerge.m_Other] == netMerge.m_Player)
                     {
                         m_mergeCars.Remove(netMerge.m_Other);
                         Server.Instance.Broadcast(netMerge);
+                    }
+                    else
+                    {
+                        m_mergeCars.Add(netMerge.m_Player, netMerge.m_Other);
                     }
                 }
                 else
@@ -157,13 +194,16 @@ public class MultiplayerManager : MonoBehaviour
                 }
                 break;
             case NetMerge.ACTION.DEMERGE:
-                int demergePlayer;
-                if (m_demergeCars.TryGetValue(netMerge.m_Other, out demergePlayer))
+                if (m_demergeCars.ContainsKey(netMerge.m_Other))
                 {
-                    if (demergePlayer == netMerge.m_Player)
+                    if (m_demergeCars[netMerge.m_Other] == netMerge.m_Player)
                     {
                         m_demergeCars.Remove(netMerge.m_Other);
                         Server.Instance.Broadcast(netMerge);
+                    }
+                    else
+                    {
+                        m_demergeCars.Add(netMerge.m_Player, netMerge.m_Other);
                     }
                 }
                 else
@@ -250,14 +290,15 @@ public class MultiplayerManager : MonoBehaviour
                 Vector3 pos = new Vector3(car1.transform.position.x + (car2.transform.position.x - car1.transform.position.x) / 2,
                     car1.transform.position.y + (car2.transform.position.y - car1.transform.position.y) / 2,
                     car1.transform.position.z + (car2.transform.position.z - car1.transform.position.z) / 2);
-                Vector3 midDir = (car1.transform.forward.normalized + car2.transform.forward.normalized).normalized;
-                Quaternion dir = Quaternion.Euler(midDir.x, midDir.y, midDir.z);
-
-
+                Vector3 midDir = (car1.transform.eulerAngles + car2.transform.eulerAngles) / 2;
 
                 if (netMerge.m_Player == PersistentInfo.Instance.m_currentPlayerNum)
                 {
-                    GameObject car = Instantiate(m_mergedDrivePrefab, pos, dir);
+                    GameObject car = Instantiate(m_mergedDrivePrefab, pos, Quaternion.identity);
+                    car.transform.eulerAngles = midDir;
+                    car.GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_carDesigns[netMerge.m_Player - 1].m_carChoice,
+                                                                 PersistentInfo.Instance.m_carDesigns[netMerge.m_Player - 1].m_wheelChoice,
+                                                                 PersistentInfo.Instance.m_carDesigns[netMerge.m_Other - 1].m_gunChoice);
                     car.GetComponent<CarManagerScript>().m_playerNum = netMerge.m_Player;
                     car.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum = netMerge.m_Other;
                     car.GetComponent<MergedTimer>().m_maxTimer = m_maxTimer;
@@ -265,7 +306,11 @@ public class MultiplayerManager : MonoBehaviour
                 }
                 else if (netMerge.m_Other == PersistentInfo.Instance.m_currentPlayerNum)
                 {
-                    GameObject car = Instantiate(m_mergedShootPrefab, pos, dir);
+                    GameObject car = Instantiate(m_mergedShootPrefab, pos, Quaternion.identity);
+                    car.transform.eulerAngles = midDir;
+                    car.GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_carDesigns[netMerge.m_Player - 1].m_carChoice,
+                                                                 PersistentInfo.Instance.m_carDesigns[netMerge.m_Player - 1].m_wheelChoice,
+                                                                 PersistentInfo.Instance.m_carDesigns[netMerge.m_Other - 1].m_gunChoice);
                     car.GetComponent<CarManagerScript>().m_playerNum = netMerge.m_Player;
                     car.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum = netMerge.m_Other;
                     car.GetComponent<MergedTimer>().m_maxTimer = m_maxTimer;
@@ -273,7 +318,11 @@ public class MultiplayerManager : MonoBehaviour
                 }
                 else
                 {
-                    GameObject car = Instantiate(m_mergedOnlinePrefab, pos, dir);
+                    GameObject car = Instantiate(m_mergedOnlinePrefab, pos, Quaternion.identity);
+                    car.transform.eulerAngles = midDir;
+                    car.GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_carDesigns[netMerge.m_Player - 1].m_carChoice,
+                                                                 PersistentInfo.Instance.m_carDesigns[netMerge.m_Player - 1].m_wheelChoice,
+                                                                 PersistentInfo.Instance.m_carDesigns[netMerge.m_Other - 1].m_gunChoice);
                     car.GetComponent<CarManagerScript>().m_playerNum = netMerge.m_Player;
                     car.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum = netMerge.m_Other;
                     m_activeCars.Add(car);
@@ -298,6 +347,9 @@ public class MultiplayerManager : MonoBehaviour
                 if (mergedCar.GetComponent<CarManagerScript>().m_playerNum == PersistentInfo.Instance.m_currentPlayerNum)
                 {
                     GameObject newCar = Instantiate(m_DivableCar, leftPos, mergedCar.transform.rotation);
+                    newCar.GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponent<CarManagerScript>().m_playerNum - 1].m_carChoice,
+                                                                    PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponent<CarManagerScript>().m_playerNum - 1].m_wheelChoice,
+                                                                    PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponent<CarManagerScript>().m_playerNum - 1].m_gunChoice);
                     newCar.GetComponent<CarManagerScript>().m_playerNum = mergedCar.GetComponent<CarManagerScript>().m_playerNum;
                     newCar.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
                     m_activeCars.Add(newCar);
@@ -305,6 +357,9 @@ public class MultiplayerManager : MonoBehaviour
                 else
                 {
                     GameObject newCar = Instantiate(m_onlineCar, leftPos, mergedCar.transform.rotation);
+                    newCar.GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponent<CarManagerScript>().m_playerNum - 1].m_carChoice,
+                                                                    PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponent<CarManagerScript>().m_playerNum - 1].m_wheelChoice,
+                                                                    PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponent<CarManagerScript>().m_playerNum - 1].m_gunChoice);
                     newCar.GetComponent<CarManagerScript>().m_playerNum = mergedCar.GetComponent<CarManagerScript>().m_playerNum;
                     newCar.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
                     m_activeCars.Add(newCar);
@@ -315,6 +370,9 @@ public class MultiplayerManager : MonoBehaviour
                 if (mergedCar.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum == PersistentInfo.Instance.m_currentPlayerNum)
                 {
                     GameObject newCar = Instantiate(m_DivableCar, rightPos, mergedCar.transform.rotation);
+                    newCar.GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum - 1].m_carChoice,
+                                                                    PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum - 1].m_wheelChoice,
+                                                                    PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum - 1].m_gunChoice);
                     newCar.GetComponent<CarManagerScript>().m_playerNum = mergedCar.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum;
                     newCar.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
                     m_activeCars.Add(newCar);
@@ -322,6 +380,9 @@ public class MultiplayerManager : MonoBehaviour
                 else
                 {
                     GameObject newCar = Instantiate(m_onlineCar, rightPos, mergedCar.transform.rotation);
+                    newCar.GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum - 1].m_carChoice,
+                                                                    PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum - 1].m_wheelChoice,
+                                                                    PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum - 1].m_gunChoice);
                     newCar.GetComponent<CarManagerScript>().m_playerNum = mergedCar.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum;
                     newCar.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
                     m_activeCars.Add(newCar);
@@ -409,5 +470,10 @@ public class MultiplayerManager : MonoBehaviour
                     break;
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        UnregisterEvenets();
     }
 }

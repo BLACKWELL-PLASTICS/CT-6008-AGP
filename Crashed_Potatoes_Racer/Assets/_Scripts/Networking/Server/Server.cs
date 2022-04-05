@@ -1,4 +1,11 @@
-﻿using System;
+﻿//////////////////////////////////////////////////
+/// Created: 07/02/2022                        ///
+/// Author: Iain Farlow                        ///
+/// Edited By:                                 ///
+/// Last Edited: 04/04/2022                    ///
+//////////////////////////////////////////////////
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
@@ -10,7 +17,10 @@ public class Server : MonoBehaviour
     public static Server Instance { set; get; }
     void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
     }
 
     public NetworkDriver m_driver;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameMenuManager : MonoBehaviour
 {
@@ -70,6 +71,6 @@ public class GameMenuManager : MonoBehaviour
 
     public void LoadScene()
     {
-        Debug.Log("A new scene will be loaded.");
+        SceneManager.LoadScene(0);
     }
 }

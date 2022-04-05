@@ -1,4 +1,11 @@
-﻿using System;
+﻿//////////////////////////////////////////////////
+/// Created: 07/02/2022                        ///
+/// Author: Iain Farlow                        ///
+/// Edited By:                                 ///
+/// Last Edited: 04/04/2022                    ///
+//////////////////////////////////////////////////
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Networking.Transport;
@@ -9,7 +16,10 @@ public class Client : MonoBehaviour
     public static Client Instance { set; get; }
     void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
     }
 
     public NetworkDriver m_driver;
@@ -81,9 +91,12 @@ public class Client : MonoBehaviour
             if (cmd == NetworkEvent.Type.Connect)
             {
                 NetWelcome netWelcome = new NetWelcome();
+                netWelcome.m_PlayerNumber = 0;
                 netWelcome.m_PlayerName = m_clientName;
+                netWelcome.m_CarBody = PersistentInfo.Instance.m_carDesign.m_carChoice;
+                netWelcome.m_CarWheels = PersistentInfo.Instance.m_carDesign.m_wheelChoice;
+                netWelcome.m_CarGun = PersistentInfo.Instance.m_carDesign.m_gunChoice;
                 SendToServer(netWelcome);
-                Debug.Log("Connected");
             }
             else if (cmd == NetworkEvent.Type.Data)
             {

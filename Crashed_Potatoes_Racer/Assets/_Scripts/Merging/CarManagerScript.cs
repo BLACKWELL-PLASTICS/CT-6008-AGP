@@ -39,10 +39,17 @@ public class CarManagerScript : MonoBehaviour
     public void ToggleMerging(bool m_sendToServer)
     {
         m_mergeOn = !m_mergeOn;
-        m_mergeTrigger.SetActive(m_mergeOn);
+        GameObject mergeUI = null;
+        for(int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).tag == "MergeUI")
+            {
+                mergeUI = transform.GetChild(i).gameObject;
+            }
+        }
         if (m_mergeOn)
         {
-            GetComponent<Renderer>().material = m_canMergeMaterial;
+            mergeUI.GetComponent<Renderer>().material = m_canMergeMaterial;
             if (m_sendToServer)
             {
                 NetMerge netMerge = new NetMerge();
@@ -61,7 +68,7 @@ public class CarManagerScript : MonoBehaviour
         }
         else
         {
-            GetComponent<Renderer>().material = m_normalMaterial;
+            mergeUI.GetComponent<Renderer>().material = m_normalMaterial;
             if (m_sendToServer)
             {
                 NetMerge netMerge = new NetMerge();
