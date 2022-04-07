@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour {
     float timer = 0.0f;
+    Rigidbody rb;
+
+    private void Start() {
+        rb = GetComponent<Rigidbody>();
+    }
 
     // Update is called once per frame
     void Update() {
         timer += Time.deltaTime;
-        if (timer > 5f) {
+        if (timer > 2f) {
             Explode();
         }
     }
@@ -25,7 +30,7 @@ public class Rocket : MonoBehaviour {
     }
 
     void Explode() {
-        // This needs to be added to (to add force at the area, etc)
+        rb.AddExplosionForce(10f, transform.position, 5f);
         Destroy(this.gameObject);
     }
 }
