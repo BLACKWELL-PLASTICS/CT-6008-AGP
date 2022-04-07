@@ -13,14 +13,19 @@ public class Rocket : MonoBehaviour {
         }
     }
     private void FixedUpdate() {
-        transform.position += Vector3.forward * 0.5f;
+        transform.position += (transform.position + transform.forward) * 0.05f;
     }
 
+    // If it collides with any object, Explode Rocket
     private void OnTriggerEnter(Collider other) {
+        Explode();
+    }
+    private void OnCollisionEnter(Collision collision) {
         Explode();
     }
 
     void Explode() {
+        // This needs to be added to (to add force at the area, etc)
         Destroy(this.gameObject);
     }
 }

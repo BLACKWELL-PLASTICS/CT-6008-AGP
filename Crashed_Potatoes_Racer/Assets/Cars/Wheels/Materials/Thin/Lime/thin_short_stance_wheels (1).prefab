@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 148305760247455367}
   m_Layer: 0
   m_Name: FrontWheelsThinShortOne_low
-  m_TagString: Untagged
+  m_TagString: FrontWheels
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 7328145707632952366}
   m_Layer: 0
   m_Name: FrontWheelsThinShortTwo_low
-  m_TagString: Untagged
+  m_TagString: FrontWheels
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 5163371439439179801}
   m_Layer: 0
   m_Name: BackWheelsThinShortTwo_low
-  m_TagString: Untagged
+  m_TagString: BackWheels
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 198899500521238855}
   m_Layer: 0
   m_Name: FrontPipeThinShort_low
-  m_TagString: Untagged
+  m_TagString: FrontWheels
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 4238254789130817042}
   m_Layer: 0
   m_Name: BackWheelsThinShortOne_low
-  m_TagString: Untagged
+  m_TagString: BackWheels
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -408,7 +408,7 @@ GameObject:
   - component: {fileID: 7483486665969074407}
   m_Layer: 0
   m_Name: BackPipeThinShort_low
-  m_TagString: Untagged
+  m_TagString: BackWheels
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -485,11 +485,11 @@ GameObject:
   - component: {fileID: 6115249826555312672}
   m_Layer: 0
   m_Name: thin_short_stance_wheels (1)
-  m_TagString: Untagged
+  m_TagString: DisplayWheels
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6115249826555312672
 Transform:
   m_ObjectHideFlags: 0
@@ -497,7 +497,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6887811417201270938}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.033672, y: 0.033672, z: 0.033672}
   m_Children:
@@ -509,4 +509,4 @@ Transform:
   - {fileID: 7325110537821040017}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}

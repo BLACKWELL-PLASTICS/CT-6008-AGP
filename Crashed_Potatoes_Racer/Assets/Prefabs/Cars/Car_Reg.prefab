@@ -474,6 +474,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   groundRayPoint: {fileID: 8738164446377299592}
+  frontLeftWheel: {fileID: 0}
+  frontRightWheel: {fileID: 0}
 --- !u!114 &8738164446682236293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,7 +491,7 @@ MonoBehaviour:
   p1: 6
   p2: 0
   prefabs:
-  - {fileID: 0}
+  - {fileID: 1895209648162260296, guid: 1dec936bd56fcf64994fb09e7201a51b, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -587,11 +589,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: potato_body
       objectReference: {fileID: 0}
-    - target: {fileID: 1371625855835820033, guid: 55ee35e1cf17d9143a7b71e2c0672b43,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1748292612565338811, guid: 55ee35e1cf17d9143a7b71e2c0672b43,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -672,11 +669,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: parsnip_body
-      objectReference: {fileID: 0}
-    - target: {fileID: 7063798856701576230, guid: 874f6720110c9434dbe3822975913ddd,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7587570378121305756, guid: 874f6720110c9434dbe3822975913ddd,
         type: 3}
@@ -814,11 +806,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: pepper_body
       objectReference: {fileID: 0}
-    - target: {fileID: 1860807102127161276, guid: d4450a5152d48504abb4a725a1c9febc,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4450a5152d48504abb4a725a1c9febc, type: 3}
 --- !u!4 &7772378272268079075 stripped
@@ -844,11 +831,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pumpkin_body
-      objectReference: {fileID: 0}
-    - target: {fileID: 6024569698297894926, guid: e03a29604e1ce2e4fb3c87f01f27ee88,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6399688274135253684, guid: e03a29604e1ce2e4fb3c87f01f27ee88,
         type: 3}
@@ -986,11 +968,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: mango_body
       objectReference: {fileID: 0}
-    - target: {fileID: 5378214912783360476, guid: 2d56d3d1b6d5e824db141b8995c6ed76,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d56d3d1b6d5e824db141b8995c6ed76, type: 3}
 --- !u!4 &4083818316100489840 stripped
@@ -1016,11 +993,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: carrot_body
-      objectReference: {fileID: 0}
-    - target: {fileID: 2563354358497806530, guid: 2acca6a71d774014aa348c1acca705c1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2943398785080251000, guid: 2acca6a71d774014aa348c1acca705c1,
         type: 3}
@@ -1102,11 +1074,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: banana_body
-      objectReference: {fileID: 0}
-    - target: {fileID: 4018173626901115653, guid: 278a6a5121708c246b166ea942ff051c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4361942068033546687, guid: 278a6a5121708c246b166ea942ff051c,
         type: 3}
@@ -1243,11 +1210,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: coconut_body
-      objectReference: {fileID: 0}
-    - target: {fileID: 953218360699350657, guid: 1e847d5d1295cd34bbf3a6ffb9ff896a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e847d5d1295cd34bbf3a6ffb9ff896a, type: 3}
