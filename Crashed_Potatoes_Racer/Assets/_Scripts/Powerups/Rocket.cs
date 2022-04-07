@@ -13,7 +13,7 @@ public class Rocket : MonoBehaviour {
         }
     }
     private void FixedUpdate() {
-        transform.position += (transform.position + transform.forward) * 0.05f;
+        transform.position += transform.forward * 0.05f * Time.deltaTime;
     }
 
     // If it collides with any object, Explode Rocket
