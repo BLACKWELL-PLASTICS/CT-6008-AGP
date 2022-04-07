@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SizeIncrease : MonoBehaviour {
-    Vector3 OriginalScale;
+    Vector3 originalScale;
     float timer = 0f;
-    Vector3 oPos;
-    Vector3 pos;
+    Vector3 originalPos;
+    Vector3 currentPos;
 
     private void Awake() {
-        oPos = transform.position;
-        OriginalScale = transform.localScale;
-        transform.localScale = OriginalScale * 2f;
-        pos = transform.position;
-        transform.position = new Vector3(pos.x, pos.y + 3f, pos.z);
+        originalPos = transform.position;
+        originalScale = transform.localScale;
+        transform.localScale = originalScale * 1.5f;
+        currentPos = transform.position;
+        Transform sphere = GetComponent<Controller>().rb.transform;
+        transform.position = new Vector3(currentPos.x, currentPos.y + 3f, currentPos.z);
+        sphere.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         //grow packet
         NetGrow netGrow = new NetGrow();
         netGrow.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
@@ -23,13 +25,13 @@ public class SizeIncrease : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        transform.position = new Vector3(transform.position.x, oPos.y + 0.5f, transform.position.z);
+        transform.position = new Vector3(transform.position.x, originalPos.y + 0.5f, transform.position.z);
         timer += Time.deltaTime;
         if (timer > 3f) {
-            pos = transform.position;
-            transform.localScale = OriginalScale;
+            currentPos = transform.position;
+            transform.localScale = originalScale;
             timer = 0f;
-            transform.position = new Vector3(pos.x, oPos.y, pos.z);
+            transform.position = new Vector3(currentPos.x, originalPos.y, currentPos.z);
             //shrink package
             NetGrow netGrow = new NetGrow();
             netGrow.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
