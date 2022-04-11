@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Controller : MonoBehaviour {
-    [SerializeField] Rigidbody rb;
+    public Rigidbody rb;
     float forwardAcceleration = 5500f;
     float reverseAcceleration = 3000f;
     float maxSpeed = 70f;
