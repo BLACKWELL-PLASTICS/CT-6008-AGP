@@ -11,10 +11,10 @@ public class InventoryScript : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKeyDown(KeyCode.F)) {
+        if (Input.GetButtonDown("Fire1")) {
             switch (p1) {
                 case SeedPacketScript.POWERUPS.Forward_Projectile:
-                    Instantiate(prefabs[0], transform.position + transform.forward, Quaternion.identity);
+                    Instantiate(prefabs[0], transform.position + (transform.forward * 2) , Quaternion.LookRotation(this.gameObject.transform.forward, this.gameObject.transform.up));
                     Debug.Log("FP");
                     break;
                 case SeedPacketScript.POWERUPS.Hot_Potato:

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class Controller : MonoBehaviour {
     public Rigidbody rb;
@@ -11,7 +12,7 @@ public class Controller : MonoBehaviour {
     float gravityForce = 10f;
 
     float speedInput, turnInput;
-
+    
     bool grounded;
     [SerializeField] LayerMask track;
     [SerializeField] LayerMask notTrack;
@@ -25,6 +26,9 @@ public class Controller : MonoBehaviour {
     // BOOSTING POWERUP
     bool isBoosting = false;
     float timer = 0f;
+
+    PlayerIndex index;
+
 
     // Start is called before the first frame update
     void Start() {
@@ -51,18 +55,30 @@ public class Controller : MonoBehaviour {
         // Reset Speed input each frame
         speedInput = 0f;
         // set speed input depending on movement
-        if (Input.GetAxis("Vertical") > 0 && speedInput != maxSpeed) {
-            speedInput = Input.GetAxis("Vertical") * forwardAcceleration;
-        } else if (Input.GetAxis("Vertical") < 0 && speedInput != maxSpeed) {
-            speedInput = Input.GetAxis("Vertical") * reverseAcceleration;
+        if ((Input.GetButton("A_Button") || Input.GetKey(KeyCode.W)) && speedInput != maxSpeed) {
+            speedInput = 1 * forwardAcceleration;
+            GamePad.SetVibration(index, 0.2f, 0.2f);
+        } else if ((Input.GetButton("B_Button") || Input.GetKey(KeyCode.S)) && speedInput != maxSpeed) {
+            speedInput = -1 * reverseAcceleration;
+            GamePad.SetVibration(index, 0.1f, 0.1f);
+        } else {
+            GamePad.SetVibration(index, 0f, 0f);
+
         }
+
+        // PC Input
+        //if (Input.GetAxis("Vertical") > 0 && speedInput != maxSpeed) {
+        //    speedInput = Input.GetAxis("Vertical") * forwardAcceleration;
+        //} else if (Input.GetAxis("Vertical") < 0 && speedInput != maxSpeed) {
+        //    speedInput = Input.GetAxis("Vertical") * reverseAcceleration;
+        //}
 
         // Turn input equals the horizontal movement
         turnInput = Input.GetAxis("Horizontal");
 
         if (grounded) {
             // Set Rotation
-            Quaternion q = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime * Input.GetAxis("Vertical"), 0f));
+            Quaternion q = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0f, turnInput * turnStrength * Time.deltaTime, 0f));
             q.eulerAngles = new Vector3(0.0f, q.eulerAngles.y, 0.0f);
             transform.rotation = q;
         }
