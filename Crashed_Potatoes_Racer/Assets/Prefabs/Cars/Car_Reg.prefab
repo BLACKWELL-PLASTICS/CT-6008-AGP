@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5265956128736009462}
   - component: {fileID: 7012957871550271548}
   - component: {fileID: 5480606009981898043}
-  - component: {fileID: 1386461444150052989}
   m_Layer: 0
   m_Name: Sphere (1)
   m_TagString: MergeUI
@@ -80,19 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &1386461444150052989
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3428588385547894809}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8738164445353668862
 GameObject:
   m_ObjectHideFlags: 0
