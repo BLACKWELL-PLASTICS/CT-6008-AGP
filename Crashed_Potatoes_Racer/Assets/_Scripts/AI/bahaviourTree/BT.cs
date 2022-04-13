@@ -7,31 +7,62 @@ public class BT : BTBase
     //composities
     private Selector rootSelector; //power up or none
     private Selector powerUpSelector;
+    private Sequencer rocketSequence;
+    private Sequencer floatySequence;
+    private Sequencer sizeSequence;
 
     //conditons
-    //private IfActive ifActive;
+    private IsRocket rocketCheck;
+    private InRange rangeCheck;
+    private InRangeReverse rangeCheckBack;
+    private IsFloaty floatyCheck;
+    private IsSize sizeCheck;
 
     //nodes
     private WaypointState waypointNode;
-    //private BoostNode boostNode;
+    private RocketState rocketFire;
+    private FloatyState floatyFire;
+    private SizeState sizeIncrease;
+
     public BT(AIPlayer owner) : base(owner)
     {
 
         rootSelector = new Selector(owner);
         powerUpSelector = new Selector(owner);
 
-        //ifActive = new IfActive(owner, AIManager.GetPowerUp);
-
         waypointNode = new WaypointState(owner);
-       // boostNode = new BoostNode(owner);
+        rocketFire = new RocketState(owner);
+        floatyFire = new FloatyState(owner);
+        sizeIncrease = new SizeState(owner);
+
+        rocketCheck = new IsRocket(owner);
+        rangeCheck = new InRange(owner);
+        rangeCheckBack = new InRangeReverse(owner);
+        floatyCheck = new IsFloaty(owner);
+        sizeCheck = new IsSize(owner);
 
         //linking nodes
         Root = rootSelector;
 
-       // rootSelector.AddNode(powerUpSelector);
+        rootSelector.AddNode(powerUpSelector);
         rootSelector.AddNode(waypointNode);
 
-        //powerUpSelector.AddNode(ifActive); //looks at active power up 
-        //powerUpSelector.AddNode(boostNode); 
+        powerUpSelector.AddNode(rocketSequence);
+        powerUpSelector.AddNode(floatySequence);
+        powerUpSelector.AddNode(sizeSequence);
+
+        rocketSequence.AddNode(rocketCheck);
+        rocketSequence.AddNode(rangeCheck);
+        rocketSequence.AddNode(rocketFire);
+
+        floatySequence.AddNode(floatyCheck);
+        floatySequence.AddNode(rangeCheckBack);
+        floatySequence.AddNode(floatyFire);
+
+        sizeSequence.AddNode(sizeCheck);
+        //IDK WHEN TO USE THIS
+        sizeSequence.AddNode(sizeIncrease);
+
+
     }
 }

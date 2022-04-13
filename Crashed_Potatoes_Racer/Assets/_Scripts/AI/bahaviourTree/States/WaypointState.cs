@@ -36,7 +36,7 @@ public class WaypointState : Node
 
     private bool IsCorner()
     {
-        Debug.DrawRay(owner.transform.position, owner.transform.TransformDirection(Vector3.forward) * AIManager.GetStoppingRay, Color.red);
+        Debug.DrawRay(owner.transform.position, owner.transform.TransformDirection(Vector3.forward) * AIManager.GetStoppingRay, Color.white);
         if (Physics.Raycast(owner.transform.position, owner.transform.TransformDirection(Vector3.forward), out RaycastHit hit, AIManager.GetStoppingRay, LayerMask.GetMask("Corner")))
         {
             Debug.Log("Slowing down");

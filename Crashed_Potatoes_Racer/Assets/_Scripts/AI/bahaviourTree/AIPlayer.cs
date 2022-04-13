@@ -15,13 +15,17 @@ public class AIPlayer : MonoBehaviour
 
     public NavMeshAgent NavComponent { get; private set; } 
     public Renderer RenderComponent { get; private set; }
-
+    public InventoryScript InventoryComponent { get; private set; }
     public Rigidbody RBComponent { get; private set; }
 
     public float stoppingDistance = 15;
     public int currentWaypoint = 0;
     public Transform target;
     public bool decreaseCheck = false;
+    public SeedPacketScript.POWERUPS powerUp1;
+    public Vector3 originalPos;
+    public Vector3 currentPos;
+    public Vector3 originalScale;
 
     [SerializeField]
     private float speed = 0;
@@ -36,10 +40,21 @@ public class AIPlayer : MonoBehaviour
         carList.Add(this);
         NavComponent = gameObject.GetComponent<NavMeshAgent>();
         RBComponent = gameObject.GetComponent<Rigidbody>();
-        bahaviourTree = new BT(this);
+        InventoryComponent = gameObject.GetComponent<InventoryScript>();
         RenderComponent = GetComponent<Renderer>();
 
-        speedDecrease = Random.Range(0.5f, 1.0f);
+        //behaviour tree
+        bahaviourTree = new BT(this);
+
+        //power ups
+        powerUp1 = InventoryComponent.p1;
+        //size increase power up
+        originalPos = transform.position;
+        originalScale = transform.localScale;
+        currentPos = transform.position;
+
+        //car movement
+        speedDecrease = Random.Range(0.5f, 1.5f);
     }
 
     private void Update()
@@ -49,6 +64,11 @@ public class AIPlayer : MonoBehaviour
         NavComponent.speed = speed;
         NavComponent.acceleration = accel;
         NavComponent.SetDestination(target.position);
+
+        if(powerUp1 == SeedPacketScript.POWERUPS.None)
+        {
+            InventoryComponent.MovePowerup();
+        }
 
         if(decreaseCheck == true)
         {
