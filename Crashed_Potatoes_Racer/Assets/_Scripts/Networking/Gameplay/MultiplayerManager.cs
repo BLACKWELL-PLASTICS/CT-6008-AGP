@@ -25,9 +25,13 @@ public class MultiplayerManager : MonoBehaviour
     float m_maxTimer;
 
     [SerializeField]
+    GameObject[] m_seedPackets;
+    [SerializeField]
     GameObject m_obstacle;
     [SerializeField]
     GameObject m_rocket;
+    [SerializeField]
+    GameObject m_BirdPoop;
 
     Dictionary<int, int> m_mergeCars = new Dictionary<int, int>();
     Dictionary<int, int> m_demergeCars = new Dictionary<int, int>();
@@ -120,6 +124,8 @@ public class MultiplayerManager : MonoBehaviour
         NetUtility.S_WALL += OnObstacleServer;
         NetUtility.S_GROW += OnSizeIncreaseServer;
         NetUtility.S_ROCKET += OnRocketServer;
+        NetUtility.S_PCICKED_UP += OnPickUpServer;
+        NetUtility.S_BIRD_POOP += OnBirdPoopServer;
 
         //Client
             //Moving
@@ -130,6 +136,8 @@ public class MultiplayerManager : MonoBehaviour
         NetUtility.C_WALL += OnObstacleClient;
         NetUtility.C_GROW += OnSizeIncreaseClient;
         NetUtility.C_ROCKET += OnRocketClient;
+        NetUtility.C_PICKED_UP += OnPickUpClient;
+        NetUtility.C_BIRD_POOP += OnBirdPoopClient;
     }
     void UnregisterEvenets()
     {
@@ -142,6 +150,8 @@ public class MultiplayerManager : MonoBehaviour
         NetUtility.S_WALL -= OnObstacleServer;
         NetUtility.S_GROW -= OnSizeIncreaseServer;
         NetUtility.S_ROCKET -= OnRocketServer;
+        NetUtility.S_PCICKED_UP -= OnPickUpServer;
+        NetUtility.S_BIRD_POOP -= OnBirdPoopServer;
 
         //Client
         //Moving
@@ -152,6 +162,8 @@ public class MultiplayerManager : MonoBehaviour
         NetUtility.C_WALL -= OnObstacleClient;
         NetUtility.C_GROW -= OnSizeIncreaseClient;
         NetUtility.C_ROCKET -= OnRocketClient;
+        NetUtility.C_PICKED_UP -= OnPickUpClient;
+        NetUtility.C_BIRD_POOP -= OnBirdPoopClient;
     }
 
     public void MergeCars(GameObject a_car1, GameObject a_car2)
@@ -249,6 +261,17 @@ public class MultiplayerManager : MonoBehaviour
         NetRocket netRocket = a_msg as NetRocket;
         Server.Instance.Broadcast(netRocket);
     }
+    void OnPickUpServer(NetMessage a_msg, NetworkConnection a_connection)
+    {
+        NetPickedUp netPickedUp = a_msg as NetPickedUp;
+        Server.Instance.Broadcast(netPickedUp);
+    }
+    void OnBirdPoopServer(NetMessage a_msg, NetworkConnection a_connection)
+    {
+        NetBirdPoop netBirdPoop = a_msg as NetBirdPoop;
+        Server.Instance.Broadcast(netBirdPoop);
+    }
+
 
     //Client
     void OnMoveClient(NetMessage a_msg)
@@ -520,7 +543,45 @@ public class MultiplayerManager : MonoBehaviour
             }
         }
     }
-
+    void OnPickUpClient(NetMessage a_msg)
+    {
+        NetPickedUp netPickedUp = a_msg as NetPickedUp;
+        if (netPickedUp.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
+        {
+            switch (netPickedUp.m_Action)
+            {
+                case NetPickedUp.ACTION.APPEAR:
+                    foreach (GameObject pickUp in m_seedPackets)
+                    {
+                        if (pickUp.GetComponent<SeedPacketScript>().m_packetNum == netPickedUp.m_PickUp)
+                        {
+                            pickUp.GetComponent<SeedPacketScript>().Appear();
+                        }
+                    }
+                    break;
+                case NetPickedUp.ACTION.DISAPPEAR:
+                    foreach (GameObject pickUp in m_seedPackets)
+                    {
+                        if (pickUp.GetComponent<SeedPacketScript>().m_packetNum == netPickedUp.m_PickUp)
+                        {
+                            pickUp.GetComponent<SeedPacketScript>().Disappear();
+                        }
+                    }
+                    break;
+                default:
+                    Debug.LogError("Unknown Action");
+                    break;
+            }
+        }
+    }
+    void OnBirdPoopClient(NetMessage a_msg)
+    {
+        NetBirdPoop netBirdPoop = a_msg as NetBirdPoop;
+        if (netBirdPoop.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
+        {
+            m_BirdPoop.GetComponent<BirdPoop>().ToogleActive();
+        }
+    }
 
     private void OnDestroy()
     {

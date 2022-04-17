@@ -17,7 +17,8 @@ public enum ServerOpCode
     GROW = 9,
     WALL = 10,
     ROCKET = 11,
-    MERGE = 12
+    MERGE = 12,
+    BIRD_POOP = 13
 }
 public static class NetUtility
 {
@@ -63,6 +64,9 @@ public static class NetUtility
             case ServerOpCode.MERGE:
                 msg = new NetMerge(a_stream);
                 break;
+            case ServerOpCode.BIRD_POOP:
+                msg = new NetBirdPoop(a_stream);
+                break;
             default:
                 Debug.LogError("Message received has unrecognised OpCode");
                 break;
@@ -92,6 +96,7 @@ public static class NetUtility
     public static Action<NetMessage> C_WALL;
     public static Action<NetMessage> C_ROCKET;
     public static Action<NetMessage> C_MERGE;
+    public static Action<NetMessage> C_BIRD_POOP;
 
     //Server
     public static Action<NetMessage, NetworkConnection> S_KEEP_ALIVE;
@@ -106,4 +111,5 @@ public static class NetUtility
     public static Action<NetMessage, NetworkConnection> S_WALL;
     public static Action<NetMessage, NetworkConnection> S_ROCKET;
     public static Action<NetMessage, NetworkConnection> S_MERGE;
+    public static Action<NetMessage, NetworkConnection> S_BIRD_POOP;
 }

@@ -38,7 +38,12 @@ public class InventoryScript : MonoBehaviour
                     Debug.Log("HP");
                     break;
                 case SeedPacketScript.POWERUPS.Blind:
-
+                    //Added by Iain
+                    //Bird Poop start package
+                    NetBirdPoop netBirdPoop = new NetBirdPoop();
+                    netBirdPoop.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+                    Client.Instance.SendToServer(netBirdPoop);
+                    //Added by Iain ~
                     Debug.Log("BLIND");
                     break;
                 case SeedPacketScript.POWERUPS.Boost:

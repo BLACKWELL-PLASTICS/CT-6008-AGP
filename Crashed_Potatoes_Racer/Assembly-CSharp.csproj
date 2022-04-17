@@ -47,7 +47,6 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Unity/VSTU</UnityProjectGenerator>
-    <UnityProjectGeneratorVersion>4.8.2.0</UnityProjectGeneratorVersion>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2019.4.14f1</UnityVersion>
@@ -64,7 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Shaders\JMO Assets\Toony Colors\Demo 2.0\TCF_Demo.cs" />
     <Compile Include="Assets\Shaders\MobileDepthWater\Scripts\AnimationStarter.cs" />
     <Compile Include="Assets\Shaders\MobileDepthWater\Scripts\CameraDepthSlider.cs" />
     <Compile Include="Assets\Shaders\MobileDepthWater\Scripts\CameraRotator.cs" />
@@ -121,14 +119,25 @@
     <Compile Include="Assets\_Scripts\AI\bahaviourTree\AIPlayer.cs" />
     <Compile Include="Assets\_Scripts\AI\bahaviourTree\BT.cs" />
     <Compile Include="Assets\_Scripts\AI\bahaviourTree\BTBase.cs" />
+    <Compile Include="Assets\_Scripts\AI\bahaviourTree\Conditions\InRange.cs" />
+    <Compile Include="Assets\_Scripts\AI\bahaviourTree\Conditions\InRangeReverse.cs" />
+    <Compile Include="Assets\_Scripts\AI\bahaviourTree\Conditions\IsFloaty.cs" />
+    <Compile Include="Assets\_Scripts\AI\bahaviourTree\Conditions\IsRocket.cs" />
+    <Compile Include="Assets\_Scripts\AI\bahaviourTree\Conditions\isSize.cs" />
     <Compile Include="Assets\_Scripts\AI\bahaviourTree\Node.cs" />
+    <Compile Include="Assets\_Scripts\AI\bahaviourTree\States\FloatyState.cs" />
+    <Compile Include="Assets\_Scripts\AI\bahaviourTree\States\RocketState.cs" />
+    <Compile Include="Assets\_Scripts\AI\bahaviourTree\States\SizeState.cs" />
     <Compile Include="Assets\_Scripts\AI\bahaviourTree\States\WaypointState.cs" />
     <Compile Include="Assets\_Scripts\AI\bahaviourTree\composites\BaseComp.cs" />
     <Compile Include="Assets\_Scripts\AI\bahaviourTree\composites\Selector.cs" />
     <Compile Include="Assets\_Scripts\AI\bahaviourTree\composites\Sequencer.cs" />
     <Compile Include="Assets\_Scripts\CarSpawning\CustomisedSpawning.cs" />
+    <Compile Include="Assets\_Scripts\GameHUD\LapRank.cs" />
+    <Compile Include="Assets\_Scripts\GameHUD\PlacingRank.cs" />
     <Compile Include="Assets\_Scripts\MenuScripts\GameMenuManager.cs" />
     <Compile Include="Assets\_Scripts\MenuScripts\KartPreview.cs" />
+    <Compile Include="Assets\_Scripts\MenuScripts\MainMenuManager.cs" />
     <Compile Include="Assets\_Scripts\MenuScripts\MainMenuPreview.cs" />
     <Compile Include="Assets\_Scripts\MenuScripts\OnlinePreview.cs" />
     <Compile Include="Assets\_Scripts\Merging\CarManagerScript.cs" />
@@ -157,6 +166,7 @@
     <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\NetKeepAlive.cs" />
     <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\NetMessage.cs" />
     <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\NetUtility.cs" />
+    <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\PowerUps\NetBirdPoop.cs" />
     <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\PowerUps\NetGrow.cs" />
     <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\PowerUps\NetPickedUp.cs" />
     <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\PowerUps\NetRocket.cs" />
@@ -170,6 +180,7 @@
     <Compile Include="Assets\_Scripts\Networking\Server\ServerMessages\ServerUtility.cs" />
     <Compile Include="Assets\_Scripts\PlayerDriving\CameraController.cs" />
     <Compile Include="Assets\_Scripts\PlayerDriving\Controller.cs" />
+    <Compile Include="Assets\_Scripts\Powerups\BirdPoop.cs" />
     <Compile Include="Assets\_Scripts\Powerups\InventoryScript.cs" />
     <Compile Include="Assets\_Scripts\Powerups\Obsticle.cs" />
     <Compile Include="Assets\_Scripts\Powerups\ObsticleScaler.cs" />
@@ -411,16 +422,16 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.14f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
     <Reference Include="XInputDotNetPure">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Assets/XInputDotNet/Plugins/XInputDotNetPure.dll</HintPath>
+      <HintPath>C:/UniStuff/CT-6008-AGP/Crashed_Potatoes_Racer/Assets/XInputDotNet/Plugins/XInputDotNetPure.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Unsafe">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/PackageCache/com.unity.burst@1.3.0/Unity.Burst.Unsafe.dll</HintPath>
+      <HintPath>C:/UniStuff/CT-6008-AGP/Crashed_Potatoes_Racer/Library/PackageCache/com.unity.burst@1.3.0/Unity.Burst.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/PackageCache/com.unity.collections@0.9.0-preview.5/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <HintPath>C:/UniStuff/CT-6008-AGP/Crashed_Potatoes_Racer/Library/PackageCache/com.unity.collections@0.9.0-preview.5/System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0-preview/Runtime/Newtonsoft.Json.dll</HintPath>
+      <HintPath>C:/UniStuff/CT-6008-AGP/Crashed_Potatoes_Racer/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0-preview/Runtime/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.14f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -777,55 +788,55 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.14f1/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/UniStuff/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
+      <HintPath>C:/UniStuff/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/UniStuff/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst.Editor">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Burst.Editor.dll</HintPath>
+      <HintPath>C:/UniStuff/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Burst.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Collections">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Collections.dll</HintPath>
+      <HintPath>C:/UniStuff/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Collections.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/UniStuff/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.AI.Navigation.Editor">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.AI.Navigation.Editor.dll</HintPath>
+      <HintPath>C:/UniStuff/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.AI.Navigation.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/UniStuff/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/UniStuff/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/UniStuff/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.AI.Navigation">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.AI.Navigation.dll</HintPath>
+      <HintPath>C:/UniStuff/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.AI.Navigation.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/UniStuff/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
+      <HintPath>C:/UniStuff/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics.Editor">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+      <HintPath>C:/UniStuff/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/UniStuff/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Networking.Transport">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Networking.Transport.dll</HintPath>
+      <HintPath>C:/UniStuff/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Networking.Transport.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/UniStuff/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>
