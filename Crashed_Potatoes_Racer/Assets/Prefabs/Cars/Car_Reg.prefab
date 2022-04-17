@@ -377,6 +377,7 @@ GameObject:
   - component: {fileID: 8738164446682236298}
   - component: {fileID: 8738164446682236297}
   - component: {fileID: 8738164446682236289}
+  - component: {fileID: 6420782159066502572}
   m_Layer: 0
   m_Name: Car_Reg
   m_TagString: Player
@@ -563,6 +564,19 @@ MonoBehaviour:
   - {fileID: 3089364327518602445}
   - {fileID: 3740085230352402634}
   m_hasGun: 0
+--- !u!114 &6420782159066502572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8738164446682236303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848d218cf8af1be46b7c808cc2e42b1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackMarkers: []
 --- !u!1001 &8738164444770912762
 PrefabInstance:
   m_ObjectHideFlags: 0

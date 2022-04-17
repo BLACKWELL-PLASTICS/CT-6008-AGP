@@ -74,7 +74,7 @@ public class Controller : MonoBehaviour {
         //}
 
         // Turn input equals the horizontal movement
-        turnInput = Input.GetAxis("Horizontal");
+        turnInput = Input.GetAxisRaw("Horizontal");
 
         if (grounded) {
             // Set Rotation
