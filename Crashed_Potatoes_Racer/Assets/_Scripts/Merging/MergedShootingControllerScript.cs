@@ -39,7 +39,9 @@ public class MergedShootingControllerScript : MonoBehaviour
                 Debug.Log("Fire");
             }
 
-            transform.Rotate(verticalRotation, horizontalRotation, 0);
+            GetPartToRotate(this.gameObject, 1).transform.Rotate(0, 0, horizontalRotation);
+            GetPartToRotate(this.gameObject, 2).transform.Rotate(0, verticalRotation, 0);
+
             NetMerge netMerge = new NetMerge();
             netMerge.m_Player = m_playerNum;
             netMerge.m_Action = NetMerge.ACTION.SHOOT;
@@ -47,11 +49,27 @@ public class MergedShootingControllerScript : MonoBehaviour
             netMerge.m_XPos = 0;
             netMerge.m_YPos = 0;
             netMerge.m_ZPos = 0;
-            netMerge.m_XRot = gameObject.transform.rotation.x;
-            netMerge.m_YRot = gameObject.transform.rotation.y;
-            netMerge.m_ZRot = gameObject.transform.rotation.z;
-            netMerge.m_WRot = gameObject.transform.rotation.w;
+            netMerge.m_XRot = GetPartToRotate(this.gameObject, 1).transform.rotation.x;
+            netMerge.m_YRot = GetPartToRotate(this.gameObject, 1).transform.rotation.y;
+            netMerge.m_ZRot = GetPartToRotate(this.gameObject, 1).transform.rotation.z;
+            netMerge.m_WRot = GetPartToRotate(this.gameObject, 1).transform.rotation.w;
+            netMerge.m_secondXRot = GetPartToRotate(this.gameObject, 2).transform.rotation.x;
+            netMerge.m_secondYRot = GetPartToRotate(this.gameObject, 2).transform.rotation.y;
+            netMerge.m_secondZRot = GetPartToRotate(this.gameObject, 2).transform.rotation.z;
+            netMerge.m_secondWRot = GetPartToRotate(this.gameObject, 2).transform.rotation.w;
             Client.Instance.SendToServer(netMerge);
         }
+    }
+
+    GameObject GetPartToRotate(GameObject a_base, int a_index)
+    {
+        GameObject currentPart = a_base;
+
+        for (int i = 0; i <= a_index; i++)
+        {
+            currentPart = currentPart.transform.GetChild(0).gameObject;
+        }
+
+        return currentPart;
     }
 }

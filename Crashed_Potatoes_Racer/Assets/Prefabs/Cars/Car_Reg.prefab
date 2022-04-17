@@ -918,6 +918,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8738164446682236296}
     m_Modifications:
+    - target: {fileID: 4399498233145246939, guid: 2d56d3d1b6d5e824db141b8995c6ed76,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4399498233571993496, guid: 2d56d3d1b6d5e824db141b8995c6ed76,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4749205628174039910, guid: 2d56d3d1b6d5e824db141b8995c6ed76,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -977,6 +987,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mango_body
+      objectReference: {fileID: 0}
+    - target: {fileID: 5378214912783360476, guid: 2d56d3d1b6d5e824db141b8995c6ed76,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d56d3d1b6d5e824db141b8995c6ed76, type: 3}
