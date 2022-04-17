@@ -9,12 +9,14 @@ public class AIManager : MonoBehaviour
     //car ai
     [Header("Car Variables")]
     public Transform[] wayPoints;
+    public GameObject[] powerUps;
     public float maxSpeed;
     public float maxAcc;
     public float speedIncrease;
     public float speedDecrease;
     public float slowDownPeriod;
     public float stoppingRay;
+    public float detectionRay;
     //boid variables
     [Header("Boid Variables")]
     public GameObject boidPrefab;
@@ -47,7 +49,9 @@ public class AIManager : MonoBehaviour
     public static float GetDecrease { get { return instance.speedDecrease; } }
     public static float GetSlowDownPeriod { get { return instance.slowDownPeriod; } }
     public static float GetStoppingRay { get { return instance.stoppingRay; } }
+    public static float GetDetectionRay { get { return instance.detectionRay; } }
     public static Transform[] GetWaypoints { get { return instance.wayPoints; } }
+    public static GameObject[] GetPowerUp { get { return instance.powerUps; } }
 
     //boid get/set
     public static float GetMaxBoidSpeed { get { return instance.maxBoidSpeed; } }
