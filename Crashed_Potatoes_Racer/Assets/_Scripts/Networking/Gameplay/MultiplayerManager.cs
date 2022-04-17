@@ -26,6 +26,8 @@ public class MultiplayerManager : MonoBehaviour
 
     [SerializeField]
     GameObject m_obstacle;
+    [SerializeField]
+    GameObject m_rocket;
 
     Dictionary<int, int> m_mergeCars = new Dictionary<int, int>();
     Dictionary<int, int> m_demergeCars = new Dictionary<int, int>();
@@ -117,6 +119,7 @@ public class MultiplayerManager : MonoBehaviour
             //Power Ups
         NetUtility.S_WALL += OnObstacleServer;
         NetUtility.S_GROW += OnSizeIncreaseServer;
+        NetUtility.S_ROCKET += OnRocketServer;
 
         //Client
             //Moving
@@ -126,6 +129,7 @@ public class MultiplayerManager : MonoBehaviour
             //Power Ups
         NetUtility.C_WALL += OnObstacleClient;
         NetUtility.C_GROW += OnSizeIncreaseClient;
+        NetUtility.C_ROCKET += OnRocketClient;
     }
     void UnregisterEvenets()
     {
@@ -137,15 +141,17 @@ public class MultiplayerManager : MonoBehaviour
             //Power Ups
         NetUtility.S_WALL -= OnObstacleServer;
         NetUtility.S_GROW -= OnSizeIncreaseServer;
+        NetUtility.S_ROCKET -= OnRocketServer;
 
         //Client
-            //Moving
+        //Moving
         NetUtility.C_MAKE_MOVE -= OnMoveClient;
             //Merging
         NetUtility.C_MERGE -= OnMergeClient;
             //Power Ups
         NetUtility.C_WALL -= OnObstacleClient;
         NetUtility.C_GROW -= OnSizeIncreaseClient;
+        NetUtility.C_ROCKET -= OnRocketClient;
     }
 
     public void MergeCars(GameObject a_car1, GameObject a_car2)
@@ -163,6 +169,18 @@ public class MultiplayerManager : MonoBehaviour
         netMerge.m_WRot = 0;
         Client.Instance.SendToServer(netMerge);
     }
+    GameObject GetPartToRotate(GameObject a_base, int a_index)
+    {
+        GameObject currentPart = a_base;
+
+        for (int i = 0; i <= a_index; i++)
+        {
+            currentPart = currentPart.transform.GetChild(0).gameObject;
+        }
+
+        return currentPart;
+    }
+
 
     //Server
     void OnMoveServer(NetMessage a_msg, NetworkConnection a_connection)
@@ -226,7 +244,11 @@ public class MultiplayerManager : MonoBehaviour
         NetGrow netGrow = a_msg as NetGrow;
         Server.Instance.Broadcast(netGrow);
     }
-
+    void OnRocketServer(NetMessage a_msg, NetworkConnection a_connection)
+    {
+        NetRocket netRocket = a_msg as NetRocket;
+        Server.Instance.Broadcast(netRocket);
+    }
 
     //Client
     void OnMoveClient(NetMessage a_msg)
@@ -476,21 +498,32 @@ public class MultiplayerManager : MonoBehaviour
             }
         }
     }
+    void OnRocketClient(NetMessage a_msg)
+    {
+        NetRocket netRocket = a_msg as NetRocket;
+        if (netRocket.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
+        {
+            switch (netRocket.m_Action)
+            {
+                case NetRocket.ACTION.FIRE:
+                    foreach (GameObject car in m_activeCars)
+                    {
+                        if (car.GetComponent<CarManagerScript>().m_playerNum == netRocket.m_Player)
+                        {
+                            Instantiate(m_rocket, new Vector3(netRocket.m_XPos, netRocket.m_YPos, netRocket.m_ZPos), new Quaternion(netRocket.m_XRot, netRocket.m_YRot, netRocket.m_ZRot, netRocket.m_WRot));
+                        }
+                    }
+                    break;
+                default:
+                    Debug.LogError("Unknown Action");
+                    break;
+            }
+        }
+    }
+
 
     private void OnDestroy()
     {
         UnregisterEvenets();
-    }
-
-    GameObject GetPartToRotate(GameObject a_base, int a_index)
-    {
-        GameObject currentPart = a_base;
-
-        for (int i = 0; i <= a_index; i++)
-        {
-            currentPart = currentPart.transform.GetChild(0).gameObject;
-        }
-
-        return currentPart;
     }
 }

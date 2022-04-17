@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿//////////////////////////////////////////////////
+/// Created:                                   ///
+/// Author:                                    ///
+/// Edited By: Iain Farlow                     ///
+/// Last Edited: 10/03/2022                    ///
+//////////////////////////////////////////////////
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,11 +23,13 @@ public class SizeIncrease : MonoBehaviour {
         Transform sphere = GetComponent<Controller>().rb.transform;
         transform.position = new Vector3(currentPos.x, currentPos.y + 3f, currentPos.z);
         sphere.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        //Added by Iain
         //grow packet
         NetGrow netGrow = new NetGrow();
         netGrow.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
         netGrow.m_Action = NetGrow.ACTION.START;
         Client.Instance.SendToServer(netGrow);
+        //Added by Iain ~
     }
 
     // Update is called once per frame
@@ -32,12 +41,14 @@ public class SizeIncrease : MonoBehaviour {
             transform.localScale = originalScale;
             timer = 0f;
             transform.position = new Vector3(currentPos.x, originalPos.y, currentPos.z);
+            //Added by Iain
             //shrink package
             NetGrow netGrow = new NetGrow();
             netGrow.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
             netGrow.m_Action = NetGrow.ACTION.END;
             Client.Instance.SendToServer(netGrow);
             Destroy(gameObject.GetComponent<SizeIncrease>());
+            //Added by Iain ~
         }
     }
 }
