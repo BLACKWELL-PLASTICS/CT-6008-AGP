@@ -23,6 +23,10 @@ public class NetMerge : NetMessage
     public float m_YRot { get; set; }
     public float m_ZRot { get; set; }
     public float m_WRot { get; set; }
+    public float m_secondXRot { get; set; }
+    public float m_secondYRot { get; set; }
+    public float m_secondZRot { get; set; }
+    public float m_secondWRot { get; set; }
 
     public NetMerge()
     {
@@ -47,6 +51,10 @@ public class NetMerge : NetMessage
         a_writer.WriteFloat(m_YRot);
         a_writer.WriteFloat(m_ZRot);
         a_writer.WriteFloat(m_WRot);
+        a_writer.WriteFloat(m_secondXRot);
+        a_writer.WriteFloat(m_secondYRot);
+        a_writer.WriteFloat(m_secondZRot);
+        a_writer.WriteFloat(m_secondWRot);
     }
     public override void Deserialize(DataStreamReader a_reader)
     {
@@ -60,6 +68,10 @@ public class NetMerge : NetMessage
         m_YRot = a_reader.ReadFloat();
         m_ZRot = a_reader.ReadFloat();
         m_WRot = a_reader.ReadFloat();
+        m_secondXRot = a_reader.ReadFloat();
+        m_secondYRot = a_reader.ReadFloat();
+        m_secondZRot = a_reader.ReadFloat();
+        m_secondWRot = a_reader.ReadFloat();
     }
 
     public override void RecievedOnClient()

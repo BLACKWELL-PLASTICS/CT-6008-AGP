@@ -83,11 +83,19 @@ public class CustomisedSpawning : MonoBehaviour
         if (m_hasGun)
         {
             gunbase.transform.parent = this.transform;
+            GameObject basePlate = gunbase.transform.GetChild(2).gameObject;
+            GameObject shaftLower = gunbase.transform.GetChild(0).gameObject;
+            GameObject shaftUpper = gunbase.transform.GetChild(1).gameObject;
+
+            shaftLower.transform.parent = basePlate.transform;
+            shaftUpper.transform.parent = shaftLower.transform;
+            m_selectedGun.transform.parent = shaftUpper.transform;
         }
         else
         {
             Destroy(gunbase);
         }
+
         Destroy(this);
     }
 }

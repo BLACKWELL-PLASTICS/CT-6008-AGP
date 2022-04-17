@@ -296,6 +296,7 @@ public class MultiplayerManager : MonoBehaviour
                 {
                     GameObject car = Instantiate(m_mergedDrivePrefab, pos, Quaternion.identity);
                     car.transform.eulerAngles = midDir;
+                    car.transform.up = Vector3.up;
                     car.GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_carDesigns[netMerge.m_Player - 1].m_carChoice,
                                                                  PersistentInfo.Instance.m_carDesigns[netMerge.m_Player - 1].m_wheelChoice,
                                                                  PersistentInfo.Instance.m_carDesigns[netMerge.m_Other - 1].m_gunChoice);
@@ -308,6 +309,7 @@ public class MultiplayerManager : MonoBehaviour
                 {
                     GameObject car = Instantiate(m_mergedShootPrefab, pos, Quaternion.identity);
                     car.transform.eulerAngles = midDir;
+                    car.transform.up = Vector3.up;
                     car.GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_carDesigns[netMerge.m_Player - 1].m_carChoice,
                                                                  PersistentInfo.Instance.m_carDesigns[netMerge.m_Player - 1].m_wheelChoice,
                                                                  PersistentInfo.Instance.m_carDesigns[netMerge.m_Other - 1].m_gunChoice);
@@ -320,6 +322,7 @@ public class MultiplayerManager : MonoBehaviour
                 {
                     GameObject car = Instantiate(m_mergedOnlinePrefab, pos, Quaternion.identity);
                     car.transform.eulerAngles = midDir;
+                    car.transform.up = Vector3.up;
                     car.GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_carDesigns[netMerge.m_Player - 1].m_carChoice,
                                                                  PersistentInfo.Instance.m_carDesigns[netMerge.m_Player - 1].m_wheelChoice,
                                                                  PersistentInfo.Instance.m_carDesigns[netMerge.m_Other - 1].m_gunChoice);
@@ -327,6 +330,7 @@ public class MultiplayerManager : MonoBehaviour
                     car.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum = netMerge.m_Other;
                     m_activeCars.Add(car);
                 }
+                
                 m_activeCars.Remove(car1);
                 Destroy(car1);
                 m_activeCars.Remove(car2);
@@ -413,7 +417,8 @@ public class MultiplayerManager : MonoBehaviour
                         {
                             if (car.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum == netMerge.m_Player)
                             {
-                                car.transform.GetChild(car.transform.childCount - 1).transform.rotation = new Quaternion(netMerge.m_XRot, netMerge.m_YRot, netMerge.m_ZRot, netMerge.m_WRot);
+                                GetPartToRotate(car.transform.GetChild(car.transform.childCount - 1).gameObject, 1).transform.rotation = new Quaternion(netMerge.m_XRot, netMerge.m_YRot, netMerge.m_ZRot, netMerge.m_WRot);
+                                GetPartToRotate(car.transform.GetChild(car.transform.childCount - 1).gameObject, 2).transform.rotation = new Quaternion(netMerge.m_secondXRot, netMerge.m_secondYRot, netMerge.m_secondZRot, netMerge.m_secondWRot);
                             }
                         }
                     }
@@ -475,5 +480,17 @@ public class MultiplayerManager : MonoBehaviour
     private void OnDestroy()
     {
         UnregisterEvenets();
+    }
+
+    GameObject GetPartToRotate(GameObject a_base, int a_index)
+    {
+        GameObject currentPart = a_base;
+
+        for (int i = 0; i <= a_index; i++)
+        {
+            currentPart = currentPart.transform.GetChild(0).gameObject;
+        }
+
+        return currentPart;
     }
 }
