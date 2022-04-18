@@ -20,7 +20,7 @@ public class AIPlayer : MonoBehaviour
 
     public float stoppingDistance = 15;
     public int currentWaypoint = 0;
-    public Transform target;
+    public Transform target = null;
     public bool decreaseCheck = false;
     public SeedPacketScript.POWERUPS powerUp1;
     public Vector3 originalPos;

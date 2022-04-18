@@ -29,6 +29,9 @@ public class BT : BTBase
 
         rootSelector = new Selector(owner);
         powerUpSelector = new Selector(owner);
+        rocketSequence = new Sequencer(owner);
+        floatySequence = new Sequencer(owner);
+        sizeSequence = new Sequencer(owner);
 
         waypointNode = new WaypointState(owner);
         rocketFire = new RocketState(owner);
@@ -49,7 +52,7 @@ public class BT : BTBase
 
         powerUpSelector.AddNode(rocketSequence);
         powerUpSelector.AddNode(floatySequence);
-        powerUpSelector.AddNode(sizeSequence);
+        //powerUpSelector.AddNode(sizeSequence);
 
         rocketSequence.AddNode(rocketCheck);
         rocketSequence.AddNode(rangeCheck);
