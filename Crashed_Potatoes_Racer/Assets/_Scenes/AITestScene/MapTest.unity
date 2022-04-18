@@ -693,12 +693,30 @@ MonoBehaviour:
   - {fileID: 1403914905}
   - {fileID: 1025387653}
   - {fileID: 1268022157}
+  powerUps: []
   maxSpeed: 50
   maxAcc: 45
   speedIncrease: 0.1
   speedDecrease: 0.5
   slowDownPeriod: 2
   stoppingRay: 10
+  detectionRay: 0
+  boidPrefab: {fileID: 0}
+  boidLocation: {fileID: 0}
+  amountBoids: 0
+  areaLimit: 0
+  maxBoidSpeed: 0
+  rotationSpeed: 0
+  neighbourDist: 0
+  goalRandomness: 0
+  goalPos: {x: 0, y: 0, z: 0}
+  boidArray: []
+  fishRandomness: 0
+  fishSpeed: 0
+  fishJumpTime: 0
+  crabDistance: 0
+  crabTimer: 0
+  crabSpeed: 0
 --- !u!4 &299966766
 Transform:
   m_ObjectHideFlags: 0
@@ -1108,6 +1126,7 @@ MonoBehaviour:
     type: 3}
   m_mergedShootPrefab: {fileID: 8039822775095069200, guid: fce04523e510b784cb84a6ba57fdb6e8,
     type: 3}
+  m_mergedOnlinePrefab: {fileID: 0}
   m_startPoints:
   - {fileID: 1929837958}
   - {fileID: 1061601186}
