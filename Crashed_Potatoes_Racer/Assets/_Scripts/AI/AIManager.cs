@@ -13,7 +13,6 @@ public class AIManager : MonoBehaviour
     public float maxSpeed;
     public float maxAcc;
     public float speedIncrease;
-    public float speedDecrease;
     public float slowDownPeriod;
     public float stoppingRay;
     public float detectionRay;
@@ -46,7 +45,6 @@ public class AIManager : MonoBehaviour
     public static float GetMaxAcc { get { return instance.maxAcc; } }
     public static float GetMaxSpeed { get { return instance.maxSpeed; } }
     public static float GetIncrease { get { return instance.speedIncrease; } }
-    public static float GetDecrease { get { return instance.speedDecrease; } }
     public static float GetSlowDownPeriod { get { return instance.slowDownPeriod; } }
     public static float GetStoppingRay { get { return instance.stoppingRay; } }
     public static float GetDetectionRay { get { return instance.detectionRay; } }

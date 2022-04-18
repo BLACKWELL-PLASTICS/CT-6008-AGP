@@ -18,27 +18,27 @@ public class InRange : Node
             Debug.DrawRay(owner.transform.position, owner.transform.TransformDirection(Vector3.forward) * AIManager.GetDetectionRay, Color.green);
             return NodeState.SUCCESS;
         }
-        owner.target = FindClosestCar();
-        return NodeState.RUNNING;
+        //owner.target = FindClosestCar();
+        return NodeState.FAILURE;
     }
 
-    private Transform FindClosestCar()
-    {
-        GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag("Player");
-        GameObject closest = null;
-        float distance = Mathf.Infinity;
-        Vector3 position = owner.transform.position;
-        foreach (GameObject go in gos)
-        {
-            Vector3 diff = go.transform.position - position;
-            float curDistance = diff.sqrMagnitude;
-            if (curDistance < distance && go != owner.gameObject)
-            {
-                closest = go;
-                distance = curDistance;
-            }
-        }
-        return closest.transform;
-    }
+    //private Transform FindClosestCar()
+    //{
+    //    GameObject[] gos;
+    //    gos = GameObject.FindGameObjectsWithTag("Player");
+    //    GameObject closest = null;
+    //    float distance = Mathf.Infinity;
+    //    Vector3 position = owner.transform.position;
+    //    foreach (GameObject go in gos)
+    //    {
+    //        Vector3 diff = go.transform.position - position;
+    //        float curDistance = diff.sqrMagnitude;
+    //        if (curDistance < distance && go != owner.gameObject)
+    //        {
+    //            closest = go;
+    //            distance = curDistance;
+    //        }
+    //    }
+    //    return closest.transform;
+    //}
 }
