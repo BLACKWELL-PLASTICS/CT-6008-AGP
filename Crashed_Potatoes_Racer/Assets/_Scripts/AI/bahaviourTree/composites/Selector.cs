@@ -22,13 +22,11 @@ public class Selector : BaseComp
                 if (currentNodeIndex == nodes.Count - 1) 
                 {
                     _nodeState = NodeState.FAILURE; 
-                    Debug.Log("sel fail");
                 }
                 else 
                 {
                     ++currentNodeIndex; 
                     _nodeState = NodeState.RUNNING; 
-                    Debug.Log("sel running");
                 }
             }
             else 

@@ -23,13 +23,11 @@ public class Sequencer : BaseComp
                 if (currentNodeIndex == nodes.Count - 1) 
                 {
                     _nodeState = NodeState.SUCCESS; 
-                    Debug.Log("seq success");
                 }
                 else 
                 {
                     ++currentNodeIndex;
                     _nodeState = NodeState.RUNNING;
-                    Debug.Log("seq running");
                 }
             }
             else 

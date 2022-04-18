@@ -37,6 +37,8 @@ public class AIPlayer : MonoBehaviour
     private BT bahaviourTree;
     private void Start()
     {
+        target = AIManager.GetWaypoints[0];
+
         carList.Add(this);
         NavComponent = gameObject.GetComponent<NavMeshAgent>();
         RBComponent = gameObject.GetComponent<Rigidbody>();
@@ -46,8 +48,6 @@ public class AIPlayer : MonoBehaviour
         //behaviour tree
         bahaviourTree = new BT(this);
 
-        //power ups
-        powerUp1 = InventoryComponent.p1;
         //size increase power up
         originalPos = transform.position;
         originalScale = transform.localScale;
@@ -59,6 +59,9 @@ public class AIPlayer : MonoBehaviour
 
     private void Update()
     {
+        //power ups
+        powerUp1 = InventoryComponent.p1;
+
         bahaviourTree.Update();
 
         NavComponent.speed = speed;
