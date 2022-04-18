@@ -5,6 +5,10 @@ using UnityEngine;
 public class Rocket : MonoBehaviour {
     float timer = 0.0f;
     Rigidbody rb;
+    GameObject owner;
+    public void Owner(GameObject gameObject) {
+        owner = gameObject;
+    }
 
     private void Start() {
         rb = GetComponent<Rigidbody>();
@@ -24,13 +28,10 @@ public class Rocket : MonoBehaviour {
 
     // If it collides with any object, Explode Rocket
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag != "Player" || other.gameObject.tag != "Terrain") return;
+        if (other.gameObject == owner) {
+            return;
+        }
         Debug.Log("T" + other.gameObject.name);
-        Explode();
-    }
-    private void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.tag != "Player" || collision.gameObject.tag != "Terrain") return;
-        Debug.Log("C" + collision.gameObject.name);
         Explode();
     }
 

@@ -14,7 +14,8 @@ public class InventoryScript : MonoBehaviour
         if (Input.GetButtonDown("Fire1")) {
             switch (p1) {
                 case SeedPacketScript.POWERUPS.Forward_Projectile:
-                    Instantiate(prefabs[0], transform.position + (transform.forward * 2) , Quaternion.LookRotation(this.gameObject.transform.forward, this.gameObject.transform.up));
+                    GameObject go = Instantiate(prefabs[0], transform.position + (transform.forward * 3) , Quaternion.LookRotation(this.gameObject.transform.forward, this.gameObject.transform.up));
+                    go.GetComponent<Rocket>().Owner(this.gameObject);
                     Debug.Log("FP");
                     break;
                 case SeedPacketScript.POWERUPS.Hot_Potato:
