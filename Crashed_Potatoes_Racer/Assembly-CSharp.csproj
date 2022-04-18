@@ -64,7 +64,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Shaders\JMO Assets\Toony Colors\Demo 2.0\TCF_Demo.cs" />
     <Compile Include="Assets\Shaders\MobileDepthWater\Scripts\AnimationStarter.cs" />
     <Compile Include="Assets\Shaders\MobileDepthWater\Scripts\CameraDepthSlider.cs" />
     <Compile Include="Assets\Shaders\MobileDepthWater\Scripts\CameraRotator.cs" />
@@ -121,14 +120,25 @@
     <Compile Include="Assets\_Scripts\AI\bahaviourTree\AIPlayer.cs" />
     <Compile Include="Assets\_Scripts\AI\bahaviourTree\BT.cs" />
     <Compile Include="Assets\_Scripts\AI\bahaviourTree\BTBase.cs" />
+    <Compile Include="Assets\_Scripts\AI\bahaviourTree\Conditions\InRange.cs" />
+    <Compile Include="Assets\_Scripts\AI\bahaviourTree\Conditions\InRangeReverse.cs" />
+    <Compile Include="Assets\_Scripts\AI\bahaviourTree\Conditions\IsFloaty.cs" />
+    <Compile Include="Assets\_Scripts\AI\bahaviourTree\Conditions\IsRocket.cs" />
+    <Compile Include="Assets\_Scripts\AI\bahaviourTree\Conditions\isSize.cs" />
     <Compile Include="Assets\_Scripts\AI\bahaviourTree\Node.cs" />
+    <Compile Include="Assets\_Scripts\AI\bahaviourTree\States\FloatyState.cs" />
+    <Compile Include="Assets\_Scripts\AI\bahaviourTree\States\RocketState.cs" />
+    <Compile Include="Assets\_Scripts\AI\bahaviourTree\States\SizeState.cs" />
     <Compile Include="Assets\_Scripts\AI\bahaviourTree\States\WaypointState.cs" />
     <Compile Include="Assets\_Scripts\AI\bahaviourTree\composites\BaseComp.cs" />
     <Compile Include="Assets\_Scripts\AI\bahaviourTree\composites\Selector.cs" />
     <Compile Include="Assets\_Scripts\AI\bahaviourTree\composites\Sequencer.cs" />
     <Compile Include="Assets\_Scripts\CarSpawning\CustomisedSpawning.cs" />
+    <Compile Include="Assets\_Scripts\GameHUD\LapRank.cs" />
+    <Compile Include="Assets\_Scripts\GameHUD\PlacingRank.cs" />
     <Compile Include="Assets\_Scripts\MenuScripts\GameMenuManager.cs" />
     <Compile Include="Assets\_Scripts\MenuScripts\KartPreview.cs" />
+    <Compile Include="Assets\_Scripts\MenuScripts\MainMenuManager.cs" />
     <Compile Include="Assets\_Scripts\MenuScripts\MainMenuPreview.cs" />
     <Compile Include="Assets\_Scripts\MenuScripts\OnlinePreview.cs" />
     <Compile Include="Assets\_Scripts\Merging\CarManagerScript.cs" />

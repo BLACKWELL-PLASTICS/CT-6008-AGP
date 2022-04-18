@@ -94,16 +94,10 @@ public class Controller : MonoBehaviour {
     private void FixedUpdate() {
         grounded = false;
         RaycastHit hit;
+        // checks if driving on track
         if (Physics.Raycast(groundRayPoint.position, -transform.up, out hit, groundRayLength, track)) {
             grounded = true;
-
-            transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
-        }
-
-        if (Physics.Raycast(groundRayPoint.position, -transform.up, out hit, groundRayLength, notTrack)) {
-            speedInput = speedInput * 0.8f;
-            grounded = true;
-
+        
             transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
         }
 
