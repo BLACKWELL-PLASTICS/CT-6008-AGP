@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 6}
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 102
+  controlID: 28
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -151,7 +151,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 997
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &7
 MonoBehaviour:
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 107
+  controlID: 33
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 108
+  controlID: 34
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -324,8 +324,8 @@ MonoBehaviour:
     vZoomLockedByDefault: 0
     m_HBaseRangeMin: -481
     m_HBaseRangeMax: 481
-    m_VBaseRangeMin: -292.5
-    m_VBaseRangeMax: 292.5
+    m_VBaseRangeMin: -303
+    m_VBaseRangeMax: 303
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -342,11 +342,11 @@ MonoBehaviour:
     m_DrawArea:
       serializedVersion: 2
       x: 0
-      y: 21
+      y: 0
       width: 962
-      height: 585
+      height: 606
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 481, y: 292.5}
+    m_Translation: {x: 481, y: 303}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
@@ -354,9 +354,9 @@ MonoBehaviour:
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
       x: -481
-      y: -292.5
+      y: -303
       width: 962
-      height: 585
+      height: 606
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 962, y: 606}
@@ -430,20 +430,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Envrioment Assets/MinecartLevel/Material
+    - Assets/Envrioment Assets/JungleLevel/Material/Fish/Blue
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Envrioment Assets/MinecartLevel/Material
+  - Assets/Envrioment Assets/JungleLevel/Material/Fish/Blue
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\ellej\Desktop\University\Advanced Group Project GIT\CT-6008-AGP\Crashed_Potatoes_Racer
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 377}
-    m_SelectedIDs: aa210100
-    m_LastClickedID: 74154
-    m_ExpandedIDs: 00000000e07c0000e27c0000e47c0000e67c0000e87c0000ea7c0000ec7c0000fa7c0000047d00000e7d000090210100aa2101007a23010000ca9a3b
+    scrollPos: {x: 0, y: 143}
+    m_SelectedIDs: aaf20000
+    m_LastClickedID: 62122
+    m_ExpandedIDs: 0000000006f2000008f200000af200000cf200000ef2000010f2000012f2000088f2000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -471,7 +471,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000e07c0000e27c0000e47c0000e67c0000e87c0000ea7c0000ec7c0000
+    m_ExpandedIDs: 0000000006f2000008f200000af200000cf200000ef2000010f2000012f20000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -593,10 +593,10 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 1520}
-      m_SelectedIDs: de3c0000
+      scrollPos: {x: 0, y: 1072}
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: bc37fdffe64bfdff5c67fdff3a69fdffb21c0100821e0100dc1e010068200100
+      m_ExpandedIDs: 32ccffff84ccffff96cdffff42fbffff0e3a00009c3c0000783e0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -656,9 +656,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -112.41147, y: -83.90784, z: 104.61809}
+    m_Target: {x: 1.9698181, y: -24.72675, z: 47.47058}
     speed: 2
-    m_Value: {x: -112.41147, y: -83.90784, z: 104.61809}
+    m_Value: {x: 1.9698181, y: -24.72675, z: 47.47058}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -704,13 +704,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.27281305, y: -0.089047156, z: 0.025264079, w: -0.9577197}
+    m_Target: {x: 0.39094728, y: -0.42699257, z: 0.21144605, w: 0.7876907}
     speed: 2
-    m_Value: {x: -0.2713461, y: -0.089075096, z: 0.025127634, w: -0.95802164}
+    m_Value: {x: 0.38321257, y: -0.426743, z: 0.20576608, w: 0.79290533}
   m_Size:
-    m_Target: 167.04153
+    m_Target: 60.432205
     speed: 2
-    m_Value: 159.84836
+    m_Value: 55.44239
   m_Ortho:
     m_Target: 0
     speed: 2
