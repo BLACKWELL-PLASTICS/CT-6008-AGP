@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿//////////////////////////////////////////////////
+/// Created:                                   ///
+/// Author:                                    ///
+/// Edited By: Iain Farlow                     ///
+/// Last Edited: 10/03/2022                    ///
+//////////////////////////////////////////////////
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +22,7 @@ public class Obsticle : MonoBehaviour {
         eulerAngle = new Vector3(-90f, 0f, 0f);
         currentRot.eulerAngles = eulerAngle;
         wall.transform.rotation = currentRot;
+        //Added by Iain
         //Wall start package
         NetWall netWall = new NetWall();
         netWall.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
@@ -27,5 +35,6 @@ public class Obsticle : MonoBehaviour {
         netWall.m_ZRot = wall.transform.rotation.z;
         netWall.m_WRot = wall.transform.rotation.w;
         Client.Instance.SendToServer(netWall);
+        //Added by Iain ~
     }
 }

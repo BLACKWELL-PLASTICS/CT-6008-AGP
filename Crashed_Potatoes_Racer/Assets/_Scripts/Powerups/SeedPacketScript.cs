@@ -19,6 +19,9 @@ public class SeedPacketScript : MonoBehaviour {
     bool isActive = true;
     float timer = 0.0f;
 
+    [SerializeField]
+    public int m_packetNum;
+
     // Update is called once per frame
     void Update() {
         transform.Rotate(-Vector3.forward, 75f * Time.deltaTime);
@@ -27,6 +30,14 @@ public class SeedPacketScript : MonoBehaviour {
             if (timer > 5f) {
                 gameObject.GetComponent<MeshRenderer>().enabled = true;
                 gameObject.GetComponent<MeshCollider>().enabled = true;
+                //Added by Iain
+                //Packet start packet
+                NetPickedUp netPickedUp = new NetPickedUp();
+                netPickedUp.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+                netPickedUp.m_PickUp = m_packetNum;
+                netPickedUp.m_Action = NetPickedUp.ACTION.APPEAR;
+                Client.Instance.SendToServer(netPickedUp);
+                //Added by Iain ~
                 timer = 0.0f;
                 isActive = true;
             }
@@ -43,6 +54,14 @@ public class SeedPacketScript : MonoBehaviour {
         collision.gameObject.GetComponent<InventoryScript>().AddPowerup(choice);
         gameObject.GetComponent<MeshRenderer>().enabled = false;
         gameObject.GetComponent<MeshCollider>().enabled = false;
+        //Added by Iain
+        //Packet start packet
+        NetPickedUp netPickedUp = new NetPickedUp();
+        netPickedUp.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+        netPickedUp.m_PickUp = m_packetNum;
+        netPickedUp.m_Action = NetPickedUp.ACTION.DISAPPEAR;
+        Client.Instance.SendToServer(netPickedUp);
+        //Added by Iain ~
         isActive = false;
         //Destroy(gameObject);
     }
@@ -57,7 +76,32 @@ public class SeedPacketScript : MonoBehaviour {
         other.gameObject.GetComponent<InventoryScript>().AddPowerup(choice);
         gameObject.GetComponent<MeshRenderer>().enabled = false;
         gameObject.GetComponent<MeshCollider>().enabled = false;
+        //Added by Iain
+        //Packet start packet
+        NetPickedUp netPickedUp = new NetPickedUp();
+        netPickedUp.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+        netPickedUp.m_PickUp = m_packetNum;
+        netPickedUp.m_Action = NetPickedUp.ACTION.DISAPPEAR;
+        Client.Instance.SendToServer(netPickedUp);
+        //Added by Iain ~
         isActive = false;
         //Destroy(gameObject);
     }
+
+    //Added by Iain
+    public void Appear()
+    {
+        gameObject.GetComponent<MeshRenderer>().enabled = true;
+        gameObject.GetComponent<MeshCollider>().enabled = true;
+        isActive = true;
+        timer = 0.0f;
+    }
+
+    public void Disappear()
+    {
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        gameObject.GetComponent<MeshCollider>().enabled = false;
+        isActive = false;
+    }
+    //Added by Iain ~
 }
