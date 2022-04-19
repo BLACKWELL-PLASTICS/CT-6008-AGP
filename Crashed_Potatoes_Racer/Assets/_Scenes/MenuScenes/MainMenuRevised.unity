@@ -3734,7 +3734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d59e4cbddd281e4f8bc6cd466fcd29b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_severAdress: 192.168.1.125
+  m_severAdress: 127.0.0.1
   m_serversPanel: {fileID: 1738509195}
   m_connectingPanel: {fileID: 1104970699}
   m_connectedPanel: {fileID: 20737147}
@@ -3754,6 +3754,7 @@ MonoBehaviour:
   m_connectedCloseServerButton: {fileID: 786774405}
   m_connectedStartButton: {fileID: 1849712628}
   m_serverList: {fileID: 52691241}
+  m_mainMenuManager: {fileID: 399763143}
 --- !u!114 &521478715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7644,7 +7645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1104970700
 MonoBehaviour:
   m_ObjectHideFlags: 0

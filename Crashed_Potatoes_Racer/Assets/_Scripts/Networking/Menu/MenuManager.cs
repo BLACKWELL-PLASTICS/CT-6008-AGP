@@ -35,6 +35,9 @@ public class MenuManager : MonoBehaviour
     //Server List
     [SerializeField]
     GameObject m_serverList;
+    //Henry Addition
+    [SerializeField]
+    MainMenuManager m_mainMenuManager;
 
     private void Start()
     {
@@ -142,16 +145,20 @@ public class MenuManager : MonoBehaviour
             m_connectedStartButton.SetActive(false);
         }
 
-        m_connectedPanel.SetActive(true);
-        m_connectingPanel.SetActive(false);
+        m_mainMenuManager.SetActiveMenu(7);
+
+        //m_connectedPanel.SetActive(true);
+        //m_connectingPanel.SetActive(false);
     }
     void OnUnwelcomeClient(NetMessage a_msg)
     {
         NetUnwelcome netUnwelcome = a_msg as NetUnwelcome;
         NetUnwelcome.REASON reason = netUnwelcome.m_Reason;
 
-        m_connectionFailedPanel.SetActive(true);
-        m_connectingPanel.SetActive(false);
+        m_mainMenuManager.SetActiveMenu(6);
+
+        //m_connectionFailedPanel.SetActive(true);
+        //m_connectingPanel.SetActive(false);
 
         switch (reason)
         {
@@ -228,8 +235,8 @@ public class MenuManager : MonoBehaviour
     {
         Client.Instance.m_clientName = PersistentInfo.Instance.m_currentPlayerName;
         Client.Instance.Initlialise(a_adress, 8008);
-        m_connectingPanel.SetActive(true);
-        m_serversPanel.SetActive(false);
+        //m_connectingPanel.SetActive(true);
+        //m_serversPanel.SetActive(false);
     }
 
     private void OnDestroy()
