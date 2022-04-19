@@ -25,10 +25,12 @@ public class Controller : MonoBehaviour {
 
     // BOOSTING POWERUP
     bool isBoosting = false;
-    float timer = 0f;
+    float boostTimer = 0f;
+
+    public bool isStuck = false;
+    float gumTimer = 0f;
 
     PlayerIndex index;
-
 
     // Start is called before the first frame update
     void Start() {
@@ -41,13 +43,27 @@ public class Controller : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         // BOOSTING CODE
-        if (isBoosting == true && timer <= 3f) {
-            timer += Time.deltaTime;
+        if (isBoosting == true && boostTimer <= 3f) {
+            boostTimer += Time.deltaTime;
             forwardAcceleration = 6500f;
             maxSpeed = 85f;
         } else {
             isBoosting = false;
-            timer = 0f;
+            transform.Find("Boost").GetComponent<ParticleSystem>().Stop();
+            boostTimer = 0f;
+            maxSpeed = 70f;
+            forwardAcceleration = 5500f;
+        }
+
+        // GUM CODE
+        if (isStuck == true && gumTimer <= 3f) {
+            gumTimer += Time.deltaTime;
+            forwardAcceleration = 2000f;
+            maxSpeed = 30f;
+        } else {
+            transform.Find("Smoke").GetComponent<ParticleSystem>().Stop();
+            isStuck = false;
+            gumTimer = 0f;
             maxSpeed = 70f;
             forwardAcceleration = 5500f;
         }
@@ -113,7 +129,7 @@ public class Controller : MonoBehaviour {
     }
 
     public void Boost() {
-        timer = 0f;
+        boostTimer = 0f;
         isBoosting = true;
     }
 }

@@ -31,7 +31,6 @@ public class InventoryScript : MonoBehaviour
                     netRocket.m_WRot = spawnRot.w;
                     Client.Instance.SendToServer(netRocket);
                     //Added by Iain ~
-                    Debug.Log("FP");
                     break;
                 case SeedPacketScript.POWERUPS.Hot_Potato:
 
@@ -44,13 +43,13 @@ public class InventoryScript : MonoBehaviour
                     netBirdPoop.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
                     Client.Instance.SendToServer(netBirdPoop);
                     //Added by Iain ~
-                    Debug.Log("BLIND");
                     break;
                 case SeedPacketScript.POWERUPS.Boost:
                     GetComponent<Controller>().Boost();
+                    transform.Find("Boost").GetComponent<ParticleSystem>().Play();
                     break;
                 case SeedPacketScript.POWERUPS.Gum:
-                    Debug.Log("GUM");
+                    gameObject.GetComponent<Gum>().SpawnGO();
                     break;
                 case SeedPacketScript.POWERUPS.Obsticles:
                     gameObject.GetComponent<Obsticle>().SpawnGO();
