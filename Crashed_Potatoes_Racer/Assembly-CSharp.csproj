@@ -843,7 +843,24 @@
       <HintPath>E:/github/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup></ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="FMODUnity.csproj">
+      <Project>{1DF7B0A5-8903-0B77-555D-DAAE9FFF7A7D}</Project>
+      <Name>FMODUnity</Name>
+    </ProjectReference>
+    <ProjectReference Include="FMODUnityResonance.csproj">
+      <Project>{DCD52312-781E-2EFC-2A01-202DED4E59CB}</Project>
+      <Name>FMODUnityResonance</Name>
+    </ProjectReference>
+    <ProjectReference Include="FMODUnityResonanceEditor.csproj">
+      <Project>{C1F52567-8D26-D2BC-F494-9A192211CF67}</Project>
+      <Name>FMODUnityResonanceEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="FMODUnityEditor.csproj">
+      <Project>{C5417FD0-B354-5AB1-8ECA-2AC17A951469}</Project>
+      <Name>FMODUnityEditor</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
