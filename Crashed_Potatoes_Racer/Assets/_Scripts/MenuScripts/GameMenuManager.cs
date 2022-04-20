@@ -71,6 +71,7 @@ public class GameMenuManager : MonoBehaviour
 
     public void LoadScene()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.SetActiveScene(SceneManager.GetSceneAt(0));
+        SceneManager.UnloadSceneAsync(1);
     }
 }

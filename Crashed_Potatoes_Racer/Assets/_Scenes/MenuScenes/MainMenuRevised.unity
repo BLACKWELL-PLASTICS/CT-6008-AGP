@@ -648,7 +648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b523d27cd5289be4b89256d90aa020e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_serverButtonPrefab: {fileID: 2225086219464908360, guid: 260ce0b43f606f646b9418c83d641e82,
+  m_serverButtonPrefab: {fileID: 8417224523029969623, guid: e541edc028fb6fb4fa2bb18a5acaf3cb,
     type: 3}
   m_content: {fileID: 613898140}
 --- !u!114 &52691244
@@ -1702,7 +1702,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &221656486
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2384,11 +2384,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 399763145}
         m_MethodName: OnSelectCourseButton
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4139,7 +4139,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -657, y: -577}
+  m_SizeDelta: {x: -17, y: -577}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &613898142
 MonoBehaviour:
@@ -4161,7 +4161,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 310, y: 40}
+  m_CellSize: {x: 950, y: 100}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -4775,11 +4775,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 399763145}
         m_MethodName: OnSelectCourseButton
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -7645,7 +7645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1104970700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10961,7 +10961,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 399763145}
         m_MethodName: OnSelectCourseButton
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

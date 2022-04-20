@@ -37,12 +37,13 @@ public class MainMenuButtons : MonoBehaviour
 
     public void OnProfileCustomiseButton()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        //SceneManager.SetActiveScene(SceneManager.GetSceneAt(1));
     }
 
-    public void OnSelectCourseButton()
+    public void OnSelectCourseButton(int a_level)
     {
-        //Add code that determines what course the host has selected for everybody to play
+        PersistentInfo.Instance.m_levelNum = a_level;
 
         m_activeInputField = FindObjectOfType<InputField>();
         m_activeInputField.Select();
@@ -53,6 +54,7 @@ public class MainMenuButtons : MonoBehaviour
         ServerHostStart serverHostStart = new ServerHostStart();
         serverHostStart.m_ServerName = a_inputField.GetComponent<UnityEngine.UI.Text>().text;
         serverHostStart.m_ServerIP = GetLocalIPv4();
+        serverHostStart.m_level = PersistentInfo.Instance.m_levelNum;
         MenuClient.Instance.SendToServer(serverHostStart);
         Server.Instance.Initlialise(8008);
         Client.Instance.m_clientName = PersistentInfo.Instance.m_currentPlayerName;

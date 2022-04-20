@@ -217,7 +217,7 @@ public class MenuManager : MonoBehaviour
     void OnServerStart(ServerMessage a_msg)
     {
         ServerHostStart serverStart = a_msg as ServerHostStart;
-        m_serverList.GetComponent<ServerListManager>().AddServer(serverStart.m_ServerName, serverStart.m_ServerIP);
+        m_serverList.GetComponent<ServerListManager>().AddServer(serverStart.m_ServerName, serverStart.m_ServerIP, serverStart.m_level);
     }
     void OnServerEnd(ServerMessage a_msg)
     {
@@ -227,7 +227,7 @@ public class MenuManager : MonoBehaviour
     void OnListRequest(ServerMessage a_msg)
     {
         ServerListRequest serverListRequest = a_msg as ServerListRequest;
-        m_serverList.GetComponent<ServerListManager>().AddServer(serverListRequest.m_ServerName, serverListRequest.m_ServerIP);
+        m_serverList.GetComponent<ServerListManager>().AddServer(serverListRequest.m_ServerName, serverListRequest.m_ServerIP, serverListRequest.m_level);
     }
 
     //Utilities
