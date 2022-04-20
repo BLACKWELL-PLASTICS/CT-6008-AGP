@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: ../../../uni/AGP/Sounds/FMOD/lvl1/Build/Desktop/ARG.bank
   Name: ARG
   StudioPath: bank:/ARG
-  lastModified: 637860806614113333
+  lastModified: 637860891174670112
   FileSizes:
   - Name: Desktop
-    Value: 549152
+    Value: 578240
   Exists: 1
 --- !u!114 &-3647883530333779303
 MonoBehaviour:
@@ -62,7 +62,7 @@ MonoBehaviour:
   Path: ../../../uni/AGP/Sounds/FMOD/lvl1/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637860806614153109
+  lastModified: 637860891174700035
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -90,7 +90,8 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 1
   IsOneShot: 0
-  Parameters: []
+  Parameters:
+  - {fileID: 8135041934500236275}
   MinDistance: 1
   MaxDistance: 20
   Length: 8000
@@ -115,13 +116,41 @@ MonoBehaviour:
   - {fileID: -3647883530333779303}
   - {fileID: 3392970956377585535}
   - {fileID: 5488542931459957821}
+  - {fileID: 3001276019055890446}
   EditorParameters: []
   MasterBanks:
   - {fileID: -3060016749238173197}
   StringsBanks:
   - {fileID: 7747652317749545017}
-  cacheTime: 637860806614173045
+  cacheTime: 637860891174729959
   cacheVersion: 10
+--- !u!114 &3001276019055890446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/floaty
+  m_EditorClassIdentifier: 
+  Path: event:/floaty
+  Guid:
+    Data1: 571735497
+    Data2: 1334255314
+    Data3: -143077992
+    Data4: -1964549705
+  Banks:
+  - {fileID: -4916718620626758864}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &3392970956377585535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,8 +220,32 @@ MonoBehaviour:
   Path: ../../../uni/AGP/Sounds/FMOD/lvl1/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637860806614173045
+  lastModified: 637860891174729959
   FileSizes:
   - Name: Desktop
-    Value: 918
+    Value: 1002
+  Exists: 1
+--- !u!114 &8135041934500236275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/car/Speed
+  m_EditorClassIdentifier: 
+  Name: Speed
+  StudioPath: 
+  Min: 0
+  Max: 50
+  Default: 0
+  ID:
+    data1: 2353630302
+    data2: 1374641553
+  Type: 0
+  IsGlobal: 0
+  Labels: []
   Exists: 1
