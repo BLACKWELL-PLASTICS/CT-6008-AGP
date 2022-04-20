@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: ../../../uni/AGP/Sounds/FMOD/lvl1/Build/Desktop/ARG.bank
   Name: ARG
   StudioPath: bank:/ARG
-  lastModified: 637860891174670112
+  lastModified: 637860941089729615
   FileSizes:
   - Name: Desktop
-    Value: 578240
+    Value: 635936
   Exists: 1
 --- !u!114 &-3647883530333779303
 MonoBehaviour:
@@ -47,6 +47,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 20000
+--- !u!114 &-3319120092761740700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Rocket
+  m_EditorClassIdentifier: 
+  Path: event:/Rocket
+  Guid:
+    Data1: -1435083903
+    Data2: 1145327819
+    Data3: 895153080
+    Data4: 306745102
+  Banks:
+  - {fileID: -4916718620626758864}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2500
 --- !u!114 &-3060016749238173197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,7 +89,7 @@ MonoBehaviour:
   Path: ../../../uni/AGP/Sounds/FMOD/lvl1/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637860891174700035
+  lastModified: 637860941089759528
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -117,12 +144,14 @@ MonoBehaviour:
   - {fileID: 3392970956377585535}
   - {fileID: 5488542931459957821}
   - {fileID: 3001276019055890446}
+  - {fileID: -3319120092761740700}
+  - {fileID: 6270191888791001732}
   EditorParameters: []
   MasterBanks:
   - {fileID: -3060016749238173197}
   StringsBanks:
   - {fileID: 7747652317749545017}
-  cacheTime: 637860891174729959
+  cacheTime: 637860941089779478
   cacheVersion: 10
 --- !u!114 &3001276019055890446
 MonoBehaviour:
@@ -205,6 +234,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 10000
+--- !u!114 &6270191888791001732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Rocket 2
+  m_EditorClassIdentifier: 
+  Path: event:/Rocket 2
+  Guid:
+    Data1: -1475199267
+    Data2: 1160788501
+    Data3: -1117550974
+    Data4: -54409336
+  Banks:
+  - {fileID: -4916718620626758864}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1050
 --- !u!114 &7747652317749545017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,10 +276,10 @@ MonoBehaviour:
   Path: ../../../uni/AGP/Sounds/FMOD/lvl1/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637860891174729959
+  lastModified: 637860941089779478
   FileSizes:
   - Name: Desktop
-    Value: 1002
+    Value: 1082
   Exists: 1
 --- !u!114 &8135041934500236275
 MonoBehaviour:
