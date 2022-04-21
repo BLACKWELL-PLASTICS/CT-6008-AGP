@@ -37,8 +37,12 @@ public class MainMenuButtons : MonoBehaviour
 
     public void OnProfileCustomiseButton()
     {
+        // disable raycast
+        foreach (var raycaster in Transform.FindObjectsOfType<GraphicRaycaster>())
+        {
+            raycaster.enabled = false;
+        }
         SceneManager.LoadScene(1, LoadSceneMode.Additive);
-        //SceneManager.SetActiveScene(SceneManager.GetSceneAt(1));
     }
 
     public void OnSelectCourseButton(int a_level)

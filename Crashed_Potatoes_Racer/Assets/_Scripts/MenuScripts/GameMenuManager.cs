@@ -25,6 +25,11 @@ public class GameMenuManager : MonoBehaviour
     {
         if (!usesIainScript)
         {
+            // enable raycast
+            foreach (var raycaster in Transform.FindObjectsOfType<GraphicRaycaster>())
+            {
+                raycaster.enabled = true;
+            }
             SetActiveMenu(activeMenu);
         }
     }

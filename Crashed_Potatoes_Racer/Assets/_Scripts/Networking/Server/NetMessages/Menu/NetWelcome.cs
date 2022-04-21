@@ -9,7 +9,7 @@ public class NetWelcome : NetMessage
     public int m_CarBody { get; set; }
     public int m_CarWheels { get; set; }
     public int m_CarGun { get; set; }
-
+    public int m_levelNum { get; set; }
 
     public NetWelcome()
     {
@@ -30,7 +30,7 @@ public class NetWelcome : NetMessage
         a_writer.WriteInt(m_CarBody);
         a_writer.WriteInt(m_CarWheels);
         a_writer.WriteInt(m_CarGun);
-
+        a_writer.WriteInt(m_levelNum);
     }
     public override void Deserialize(DataStreamReader a_reader)
     {
@@ -40,6 +40,7 @@ public class NetWelcome : NetMessage
         m_CarBody = a_reader.ReadInt();
         m_CarWheels = a_reader.ReadInt();
         m_CarGun = a_reader.ReadInt();
+        m_levelNum = a_reader.ReadInt();
     }
 
     public override void RecievedOnClient()

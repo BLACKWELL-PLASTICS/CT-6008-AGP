@@ -103,6 +103,7 @@ public class MenuManager : MonoBehaviour
 
         netWelcome.m_PlayerCount = PersistentInfo.Instance.m_connectedUsers;
         netWelcome.m_PlayerNumber = PersistentInfo.Instance.m_connectedUsers;
+        netWelcome.m_levelNum = PersistentInfo.Instance.m_levelNum;
         Server.Instance.SendToClient(a_connection, netWelcome);
         NetOtherConnected netOtherConnected = new NetOtherConnected();
         netOtherConnected.m_PlayerCount = PersistentInfo.Instance.m_connectedUsers;
@@ -125,6 +126,7 @@ public class MenuManager : MonoBehaviour
         carDesign.m_wheelChoice = netWelcome.m_CarWheels;
         carDesign.m_gunChoice = netWelcome.m_CarGun;
         PersistentInfo.Instance.m_carDesigns.Add(carDesign);
+        PersistentInfo.Instance.m_levelNum = netWelcome.m_levelNum;
 
         m_connectedPlayerText.GetComponent<UnityEngine.UI.Text>().text = $"You are player {PersistentInfo.Instance.m_currentPlayerNum} of {PersistentInfo.Instance.m_connectedUsers}";
         for (int i = 0; i < PersistentInfo.Instance.m_connectedNames.Count; i++)
@@ -208,7 +210,19 @@ public class MenuManager : MonoBehaviour
 
     void OnStartGameClient(NetMessage a_msg)
     {
-        SceneManager.LoadScene(2);
+        PersistentInfo.Instance.m_readyCars = 0;
+        switch (PersistentInfo.Instance.m_levelNum)
+        {
+            case 0:
+                SceneManager.LoadScene(2);
+                break;
+            case 1:
+                SceneManager.LoadScene(2); //change for new levels
+                break;
+            case 2:
+                SceneManager.LoadScene(2); //change for new levels
+                break;
+        }
     }
 
 

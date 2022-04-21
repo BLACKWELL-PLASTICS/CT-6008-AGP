@@ -159,6 +159,7 @@
     <Compile Include="Assets\_Scripts\Networking\PersistentInfo.cs" />
     <Compile Include="Assets\_Scripts\Networking\Server\Client.cs" />
     <Compile Include="Assets\_Scripts\Networking\Server\MenuClient.cs" />
+    <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\GameGeneral\NetGameCountdown.cs" />
     <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\GameGeneral\NetMakeMove.cs" />
     <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\GameGeneral\NetStartGame.cs" />
     <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\Menu\NetOtherConnected.cs" />
