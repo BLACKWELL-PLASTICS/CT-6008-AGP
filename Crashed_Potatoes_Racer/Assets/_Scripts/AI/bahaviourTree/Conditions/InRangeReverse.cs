@@ -19,6 +19,6 @@ public class InRangeReverse : Node
             return NodeState.SUCCESS;
         }
 
-        return NodeState.RUNNING;
+        return NodeState.FAILURE;
     }
 }

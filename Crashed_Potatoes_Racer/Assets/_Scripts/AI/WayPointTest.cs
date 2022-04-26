@@ -30,7 +30,7 @@ public class WayPointTest : MonoBehaviour
         
         if(rand == 0)
         {
-            agent.speed = Mathf.Lerp(agent.speed, 25, Time.deltaTime * 0.2f); 
+            agent.speed = Mathf.Lerp(agent.speed, 25, Time.deltaTime * 0.2f);
             float dist = Vector3.Distance(transform.position, wayPoints[counter].transform.position);
             if (dist <= stoppingDist)
             {

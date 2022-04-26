@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1130445072515025150}
   - component: {fileID: -8133121030093164489}
   - component: {fileID: 1620942726824099857}
+  - component: {fileID: 4544768001148951390}
   m_Layer: 0
   m_Name: Floaty
   m_TagString: Untagged
@@ -106,3 +107,33 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.037639562, y: 0.0360097, z: 0.03910949}
   m_Center: {x: 0, y: 0, z: 0.020282697}
+--- !u!114 &4544768001148951390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490930886457616683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 571735497
+      Data2: 1334255314
+      Data3: -143077992
+      Data4: -1964549705
+    Path: event:/floaty
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20

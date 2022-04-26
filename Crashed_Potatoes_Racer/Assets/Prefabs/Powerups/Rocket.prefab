@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: -6629072987028982211}
   - component: {fileID: 990889822477563420}
   - component: {fileID: -2861224732448466316}
+  - component: {fileID: 696705866756238112}
+  - component: {fileID: -3858597781417722478}
   m_Layer: 0
   m_Name: Rocket
   m_TagString: Untagged
@@ -123,3 +125,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e709ad8de8d9e3d40b7b6293071c52f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &696705866756238112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895209648162260296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1435083903
+      Data2: 1145327819
+      Data3: 895153080
+      Data4: 306745102
+    Path: event:/Rocket
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &-3858597781417722478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895209648162260296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1475199267
+      Data2: 1160788501
+      Data3: -1117550974
+      Data4: -54409336
+    Path: event:/Rocket 2
+  Event: 
+  PlayEvent: 2
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20

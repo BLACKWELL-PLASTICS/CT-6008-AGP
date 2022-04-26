@@ -17,6 +17,7 @@ public class FloatyState : Node
     {
         Vector3 pos = owner.transform.position - owner.transform.forward;
         wall = Object.Instantiate(AIManager.GetPowerUp[1], pos, Quaternion.identity);
+        owner.InventoryComponent.UsePowerup();
 
         //eulerAngle = new Vector3(-90f, 0f, 0f);
         //currentRot.eulerAngles = eulerAngle;

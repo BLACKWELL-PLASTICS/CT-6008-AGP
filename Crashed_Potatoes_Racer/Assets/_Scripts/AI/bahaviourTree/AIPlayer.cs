@@ -17,6 +17,7 @@ public class AIPlayer : MonoBehaviour
     public Renderer RenderComponent { get; private set; }
     public InventoryScript InventoryComponent { get; private set; }
     public Rigidbody RBComponent { get; private set; }
+    public FMODUnity.StudioEventEmitter emitter { get; private set; }
 
     public float stoppingDistance = 15;
     public int currentWaypoint = 0;
@@ -44,6 +45,7 @@ public class AIPlayer : MonoBehaviour
         RBComponent = gameObject.GetComponent<Rigidbody>();
         InventoryComponent = gameObject.GetComponent<InventoryScript>();
         RenderComponent = GetComponent<Renderer>();
+        emitter = GetComponent<FMODUnity.StudioEventEmitter>();
 
         //behaviour tree
         bahaviourTree = new BT(this);
@@ -54,7 +56,7 @@ public class AIPlayer : MonoBehaviour
         currentPos = transform.position;
 
         //car movement
-        speedDecrease = Random.Range(0.5f, 1.5f);
+        speedDecrease = Random.Range(0.5f, 1f);
     }
 
     private void Update()
@@ -65,6 +67,7 @@ public class AIPlayer : MonoBehaviour
         bahaviourTree.Update();
 
         NavComponent.speed = speed;
+        emitter.SetParameter("Speed", NavComponent.speed);
         NavComponent.acceleration = accel;
         NavComponent.SetDestination(target.position);
 
