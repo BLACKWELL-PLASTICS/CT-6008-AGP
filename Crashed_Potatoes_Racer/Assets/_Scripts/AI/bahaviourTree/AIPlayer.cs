@@ -27,6 +27,7 @@ public class AIPlayer : MonoBehaviour
     public Vector3 originalPos;
     public Vector3 currentPos;
     public Vector3 originalScale;
+    public int random;
 
     [SerializeField]
     private float speed = 0;
@@ -38,6 +39,8 @@ public class AIPlayer : MonoBehaviour
     private BT bahaviourTree;
     private void Start()
     {
+        random = Random.Range(0, 2);
+
         target = AIManager.GetWaypoints[0];
 
         carList.Add(this);
@@ -56,7 +59,7 @@ public class AIPlayer : MonoBehaviour
         currentPos = transform.position;
 
         //car movement
-        speedDecrease = Random.Range(0.5f, 1f);
+        speedDecrease = Random.Range(0.7f, 1.7f);
     }
 
     private void Update()

@@ -9,6 +9,7 @@ public class AIManager : MonoBehaviour
     //car ai
     [Header("Car Variables")]
     public Transform[] wayPoints;
+    public Transform[] wayPoints2;
     public GameObject[] powerUps;
     public float maxSpeed;
     public float maxAcc;
@@ -50,6 +51,7 @@ public class AIManager : MonoBehaviour
     public static float GetStoppingRay { get { return instance.stoppingRay; } }
     public static float GetDetectionRay { get { return instance.detectionRay; } }
     public static Transform[] GetWaypoints { get { return instance.wayPoints; } }
+    public static Transform[] GetWaypoints2 { get { return instance.wayPoints2; } }
     public static GameObject[] GetPowerUp { get { return instance.powerUps; } }
 
     //boid get/set

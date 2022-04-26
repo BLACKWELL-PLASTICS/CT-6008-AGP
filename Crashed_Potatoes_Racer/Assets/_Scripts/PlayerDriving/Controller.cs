@@ -33,12 +33,17 @@ public class Controller : MonoBehaviour {
 
     PlayerIndex index;
 
+    private FMODUnity.StudioEventEmitter emitter;
+
     // Start is called before the first frame update
     void Start() {
         // unparent sphere to smooth movement
         rb.transform.parent = null;
         frontLeftWheel = GameObject.FindGameObjectWithTag("FLW").GetComponent<Transform>();
         frontRightWheel = GameObject.FindGameObjectWithTag("FRW").GetComponent<Transform>();
+
+        //fmod 
+        emitter = GetComponent<FMODUnity.StudioEventEmitter>();
     }
 
     // Update is called once per frame
@@ -105,6 +110,9 @@ public class Controller : MonoBehaviour {
 
         //Set Position
         transform.position = rb.transform.position;
+
+        //fmod
+        emitter.SetParameter("Speed", rb.velocity.magnitude);
     }
 
     // All Physics calculations will take place in the fixed update

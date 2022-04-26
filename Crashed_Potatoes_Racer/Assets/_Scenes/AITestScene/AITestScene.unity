@@ -789,7 +789,7 @@ GameObject:
   - component: {fileID: 140601484}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Water
+  m_TagString: Ocean
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2152,6 +2152,7 @@ GameObject:
   - component: {fileID: 512970526}
   - component: {fileID: 512970528}
   - component: {fileID: 512970527}
+  - component: {fileID: 512970529}
   m_Layer: 11
   m_Name: Camera
   m_TagString: Untagged
@@ -2230,6 +2231,37 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &512970529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512970525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &526316056
 GameObject:
   m_ObjectHideFlags: 0
@@ -2429,6 +2461,7 @@ MonoBehaviour:
   originalPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
   originalScale: {x: 0, y: 0, z: 0}
+  random: 0
   speed: 0
   accel: 0
   speedDecrease: 0
@@ -2549,7 +2582,7 @@ MonoBehaviour:
       Data4: 1560646141
     Path: event:/car
   Event: 
-  PlayEvent: 0
+  PlayEvent: 1
   StopEvent: 0
   AllowFadeout: 1
   TriggerOnce: 0
@@ -2883,6 +2916,7 @@ MonoBehaviour:
   originalPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
   originalScale: {x: 0, y: 0, z: 0}
+  random: 0
   speed: 0
   accel: 0
   speedDecrease: 0
@@ -3005,7 +3039,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 641107573}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
@@ -4303,6 +4337,7 @@ MonoBehaviour:
   originalPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
   originalScale: {x: 0, y: 0, z: 0}
+  random: 0
   speed: 0
   accel: 0
   speedDecrease: 0
@@ -4423,7 +4458,7 @@ MonoBehaviour:
       Data4: 1560646141
     Path: event:/car
   Event: 
-  PlayEvent: 0
+  PlayEvent: 1
   StopEvent: 0
   AllowFadeout: 1
   TriggerOnce: 0
@@ -8783,6 +8818,36 @@ MonoBehaviour:
   - {fileID: 1221671307}
   - {fileID: 558757315}
   - {fileID: 1444157307}
+  wayPoints2:
+  - {fileID: 550106698}
+  - {fileID: 2048357086}
+  - {fileID: 1662466238}
+  - {fileID: 1573668826}
+  - {fileID: 11512535}
+  - {fileID: 227583813}
+  - {fileID: 174323815}
+  - {fileID: 217811794}
+  - {fileID: 1614702551}
+  - {fileID: 1662204618}
+  - {fileID: 1495941147}
+  - {fileID: 845867997}
+  - {fileID: 1810109133}
+  - {fileID: 1586074067}
+  - {fileID: 1143736369}
+  - {fileID: 1095370319}
+  - {fileID: 1778140169}
+  - {fileID: 1330145494}
+  - {fileID: 1287157446}
+  - {fileID: 1575237715}
+  - {fileID: 1952610752}
+  - {fileID: 1452897524}
+  - {fileID: 1943739115}
+  - {fileID: 1362394555}
+  - {fileID: 1997175757}
+  - {fileID: 1251334456}
+  - {fileID: 1221671307}
+  - {fileID: 558757315}
+  - {fileID: 1444157307}
   powerUps:
   - {fileID: 1895209648162260296, guid: 1dec936bd56fcf64994fb09e7201a51b, type: 3}
   - {fileID: 1490930886457616683, guid: 87e9c095f5bb0a246acc7fcc770913db, type: 3}
@@ -8803,7 +8868,8 @@ MonoBehaviour:
   goalRandomness: 10000
   goalPos: {x: 0, y: 0, z: 0}
   boidArray: []
-  fishRandomness: 10000
+  fishRandomnessSea: 1000
+  fishRandomnessWater: 500
   fishSpeed: 6
   fishJumpTime: 1.2
   crabDistance: 3

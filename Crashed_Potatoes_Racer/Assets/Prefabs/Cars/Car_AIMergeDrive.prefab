@@ -156,6 +156,7 @@ GameObject:
   - component: {fileID: 929789742854782541}
   - component: {fileID: 8738164446682236299}
   - component: {fileID: 8738164446682236289}
+  - component: {fileID: 7610118226005966160}
   m_Layer: 0
   m_Name: Car_AIMergeDrive
   m_TagString: Player
@@ -254,6 +255,10 @@ MonoBehaviour:
   currentWaypoint: 0
   target: {fileID: 0}
   decreaseCheck: 0
+  powerUp1: 0
+  originalPos: {x: 0, y: 0, z: 0}
+  currentPos: {x: 0, y: 0, z: 0}
+  originalScale: {x: 0, y: 0, z: 0}
   speed: 0
   accel: 0
   speedDecrease: 0
@@ -311,6 +316,38 @@ MonoBehaviour:
   - {fileID: 3089364327518602445}
   - {fileID: 3740085230352402634}
   m_hasGun: 1
+--- !u!114 &7610118226005966160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8738164446682236303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 938991173
+      Data2: 1110216600
+      Data3: -616247394
+      Data4: 1560646141
+    Path: event:/car
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params:
+  - Name: Speed
+    Value: 0
+  OverrideAttenuation: 1
+  OverrideMinDistance: 5
+  OverrideMaxDistance: 20
 --- !u!1001 &8738164444770912762
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -471,15 +508,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 874f6720110c9434dbe3822975913ddd, type: 3}
---- !u!1 &1964578679663969643 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7063798856701576230, guid: 874f6720110c9434dbe3822975913ddd,
-    type: 3}
-  m_PrefabInstance: {fileID: 8738164444849193293}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1155249492377542609 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7587570378121305756, guid: 874f6720110c9434dbe3822975913ddd,
+    type: 3}
+  m_PrefabInstance: {fileID: 8738164444849193293}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1964578679663969643 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7063798856701576230, guid: 874f6720110c9434dbe3822975913ddd,
     type: 3}
   m_PrefabInstance: {fileID: 8738164444849193293}
   m_PrefabAsset: {fileID: 0}
@@ -987,15 +1024,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e847d5d1295cd34bbf3a6ffb9ff896a, type: 3}
---- !u!1 &8394341678387980235 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 953218360699350657, guid: 1e847d5d1295cd34bbf3a6ffb9ff896a,
-    type: 3}
-  m_PrefabInstance: {fileID: 8738164446545774922}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9166340251099217265 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 464244187222324283, guid: 1e847d5d1295cd34bbf3a6ffb9ff896a,
+    type: 3}
+  m_PrefabInstance: {fileID: 8738164446545774922}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8394341678387980235 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 953218360699350657, guid: 1e847d5d1295cd34bbf3a6ffb9ff896a,
     type: 3}
   m_PrefabInstance: {fileID: 8738164446545774922}
   m_PrefabAsset: {fileID: 0}

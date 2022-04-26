@@ -20,18 +20,39 @@ public class WaypointState : Node
             owner.IncreaseSpeed();
         }
 
-        float dist = Vector3.Distance(owner.transform.position, AIManager.GetWaypoints[owner.currentWaypoint].transform.position);
-        if (dist <= owner.stoppingDistance)
+        if (owner.random == 0)
         {
-            Debug.Log("waypoint +");
-            owner.currentWaypoint++;
-            if (owner.currentWaypoint >= AIManager.GetWaypoints.Length)
+            float dist = Vector3.Distance(owner.transform.position, AIManager.GetWaypoints[owner.currentWaypoint].transform.position);
+            if (dist <= owner.stoppingDistance)
             {
-                owner.currentWaypoint = 0;
+                Debug.Log("waypoint +");
+                owner.currentWaypoint++;
+                if (owner.currentWaypoint >= AIManager.GetWaypoints.Length)
+                {
+                    owner.currentWaypoint = 0;
+                }
             }
+            owner.target = AIManager.GetWaypoints[owner.currentWaypoint].transform;
+            return NodeState.SUCCESS;
         }
-        owner.target = AIManager.GetWaypoints[owner.currentWaypoint].transform;
-        return NodeState.SUCCESS;
+        else if (owner.random == 1)
+        {
+            float dist = Vector3.Distance(owner.transform.position, AIManager.GetWaypoints2[owner.currentWaypoint].transform.position);
+            if (dist <= owner.stoppingDistance)
+            {
+                Debug.Log("waypoint +");
+                owner.currentWaypoint++;
+                if (owner.currentWaypoint >= AIManager.GetWaypoints2.Length)
+                {
+                    owner.currentWaypoint = 0;
+                }
+            }
+            owner.target = AIManager.GetWaypoints2[owner.currentWaypoint].transform;
+            return NodeState.SUCCESS;
+        }
+
+        return NodeState.FAILURE;
+
     }
 
     private bool IsCorner()
