@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6812779355267292857}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4184680103602651934
 MeshFilter:
@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6812779355267292857}
   m_Layer: 0
-  m_Name: Platter
+  m_Name: BronzePlatter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,7 +106,6 @@ Transform:
   m_LocalPosition: {x: 3.19, y: 2.28, z: 0.83}
   m_LocalScale: {x: 0.14, y: 0.14, z: 0.14}
   m_Children:
-  - {fileID: 5117406996624080232}
   - {fileID: 4221353709311961528}
   - {fileID: 445410074237970050}
   m_Father: {fileID: 0}
@@ -137,11 +136,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7952152223817056483}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.052762765, y: 10.683889, z: 0.02887448}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.00043416023, z: 2.8711798}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 6812779355267292857}
+  m_Father: {fileID: 445410074237970050}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &9153430285274849153
@@ -219,9 +218,10 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -0.05276158, y: 7.81271, z: 0.028440349}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 5117406996624080232}
   m_Father: {fileID: 6812779355267292857}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5825552993558136373
 MeshFilter:
