@@ -35,6 +35,9 @@ public class MenuManager : MonoBehaviour
     //Server List
     [SerializeField]
     GameObject m_serverList;
+    //Henry Addition
+    [SerializeField]
+    MainMenuManager m_mainMenuManager;
 
     private void Start()
     {
@@ -100,6 +103,7 @@ public class MenuManager : MonoBehaviour
 
         netWelcome.m_PlayerCount = PersistentInfo.Instance.m_connectedUsers;
         netWelcome.m_PlayerNumber = PersistentInfo.Instance.m_connectedUsers;
+        netWelcome.m_levelNum = PersistentInfo.Instance.m_levelNum;
         Server.Instance.SendToClient(a_connection, netWelcome);
         NetOtherConnected netOtherConnected = new NetOtherConnected();
         netOtherConnected.m_PlayerCount = PersistentInfo.Instance.m_connectedUsers;
@@ -122,6 +126,7 @@ public class MenuManager : MonoBehaviour
         carDesign.m_wheelChoice = netWelcome.m_CarWheels;
         carDesign.m_gunChoice = netWelcome.m_CarGun;
         PersistentInfo.Instance.m_carDesigns.Add(carDesign);
+        PersistentInfo.Instance.m_levelNum = netWelcome.m_levelNum;
 
         m_connectedPlayerText.GetComponent<UnityEngine.UI.Text>().text = $"You are player {PersistentInfo.Instance.m_currentPlayerNum} of {PersistentInfo.Instance.m_connectedUsers}";
         for (int i = 0; i < PersistentInfo.Instance.m_connectedNames.Count; i++)
@@ -142,16 +147,20 @@ public class MenuManager : MonoBehaviour
             m_connectedStartButton.SetActive(false);
         }
 
-        m_connectedPanel.SetActive(true);
-        m_connectingPanel.SetActive(false);
+        m_mainMenuManager.SetActiveMenu(7);
+
+        //m_connectedPanel.SetActive(true);
+        //m_connectingPanel.SetActive(false);
     }
     void OnUnwelcomeClient(NetMessage a_msg)
     {
         NetUnwelcome netUnwelcome = a_msg as NetUnwelcome;
         NetUnwelcome.REASON reason = netUnwelcome.m_Reason;
 
-        m_connectionFailedPanel.SetActive(true);
-        m_connectingPanel.SetActive(false);
+        m_mainMenuManager.SetActiveMenu(6);
+
+        //m_connectionFailedPanel.SetActive(true);
+        //m_connectingPanel.SetActive(false);
 
         switch (reason)
         {
@@ -201,7 +210,19 @@ public class MenuManager : MonoBehaviour
 
     void OnStartGameClient(NetMessage a_msg)
     {
-        SceneManager.LoadScene(2);
+        PersistentInfo.Instance.m_readyCars = 0;
+        switch (PersistentInfo.Instance.m_levelNum)
+        {
+            case 0:
+                SceneManager.LoadScene(2);
+                break;
+            case 1:
+                SceneManager.LoadScene(2); //change for new levels
+                break;
+            case 2:
+                SceneManager.LoadScene(2); //change for new levels
+                break;
+        }
     }
 
 
@@ -210,7 +231,7 @@ public class MenuManager : MonoBehaviour
     void OnServerStart(ServerMessage a_msg)
     {
         ServerHostStart serverStart = a_msg as ServerHostStart;
-        m_serverList.GetComponent<ServerListManager>().AddServer(serverStart.m_ServerName, serverStart.m_ServerIP);
+        m_serverList.GetComponent<ServerListManager>().AddServer(serverStart.m_ServerName, serverStart.m_ServerIP, serverStart.m_level);
     }
     void OnServerEnd(ServerMessage a_msg)
     {
@@ -220,7 +241,7 @@ public class MenuManager : MonoBehaviour
     void OnListRequest(ServerMessage a_msg)
     {
         ServerListRequest serverListRequest = a_msg as ServerListRequest;
-        m_serverList.GetComponent<ServerListManager>().AddServer(serverListRequest.m_ServerName, serverListRequest.m_ServerIP);
+        m_serverList.GetComponent<ServerListManager>().AddServer(serverListRequest.m_ServerName, serverListRequest.m_ServerIP, serverListRequest.m_level);
     }
 
     //Utilities
@@ -228,8 +249,8 @@ public class MenuManager : MonoBehaviour
     {
         Client.Instance.m_clientName = PersistentInfo.Instance.m_currentPlayerName;
         Client.Instance.Initlialise(a_adress, 8008);
-        m_connectingPanel.SetActive(true);
-        m_serversPanel.SetActive(false);
+        //m_connectingPanel.SetActive(true);
+        //m_serversPanel.SetActive(false);
     }
 
     private void OnDestroy()

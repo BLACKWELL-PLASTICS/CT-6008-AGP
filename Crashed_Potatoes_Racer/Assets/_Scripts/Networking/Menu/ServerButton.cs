@@ -8,6 +8,7 @@ public class ServerButton : MonoBehaviour
     public string m_passwordProtectedText;
     public string m_pingText;
     public string m_adress;
+    public string m_levelText;
 
     [SerializeField]
     public GameObject m_nameTextField;
@@ -15,11 +16,14 @@ public class ServerButton : MonoBehaviour
     public GameObject m_passwordProtectedTextField;
     [SerializeField]
     public GameObject m_pingTextField;
+    [SerializeField]
+    public GameObject m_levelTextField;
     public void SetUI()
     {
         m_nameTextField.GetComponent<UnityEngine.UI.Text>().text = m_nameText;
         m_passwordProtectedTextField.GetComponent<UnityEngine.UI.Text>().text = m_passwordProtectedText;
         m_pingTextField.GetComponent<UnityEngine.UI.Text>().text = m_pingText;
+        m_levelTextField.GetComponent<UnityEngine.UI.Text>().text = m_levelText;
     }
     public void OnServerConnect()
     {

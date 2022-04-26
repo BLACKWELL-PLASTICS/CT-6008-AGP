@@ -25,6 +25,11 @@ public class GameMenuManager : MonoBehaviour
     {
         if (!usesIainScript)
         {
+            // enable raycast
+            foreach (var raycaster in Transform.FindObjectsOfType<GraphicRaycaster>())
+            {
+                raycaster.enabled = true;
+            }
             SetActiveMenu(activeMenu);
         }
     }
@@ -71,6 +76,7 @@ public class GameMenuManager : MonoBehaviour
 
     public void LoadScene()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.SetActiveScene(SceneManager.GetSceneAt(0));
+        SceneManager.UnloadSceneAsync(1);
     }
 }

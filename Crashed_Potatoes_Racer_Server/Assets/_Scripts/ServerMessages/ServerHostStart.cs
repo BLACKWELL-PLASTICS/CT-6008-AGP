@@ -4,7 +4,7 @@ public class ServerHostStart : ServerMessage
 {
     public string m_ServerIP { get; set; }
     public string m_ServerName { get; set; }
-    //public int m_ReqPassword { get; set; }
+    public int m_level { get; set; }
     public ServerHostStart()
     {
         Code = OpCode.SERVER_START;
@@ -20,13 +20,13 @@ public class ServerHostStart : ServerMessage
         a_writer.WriteByte((byte)Code);
         a_writer.WriteString(m_ServerIP);
         a_writer.WriteString(m_ServerName);
-        //a_writer.WriteInt(m_ReqPassword);
+        a_writer.WriteInt(m_level);
     }
     public override void Deserialize(DataStreamReader a_reader)
     {
         m_ServerIP = a_reader.ReadString().ToString();
         m_ServerName = a_reader.ReadString().ToString();
-        //m_ReqPassword = a_reader.ReadInt();
+        m_level = a_reader.ReadInt();
     }
 
     public override void RecievedOnClient()

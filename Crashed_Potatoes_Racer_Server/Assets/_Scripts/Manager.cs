@@ -35,6 +35,7 @@ public class Manager : MonoBehaviour
         ServerInfo serverInfo = new ServerInfo();
         serverInfo.m_IP = serverStart.m_ServerIP;
         serverInfo.m_Name = serverStart.m_ServerName;
+        serverInfo.m_Level = serverStart.m_level;
         m_servers.Add(serverInfo);
         Server.Instance.Broadcast(serverStart);
     }
@@ -57,6 +58,7 @@ public class Manager : MonoBehaviour
             ServerListRequest serverListRequest = new ServerListRequest();
             serverListRequest.m_ServerIP = serverInfo.m_IP;
             serverListRequest.m_ServerName = serverInfo.m_Name;
+            serverListRequest.m_level = serverInfo.m_Level;
             Server.Instance.SendToClient(a_connection, serverListRequest);
         }
     }
@@ -66,5 +68,5 @@ public class ServerInfo
 {
     public string m_IP { get; set; }
     public string m_Name { get; set; }
-
+    public int m_Level { get; set; }
 }

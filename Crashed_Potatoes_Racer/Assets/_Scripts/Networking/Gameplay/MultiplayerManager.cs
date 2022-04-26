@@ -23,6 +23,10 @@ public class MultiplayerManager : MonoBehaviour
     GameObject[] m_startPoints;
     [SerializeField]
     float m_maxTimer;
+    [SerializeField]
+    float m_startingTimer;
+    [SerializeField]
+    GameObject[] m_startUI;
 
     [SerializeField]
     GameObject[] m_seedPackets;
@@ -36,8 +40,13 @@ public class MultiplayerManager : MonoBehaviour
     Dictionary<int, int> m_mergeCars = new Dictionary<int, int>();
     Dictionary<int, int> m_demergeCars = new Dictionary<int, int>();
 
+    private float m_timer = 0;
+    private bool m_startCountdown = false;
+    private float m_startTime = 0.0f;
+
     private void Start()
     {
+        Time.timeScale = 0;
         for (int i = 0; i < m_startPoints.Length; i++)
         {
             if (PersistentInfo.Instance.m_currentPlayerNum == 1)
@@ -106,6 +115,45 @@ public class MultiplayerManager : MonoBehaviour
                 m_activeCars.Add(car);
             }
         }
+
+        NetGameCountdown netGameCountdown = new NetGameCountdown();
+        netGameCountdown.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+        netGameCountdown.m_Action = NetGameCountdown.ACTION.READY;
+        netGameCountdown.m_Count = 0;
+        Client.Instance.SendToServer(netGameCountdown);
+    }
+
+    private void Update()
+    {
+        if (PersistentInfo.Instance.m_currentPlayerNum == 1 && m_timer == 0)
+        {
+            if (PersistentInfo.Instance.m_readyCars == PersistentInfo.Instance.m_connectedUsers)
+            {
+                m_startCountdown = true;
+                m_startTime = Time.realtimeSinceStartup;
+            }
+        }
+        if (m_startCountdown)
+        {
+            m_timer = Time.realtimeSinceStartup - m_startTime;
+            if (m_timer < m_startingTimer)
+            {
+                NetGameCountdown netGameCountdown = new NetGameCountdown();
+                netGameCountdown.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+                netGameCountdown.m_Action = NetGameCountdown.ACTION.COUNTING;
+                netGameCountdown.m_Count = m_timer;
+                Client.Instance.SendToServer(netGameCountdown);
+            }
+            else
+            {
+                m_startCountdown = false;
+                NetGameCountdown netGameCountdown = new NetGameCountdown();
+                netGameCountdown.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+                netGameCountdown.m_Action = NetGameCountdown.ACTION.GO;
+                netGameCountdown.m_Count = m_timer;
+                Client.Instance.SendToServer(netGameCountdown);
+            }
+        }
     }
 
     void Awake()
@@ -126,9 +174,10 @@ public class MultiplayerManager : MonoBehaviour
         NetUtility.S_ROCKET += OnRocketServer;
         NetUtility.S_PCICKED_UP += OnPickUpServer;
         NetUtility.S_BIRD_POOP += OnBirdPoopServer;
+        NetUtility.S_GAME_COUNTDOWN += OnGameCountdownServer;
 
         //Client
-            //Moving
+        //Moving
         NetUtility.C_MAKE_MOVE += OnMoveClient;
             //Merging
         NetUtility.C_MERGE += OnMergeClient;
@@ -138,6 +187,7 @@ public class MultiplayerManager : MonoBehaviour
         NetUtility.C_ROCKET += OnRocketClient;
         NetUtility.C_PICKED_UP += OnPickUpClient;
         NetUtility.C_BIRD_POOP += OnBirdPoopClient;
+        NetUtility.C_GAME_COUNTDOWN += OnGameCountdownClient;
     }
     void UnregisterEvenets()
     {
@@ -152,6 +202,7 @@ public class MultiplayerManager : MonoBehaviour
         NetUtility.S_ROCKET -= OnRocketServer;
         NetUtility.S_PCICKED_UP -= OnPickUpServer;
         NetUtility.S_BIRD_POOP -= OnBirdPoopServer;
+        NetUtility.S_GAME_COUNTDOWN -= OnGameCountdownServer;
 
         //Client
         //Moving
@@ -164,6 +215,7 @@ public class MultiplayerManager : MonoBehaviour
         NetUtility.C_ROCKET -= OnRocketClient;
         NetUtility.C_PICKED_UP -= OnPickUpClient;
         NetUtility.C_BIRD_POOP -= OnBirdPoopClient;
+        NetUtility.C_GAME_COUNTDOWN -= OnGameCountdownClient;
     }
 
     public void MergeCars(GameObject a_car1, GameObject a_car2)
@@ -270,6 +322,11 @@ public class MultiplayerManager : MonoBehaviour
     {
         NetBirdPoop netBirdPoop = a_msg as NetBirdPoop;
         Server.Instance.Broadcast(netBirdPoop);
+    }
+    void OnGameCountdownServer(NetMessage a_msg, NetworkConnection a_connection)
+    {
+        NetGameCountdown netGameCountdown = a_msg as NetGameCountdown;
+        Server.Instance.Broadcast(netGameCountdown);
     }
 
 
@@ -580,6 +637,83 @@ public class MultiplayerManager : MonoBehaviour
         if (netBirdPoop.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
         {
             m_BirdPoop.GetComponent<BirdPoop>().ToogleActive();
+        }
+    }
+    void OnGameCountdownClient(NetMessage a_msg)
+    {
+        NetGameCountdown netGameCountdown = a_msg as NetGameCountdown;
+        switch (netGameCountdown.m_Action)
+        {
+            case NetGameCountdown.ACTION.READY:
+                PersistentInfo.Instance.m_readyCars++;
+                break;
+            case NetGameCountdown.ACTION.COUNTING:
+                if (netGameCountdown.m_Count < 1.0f)
+                {
+                    for (int i = 0; i < m_startUI.Length; i++)
+                    {
+                        m_startUI[i].SetActive(false);
+                    }
+                }
+                else if (netGameCountdown.m_Count < 2.0f)
+                {
+                    for (int i = 0; i < m_startUI.Length; i++)
+                    {
+                        if (i != 0)
+                        {
+                            m_startUI[i].SetActive(false);
+                        }
+                        else
+                        {
+                            m_startUI[i].SetActive(true);
+                        }
+                    }
+                }
+                else if (netGameCountdown.m_Count < 3.0f)
+                {
+                    for (int i = 0; i < m_startUI.Length; i++)
+                    {
+                        if (i != 1)
+                        {
+                            m_startUI[i].SetActive(false);
+                        }
+                        else
+                        {
+                            m_startUI[i].SetActive(true);
+                        }
+                    }
+                }
+                else if (netGameCountdown.m_Count < 4.0f)
+                {
+                    for (int i = 0; i < m_startUI.Length; i++)
+                    {
+                        if (i != 2)
+                        {
+                            m_startUI[i].SetActive(false);
+                        }
+                        else
+                        {
+                            m_startUI[i].SetActive(true);
+                        }
+                    }
+                }
+                break;
+            case NetGameCountdown.ACTION.GO:
+                for (int i = 0; i < m_startUI.Length; i++)
+                {
+                    if (i != 3)
+                    {
+                        m_startUI[i].SetActive(false);
+                    }
+                    else
+                    {
+                        m_startUI[i].SetActive(true);
+                    }
+                }
+                Time.timeScale = 1;
+                break;
+            default:
+                break;
         }
     }
 
