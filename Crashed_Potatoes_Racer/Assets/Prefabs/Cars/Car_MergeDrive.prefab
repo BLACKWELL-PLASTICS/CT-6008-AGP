@@ -436,10 +436,16 @@ MonoBehaviour:
   track:
     serializedVersion: 2
     m_Bits: 256
+  navMesh2:
+    serializedVersion: 2
+    m_Bits: 4096
   notTrack:
     serializedVersion: 2
     m_Bits: 512
   groundRayPoint: {fileID: 8738164446377299592}
+  frontLeftWheel: {fileID: 0}
+  frontRightWheel: {fileID: 0}
+  isStuck: 0
 --- !u!114 &6090557360942931896
 MonoBehaviour:
   m_ObjectHideFlags: 0

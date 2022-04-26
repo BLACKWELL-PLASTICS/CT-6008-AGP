@@ -15,6 +15,7 @@ public class Controller : MonoBehaviour {
     
     bool grounded;
     [SerializeField] LayerMask track;
+    [SerializeField] LayerMask navMesh2;
     [SerializeField] LayerMask notTrack;
     float groundRayLength = .5f;
     [SerializeField] Transform groundRayPoint;
@@ -111,7 +112,7 @@ public class Controller : MonoBehaviour {
         grounded = false;
         RaycastHit hit;
         // checks if driving on track
-        if (Physics.Raycast(groundRayPoint.position, -transform.up, out hit, groundRayLength, track)) {
+        if (Physics.Raycast(groundRayPoint.position, -transform.up, out hit, groundRayLength, track | navMesh2)) {
             grounded = true;
         
             transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;

@@ -9,6 +9,7 @@ public class FishScript : MonoBehaviour
 
     private GameObject[] sceneObj;
     private List<GameObject> waterInScene = new List<GameObject>();
+    private List<GameObject> oceanInScene = new List<GameObject>();
     private GameObject fish;
     private float[] turn = new float[] { -90, 0, 90 };
 
@@ -17,7 +18,11 @@ public class FishScript : MonoBehaviour
         sceneObj = FindObjectsOfType(typeof(GameObject)) as GameObject[];
         foreach(GameObject g in sceneObj)
         {
-            if(g.tag == "Water")
+            if(g.tag == "Ocean")
+            {
+                oceanInScene.Add(g);
+            }
+            else if (g.tag == "Water")
             {
                 waterInScene.Add(g);
             }
@@ -25,7 +30,19 @@ public class FishScript : MonoBehaviour
     }
     private void Update()
     {
-        if (Random.Range(0, AIManager.GetFishRandomness) < 50)
+        if (Random.Range(0, AIManager.GetFishRandomnessSea) < 50)
+        {
+            int ran = Random.Range(0, oceanInScene.Count);
+            int ranFish = Random.Range(0, 2);
+            int ranSkin = Random.Range(0, 4);
+            int ranTurn = Random.Range(0, 3);
+            fish = Instantiate(fishPrefabs[ranFish], GetRandomPoint(oceanInScene[ran]), new Quaternion(0, turn[ranTurn], 0, 0));
+            fish.GetComponentInChildren<MeshRenderer>().material = fishSkins[ranSkin];
+            fish.AddComponent<FishMovement>();
+            fish.GetComponent<FishMovement>().spawner = this;
+        }
+
+        if (Random.Range(0, AIManager.GetFishRandomnessWater) < 50)
         {
             int ran = Random.Range(0, waterInScene.Count);
             int ranFish = Random.Range(0, 2);

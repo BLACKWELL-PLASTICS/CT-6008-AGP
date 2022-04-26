@@ -32,7 +32,8 @@ public class AIManager : MonoBehaviour
     public GameObject[] boidArray;
     //fish variables
     [Header("Fish Variables")]
-    public float fishRandomness;
+    public float fishRandomnessSea;
+    public float fishRandomnessWater;
     public float fishSpeed;
     public float fishJumpTime;
     //Crab variables
@@ -61,7 +62,8 @@ public class AIManager : MonoBehaviour
     public static Transform GetBoidStart { get { return instance.boidLocation; } }
 
     //fish get/set
-    public static float GetFishRandomness { get { return instance.fishRandomness; } }
+    public static float GetFishRandomnessSea { get { return instance.fishRandomnessSea; } }
+    public static float GetFishRandomnessWater { get { return instance.fishRandomnessWater; } }
     public static float GetFishSpeed { get { return instance.fishSpeed; } }
     public static float GetFishTime { get { return instance.fishJumpTime; } }
     //crabs get/set
