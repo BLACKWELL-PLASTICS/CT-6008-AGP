@@ -5,11 +5,16 @@ using UnityEngine;
 public class MergedShootingControllerScript : MonoBehaviour
 {
     public int m_playerNum;
+    public GameObject m_gun;
 
     [SerializeField]
     bool m_active;
     [SerializeField]
     float m_turnSpeed;
+    [SerializeField]
+    GameObject m_projectile;
+    [SerializeField]
+    float m_fireForce = 100.0f;
 
     // Update is called once per frame
     void Update()
@@ -37,6 +42,7 @@ public class MergedShootingControllerScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.H))
             {
                 Debug.Log("Fire");
+                Fire();
             }
 
             GetPartToRotate(this.gameObject, 1).transform.Rotate(0, 0, horizontalRotation);
@@ -71,5 +77,44 @@ public class MergedShootingControllerScript : MonoBehaviour
         }
 
         return currentPart;
+    }
+
+    void Fire()
+    {
+        RaycastHit hit;
+        Physics.Raycast(m_gun.transform.position, m_gun.transform.right, out hit, 100.0f);
+        if (hit.transform.gameObject.name == "Player")
+        {
+            NetShoot netShoot = new NetShoot();
+            netShoot.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+            netShoot.m_Action = NetShoot.ACTION.FIRE;
+            netShoot.m_Other = hit.transform.gameObject.GetComponent<CarManagerScript>().m_playerNum;
+            netShoot.m_Force = m_fireForce;
+            netShoot.m_XPos = m_gun.transform.position.x;
+            netShoot.m_YPos = m_gun.transform.position.y;
+            netShoot.m_ZPos = m_gun.transform.position.z;
+            netShoot.m_XDir = m_gun.transform.right.x;
+            netShoot.m_YDir = m_gun.transform.right.y;
+            netShoot.m_ZDir = m_gun.transform.right.z;
+            Client.Instance.SendToServer(netShoot);
+        }
+        else
+        {
+            NetShoot netShoot = new NetShoot();
+            netShoot.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+            netShoot.m_Action = NetShoot.ACTION.FIRE;
+            netShoot.m_Other = 0;
+            netShoot.m_Force = m_fireForce;
+            netShoot.m_XPos = m_gun.transform.position.x;
+            netShoot.m_YPos = m_gun.transform.position.y;
+            netShoot.m_ZPos = m_gun.transform.position.z;
+            netShoot.m_XDir = m_gun.transform.right.x;
+            netShoot.m_YDir = m_gun.transform.right.y;
+            netShoot.m_ZDir = m_gun.transform.right.z;
+            Client.Instance.SendToServer(netShoot);
+        }
+
+        GameObject projectile = Instantiate(m_projectile, m_gun.transform.position, Quaternion.identity);
+        projectile.GetComponent<Rigidbody>().AddForce(m_gun.transform.right * m_fireForce, ForceMode.Impulse);
     }
 }

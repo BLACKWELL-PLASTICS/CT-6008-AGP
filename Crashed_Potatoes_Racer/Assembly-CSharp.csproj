@@ -144,6 +144,7 @@
     <Compile Include="Assets\_Scripts\MenuScripts\MainMenuManager.cs" />
     <Compile Include="Assets\_Scripts\MenuScripts\MainMenuPreview.cs" />
     <Compile Include="Assets\_Scripts\MenuScripts\OnlinePreview.cs" />
+    <Compile Include="Assets\_Scripts\Merging\BulletTimer.cs" />
     <Compile Include="Assets\_Scripts\Merging\CarManagerScript.cs" />
     <Compile Include="Assets\_Scripts\Merging\MergeControllerScript.cs" />
     <Compile Include="Assets\_Scripts\Merging\MergeTriggerScript.cs" />
@@ -163,11 +164,13 @@
     <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\GameGeneral\NetGameCountdown.cs" />
     <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\GameGeneral\NetMakeMove.cs" />
     <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\GameGeneral\NetStartGame.cs" />
+    <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\Menu\NetMenuCountdown.cs" />
     <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\Menu\NetOtherConnected.cs" />
     <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\Menu\NetOtherDisconnected.cs" />
     <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\Menu\NetUnwelcome.cs" />
     <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\Menu\NetWelcome.cs" />
     <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\Merging\NetMerge.cs" />
+    <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\Merging\NetShoot.cs" />
     <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\NetKeepAlive.cs" />
     <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\NetMessage.cs" />
     <Compile Include="Assets\_Scripts\Networking\Server\NetMessages\NetUtility.cs" />

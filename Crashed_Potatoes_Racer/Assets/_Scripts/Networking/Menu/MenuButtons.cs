@@ -30,6 +30,8 @@ public class MenuButtons : MonoBehaviour
     GameObject m_connectedPlayerText;
     [SerializeField]
     GameObject[] m_connectedOtherTexts;
+    [SerializeField]
+    GameObject m_readyText;
     //Henry Additions
     [SerializeField]
     private TextMeshProUGUI m_panelTitle;
@@ -37,6 +39,9 @@ public class MenuButtons : MonoBehaviour
     private Button m_activeButton;
     [SerializeField]
     private InputField m_activeInputField;
+
+    //Info
+    private bool m_isReady = false;
 
     private void Start()
     {
@@ -160,6 +165,26 @@ public class MenuButtons : MonoBehaviour
     public void OnStartGameButton()
     {
         Server.Instance.Broadcast(new NetStartGame());
+    }
+    public void OnReadyButton()
+    {
+        if (!m_isReady)
+        {
+            m_readyText.GetComponent<TextMeshPro>().text = "Unready";
+            NetMenuCountdown netMenuCountdown = new NetMenuCountdown();
+            netMenuCountdown.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+            netMenuCountdown.m_Action = NetMenuCountdown.ACTION.READY;
+            Client.Instance.SendToServer(netMenuCountdown);
+        }
+        else
+        {
+            m_readyText.GetComponent<TextMeshPro>().text = "Ready Up";
+            NetMenuCountdown netMenuCountdown = new NetMenuCountdown();
+            netMenuCountdown.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+            netMenuCountdown.m_Action = NetMenuCountdown.ACTION.UNREADY;
+            Client.Instance.SendToServer(netMenuCountdown);
+        }
+        m_isReady = !m_isReady;
     }
 
     string GetLocalIPv4()

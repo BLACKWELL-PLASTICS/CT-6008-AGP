@@ -25,6 +25,8 @@ public class MenuManager : MonoBehaviour
     GameObject[] m_connectedOtherTexts;
     [SerializeField]
     GameObject m_connectionFailedReasonText;
+    [SerializeField]
+    GameObject[] m_startUI;
     //Host Specific Fields
     [SerializeField]
     GameObject m_connectedDisconnectButton;
@@ -35,13 +37,51 @@ public class MenuManager : MonoBehaviour
     //Server List
     [SerializeField]
     GameObject m_serverList;
+    //Variables
+    [SerializeField]
+    float m_startingTimer;
     //Henry Addition
     [SerializeField]
     MainMenuManager m_mainMenuManager;
 
+    private bool m_startCountdown = false;
+    private float m_timer = 0;
+
     private void Start()
     {
         MenuClient.Instance.Initlialise(m_severAdress, 8009);
+    }
+
+    private void Update()
+    {
+        if (PersistentInfo.Instance.m_currentPlayerNum == 1 && !m_startCountdown)
+        {
+            if (PersistentInfo.Instance.m_readyCars == PersistentInfo.Instance.m_connectedUsers)
+            {
+                m_startCountdown = true;
+            }
+        }
+        if (m_startCountdown)
+        {
+            m_timer += Time.deltaTime;
+            if (m_timer < m_startingTimer)
+            {
+                NetMenuCountdown netMenuCountdown = new NetMenuCountdown();
+                netMenuCountdown.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+                netMenuCountdown.m_Action = NetMenuCountdown.ACTION.COUNTING;
+                netMenuCountdown.m_Count = m_timer;
+                Client.Instance.SendToServer(netMenuCountdown);
+            }
+            else
+            {
+                m_startCountdown = false;
+                NetMenuCountdown netMenuCountdown = new NetMenuCountdown();
+                netMenuCountdown.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+                netMenuCountdown.m_Action = NetMenuCountdown.ACTION.GO;
+                netMenuCountdown.m_Count = m_timer;
+                Client.Instance.SendToServer(netMenuCountdown);
+            }
+        }
     }
 
     void Awake()
@@ -53,6 +93,7 @@ public class MenuManager : MonoBehaviour
     {
         //Server
         NetUtility.S_WELCOME += OnWelcomeServer;
+        NetUtility.S_MENU_COUNTDOWN += OnMenuCountdownServer;
 
         //Client
         NetUtility.C_WELCOME += OnWelcomeClient;
@@ -60,6 +101,7 @@ public class MenuManager : MonoBehaviour
         NetUtility.C_OTHER_CONNECTED += OnOtherConnectedClient;
         NetUtility.C_OTHER_DISCONNECTED += OnOtherDisconnectedClient;
         NetUtility.C_START_GAME += OnStartGameClient;
+        NetUtility.C_MENU_COUNTDOWN += OnMenuCountdownClient;
 
         //Menu Client
         ServerUtility.C_SERVER_START += OnServerStart;
@@ -70,6 +112,7 @@ public class MenuManager : MonoBehaviour
     {
         //Server
         NetUtility.S_WELCOME -= OnWelcomeServer;
+        NetUtility.S_MENU_COUNTDOWN -= OnMenuCountdownServer;
 
         //Client
         NetUtility.C_WELCOME -= OnWelcomeClient;
@@ -77,6 +120,7 @@ public class MenuManager : MonoBehaviour
         NetUtility.C_OTHER_CONNECTED -= OnOtherConnectedClient;
         NetUtility.C_OTHER_DISCONNECTED -= OnOtherDisconnectedClient;
         NetUtility.C_START_GAME -= OnStartGameClient;
+        NetUtility.C_MENU_COUNTDOWN -= OnMenuCountdownClient;
 
         //Menu Client
         ServerUtility.C_SERVER_START -= OnServerStart;
@@ -112,6 +156,11 @@ public class MenuManager : MonoBehaviour
         netOtherConnected.m_CarWheels = netWelcome.m_CarWheels;
         netOtherConnected.m_CarGun = netWelcome.m_CarGun;
         Server.Instance.SendToOtherClients(a_connection, netOtherConnected);
+    }
+    void OnMenuCountdownServer(NetMessage a_msg, NetworkConnection a_connection)
+    {
+        NetMenuCountdown netMenuCountdown = a_msg as NetMenuCountdown;
+        Server.Instance.Broadcast(netMenuCountdown);
     }
 
     //Client
@@ -210,21 +259,199 @@ public class MenuManager : MonoBehaviour
 
     void OnStartGameClient(NetMessage a_msg)
     {
-        PersistentInfo.Instance.m_readyCars = 0;
-        switch (PersistentInfo.Instance.m_levelNum)
+        StartGame();
+    }
+    void OnMenuCountdownClient(NetMessage a_msg)
+    {
+        NetMenuCountdown netMenuCountdown = a_msg as NetMenuCountdown;
+        switch (netMenuCountdown.m_Action)
         {
-            case 0:
-                SceneManager.LoadScene(2);
+            case NetMenuCountdown.ACTION.READY:
+                PersistentInfo.Instance.m_readyCars++;
                 break;
-            case 1:
-                SceneManager.LoadScene(2); //change for new levels
+            case NetMenuCountdown.ACTION.UNREADY:
+                PersistentInfo.Instance.m_readyCars--;
                 break;
-            case 2:
-                SceneManager.LoadScene(2); //change for new levels
+            case NetMenuCountdown.ACTION.COUNTING:
+                if (netMenuCountdown.m_Count < 1.0f)
+                {
+                    for (int i = 0; i < m_startUI.Length; i++)
+                    {
+                        if (i != 0)
+                        {
+                            m_startUI[i].SetActive(false);
+                        }
+                        else
+                        {
+                            m_startUI[i].SetActive(true);
+                        }
+                    }
+                }
+                else if (netMenuCountdown.m_Count < 2.0f)
+                {
+                    for (int i = 0; i < m_startUI.Length; i++)
+                    {
+                        if (i != 1)
+                        {
+                            m_startUI[i].SetActive(false);
+                        }
+                        else
+                        {
+                            m_startUI[i].SetActive(true);
+                        }
+                    }
+                }
+                else if (netMenuCountdown.m_Count < 3.0f)
+                {
+                    for (int i = 0; i < m_startUI.Length; i++)
+                    {
+                        if (i != 2)
+                        {
+                            m_startUI[i].SetActive(false);
+                        }
+                        else
+                        {
+                            m_startUI[i].SetActive(true);
+                        }
+                    }
+                }
+                else if (netMenuCountdown.m_Count < 4.0f)
+                {
+                    for (int i = 0; i < m_startUI.Length; i++)
+                    {
+                        if (i != 3)
+                        {
+                            m_startUI[i].SetActive(false);
+                        }
+                        else
+                        {
+                            m_startUI[i].SetActive(true);
+                        }
+                    }
+                }
+                else if (netMenuCountdown.m_Count < 5.0f)
+                {
+                    for (int i = 0; i < m_startUI.Length; i++)
+                    {
+                        if (i != 4)
+                        {
+                            m_startUI[i].SetActive(false);
+                        }
+                        else
+                        {
+                            m_startUI[i].SetActive(true);
+                        }
+                    }
+                }
+                else if (netMenuCountdown.m_Count < 6.0f)
+                {
+                    for (int i = 0; i < m_startUI.Length; i++)
+                    {
+                        if (i != 5)
+                        {
+                            m_startUI[i].SetActive(false);
+                        }
+                        else
+                        {
+                            m_startUI[i].SetActive(true);
+                        }
+                    }
+                }
+                else if (netMenuCountdown.m_Count < 7.0f)
+                {
+                    for (int i = 0; i < m_startUI.Length; i++)
+                    {
+                        if (i != 6)
+                        {
+                            m_startUI[i].SetActive(false);
+                        }
+                        else
+                        {
+                            m_startUI[i].SetActive(true);
+                        }
+                    }
+                }
+                else if (netMenuCountdown.m_Count < 8.0f)
+                {
+                    for (int i = 0; i < m_startUI.Length; i++)
+                    {
+                        if (i != 7)
+                        {
+                            m_startUI[i].SetActive(false);
+                        }
+                        else
+                        {
+                            m_startUI[i].SetActive(true);
+                        }
+                    }
+                }
+                else if (netMenuCountdown.m_Count < 9.0f)
+                {
+                    for (int i = 0; i < m_startUI.Length; i++)
+                    {
+                        if (i != 8)
+                        {
+                            m_startUI[i].SetActive(false);
+                        }
+                        else
+                        {
+                            m_startUI[i].SetActive(true);
+                        }
+                    }
+                }
+                else if (netMenuCountdown.m_Count < 10.0f)
+                {
+                    for (int i = 0; i < m_startUI.Length; i++)
+                    {
+                        if (i != 9)
+                        {
+                            m_startUI[i].SetActive(false);
+                        }
+                        else
+                        {
+                            m_startUI[i].SetActive(true);
+                        }
+                    }
+                }
+                else if (netMenuCountdown.m_Count < 11.0f)
+                {
+                    for (int i = 0; i < m_startUI.Length; i++)
+                    {
+                        if (i != 10)
+                        {
+                            m_startUI[i].SetActive(false);
+                        }
+                        else
+                        {
+                            m_startUI[i].SetActive(true);
+                        }
+                    }
+                }
+                break;
+            case NetMenuCountdown.ACTION.GO:
+                for (int i = 0; i < m_startUI.Length; i++)
+                {
+                    if (i != 10)
+                    {
+                        m_startUI[i].SetActive(false);
+                    }
+                    else
+                    {
+                        m_startUI[i].SetActive(true);
+                    }
+                }
+                for (int i = 0; i < m_startUI.Length; i++)
+                {
+                    Destroy(m_startUI[i]);
+                    m_startUI[i] = null;
+                }
+                m_startUI = new GameObject[0];
+                StartGame();
+                break;
+            default:
                 break;
         }
     }
-
 
 
     //Menu Client
@@ -251,6 +478,22 @@ public class MenuManager : MonoBehaviour
         Client.Instance.Initlialise(a_adress, 8008);
         //m_connectingPanel.SetActive(true);
         //m_serversPanel.SetActive(false);
+    }
+    public void StartGame()
+    {
+        PersistentInfo.Instance.m_readyCars = 0;
+        switch (PersistentInfo.Instance.m_levelNum)
+        {
+            case 0:
+                SceneManager.LoadScene(2);
+                break;
+            case 1:
+                SceneManager.LoadScene(2); //change for new levels
+                break;
+            case 2:
+                SceneManager.LoadScene(2); //change for new levels
+                break;
+        }
     }
 
     private void OnDestroy()

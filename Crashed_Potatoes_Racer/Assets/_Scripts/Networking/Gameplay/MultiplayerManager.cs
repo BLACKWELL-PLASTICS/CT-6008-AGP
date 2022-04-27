@@ -36,6 +36,8 @@ public class MultiplayerManager : MonoBehaviour
     GameObject m_rocket;
     [SerializeField]
     GameObject m_BirdPoop;
+    [SerializeField]
+    GameObject m_projectile;
 
     Dictionary<int, int> m_mergeCars = new Dictionary<int, int>();
     Dictionary<int, int> m_demergeCars = new Dictionary<int, int>();
@@ -158,6 +160,7 @@ public class MultiplayerManager : MonoBehaviour
 
     void Awake()
     {
+        Time.timeScale = 0;
         RegisterEvenets();
     }
 
@@ -168,26 +171,31 @@ public class MultiplayerManager : MonoBehaviour
         NetUtility.S_MAKE_MOVE += OnMoveServer;
             //Merging
         NetUtility.S_MERGE += OnMergeServer;
+        NetUtility.S_SHOOT += OnShootServer;
             //Power Ups
         NetUtility.S_WALL += OnObstacleServer;
         NetUtility.S_GROW += OnSizeIncreaseServer;
         NetUtility.S_ROCKET += OnRocketServer;
         NetUtility.S_PCICKED_UP += OnPickUpServer;
         NetUtility.S_BIRD_POOP += OnBirdPoopServer;
+            //Timer
         NetUtility.S_GAME_COUNTDOWN += OnGameCountdownServer;
 
         //Client
-        //Moving
+            //Moving
         NetUtility.C_MAKE_MOVE += OnMoveClient;
             //Merging
         NetUtility.C_MERGE += OnMergeClient;
+        NetUtility.C_SHOOT += OnShootClient;
             //Power Ups
         NetUtility.C_WALL += OnObstacleClient;
         NetUtility.C_GROW += OnSizeIncreaseClient;
         NetUtility.C_ROCKET += OnRocketClient;
         NetUtility.C_PICKED_UP += OnPickUpClient;
         NetUtility.C_BIRD_POOP += OnBirdPoopClient;
+            //Timer
         NetUtility.C_GAME_COUNTDOWN += OnGameCountdownClient;
+
     }
     void UnregisterEvenets()
     {
@@ -196,25 +204,29 @@ public class MultiplayerManager : MonoBehaviour
         NetUtility.S_MAKE_MOVE -= OnMoveServer;
             //Merging
         NetUtility.S_MERGE -= OnMergeServer;
+        NetUtility.S_SHOOT -= OnShootServer;
             //Power Ups
         NetUtility.S_WALL -= OnObstacleServer;
         NetUtility.S_GROW -= OnSizeIncreaseServer;
         NetUtility.S_ROCKET -= OnRocketServer;
         NetUtility.S_PCICKED_UP -= OnPickUpServer;
         NetUtility.S_BIRD_POOP -= OnBirdPoopServer;
+            //Timer
         NetUtility.S_GAME_COUNTDOWN -= OnGameCountdownServer;
 
         //Client
-        //Moving
+            //Moving
         NetUtility.C_MAKE_MOVE -= OnMoveClient;
             //Merging
         NetUtility.C_MERGE -= OnMergeClient;
+        NetUtility.C_SHOOT -= OnShootClient;
             //Power Ups
         NetUtility.C_WALL -= OnObstacleClient;
         NetUtility.C_GROW -= OnSizeIncreaseClient;
         NetUtility.C_ROCKET -= OnRocketClient;
         NetUtility.C_PICKED_UP -= OnPickUpClient;
         NetUtility.C_BIRD_POOP -= OnBirdPoopClient;
+            //Timer
         NetUtility.C_GAME_COUNTDOWN -= OnGameCountdownClient;
     }
 
@@ -328,6 +340,12 @@ public class MultiplayerManager : MonoBehaviour
         NetGameCountdown netGameCountdown = a_msg as NetGameCountdown;
         Server.Instance.Broadcast(netGameCountdown);
     }
+    void OnShootServer(NetMessage a_msg, NetworkConnection a_connection)
+    {
+        NetShoot netShoot = a_msg as NetShoot;
+        Server.Instance.Broadcast(netShoot);
+    }
+
 
 
     //Client
@@ -647,15 +665,11 @@ public class MultiplayerManager : MonoBehaviour
             case NetGameCountdown.ACTION.READY:
                 PersistentInfo.Instance.m_readyCars++;
                 break;
+            case NetGameCountdown.ACTION.UNREADY:
+                PersistentInfo.Instance.m_readyCars--;
+                break;
             case NetGameCountdown.ACTION.COUNTING:
                 if (netGameCountdown.m_Count < 1.0f)
-                {
-                    for (int i = 0; i < m_startUI.Length; i++)
-                    {
-                        m_startUI[i].SetActive(false);
-                    }
-                }
-                else if (netGameCountdown.m_Count < 2.0f)
                 {
                     for (int i = 0; i < m_startUI.Length; i++)
                     {
@@ -669,7 +683,7 @@ public class MultiplayerManager : MonoBehaviour
                         }
                     }
                 }
-                else if (netGameCountdown.m_Count < 3.0f)
+                else if (netGameCountdown.m_Count < 2.0f)
                 {
                     for (int i = 0; i < m_startUI.Length; i++)
                     {
@@ -683,7 +697,7 @@ public class MultiplayerManager : MonoBehaviour
                         }
                     }
                 }
-                else if (netGameCountdown.m_Count < 4.0f)
+                else if (netGameCountdown.m_Count < 3.0f)
                 {
                     for (int i = 0; i < m_startUI.Length; i++)
                     {
@@ -697,11 +711,25 @@ public class MultiplayerManager : MonoBehaviour
                         }
                     }
                 }
+                else if (netGameCountdown.m_Count < 4.0f)
+                {
+                    for (int i = 0; i < m_startUI.Length; i++)
+                    {
+                        if (i != 3)
+                        {
+                            m_startUI[i].SetActive(false);
+                        }
+                        else
+                        {
+                            m_startUI[i].SetActive(true);
+                        }
+                    }
+                }
                 break;
             case NetGameCountdown.ACTION.GO:
                 for (int i = 0; i < m_startUI.Length; i++)
                 {
-                    if (i != 3)
+                    if (i != 4)
                     {
                         m_startUI[i].SetActive(false);
                     }
@@ -710,12 +738,30 @@ public class MultiplayerManager : MonoBehaviour
                         m_startUI[i].SetActive(true);
                     }
                 }
+                for (int i = 0; i < m_startUI.Length; i++)
+                {
+                    Destroy(m_startUI[i]);
+                    m_startUI[i] = null;
+                }
+                m_startUI = new GameObject[0];
                 Time.timeScale = 1;
                 break;
             default:
                 break;
         }
     }
+    void OnShootClient(NetMessage a_msg)
+    {
+        NetShoot netShoot = a_msg as NetShoot;
+        if (netShoot.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
+        {
+            Vector3 spawnPos = new Vector3(netShoot.m_XPos, netShoot.m_YPos, netShoot.m_ZPos);
+            Vector3 spawnDir = new Vector3(netShoot.m_XDir, netShoot.m_YDir, netShoot.m_ZDir);
+            GameObject projectile = Instantiate(m_projectile, spawnPos, Quaternion.identity);
+            projectile.GetComponent<Rigidbody>().AddForce(spawnDir * netShoot.m_Force, ForceMode.Impulse);
+        }
+    }
+
 
     private void OnDestroy()
     {

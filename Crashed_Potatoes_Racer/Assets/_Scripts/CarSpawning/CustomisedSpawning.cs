@@ -90,12 +90,12 @@ public class CustomisedSpawning : MonoBehaviour
             shaftLower.transform.parent = basePlate.transform;
             shaftUpper.transform.parent = shaftLower.transform;
             m_selectedGun.transform.parent = shaftUpper.transform;
+
+            gunbase.GetComponent<MergedShootingControllerScript>().m_gun = m_selectedGun;
         }
         else
         {
             Destroy(gunbase);
         }
-
-        Destroy(this);
     }
 }

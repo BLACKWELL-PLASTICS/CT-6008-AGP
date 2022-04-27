@@ -7,7 +7,8 @@ public class NetGameCountdown : NetMessage
     {
         READY = 1,
         COUNTING = 2,
-        GO = 3
+        GO = 3,
+        UNREADY = 4
     }
 
     public int m_Player { get; set; }

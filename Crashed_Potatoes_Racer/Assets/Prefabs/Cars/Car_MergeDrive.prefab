@@ -15,6 +15,8 @@ MonoBehaviour:
   m_playerNum: 0
   m_active: 0
   m_turnSpeed: 100
+  m_projectile: {fileID: 8848499802267235854, guid: 62d6897405b27d54fb2d4df361870ef3,
+    type: 3}
 --- !u!114 &6068852085129075717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,6 +32,8 @@ MonoBehaviour:
   m_playerNum: 0
   m_active: 0
   m_turnSpeed: 100
+  m_projectile: {fileID: 8848499802267235854, guid: 62d6897405b27d54fb2d4df361870ef3,
+    type: 3}
 --- !u!114 &6091745079718688447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,6 +49,8 @@ MonoBehaviour:
   m_playerNum: 0
   m_active: 0
   m_turnSpeed: 100
+  m_projectile: {fileID: 8848499802267235854, guid: 62d6897405b27d54fb2d4df361870ef3,
+    type: 3}
 --- !u!114 &5970556153289106808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,6 +66,8 @@ MonoBehaviour:
   m_playerNum: 0
   m_active: 0
   m_turnSpeed: 100
+  m_projectile: {fileID: 8848499802267235854, guid: 62d6897405b27d54fb2d4df361870ef3,
+    type: 3}
 --- !u!114 &4013970250795991238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,6 +83,8 @@ MonoBehaviour:
   m_playerNum: 0
   m_active: 0
   m_turnSpeed: 100
+  m_projectile: {fileID: 8848499802267235854, guid: 62d6897405b27d54fb2d4df361870ef3,
+    type: 3}
 --- !u!114 &3236829067922031807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,6 +100,8 @@ MonoBehaviour:
   m_playerNum: 0
   m_active: 0
   m_turnSpeed: 100
+  m_projectile: {fileID: 8848499802267235854, guid: 62d6897405b27d54fb2d4df361870ef3,
+    type: 3}
 --- !u!114 &3189848901004252050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,6 +117,8 @@ MonoBehaviour:
   m_playerNum: 0
   m_active: 0
   m_turnSpeed: 100
+  m_projectile: {fileID: 8848499802267235854, guid: 62d6897405b27d54fb2d4df361870ef3,
+    type: 3}
 --- !u!114 &2683315103002810148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,6 +134,8 @@ MonoBehaviour:
   m_playerNum: 0
   m_active: 0
   m_turnSpeed: 100
+  m_projectile: {fileID: 8848499802267235854, guid: 62d6897405b27d54fb2d4df361870ef3,
+    type: 3}
 --- !u!1 &8738164445598252071
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,6 +456,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   groundRayPoint: {fileID: 8738164446377299592}
+  frontLeftWheel: {fileID: 0}
+  frontRightWheel: {fileID: 0}
+  isStuck: 0
 --- !u!114 &6090557360942931896
 MonoBehaviour:
   m_ObjectHideFlags: 0
