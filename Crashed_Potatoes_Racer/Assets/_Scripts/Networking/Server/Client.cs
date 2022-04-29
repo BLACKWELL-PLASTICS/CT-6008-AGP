@@ -97,6 +97,7 @@ public class Client : MonoBehaviour
                 netWelcome.m_CarWheels = PersistentInfo.Instance.m_carDesign.m_wheelChoice;
                 netWelcome.m_CarGun = PersistentInfo.Instance.m_carDesign.m_gunChoice;
                 SendToServer(netWelcome);
+                Debug.Log("Connected to Game Server");
             }
             else if (cmd == NetworkEvent.Type.Data)
             {

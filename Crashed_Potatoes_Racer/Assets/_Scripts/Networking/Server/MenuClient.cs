@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Networking.Transport;
 using UnityEngine;
+using System.Linq;
+using System.Net;
 
 public class MenuClient : MonoBehaviour
 {
     public static MenuClient Instance { set; get; }
+    public bool m_IsHost { get; set; }
     void Awake()
     {
         Instance = this;
@@ -43,6 +46,12 @@ public class MenuClient : MonoBehaviour
     }
     public void OnDestroy()
     {
+        if (m_IsHost)
+        {
+            ServerHostEnd serverHostEnd = new ServerHostEnd();
+            serverHostEnd.m_ServerIP = GetLocalIPv4();
+            MenuClient.Instance.SendToServer(serverHostEnd);
+        }
         Shutdown();
     }
 
@@ -112,5 +121,10 @@ public class MenuClient : MonoBehaviour
     private void OnKeepAlive(ServerMessage a_msg)
     {
         SendToServer(a_msg);
+    }
+
+    string GetLocalIPv4()
+    {
+        return Dns.GetHostEntry(Dns.GetHostName()).AddressList.First(f => f.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork).ToString();
     }
 }

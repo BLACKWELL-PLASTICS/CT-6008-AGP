@@ -12,7 +12,7 @@ public class CustomisedSpawning : MonoBehaviour
     GameObject m_selectedBody;
     GameObject m_selectedWheels;
     GameObject m_selectedGun;
-    
+
     public void Spawn(int a_carBody, int a_carWheels, int a_carGun)
     {
         for (int i = 0; i < m_cars.Length; i++)
@@ -90,6 +90,8 @@ public class CustomisedSpawning : MonoBehaviour
             shaftLower.transform.parent = basePlate.transform;
             shaftUpper.transform.parent = shaftLower.transform;
             m_selectedGun.transform.parent = shaftUpper.transform;
+
+            gunbase.GetComponent<MergedShootingControllerScript>().m_gun = m_selectedGun;
         }
         else
         {

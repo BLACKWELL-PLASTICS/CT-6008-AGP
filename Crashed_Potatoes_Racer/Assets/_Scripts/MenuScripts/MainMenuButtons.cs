@@ -14,8 +14,12 @@ public class MainMenuButtons : MonoBehaviour
     GameObject m_connectedPlayerText;
     [SerializeField]
     GameObject[] m_connectedOtherTexts;
+    [SerializeField]
+    GameObject m_readyText;
 
     private InputField m_activeInputField;
+
+    private bool m_isReady = false;
 
     private void Start()
     {
@@ -63,6 +67,7 @@ public class MainMenuButtons : MonoBehaviour
         Server.Instance.Initlialise(8008);
         Client.Instance.m_clientName = PersistentInfo.Instance.m_currentPlayerName;
         Client.Instance.Initlialise("127.0.0.1", 8008);
+        MenuClient.Instance.m_IsHost = true;
     }
 
     public void OnConnectButton(GameObject a_inputField)
@@ -102,11 +107,32 @@ public class MainMenuButtons : MonoBehaviour
         {
             text.GetComponent<UnityEngine.UI.Text>().text = "Empty";
         }
+        MenuClient.Instance.m_IsHost = false;
     }
 
     public void OnStartGameButton()
     {
         Server.Instance.Broadcast(new NetStartGame());
+    }
+    public void OnReadyButton()
+    {
+        if (!m_isReady)
+        {
+            m_readyText.GetComponent<TMPro.TextMeshProUGUI>().text = "Unready";
+            NetMenuCountdown netMenuCountdown = new NetMenuCountdown();
+            netMenuCountdown.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+            netMenuCountdown.m_Action = NetMenuCountdown.ACTION.READY;
+            Client.Instance.SendToServer(netMenuCountdown);
+        }
+        else
+        {
+            m_readyText.GetComponent<TMPro.TextMeshProUGUI>().text = "Ready Up";
+            NetMenuCountdown netMenuCountdown = new NetMenuCountdown();
+            netMenuCountdown.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+            netMenuCountdown.m_Action = NetMenuCountdown.ACTION.UNREADY;
+            Client.Instance.SendToServer(netMenuCountdown);
+        }
+        m_isReady = !m_isReady;
     }
 
     string GetLocalIPv4()
@@ -114,13 +140,13 @@ public class MainMenuButtons : MonoBehaviour
         return Dns.GetHostEntry(Dns.GetHostName()).AddressList.First(f => f.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork).ToString();
     }
 
-    private void OnDestroy()
-    {
-        if (PersistentInfo.Instance.m_currentPlayerNum == 1)
-        {
-            ServerHostEnd serverHostEnd = new ServerHostEnd();
-            serverHostEnd.m_ServerIP = GetLocalIPv4();
-            MenuClient.Instance.SendToServer(serverHostEnd);
-        }
-    }
+    //private void OnDestroy()
+    //{
+    //    if (m_isHost)
+    //    {
+    //        ServerHostEnd serverHostEnd = new ServerHostEnd();
+    //        serverHostEnd.m_ServerIP = GetLocalIPv4();
+    //        MenuClient.Instance.SendToServer(serverHostEnd);
+    //    }
+    //}
 }

@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿//////////////////////////////////////////////////
+/// Created:                                   ///
+/// Author:                                    ///
+/// Edited By: Iain Farlow                     ///
+/// Last Edited: 29/04/2022                    ///
+//////////////////////////////////////////////////
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,9 +25,21 @@ public class GumScript : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "Terrain") { return; }
+        //if (other.gameObject.tag == "Terrain") { return; } Old
+
+        //Added by Iain
+        if (other.gameObject.tag != "Player") { return; } 
+        if (other.gameObject.GetComponent<Controller>() != null)
+        {
+            other.gameObject.GetComponent<Controller>().isStuck = true;
+        }
+        else
+        {
+            other.gameObject.AddComponent<GumOnlineVisualTrigger>();
+        }
+        //Added by Iain ~
+
         other.gameObject.transform.Find("Smoke").GetComponent<ParticleSystem>().Play();
-        other.gameObject.GetComponent<Controller>().isStuck = true;
         counter++;
     }
 

@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿//////////////////////////////////////////////////
+/// Created:                                   ///
+/// Author:                                    ///
+/// Edited By: Iain Farlow                     ///
+/// Last Edited: 29/04/2022                    ///
+//////////////////////////////////////////////////
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -40,13 +47,21 @@ public class InventoryScript : MonoBehaviour
                     //Added by Iain
                     //Bird Poop start package
                     NetBirdPoop netBirdPoop = new NetBirdPoop();
-                    netBirdPoop.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+                    netBirdPoop.m_Player = GetComponent<CarManagerScript>().m_playerNum;
                     Client.Instance.SendToServer(netBirdPoop);
                     //Added by Iain ~
                     break;
                 case SeedPacketScript.POWERUPS.Boost:
                     GetComponent<Controller>().Boost();
                     transform.Find("Boost").GetComponent<ParticleSystem>().Play();
+                    //Added by Iain
+                    //Boost start package
+                    NetBoost netBoost = new NetBoost();
+                    netBoost.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+                    netBoost.m_CarNum = GetComponent<CarManagerScript>().m_playerNum;
+                    netBoost.m_Action = NetBoost.ACTION.START;
+                    Client.Instance.SendToServer(netBoost);
+                    //Added by Iain ~
                     break;
                 case SeedPacketScript.POWERUPS.Gum:
                     gameObject.GetComponent<Gum>().SpawnGO();
