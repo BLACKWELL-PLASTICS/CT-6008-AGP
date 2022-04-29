@@ -12,7 +12,7 @@ public class InRange : Node
     public override NodeState Update()
     {
         Debug.DrawRay(owner.transform.position, owner.transform.TransformDirection(Vector3.forward) * AIManager.GetDetectionRay, Color.red);
-        if (Physics.Raycast(owner.transform.position, owner.transform.TransformDirection(Vector3.forward), out RaycastHit hit, AIManager.GetDetectionRay, LayerMask.GetMask("Player")))
+        if (VisionCheck() == true)
         {
             Debug.Log("AI - forward player in range");
             Debug.DrawRay(owner.transform.position, owner.transform.TransformDirection(Vector3.forward) * AIManager.GetDetectionRay, Color.green);
@@ -22,23 +22,25 @@ public class InRange : Node
         return NodeState.FAILURE;
     }
 
-    //private Transform FindClosestCar()
-    //{
-    //    GameObject[] gos;
-    //    gos = GameObject.FindGameObjectsWithTag("Player");
-    //    GameObject closest = null;
-    //    float distance = Mathf.Infinity;
-    //    Vector3 position = owner.transform.position;
-    //    foreach (GameObject go in gos)
-    //    {
-    //        Vector3 diff = go.transform.position - position;
-    //        float curDistance = diff.sqrMagnitude;
-    //        if (curDistance < distance && go != owner.gameObject)
-    //        {
-    //            closest = go;
-    //            distance = curDistance;
-    //        }
-    //    }
-    //    return closest.transform;
-    //}
+    private bool VisionCheck()
+    {
+        Collider[] targetsInVR = Physics.OverlapSphere(owner.transform.position, AIManager.GetDetectionRay, LayerMask.GetMask("Player"));
+
+        for (int i = 0; i < targetsInVR.Length; i++)
+        {
+            Transform target = targetsInVR[i].transform;
+            Vector3 dirToTarget = (target.position - owner.transform.position).normalized;
+            if (Vector3.Angle(owner.transform.TransformDirection(Vector3.forward), dirToTarget) < AIManager.GetDetectionAngle)
+            {
+                float dstToTarget = Vector3.Distance(target.position, owner.transform.position);
+                if (!Physics.Raycast(owner.transform.position, dirToTarget, dstToTarget, LayerMask.GetMask("OffNav"))) //stuff like cave or walls or volcano
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
 }

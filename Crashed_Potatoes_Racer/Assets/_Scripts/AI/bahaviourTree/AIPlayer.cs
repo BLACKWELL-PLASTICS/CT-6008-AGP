@@ -27,7 +27,8 @@ public class AIPlayer : MonoBehaviour
     public Vector3 originalPos;
     public Vector3 currentPos;
     public Vector3 originalScale;
-    public int random;
+    public int randomInOut;
+    public int randomSecret;
 
     [SerializeField]
     private float speed = 0;
@@ -35,11 +36,13 @@ public class AIPlayer : MonoBehaviour
     private float accel = 0;
     [SerializeField]
     private float speedDecrease = 0;
+    private float speedIncrease = 0;
 
     private BT bahaviourTree;
     private void Start()
     {
-        random = Random.Range(0, 2);
+        randomInOut = Random.Range(0, 2);
+        randomSecret = Random.Range(0, 6);
 
         target = AIManager.GetWaypoints[0];
 
@@ -59,7 +62,9 @@ public class AIPlayer : MonoBehaviour
         currentPos = transform.position;
 
         //car movement
-        speedDecrease = Random.Range(0.7f, 1.7f);
+        speedDecrease = Random.Range(0.7f, 2f);
+        speedIncrease = Random.Range(0.17f, AIManager.GetIncrease);
+        
     }
 
     private void Update()
@@ -87,8 +92,8 @@ public class AIPlayer : MonoBehaviour
 
     public void IncreaseSpeed()
     {
-        accel = Mathf.Lerp(accel, AIManager.GetMaxAcc, Time.deltaTime * AIManager.GetIncrease);
-        speed = Mathf.Lerp(speed, AIManager.GetMaxSpeed, Time.deltaTime * AIManager.GetIncrease);
+        accel = Mathf.Lerp(accel, AIManager.GetMaxAcc, Time.deltaTime * speedIncrease);
+        speed = Mathf.Lerp(speed, AIManager.GetMaxSpeed, Time.deltaTime * speedIncrease);
 
     }
 
