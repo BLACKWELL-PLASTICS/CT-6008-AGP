@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿//////////////////////////////////////////////////
+/// Created:                                   ///
+/// Author:                                    ///
+/// Edited By: Iain Farlow                     ///
+/// Last Edited: 29/04/2022                    ///
+//////////////////////////////////////////////////
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using XInputDotNetPure;
@@ -36,18 +43,36 @@ public class Controller : MonoBehaviour {
     void Start() {
         // unparent sphere to smooth movement
         rb.transform.parent = null;
-        frontLeftWheel = GameObject.FindGameObjectWithTag("FLW").GetComponent<Transform>();
-        frontRightWheel = GameObject.FindGameObjectWithTag("FRW").GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update() {
+        if (frontLeftWheel == null)
+        {
+            frontLeftWheel = GameObject.FindGameObjectWithTag("FLW").GetComponent<Transform>();
+        }
+        if (frontRightWheel == null)
+        {
+            frontRightWheel = GameObject.FindGameObjectWithTag("FRW").GetComponent<Transform>();
+        }
+
         // BOOSTING CODE
         if (isBoosting == true && boostTimer <= 3f) {
             boostTimer += Time.deltaTime;
             forwardAcceleration = 6500f;
             maxSpeed = 85f;
         } else {
+            //Added by Iain
+            //Boost start package
+            if (isBoosting == true)
+            {
+                NetBoost netBoost = new NetBoost();
+                netBoost.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+                netBoost.m_CarNum = GetComponent<CarManagerScript>().m_playerNum;
+                netBoost.m_Action = NetBoost.ACTION.END;
+                Client.Instance.SendToServer(netBoost);
+            }
+            //Added by Iain ~
             isBoosting = false;
             transform.Find("Boost").GetComponent<ParticleSystem>().Stop();
             boostTimer = 0f;
@@ -73,12 +98,12 @@ public class Controller : MonoBehaviour {
         // set speed input depending on movement
         if ((Input.GetButton("A_Button") || Input.GetKey(KeyCode.W)) && speedInput != maxSpeed) {
             speedInput = 1 * forwardAcceleration;
-            GamePad.SetVibration(index, 0.2f, 0.2f);
+            GamePad.SetVibration(index, 0.1f, 0.1f);
         } else if ((Input.GetButton("B_Button") || Input.GetKey(KeyCode.S)) && speedInput != maxSpeed) {
             speedInput = -1 * reverseAcceleration;
-            GamePad.SetVibration(index, 0.1f, 0.1f);
+            GamePad.SetVibration(index, 0.05f, 0.05f);
         } else {
-            GamePad.SetVibration(index, 0f, 0f);
+            GamePad.SetVibration(index, 0.01f, 0.01f);
 
         }
 

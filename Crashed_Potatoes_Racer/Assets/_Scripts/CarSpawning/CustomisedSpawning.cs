@@ -12,7 +12,7 @@ public class CustomisedSpawning : MonoBehaviour
     GameObject m_selectedBody;
     GameObject m_selectedWheels;
     GameObject m_selectedGun;
-    
+
     public void Spawn(int a_carBody, int a_carWheels, int a_carGun)
     {
         for (int i = 0; i < m_cars.Length; i++)
@@ -97,5 +97,7 @@ public class CustomisedSpawning : MonoBehaviour
         {
             Destroy(gunbase);
         }
+
+        Destroy(this);
     }
 }

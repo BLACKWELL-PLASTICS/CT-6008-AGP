@@ -10,11 +10,13 @@ public class MergedTimer : MonoBehaviour
     bool m_drivingVarient;
 
     float m_timer;
+    GameObject m_timerBar;
 
     // Start is called before the first frame update
     void Start()
     {
         m_timer = m_maxTimer;
+        m_timerBar = GameObject.Find("MergeSlider");
     }
 
     // Update is called once per frame
@@ -23,6 +25,7 @@ public class MergedTimer : MonoBehaviour
         if (m_timer > 0)
         {
             m_timer -= Time.deltaTime;
+            m_timerBar.GetComponent<UnityEngine.UI.Slider>().value = m_timer / m_maxTimer;
         }
         else
         {
@@ -56,6 +59,8 @@ public class MergedTimer : MonoBehaviour
                 netMerge.m_WRot = 0;
                 Client.Instance.SendToServer(netMerge);
             }
+            m_timerBar.GetComponent<UnityEngine.UI.Slider>().value = 1;
+            m_timerBar.SetActive(false);
             Destroy(this);
         }
     }

@@ -29,6 +29,8 @@ public class MultiplayerManager : MonoBehaviour
     GameObject[] m_startUI;
 
     [SerializeField]
+    GameObject m_timerSlider;
+    [SerializeField]
     GameObject[] m_seedPackets;
     [SerializeField]
     GameObject m_obstacle;
@@ -36,6 +38,8 @@ public class MultiplayerManager : MonoBehaviour
     GameObject m_rocket;
     [SerializeField]
     GameObject m_BirdPoop;
+    [SerializeField]
+    GameObject m_Gum;
     [SerializeField]
     GameObject m_projectile;
 
@@ -61,6 +65,7 @@ public class MultiplayerManager : MonoBehaviour
                     if (i == PersistentInfo.Instance.m_currentPlayerNum - 1)
                     {
                         car = Instantiate(m_DivableCar, pos, rot);
+                        //car = Instantiate(m_mergedShootPrefab, pos, rot);
                     }
                     else
                     {
@@ -178,7 +183,9 @@ public class MultiplayerManager : MonoBehaviour
         NetUtility.S_ROCKET += OnRocketServer;
         NetUtility.S_PCICKED_UP += OnPickUpServer;
         NetUtility.S_BIRD_POOP += OnBirdPoopServer;
-            //Timer
+        NetUtility.S_GUM += OnGumServer;
+        NetUtility.S_BOOST += OnBoostServer;
+        //Timer
         NetUtility.S_GAME_COUNTDOWN += OnGameCountdownServer;
 
         //Client
@@ -193,7 +200,9 @@ public class MultiplayerManager : MonoBehaviour
         NetUtility.C_ROCKET += OnRocketClient;
         NetUtility.C_PICKED_UP += OnPickUpClient;
         NetUtility.C_BIRD_POOP += OnBirdPoopClient;
-            //Timer
+        NetUtility.C_GUM += OnGumClient;
+        NetUtility.C_BOOST += OnBoostClient;
+        //Timer
         NetUtility.C_GAME_COUNTDOWN += OnGameCountdownClient;
 
     }
@@ -211,7 +220,9 @@ public class MultiplayerManager : MonoBehaviour
         NetUtility.S_ROCKET -= OnRocketServer;
         NetUtility.S_PCICKED_UP -= OnPickUpServer;
         NetUtility.S_BIRD_POOP -= OnBirdPoopServer;
-            //Timer
+        NetUtility.S_GUM -= OnGumServer;
+        NetUtility.S_BOOST -= OnBoostServer;
+        //Timer
         NetUtility.S_GAME_COUNTDOWN -= OnGameCountdownServer;
 
         //Client
@@ -226,7 +237,9 @@ public class MultiplayerManager : MonoBehaviour
         NetUtility.C_ROCKET -= OnRocketClient;
         NetUtility.C_PICKED_UP -= OnPickUpClient;
         NetUtility.C_BIRD_POOP -= OnBirdPoopClient;
-            //Timer
+        NetUtility.C_GUM -= OnGumClient;
+        NetUtility.C_BOOST -= OnBoostClient;
+        //Timer
         NetUtility.C_GAME_COUNTDOWN -= OnGameCountdownClient;
     }
 
@@ -345,7 +358,16 @@ public class MultiplayerManager : MonoBehaviour
         NetShoot netShoot = a_msg as NetShoot;
         Server.Instance.Broadcast(netShoot);
     }
-
+    void OnGumServer(NetMessage a_msg, NetworkConnection a_connection)
+    {
+        NetGum netGum = a_msg as NetGum;
+        Server.Instance.Broadcast(netGum);
+    }
+    void OnBoostServer(NetMessage a_msg, NetworkConnection a_connection)
+    {
+        NetBoost netBoost = a_msg as NetBoost;
+        Server.Instance.Broadcast(netBoost);
+    }
 
 
     //Client
@@ -414,6 +436,7 @@ public class MultiplayerManager : MonoBehaviour
 
                 if (netMerge.m_Player == PersistentInfo.Instance.m_currentPlayerNum)
                 {
+                    m_timerSlider.SetActive(true);
                     GameObject car = Instantiate(m_mergedDrivePrefab, pos, Quaternion.identity);
                     car.transform.eulerAngles = midDir;
                     car.transform.up = Vector3.up;
@@ -427,6 +450,7 @@ public class MultiplayerManager : MonoBehaviour
                 }
                 else if (netMerge.m_Other == PersistentInfo.Instance.m_currentPlayerNum)
                 {
+                    m_timerSlider.SetActive(true);
                     GameObject car = Instantiate(m_mergedShootPrefab, pos, Quaternion.identity);
                     car.transform.eulerAngles = midDir;
                     car.transform.up = Vector3.up;
@@ -440,6 +464,7 @@ public class MultiplayerManager : MonoBehaviour
                 }
                 else
                 {
+                    m_timerSlider.SetActive(true);
                     GameObject car = Instantiate(m_mergedOnlinePrefab, pos, Quaternion.identity);
                     car.transform.eulerAngles = midDir;
                     car.transform.up = Vector3.up;
@@ -450,7 +475,6 @@ public class MultiplayerManager : MonoBehaviour
                     car.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum = netMerge.m_Other;
                     m_activeCars.Add(car);
                 }
-                
                 m_activeCars.Remove(car1);
                 Destroy(car1);
                 m_activeCars.Remove(car2);
@@ -760,8 +784,58 @@ public class MultiplayerManager : MonoBehaviour
             GameObject projectile = Instantiate(m_projectile, spawnPos, Quaternion.identity);
             projectile.GetComponent<Rigidbody>().AddForce(spawnDir * netShoot.m_Force, ForceMode.Impulse);
         }
-    }
 
+        foreach (GameObject car in m_activeCars)
+        {
+            if (car.GetComponent<CarManagerScript>().m_playerNum == netShoot.m_Other)
+            {
+                car.GetComponent<PlayerHit>().HitSpin();
+            }
+        }
+    }
+    void OnGumClient(NetMessage a_msg)
+    {
+        NetGum netGum = a_msg as NetGum;
+        if (netGum.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
+        {
+            Vector3 pos = new Vector3(netGum.m_XPos, netGum.m_YPos, netGum.m_ZPos);
+            Quaternion rot = new Quaternion(netGum.m_XRot, netGum.m_YRot, netGum.m_ZRot, netGum.m_WRot);
+            GameObject gum = Instantiate(m_Gum, pos, rot);
+        }
+    }
+    void OnBoostClient(NetMessage a_msg)
+    {
+        NetBoost netBoost = a_msg as NetBoost;
+        switch (netBoost.m_Action)
+        {
+            case NetBoost.ACTION.START:
+                if (netBoost.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
+                {
+                    foreach (GameObject car in m_activeCars)
+                    {
+                        if (car.GetComponent<CarManagerScript>().m_playerNum == netBoost.m_CarNum)
+                        {
+                            car.transform.Find("Boost").GetComponent<ParticleSystem>().Play();
+                        }
+                    }
+                }
+                break;
+            case NetBoost.ACTION.END:
+                if (netBoost.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
+                {
+                    foreach (GameObject car in m_activeCars)
+                    {
+                        if (car.GetComponent<CarManagerScript>().m_playerNum == netBoost.m_CarNum)
+                        {
+                            car.transform.Find("Boost").GetComponent<ParticleSystem>().Stop();
+                        }
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+    }
 
     private void OnDestroy()
     {

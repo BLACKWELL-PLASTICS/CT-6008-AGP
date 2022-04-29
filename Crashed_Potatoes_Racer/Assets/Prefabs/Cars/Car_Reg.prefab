@@ -9887,7 +9887,8 @@ GameObject:
   - component: {fileID: 4033575207820653884}
   - component: {fileID: 8738164446682236289}
   - component: {fileID: 6420782159066502572}
-  m_Layer: 0
+  - component: {fileID: 1231759283291849560}
+  m_Layer: 11
   m_Name: Car_Reg
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -9987,7 +9988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d2beab06c18f7b499eed1770a42807b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p1: 5
+  p1: 4
   p2: 5
   prefabs:
   - {fileID: 1895209648162260296, guid: 1dec936bd56fcf64994fb09e7201a51b, type: 3}
@@ -10103,6 +10104,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackMarkers: []
   lap: 0
+--- !u!114 &1231759283291849560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8738164446682236303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7720ae635ccad874eab8172062184f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rotAngle: 450
 --- !u!1001 &8738164444770912762
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿//////////////////////////////////////////////////
+/// Created:                                   ///
+/// Author:                                    ///
+/// Edited By: Iain Farlow                     ///
+/// Last Edited: 28/04/2022                    ///
+//////////////////////////////////////////////////
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,5 +24,19 @@ public class Gum : MonoBehaviour
         currentRot.eulerAngles = eulerAngle;
         gum.transform.rotation = currentRot;
 
+        //Added by Iain
+        //gum start package
+        NetGum netGum = new NetGum();
+        netGum.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+        netGum.m_Action = NetGum.ACTION.LAND;
+        netGum.m_XPos = gum.transform.position.x;
+        netGum.m_YPos = gum.transform.position.y;
+        netGum.m_ZPos = gum.transform.position.z;
+        netGum.m_XRot = gum.transform.rotation.x;
+        netGum.m_YRot = gum.transform.rotation.y;
+        netGum.m_ZRot = gum.transform.rotation.z;
+        netGum.m_WRot = gum.transform.rotation.w;
+        Client.Instance.SendToServer(netGum);
+        //Added by Iain ~
     }
 }

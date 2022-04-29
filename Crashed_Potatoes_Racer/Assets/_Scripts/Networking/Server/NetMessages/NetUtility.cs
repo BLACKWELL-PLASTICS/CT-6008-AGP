@@ -21,7 +21,9 @@ public enum ServerOpCode
     BIRD_POOP = 13,
     GAME_COUNTDOWN = 14,
     MENU_COUNTDOWN = 15,
-    SHOOT = 16
+    SHOOT = 16,
+    GUM = 17,
+    BOOST = 18
 }
 public static class NetUtility
 {
@@ -79,6 +81,12 @@ public static class NetUtility
             case ServerOpCode.SHOOT:
                 msg = new NetShoot(a_stream);
                 break;
+            case ServerOpCode.GUM:
+                msg = new NetGum(a_stream);
+                break;
+            case ServerOpCode.BOOST:
+                msg = new NetBoost(a_stream);
+                break;
             default:
                 Debug.LogError("Message received has unrecognised OpCode");
                 break;
@@ -112,6 +120,8 @@ public static class NetUtility
     public static Action<NetMessage> C_GAME_COUNTDOWN;
     public static Action<NetMessage> C_MENU_COUNTDOWN;
     public static Action<NetMessage> C_SHOOT;
+    public static Action<NetMessage> C_GUM;
+    public static Action<NetMessage> C_BOOST;
 
     //Server
     public static Action<NetMessage, NetworkConnection> S_KEEP_ALIVE;
@@ -130,4 +140,6 @@ public static class NetUtility
     public static Action<NetMessage, NetworkConnection> S_GAME_COUNTDOWN;
     public static Action<NetMessage, NetworkConnection> S_MENU_COUNTDOWN;
     public static Action<NetMessage, NetworkConnection> S_SHOOT;
+    public static Action<NetMessage, NetworkConnection> S_GUM;
+    public static Action<NetMessage, NetworkConnection> S_BOOST;
 }

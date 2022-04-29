@@ -15,6 +15,10 @@ public class MergedShootingControllerScript : MonoBehaviour
     GameObject m_projectile;
     [SerializeField]
     float m_fireForce = 100.0f;
+    [SerializeField]
+    float m_horizontalCap = 180.0f;
+    [SerializeField]
+    float m_verticalCap = 360.0f;
 
     // Update is called once per frame
     void Update()
@@ -23,11 +27,11 @@ public class MergedShootingControllerScript : MonoBehaviour
         float horizontalRotation = 0.0f;
         if (m_active)
         {
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKey(KeyCode.S))
             {
                 verticalRotation = m_turnSpeed * Time.deltaTime;
             }
-            else if (Input.GetKey(KeyCode.S))
+            else if (Input.GetKey(KeyCode.W))
             {
                 verticalRotation = -1 * m_turnSpeed * Time.deltaTime;
             }
@@ -45,8 +49,34 @@ public class MergedShootingControllerScript : MonoBehaviour
                 Fire();
             }
 
-            GetPartToRotate(this.gameObject, 1).transform.Rotate(0, 0, horizontalRotation);
-            GetPartToRotate(this.gameObject, 2).transform.Rotate(0, verticalRotation, 0);
+            if (GetPartToRotate(this.gameObject, 2).transform.localEulerAngles.y < 180.0f)
+            {
+                if (GetPartToRotate(this.gameObject, 2).transform.localEulerAngles.y + verticalRotation < m_verticalCap)
+                {
+                    GetPartToRotate(this.gameObject, 2).transform.Rotate(0, verticalRotation, 0);
+                }
+            }
+            else
+            {
+                if (GetPartToRotate(this.gameObject, 2).transform.localEulerAngles.y - 360 + verticalRotation > -m_verticalCap)
+                {
+                    GetPartToRotate(this.gameObject, 2).transform.Rotate(0, verticalRotation, 0);
+                }
+            }
+            if (GetPartToRotate(this.gameObject, 1).transform.localEulerAngles.z < 180.0f)
+            {
+                if (GetPartToRotate(this.gameObject, 1).transform.localEulerAngles.z + horizontalRotation < m_horizontalCap)
+                {
+                    GetPartToRotate(this.gameObject, 1).transform.Rotate(0, 0, horizontalRotation);
+                }
+            }
+            else
+            {
+                if (GetPartToRotate(this.gameObject, 1).transform.localEulerAngles.z - 360 + horizontalRotation > -m_horizontalCap)
+                {
+                    GetPartToRotate(this.gameObject, 1).transform.Rotate(0, 0, horizontalRotation);
+                }
+            }
 
             NetMerge netMerge = new NetMerge();
             netMerge.m_Player = m_playerNum;
@@ -82,36 +112,38 @@ public class MergedShootingControllerScript : MonoBehaviour
     void Fire()
     {
         RaycastHit hit;
-        Physics.Raycast(m_gun.transform.position, m_gun.transform.right, out hit, 100.0f);
-        if (hit.transform.gameObject.name == "Player")
+        if (Physics.Raycast(m_gun.transform.position, m_gun.transform.right, out hit, 100000.0f, 11, QueryTriggerInteraction.Collide))
         {
-            NetShoot netShoot = new NetShoot();
-            netShoot.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
-            netShoot.m_Action = NetShoot.ACTION.FIRE;
-            netShoot.m_Other = hit.transform.gameObject.GetComponent<CarManagerScript>().m_playerNum;
-            netShoot.m_Force = m_fireForce;
-            netShoot.m_XPos = m_gun.transform.position.x;
-            netShoot.m_YPos = m_gun.transform.position.y;
-            netShoot.m_ZPos = m_gun.transform.position.z;
-            netShoot.m_XDir = m_gun.transform.right.x;
-            netShoot.m_YDir = m_gun.transform.right.y;
-            netShoot.m_ZDir = m_gun.transform.right.z;
-            Client.Instance.SendToServer(netShoot);
-        }
-        else
-        {
-            NetShoot netShoot = new NetShoot();
-            netShoot.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
-            netShoot.m_Action = NetShoot.ACTION.FIRE;
-            netShoot.m_Other = 0;
-            netShoot.m_Force = m_fireForce;
-            netShoot.m_XPos = m_gun.transform.position.x;
-            netShoot.m_YPos = m_gun.transform.position.y;
-            netShoot.m_ZPos = m_gun.transform.position.z;
-            netShoot.m_XDir = m_gun.transform.right.x;
-            netShoot.m_YDir = m_gun.transform.right.y;
-            netShoot.m_ZDir = m_gun.transform.right.z;
-            Client.Instance.SendToServer(netShoot);
+            if (hit.transform.gameObject.tag == "Player")
+            {
+                NetShoot netShoot = new NetShoot();
+                netShoot.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+                netShoot.m_Action = NetShoot.ACTION.FIRE;
+                netShoot.m_Other = hit.transform.gameObject.GetComponent<CarManagerScript>().m_playerNum;
+                netShoot.m_Force = m_fireForce;
+                netShoot.m_XPos = m_gun.transform.position.x;
+                netShoot.m_YPos = m_gun.transform.position.y;
+                netShoot.m_ZPos = m_gun.transform.position.z;
+                netShoot.m_XDir = m_gun.transform.right.x;
+                netShoot.m_YDir = m_gun.transform.right.y;
+                netShoot.m_ZDir = m_gun.transform.right.z;
+                Client.Instance.SendToServer(netShoot);
+            }
+            else
+            {
+                NetShoot netShoot = new NetShoot();
+                netShoot.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+                netShoot.m_Action = NetShoot.ACTION.FIRE;
+                netShoot.m_Other = 0;
+                netShoot.m_Force = m_fireForce;
+                netShoot.m_XPos = m_gun.transform.position.x;
+                netShoot.m_YPos = m_gun.transform.position.y;
+                netShoot.m_ZPos = m_gun.transform.position.z;
+                netShoot.m_XDir = m_gun.transform.right.x;
+                netShoot.m_YDir = m_gun.transform.right.y;
+                netShoot.m_ZDir = m_gun.transform.right.z;
+                Client.Instance.SendToServer(netShoot);
+            }
         }
 
         GameObject projectile = Instantiate(m_projectile, m_gun.transform.position, Quaternion.identity);
