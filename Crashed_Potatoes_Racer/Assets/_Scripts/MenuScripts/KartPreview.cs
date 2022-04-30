@@ -28,6 +28,9 @@ public class KartPreview : MonoBehaviour, ISelectHandler, IPointerEnterHandler
     [SerializeField]
     GameObject[] m_displayCars;
 
+    [SerializeField]
+    GameObject m_GMM;
+
     //Currently selected part
     public static GameObject m_currentBody;
     public static GameObject m_currentWheels;
@@ -69,10 +72,11 @@ public class KartPreview : MonoBehaviour, ISelectHandler, IPointerEnterHandler
         {
             //for car/ body fo the car
             case (TYPE.CAR):
-                //save current selection to persistent info's car
-                PersistentInfo.Instance.m_carDesign.m_carChoice = m_choice;
+                //save selection
+                m_GMM.GetComponent<GameMenuManager>().m_currentBody = m_choice;
+
                 //ensure all others are hidden
-                foreach(GameObject displayCar in m_displayCars)
+                foreach (GameObject displayCar in m_displayCars)
                 {
                     displayCar.SetActive(false);
                 }
@@ -82,8 +86,8 @@ public class KartPreview : MonoBehaviour, ISelectHandler, IPointerEnterHandler
                 m_currentBody = m_displayCars[m_choice];
                 break;
             case (TYPE.WHEEL):
-                //save current selection to persistent info's wheels
-                PersistentInfo.Instance.m_carDesign.m_wheelChoice = m_choice;
+                //save selection
+                m_GMM.GetComponent<GameMenuManager>().m_currentWheels = m_choice;
                 //Get all the wheels on the display car
                 GameObject[] wheels = new GameObject[12];
                 int wheelCount = 0;
@@ -106,8 +110,8 @@ public class KartPreview : MonoBehaviour, ISelectHandler, IPointerEnterHandler
                 m_currentWheels = wheels[m_choice];
                 break;
             case (TYPE.GUN):
-                //save current selection to persistent info's gun
-                PersistentInfo.Instance.m_carDesign.m_gunChoice = m_choice;
+                //save selection
+                m_GMM.GetComponent<GameMenuManager>().m_currentGun = m_choice;
                 //Get gun base for current car
                 GameObject gunBase = null;
                 for (int i = 0; i < m_currentBody.transform.childCount; i++)

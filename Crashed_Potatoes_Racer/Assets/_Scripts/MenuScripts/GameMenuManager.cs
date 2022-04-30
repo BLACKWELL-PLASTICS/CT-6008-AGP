@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿//////////////////////////////////////////////////
+/// Created:                                   ///
+/// Author:                                    ///
+/// Edited By: Iain Farlow                     ///
+/// Last Edited: 30/04/2022                    ///
+//////////////////////////////////////////////////
+
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -21,15 +28,20 @@ public class GameMenuManager : MonoBehaviour
     private int activeMenu = 1;
     private bool keepGUI = false;
 
+    //Currently selected part
+    public int m_currentBody;
+    public int m_currentWheels;
+    public int m_currentGun;
+
     void Start()
     {
         if (!usesIainScript)
         {
             // enable raycast
-            foreach (var raycaster in Transform.FindObjectsOfType<GraphicRaycaster>())
-            {
-                raycaster.enabled = true;
-            }
+            //foreach (var raycaster in Transform.FindObjectsOfType<GraphicRaycaster>())
+            //{
+            //    raycaster.enabled = true;
+            //}
             SetActiveMenu(activeMenu);
         }
     }
@@ -74,8 +86,23 @@ public class GameMenuManager : MonoBehaviour
         }
     }
 
-    public void LoadScene()
+    public void LoadScene(bool a_confirmChoice)
     {
+        if (a_confirmChoice)
+        {
+            //save current selection to persistent info's car
+            PersistentInfo.Instance.m_carDesign.m_carChoice = m_currentBody;
+            //save current selection to persistent info's wheels
+            PersistentInfo.Instance.m_carDesign.m_wheelChoice = m_currentWheels;
+            //save current selection to persistent info's gun
+            PersistentInfo.Instance.m_carDesign.m_gunChoice = m_currentGun;
+        }
+
+        foreach (var raycaster in Transform.FindObjectsOfType<GraphicRaycaster>())
+        {
+            raycaster.enabled = true;
+        }
+
         SceneManager.SetActiveScene(SceneManager.GetSceneAt(0));
         SceneManager.UnloadSceneAsync(1);
     }
