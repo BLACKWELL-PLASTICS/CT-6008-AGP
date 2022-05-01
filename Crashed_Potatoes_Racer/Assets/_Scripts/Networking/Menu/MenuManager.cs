@@ -94,6 +94,7 @@ public class MenuManager : MonoBehaviour
         //Server
         NetUtility.S_WELCOME += OnWelcomeServer;
         NetUtility.S_MENU_COUNTDOWN += OnMenuCountdownServer;
+        NetUtility.S_CUSTOMISER_UPDATE += OnCustomiserUpdateServer;
 
         //Client
         NetUtility.C_WELCOME += OnWelcomeClient;
@@ -102,6 +103,7 @@ public class MenuManager : MonoBehaviour
         NetUtility.C_OTHER_DISCONNECTED += OnOtherDisconnectedClient;
         NetUtility.C_START_GAME += OnStartGameClient;
         NetUtility.C_MENU_COUNTDOWN += OnMenuCountdownClient;
+        NetUtility.C_CUSTOMISER_UPDATE += OnCustomiserUpdateClient;
 
         //Menu Client
         ServerUtility.C_SERVER_START += OnServerStart;
@@ -113,6 +115,7 @@ public class MenuManager : MonoBehaviour
         //Server
         NetUtility.S_WELCOME -= OnWelcomeServer;
         NetUtility.S_MENU_COUNTDOWN -= OnMenuCountdownServer;
+        NetUtility.S_CUSTOMISER_UPDATE -= OnCustomiserUpdateServer;
 
         //Client
         NetUtility.C_WELCOME -= OnWelcomeClient;
@@ -121,6 +124,7 @@ public class MenuManager : MonoBehaviour
         NetUtility.C_OTHER_DISCONNECTED -= OnOtherDisconnectedClient;
         NetUtility.C_START_GAME -= OnStartGameClient;
         NetUtility.C_MENU_COUNTDOWN -= OnMenuCountdownClient;
+        NetUtility.C_CUSTOMISER_UPDATE -= OnCustomiserUpdateClient;
 
         //Menu Client
         ServerUtility.C_SERVER_START -= OnServerStart;
@@ -161,6 +165,15 @@ public class MenuManager : MonoBehaviour
     {
         NetMenuCountdown netMenuCountdown = a_msg as NetMenuCountdown;
         Server.Instance.Broadcast(netMenuCountdown);
+    }
+    void OnCustomiserUpdateServer(NetMessage a_msg, NetworkConnection a_connection)
+    {
+        NetCustomiserUpdate netCustomiserUpdate = a_msg as NetCustomiserUpdate;
+        PersistentInfo.Instance.m_carDesigns[netCustomiserUpdate.m_Player - 1].m_carChoice = netCustomiserUpdate.m_CarBody;
+        PersistentInfo.Instance.m_carDesigns[netCustomiserUpdate.m_Player - 1].m_wheelChoice = netCustomiserUpdate.m_CarWheels;
+        PersistentInfo.Instance.m_carDesigns[netCustomiserUpdate.m_Player - 1].m_gunChoice = netCustomiserUpdate.m_CarGun;
+
+        Server.Instance.Broadcast(netCustomiserUpdate);
     }
 
     //Client
@@ -452,7 +465,13 @@ public class MenuManager : MonoBehaviour
                 break;
         }
     }
-
+    void OnCustomiserUpdateClient(NetMessage a_msg)
+    {
+        NetCustomiserUpdate netCustomiserUpdateIn = a_msg as NetCustomiserUpdate;
+        PersistentInfo.Instance.m_carDesigns[netCustomiserUpdateIn.m_Player - 1].m_carChoice = netCustomiserUpdateIn.m_CarBody;
+        PersistentInfo.Instance.m_carDesigns[netCustomiserUpdateIn.m_Player - 1].m_wheelChoice = netCustomiserUpdateIn.m_CarWheels;
+        PersistentInfo.Instance.m_carDesigns[netCustomiserUpdateIn.m_Player - 1].m_gunChoice = netCustomiserUpdateIn.m_CarGun;
+    }
 
     //Menu Client
     void OnServerStart(ServerMessage a_msg)

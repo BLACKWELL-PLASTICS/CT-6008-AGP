@@ -96,6 +96,16 @@ public class GameMenuManager : MonoBehaviour
             PersistentInfo.Instance.m_carDesign.m_wheelChoice = m_currentWheels;
             //save current selection to persistent info's gun
             PersistentInfo.Instance.m_carDesign.m_gunChoice = m_currentGun;
+
+            if (Client.Instance.m_driver.IsCreated)
+            {
+                NetCustomiserUpdate netCustomiserUpdate = new NetCustomiserUpdate();
+                netCustomiserUpdate.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+                netCustomiserUpdate.m_CarBody = PersistentInfo.Instance.m_carDesign.m_carChoice;
+                netCustomiserUpdate.m_CarWheels = PersistentInfo.Instance.m_carDesign.m_wheelChoice;
+                netCustomiserUpdate.m_CarGun = PersistentInfo.Instance.m_carDesign.m_gunChoice;
+                Client.Instance.SendToServer(netCustomiserUpdate);
+            }
         }
 
         foreach (var raycaster in Transform.FindObjectsOfType<GraphicRaycaster>())

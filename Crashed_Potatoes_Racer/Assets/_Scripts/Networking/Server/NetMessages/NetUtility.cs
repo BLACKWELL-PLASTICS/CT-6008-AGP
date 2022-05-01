@@ -23,7 +23,8 @@ public enum ServerOpCode
     MENU_COUNTDOWN = 15,
     SHOOT = 16,
     GUM = 17,
-    BOOST = 18
+    BOOST = 18,
+    CUSTOMISER_UPDATE = 19
 }
 public static class NetUtility
 {
@@ -87,6 +88,9 @@ public static class NetUtility
             case ServerOpCode.BOOST:
                 msg = new NetBoost(a_stream);
                 break;
+            case ServerOpCode.CUSTOMISER_UPDATE:
+                msg = new NetCustomiserUpdate(a_stream);
+                break;
             default:
                 Debug.LogError("Message received has unrecognised OpCode");
                 break;
@@ -122,6 +126,7 @@ public static class NetUtility
     public static Action<NetMessage> C_SHOOT;
     public static Action<NetMessage> C_GUM;
     public static Action<NetMessage> C_BOOST;
+    public static Action<NetMessage> C_CUSTOMISER_UPDATE;
 
     //Server
     public static Action<NetMessage, NetworkConnection> S_KEEP_ALIVE;
@@ -142,4 +147,5 @@ public static class NetUtility
     public static Action<NetMessage, NetworkConnection> S_SHOOT;
     public static Action<NetMessage, NetworkConnection> S_GUM;
     public static Action<NetMessage, NetworkConnection> S_BOOST;
+    public static Action<NetMessage, NetworkConnection> S_CUSTOMISER_UPDATE;
 }
