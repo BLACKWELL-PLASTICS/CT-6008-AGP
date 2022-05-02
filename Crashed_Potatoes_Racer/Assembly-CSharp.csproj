@@ -213,6 +213,7 @@
     <Compile Include="Assets\_Scripts\SplineEditor\SplineDecorator.cs" />
     <Compile Include="Assets\_Scripts\WinCondition\Lap.cs" />
     <Compile Include="Assets\_Scripts\WinCondition\ScoreBoard.cs" />
+    <Compile Include="Assets\_Scripts\WinCondition\WinCheck.cs" />
     <Compile Include="Assets\_Scripts\WinCondition\WinCondition.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
@@ -808,11 +809,17 @@
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
       <HintPath>E:/github/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:/github/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
       <HintPath>E:/github/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
+      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst">
       <HintPath>E:/github/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
@@ -844,6 +851,12 @@
     <Reference Include="Unity.RenderPipelines.Universal.Editor">
       <HintPath>E:/github/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Editor">
+      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>E:/github/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -855,6 +868,9 @@
     </Reference>
     <Reference Include="Unity.Postprocessing.Editor">
       <HintPath>E:/github/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Editor">
+      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.AI.Navigation">
       <HintPath>E:/github/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.AI.Navigation.dll</HintPath>
@@ -870,6 +886,9 @@
     </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
       <HintPath>E:/github/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
       <HintPath>E:/github/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
