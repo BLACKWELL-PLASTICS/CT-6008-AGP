@@ -676,6 +676,19 @@ public class MultiplayerManager : MonoBehaviour
     void OnBirdPoopClient(NetMessage a_msg)
     {
         NetBirdPoop netBirdPoop = a_msg as NetBirdPoop;
+        if (PersistentInfo.Instance.m_currentPlayerNum == 1)
+        {
+            foreach (GameObject car in m_activeCars)
+            {
+                if (netBirdPoop.m_Player != car.GetComponent<CarManagerScript>().m_playerNum)
+                {
+                    if (car.GetComponent<AIPlayer>() != null)
+                    {
+                        car.GetComponent<AIPlayer>().DecreaseSpeed();
+                    }
+                }
+            }
+        }
         if (netBirdPoop.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
         {
             m_BirdPoop.GetComponent<BirdPoop>().ToogleActive();
