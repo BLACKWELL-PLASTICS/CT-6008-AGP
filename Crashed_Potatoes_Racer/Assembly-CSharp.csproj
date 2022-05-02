@@ -110,6 +110,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\_Scripts\AI\AIManager.cs" />
     <Compile Include="Assets\_Scripts\AI\EnvirnmentAI\BoidController.cs" />
+    <Compile Include="Assets\_Scripts\AI\EnvirnmentAI\BoidManager.cs" />
     <Compile Include="Assets\_Scripts\AI\EnvirnmentAI\CrabScript.cs" />
     <Compile Include="Assets\_Scripts\AI\EnvirnmentAI\FishMovement.cs" />
     <Compile Include="Assets\_Scripts\AI\EnvirnmentAI\FishScript.cs" />
@@ -809,17 +810,11 @@
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
       <HintPath>E:/github/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>E:/github/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
       <HintPath>E:/github/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Burst">
       <HintPath>E:/github/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Burst.dll</HintPath>
@@ -851,12 +846,6 @@
     <Reference Include="Unity.RenderPipelines.Universal.Editor">
       <HintPath>E:/github/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Editor">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>E:/github/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -868,9 +857,6 @@
     </Reference>
     <Reference Include="Unity.Postprocessing.Editor">
       <HintPath>E:/github/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.AI.Navigation">
       <HintPath>E:/github/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.AI.Navigation.dll</HintPath>
@@ -886,9 +872,6 @@
     </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
       <HintPath>E:/github/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>C:/Users/Student/Documents/Github Repos/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
       <HintPath>E:/github/CT-6008-AGP/Crashed_Potatoes_Racer/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
