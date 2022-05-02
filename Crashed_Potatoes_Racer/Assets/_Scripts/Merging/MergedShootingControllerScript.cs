@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using XInputDotNetPure;
 
 public class MergedShootingControllerScript : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class MergedShootingControllerScript : MonoBehaviour
     [SerializeField]
     float m_turnSpeed;
 
+    // Controller Vibration
+    PlayerIndex index;
+
     // Update is called once per frame
     void Update()
     {
@@ -18,23 +22,31 @@ public class MergedShootingControllerScript : MonoBehaviour
         float horizontalRotation = 0.0f;
         if (m_active)
         {
-            if (Input.GetKey(KeyCode.W))
+            // Controller Support - Done by Oliver 
+            float vertical = Input.GetAxisRaw("Vertical");
+            float horizontal = Input.GetAxisRaw("Horizontal");
+            // 0.19 is the deadzone number
+            if (vertical > 0.19f)
             {
                 verticalRotation = m_turnSpeed * Time.deltaTime;
+                GamePad.SetVibration(index, 0.1f, 0.1f);
             }
-            else if (Input.GetKey(KeyCode.S))
+            if (vertical < -0.19f)
             {
                 verticalRotation = -1 * m_turnSpeed * Time.deltaTime;
+                GamePad.SetVibration(index, 0.1f, 0.1f);
             }
-            if (Input.GetKey(KeyCode.D))
+            if (horizontal > 0.19f)
             {
                 horizontalRotation = m_turnSpeed * Time.deltaTime;
+                GamePad.SetVibration(index, 0.1f, 0.3f);
             }
-            else if (Input.GetKey(KeyCode.A))
+            if (horizontal < -0.19f)
             {
                 horizontalRotation = -1 * m_turnSpeed * Time.deltaTime;
+                GamePad.SetVibration(index, 0.3f, 0.1f);
             }
-            if (Input.GetKeyDown(KeyCode.H))
+            if (Input.GetButtonDown("Fire1"))
             {
                 Debug.Log("Fire");
             }
