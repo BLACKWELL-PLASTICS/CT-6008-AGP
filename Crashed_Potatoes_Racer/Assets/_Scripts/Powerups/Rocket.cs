@@ -6,13 +6,15 @@ public class Rocket : MonoBehaviour {
     float timer = 0.0f;
     Rigidbody rb;
     GameObject owner;
-    public void Owner(GameObject gameObject) {
+    public void Owner(GameObject gameObject)
+    {
         owner = gameObject;
     }
 
     private void Start() {
+
         rb = GetComponent<Rigidbody>();
-        transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+        transform.position = new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z);
     }
 
     // Update is called once per frame

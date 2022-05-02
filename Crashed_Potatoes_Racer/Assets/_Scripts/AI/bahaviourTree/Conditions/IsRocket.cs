@@ -15,10 +15,6 @@ public class IsRocket : Node
         {
             return NodeState.SUCCESS;
         }
-        //else if(owner.powerUp1 == SeedPacketScript.POWERUPS.None && owner.powerUp2 == SeedPacketScript.POWERUPS.Forward_Projectile)
-        //{
-        //    return NodeState.SUCCESS;
-        //}
         else
         {
             return NodeState.FAILURE;

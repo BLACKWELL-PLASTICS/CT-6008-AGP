@@ -19,9 +19,9 @@ public class FloatyState : Node
         wall = Object.Instantiate(AIManager.GetPowerUp[1], pos, Quaternion.identity);
         owner.InventoryComponent.UsePowerup();
 
-        //eulerAngle = new Vector3(-90f, 0f, 0f);
-        //currentRot.eulerAngles = eulerAngle;
-        //wall.transform.rotation = currentRot;
+        eulerAngle = new Vector3(-90f, 0f, 0f);
+        currentRot.eulerAngles = eulerAngle;
+        wall.transform.rotation = currentRot;
         ////Wall start package
         //NetWall netWall = new NetWall();
         //netWall.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
