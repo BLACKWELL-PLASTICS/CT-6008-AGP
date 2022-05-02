@@ -597,9 +597,9 @@ public class MultiplayerManager : MonoBehaviour
                         {
                             car.GetComponent<CarManagerScript>().m_oPos = car.transform.position;
                             car.GetComponent<CarManagerScript>().m_OriginalScale = car.transform.localScale;
-                            car.transform.localScale = car.GetComponent<CarManagerScript>().m_OriginalScale * 2f;
+                            car.transform.localScale = car.GetComponent<CarManagerScript>().m_OriginalScale * 1.5f;
                             Vector3 pos = transform.position;
-                            car.transform.position = new Vector3(pos.x, pos.y + (car.GetComponent<CarManagerScript>().m_OriginalScale.y / 2), pos.y);
+                            car.transform.position = new Vector3(pos.x, pos.y + (car.GetComponent<CarManagerScript>().m_OriginalScale.y / 1.5f), pos.y);
                         }
                     }
                     break;
@@ -610,7 +610,7 @@ public class MultiplayerManager : MonoBehaviour
                         {
                             Vector3 pos = car.transform.position;
                             car.transform.localScale = car.GetComponent<CarManagerScript>().m_OriginalScale;
-                            car.transform.position = new Vector3(pos.x, car.GetComponent<CarManagerScript>().m_oPos.y, pos.z);
+                            car.transform.position = new Vector3(pos.x, pos.y - (car.GetComponent<CarManagerScript>().m_OriginalScale.y / 1.5f), pos.z);
                         }
                     }
                     break;
@@ -684,7 +684,7 @@ public class MultiplayerManager : MonoBehaviour
                 {
                     if (car.GetComponent<AIPlayer>() != null)
                     {
-                        car.GetComponent<AIPlayer>().DecreaseSpeed();
+                        car.GetComponent<AIPlayer>().decreaseCheck = true;
                     }
                 }
             }
