@@ -9,6 +9,8 @@ public class WinCondition : MonoBehaviour
     [SerializeField]
     int lap;
 
+    public bool isFinished = false;
+
     void Awake()
     {
         lap = 0;
@@ -36,8 +38,21 @@ public class WinCondition : MonoBehaviour
                 }
             }
         } else {
+            // Disable Controller / AI script
+            isFinished = true;
+            if (gameObject.name == "Car_Reg(Clone)") {
+                gameObject.GetComponent<Controller>().enabled = false;
+            } else {
+                gameObject.GetComponent<AIPlayer>().enabled = false;
+            }
             // Lock Position
-            // Send Packet
+            gameObject.transform.position = gameObject.transform.position;
+
+            // Send Packet Here
+
+            // Will then need to check on the server if all players have send the finish packet
+            // to load into next scene.
+            // THIS SCRIPT HAS BEEN WRITTEN IN THE WinCheck.cs script
         }
     }
 }
