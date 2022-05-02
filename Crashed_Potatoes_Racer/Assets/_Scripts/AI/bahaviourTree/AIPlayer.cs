@@ -29,6 +29,7 @@ public class AIPlayer : MonoBehaviour
     public Vector3 originalScale;
     public int randomInOut;
     public int randomSecret;
+    public float timer = 0;
 
     [SerializeField]
     private float speed = 0;
@@ -57,9 +58,7 @@ public class AIPlayer : MonoBehaviour
         bahaviourTree = new BT(this);
 
         //size increase power up
-        originalPos = transform.position;
         originalScale = transform.localScale;
-        currentPos = transform.position;
 
         //car movement
         speedDecrease = Random.Range(0.7f, 2f);
@@ -69,14 +68,24 @@ public class AIPlayer : MonoBehaviour
 
     private void Update()
     {
+        //waypoints
+        if(    AIManager.GetWaypoints != null 
+            && AIManager.GetWaypoints2 != null
+            && AIManager.GetWaypoints3 != null)
+        {
+            WayPoint3();
+        }
+
         //power ups
         powerUp1 = InventoryComponent.p1;
+        currentPos = transform.position;
 
         bahaviourTree.Update();
 
         NavComponent.speed = speed;
         emitter.SetParameter("Speed", NavComponent.speed);
         NavComponent.acceleration = accel;
+
         NavComponent.SetDestination(target.position);
 
         if(powerUp1 == SeedPacketScript.POWERUPS.None)
@@ -108,4 +117,90 @@ public class AIPlayer : MonoBehaviour
         decreaseCheck = false;
     }
 
+    //boosting
+    public void BoostSpeed()
+    {
+        accel = Mathf.Lerp(accel, 70, Time.deltaTime * speedIncrease);
+        speed = Mathf.Lerp(speed, 70, Time.deltaTime * speedIncrease);
+
+    }
+    public void DeBoostSpeed()
+    {
+        accel = Mathf.Lerp(accel, AIManager.GetMaxAcc, Time.deltaTime * speedDecrease);
+        speed = Mathf.Lerp(speed, AIManager.GetMaxSpeed, Time.deltaTime * speedDecrease);
+
+    }
+
+    private void WayPoint3()
+    {
+        if (IsCorner() == true)
+        {
+            decreaseCheck = true;
+        }
+        else
+        {
+            IncreaseSpeed();
+        }
+
+        if (randomSecret == 3)
+        {
+            float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints3[currentWaypoint].transform.position);
+            if (dist <= stoppingDistance)
+            {
+                Debug.Log("waypoint +");
+                currentWaypoint++;
+                if (currentWaypoint >= AIManager.GetWaypoints3.Length)
+                {
+                    currentWaypoint = 0;
+                }
+            }
+            target = AIManager.GetWaypoints3[currentWaypoint].transform;
+        }
+        else
+        {
+            if (randomInOut == 0)
+            {
+                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints[currentWaypoint].transform.position);
+                if (dist <= stoppingDistance)
+                {
+                    Debug.Log("waypoint +");
+                    currentWaypoint++;
+                    if (currentWaypoint >= AIManager.GetWaypoints.Length)
+                    {
+                        currentWaypoint = 0;
+                    }
+                }
+                target = AIManager.GetWaypoints[currentWaypoint].transform;
+            }
+            else if (randomInOut == 1)
+            {
+                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints2[currentWaypoint].transform.position);
+                if (dist <= stoppingDistance)
+                {
+                    Debug.Log("waypoint +");
+                    currentWaypoint++;
+                    if (currentWaypoint >= AIManager.GetWaypoints2.Length)
+                    {
+                        currentWaypoint = 0;
+                    }
+                }
+                target = AIManager.GetWaypoints2[currentWaypoint].transform;
+            }
+        }
+
+    }
+
+    private bool IsCorner()
+    {
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * AIManager.GetStoppingRay, Color.white);
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hit, AIManager.GetStoppingRay, LayerMask.GetMask("Corner")))
+        {
+            Debug.Log("Slowing down");
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

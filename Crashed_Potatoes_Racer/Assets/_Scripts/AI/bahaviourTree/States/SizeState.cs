@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SizeState : Node
 {
-    private float timer = 0f;
 
     public SizeState(AIPlayer owner) : base(owner)
     {
@@ -13,8 +12,22 @@ public class SizeState : Node
 
     public override NodeState Update()
     {
-        
 
-        return NodeState.SUCCESS;
+        if (owner.timer > 3f)
+        {
+            owner.transform.localScale = owner.originalScale;
+            owner.timer = 0f;
+            owner.transform.position = new Vector3(owner.currentPos.x, owner.currentPos.y - 1f, owner.currentPos.z);
+            owner.InventoryComponent.UsePowerup();
+            return NodeState.SUCCESS;
+        }
+        else if(owner.timer == 0)
+        {
+            owner.transform.localScale = owner.originalScale * 1.5f;
+            owner.transform.position = new Vector3(owner.currentPos.x, owner.currentPos.y + 1f, owner.currentPos.z);
+        }
+
+        owner.timer += Time.deltaTime;
+        return NodeState.RUNNING;
     }
 }

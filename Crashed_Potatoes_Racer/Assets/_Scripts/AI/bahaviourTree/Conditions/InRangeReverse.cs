@@ -29,15 +29,19 @@ public class InRangeReverse : Node
         for (int i = 0; i < targetsInVR.Length; i++)
         {
             Transform target = targetsInVR[i].transform;
-            Vector3 dirToTarget = (target.position - owner.transform.position).normalized;
-            if (Vector3.Angle(owner.transform.TransformDirection(Vector3.back), dirToTarget) < AIManager.GetDetectionAngle)
+            if(target != owner.transform)
             {
-                float dstToTarget = Vector3.Distance(target.position, owner.transform.position);
-                if (!Physics.Raycast(owner.transform.position, dirToTarget, dstToTarget, LayerMask.GetMask("OffNav"))) //stuff like cave or walls or volcano
+                Vector3 dirToTarget = (target.position - owner.transform.position).normalized;
+                if (Vector3.Angle(owner.transform.TransformDirection(Vector3.back), dirToTarget) < AIManager.GetDetectionAngle)
                 {
-                    return true;
+                    float dstToTarget = Vector3.Distance(target.position, owner.transform.position);
+                    if (!Physics.Raycast(owner.transform.position, dirToTarget, dstToTarget, LayerMask.GetMask("OffNav"))) //stuff like cave or walls or volcano
+                    {
+                        return true;
+                    }
                 }
             }
+            
         }
 
         return false;
