@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class MainMenuPreview : MonoBehaviour, ISelectHandler, IPointerEnterHandler
@@ -7,7 +8,11 @@ public class MainMenuPreview : MonoBehaviour, ISelectHandler, IPointerEnterHandl
     [SerializeField]
     private TextMeshProUGUI targetText;
     [SerializeField]
+    private Image targetImage;
+    [SerializeField]
     private string textUpdate;
+    [SerializeField]
+    private Sprite imageUpdate;
 
     public void OnSelect(BaseEventData eventData)
     {
@@ -23,7 +28,8 @@ public class MainMenuPreview : MonoBehaviour, ISelectHandler, IPointerEnterHandl
 
     void UpdateSelection()
     {
-        //Updates the text when the player selects a menu option
+        //Updates the text and image when the player selects a menu option
         targetText.text = textUpdate;
+        targetImage.sprite = imageUpdate;
     }
 }
