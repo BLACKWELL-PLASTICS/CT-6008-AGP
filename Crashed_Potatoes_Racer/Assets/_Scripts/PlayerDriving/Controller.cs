@@ -132,7 +132,7 @@ public class Controller : MonoBehaviour {
                 rb.AddForce(transform.forward * speedInput);
             }
         } else {
-            rb.drag = 0.1f;
+            rb.drag = 0f;
             rb.AddForce(Vector3.up * -gravityForce * 100f);
         }
     }
