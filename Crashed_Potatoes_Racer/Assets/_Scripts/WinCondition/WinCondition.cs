@@ -8,7 +8,8 @@ public class WinCondition : MonoBehaviour
     public GameObject[] array;
     public bool[] hasBeenChecked;
 
-    [SerializeField] int lap;
+    public int lap;
+    public int checkpointNumber;
 
     public bool isFinished = false;
 
@@ -19,6 +20,7 @@ public class WinCondition : MonoBehaviour
         // Set array length
         hasBeenChecked = new bool[GameObject.FindGameObjectsWithTag("Waypoints").Length];
         hasBeenChecked[0] = true;
+        checkpointNumber = -1;
     }
 
     // Update is called once per frame
@@ -28,6 +30,7 @@ public class WinCondition : MonoBehaviour
         if (lap <= 3) { // This can be changed depending on lap limit
             if (hasBeenChecked.All(x => x)) { // if all of the waypoints are checked
                 lap++; // increase lap
+                checkpointNumber = 0;
                 for (int i = 0; i < hasBeenChecked.Length; i++) {
                     hasBeenChecked[i] = false;
                 }

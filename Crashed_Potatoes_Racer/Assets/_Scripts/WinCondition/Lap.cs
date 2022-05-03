@@ -10,6 +10,9 @@ public class Lap : MonoBehaviour
         if (other.gameObject.tag == "Player") {
             //isDrivenThrough = !isDrivenThrough;
             other.GetComponent<WinCondition>().hasBeenChecked[individualNo] = !other.GetComponent<WinCondition>().hasBeenChecked[individualNo];
+            other.GetComponent<WinCondition>().checkpointNumber++;
+
+            Debug.LogError(other.GetComponent<WinCondition>().checkpointNumber);
         }
     }
 }
