@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Unity.Networking.Transport;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MultiplayerManager : MonoBehaviour
 {
@@ -256,6 +257,11 @@ public class MultiplayerManager : MonoBehaviour
         netMerge.m_YRot = 0;
         netMerge.m_ZRot = 0;
         netMerge.m_WRot = 0;
+        netMerge.m_secondXRot = 0;
+        netMerge.m_secondYRot = 0;
+        netMerge.m_secondZRot = 0;
+        netMerge.m_secondWRot = 0;
+        netMerge.m_lapNum = a_car1.GetComponent<WinCondition>().lap;
         Client.Instance.SendToServer(netMerge);
     }
     GameObject GetPartToRotate(GameObject a_base, int a_index)
@@ -368,7 +374,11 @@ public class MultiplayerManager : MonoBehaviour
         NetBoost netBoost = a_msg as NetBoost;
         Server.Instance.Broadcast(netBoost);
     }
-
+    void OnFinishedServer(NetMessage a_msg, NetworkConnection a_connection)
+    {
+        NetFinished netBoost = a_msg as NetFinished;
+        Server.Instance.Broadcast(netBoost);
+    }
 
     //Client
     void OnMoveClient(NetMessage a_msg)
@@ -446,6 +456,7 @@ public class MultiplayerManager : MonoBehaviour
                     car.GetComponent<CarManagerScript>().m_playerNum = netMerge.m_Player;
                     car.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum = netMerge.m_Other;
                     car.GetComponent<MergedTimer>().m_maxTimer = m_maxTimer;
+                    car.GetComponent<WinCondition>().lap = netMerge.m_lapNum;
                     m_activeCars.Add(car);
                 }
                 else if (netMerge.m_Other == PersistentInfo.Instance.m_currentPlayerNum)
@@ -849,6 +860,38 @@ public class MultiplayerManager : MonoBehaviour
                 break;
         }
     }
+    void OnFinishedClient(NetMessage a_msg)
+    {
+        NetFinished netFinished = a_msg as NetFinished;
+        switch (netFinished.m_Action)
+        {
+            case NetFinished.ACTION.INDEVIDUAL:
+                if (netFinished.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
+                {
+                    foreach (GameObject car in m_activeCars)
+                    {
+                        if (car.GetComponent<CarManagerScript>().m_playerNum == netFinished.m_Player)
+                        {
+                            car.GetComponent<WinCondition>().isFinished = true;
+                        }
+                    }
+                }
+                break;
+            case NetFinished.ACTION.ALL:
+                Client.Instance.Shutdown();
+                if (PersistentInfo.Instance.m_currentPlayerNum == 1)
+                {
+                    Server.Instance.Shutdown();
+                }
+                PersistentInfo.Instance.Clear();
+                SceneManager.LoadScene(0);
+
+                break;
+            default:
+                break;
+        }
+    }
+
 
     private void OnDestroy()
     {
