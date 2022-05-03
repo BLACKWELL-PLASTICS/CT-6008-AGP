@@ -188,6 +188,8 @@ public class MultiplayerManager : MonoBehaviour
         NetUtility.S_BOOST += OnBoostServer;
         //Timer
         NetUtility.S_GAME_COUNTDOWN += OnGameCountdownServer;
+        //End Game
+        NetUtility.S_FINISHED += OnFinishedServer;
 
         //Client
             //Moving
@@ -203,8 +205,11 @@ public class MultiplayerManager : MonoBehaviour
         NetUtility.C_BIRD_POOP += OnBirdPoopClient;
         NetUtility.C_GUM += OnGumClient;
         NetUtility.C_BOOST += OnBoostClient;
-        //Timer
+            //Timer
         NetUtility.C_GAME_COUNTDOWN += OnGameCountdownClient;
+            //End Game
+        NetUtility.C_FINISHED += OnFinishedClient;
+
 
     }
     void UnregisterEvenets()
@@ -223,8 +228,10 @@ public class MultiplayerManager : MonoBehaviour
         NetUtility.S_BIRD_POOP -= OnBirdPoopServer;
         NetUtility.S_GUM -= OnGumServer;
         NetUtility.S_BOOST -= OnBoostServer;
-        //Timer
+            //Timer
         NetUtility.S_GAME_COUNTDOWN -= OnGameCountdownServer;
+            //End Game
+        NetUtility.S_FINISHED -= OnFinishedServer;
 
         //Client
             //Moving
@@ -240,8 +247,10 @@ public class MultiplayerManager : MonoBehaviour
         NetUtility.C_BIRD_POOP -= OnBirdPoopClient;
         NetUtility.C_GUM -= OnGumClient;
         NetUtility.C_BOOST -= OnBoostClient;
-        //Timer
+            //Timer
         NetUtility.C_GAME_COUNTDOWN -= OnGameCountdownClient;
+            //End Game
+        NetUtility.C_FINISHED -= OnFinishedClient;
     }
 
     public void MergeCars(GameObject a_car1, GameObject a_car2)
@@ -261,7 +270,10 @@ public class MultiplayerManager : MonoBehaviour
         netMerge.m_secondYRot = 0;
         netMerge.m_secondZRot = 0;
         netMerge.m_secondWRot = 0;
-        netMerge.m_lapNum = a_car1.GetComponent<WinCondition>().lap;
+        //netMerge.m_lapNum = a_car1.GetComponent<WinCondition>().lap;
+        //netMerge.m_checkpointNum = a_car1.GetComponent<WinCondition>().checkpointNumber;
+        //netMerge.m_lapNumOther = a_car2.GetComponent<WinCondition>().lap;
+        //netMerge.m_checkpointNumOther = a_car2.GetComponent<WinCondition>().checkpointNumber;
         Client.Instance.SendToServer(netMerge);
     }
     GameObject GetPartToRotate(GameObject a_base, int a_index)
@@ -456,7 +468,10 @@ public class MultiplayerManager : MonoBehaviour
                     car.GetComponent<CarManagerScript>().m_playerNum = netMerge.m_Player;
                     car.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum = netMerge.m_Other;
                     car.GetComponent<MergedTimer>().m_maxTimer = m_maxTimer;
-                    car.GetComponent<WinCondition>().lap = netMerge.m_lapNum;
+                    car.GetComponent<WinCondition>().lap = car1.GetComponent<WinCondition>().lap;
+                    car.GetComponent<WinCondition>().checkpointNumber = car1.GetComponent<WinCondition>().checkpointNumber;
+                    car.GetComponentInChildren<WinCondition>().lap = car2.GetComponent<WinCondition>().lap;
+                    car.GetComponentInChildren<WinCondition>().checkpointNumber = car2.GetComponent<WinCondition>().checkpointNumber;
                     m_activeCars.Add(car);
                 }
                 else if (netMerge.m_Other == PersistentInfo.Instance.m_currentPlayerNum)
@@ -471,6 +486,10 @@ public class MultiplayerManager : MonoBehaviour
                     car.GetComponent<CarManagerScript>().m_playerNum = netMerge.m_Player;
                     car.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum = netMerge.m_Other;
                     car.GetComponent<MergedTimer>().m_maxTimer = m_maxTimer;
+                    car.GetComponent<WinCondition>().lap = car1.GetComponent<WinCondition>().lap;
+                    car.GetComponent<WinCondition>().checkpointNumber = car1.GetComponent<WinCondition>().checkpointNumber;
+                    car.GetComponentInChildren<WinCondition>().lap = car2.GetComponent<WinCondition>().lap;
+                    car.GetComponentInChildren<WinCondition>().checkpointNumber = car2.GetComponent<WinCondition>().checkpointNumber;
                     m_activeCars.Add(car);
                 }
                 else
@@ -484,6 +503,10 @@ public class MultiplayerManager : MonoBehaviour
                                                                  PersistentInfo.Instance.m_carDesigns[netMerge.m_Other - 1].m_gunChoice);
                     car.GetComponent<CarManagerScript>().m_playerNum = netMerge.m_Player;
                     car.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum = netMerge.m_Other;
+                    car.GetComponent<WinCondition>().lap = car1.GetComponent<WinCondition>().lap;
+                    car.GetComponent<WinCondition>().checkpointNumber = car1.GetComponent<WinCondition>().checkpointNumber;
+                    car.GetComponentInChildren<WinCondition>().lap = car2.GetComponent<WinCondition>().lap;
+                    car.GetComponentInChildren<WinCondition>().checkpointNumber = car2.GetComponent<WinCondition>().checkpointNumber;
                     m_activeCars.Add(car);
                 }
                 m_activeCars.Remove(car1);
@@ -509,6 +532,8 @@ public class MultiplayerManager : MonoBehaviour
                     newCar.GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponent<CarManagerScript>().m_playerNum - 1].m_carChoice,
                                                                     PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponent<CarManagerScript>().m_playerNum - 1].m_wheelChoice,
                                                                     PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponent<CarManagerScript>().m_playerNum - 1].m_gunChoice);
+                    newCar.GetComponent<WinCondition>().lap = mergedCar.GetComponent<WinCondition>().lap;
+                    newCar.GetComponent<WinCondition>().checkpointNumber = mergedCar.GetComponent<WinCondition>().checkpointNumber;
                     newCar.GetComponent<CarManagerScript>().m_playerNum = mergedCar.GetComponent<CarManagerScript>().m_playerNum;
                     newCar.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
                     m_activeCars.Add(newCar);
@@ -519,6 +544,8 @@ public class MultiplayerManager : MonoBehaviour
                     newCar.GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponent<CarManagerScript>().m_playerNum - 1].m_carChoice,
                                                                     PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponent<CarManagerScript>().m_playerNum - 1].m_wheelChoice,
                                                                     PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponent<CarManagerScript>().m_playerNum - 1].m_gunChoice);
+                    newCar.GetComponent<WinCondition>().lap = mergedCar.GetComponent<WinCondition>().lap;
+                    newCar.GetComponent<WinCondition>().checkpointNumber = mergedCar.GetComponent<WinCondition>().checkpointNumber;
                     newCar.GetComponent<CarManagerScript>().m_playerNum = mergedCar.GetComponent<CarManagerScript>().m_playerNum;
                     newCar.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
                     m_activeCars.Add(newCar);
@@ -532,6 +559,8 @@ public class MultiplayerManager : MonoBehaviour
                     newCar.GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum - 1].m_carChoice,
                                                                     PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum - 1].m_wheelChoice,
                                                                     PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum - 1].m_gunChoice);
+                    newCar.GetComponent<WinCondition>().lap = mergedCar.GetComponentInChildren<WinCondition>().lap;
+                    newCar.GetComponent<WinCondition>().checkpointNumber = mergedCar.GetComponentInChildren<WinCondition>().checkpointNumber;
                     newCar.GetComponent<CarManagerScript>().m_playerNum = mergedCar.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum;
                     newCar.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
                     m_activeCars.Add(newCar);
@@ -542,6 +571,8 @@ public class MultiplayerManager : MonoBehaviour
                     newCar.GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum - 1].m_carChoice,
                                                                     PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum - 1].m_wheelChoice,
                                                                     PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum - 1].m_gunChoice);
+                    newCar.GetComponent<WinCondition>().lap = mergedCar.GetComponentInChildren<WinCondition>().lap;
+                    newCar.GetComponent<WinCondition>().checkpointNumber = mergedCar.GetComponentInChildren<WinCondition>().checkpointNumber;
                     newCar.GetComponent<CarManagerScript>().m_playerNum = mergedCar.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum;
                     newCar.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
                     m_activeCars.Add(newCar);

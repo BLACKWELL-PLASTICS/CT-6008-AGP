@@ -9915,7 +9915,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8738164446682236296}
   - component: {fileID: 8738164446682236288}
-  - component: {fileID: 8738164446682236295}
   - component: {fileID: 8738164446682236294}
   - component: {fileID: 8738164446682236293}
   - component: {fileID: 8738164446682236292}
@@ -9928,6 +9927,7 @@ GameObject:
   - component: {fileID: 1231759283291849560}
   - component: {fileID: 6973172210138769736}
   - component: {fileID: 8989700593950683823}
+  - component: {fileID: 4382652600664225727}
   m_Layer: 11
   m_Name: Car_Reg
   m_TagString: Player
@@ -9977,22 +9977,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &8738164446682236295
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8738164446682236303}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &8738164446682236294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10205,6 +10189,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e98f2e2f55870546856fdee5e205ea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentPosition: 0
+--- !u!54 &4382652600664225727
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8738164446682236303}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &8738164444770912762
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -11,6 +11,10 @@ public class Lap : MonoBehaviour
             //isDrivenThrough = !isDrivenThrough;
             other.GetComponent<WinCondition>().hasBeenChecked[individualNo] = !other.GetComponent<WinCondition>().hasBeenChecked[individualNo];
             other.GetComponent<WinCondition>().checkpointNumber++;
+            if (other.GetComponentInChildren<MergedShootingControllerScript>() != null)
+            {
+                other.GetComponentInChildren<WinCondition>().checkpointNumber++;
+            }
 
             Debug.LogError(other.GetComponent<WinCondition>().checkpointNumber);
         }

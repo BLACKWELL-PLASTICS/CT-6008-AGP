@@ -46,7 +46,8 @@ public class MergedTimer : MonoBehaviour
                 netMerge.m_secondYRot = 0;
                 netMerge.m_secondZRot = 0;
                 netMerge.m_secondWRot = 0;
-                netMerge.m_lapNum = GetComponent<WinCondition>().lap;
+                //netMerge.m_lapNum = GetComponentInChildren<WinCondition>().lap;
+                //netMerge.m_lapNum = GetComponentInChildren<WinCondition>().checkpointNumber;
                 Client.Instance.SendToServer(netMerge);
             }
             else
@@ -66,7 +67,8 @@ public class MergedTimer : MonoBehaviour
                 netMerge.m_secondYRot = 0;
                 netMerge.m_secondZRot = 0;
                 netMerge.m_secondWRot = 0;
-                netMerge.m_lapNum = GetComponent<WinCondition>().lap;
+                //netMerge.m_lapNum = GetComponent<WinCondition>().lap;
+                //netMerge.m_lapNum = GetComponent<WinCondition>().checkpointNumber;
                 Client.Instance.SendToServer(netMerge);
             }
             m_timerBar.GetComponent<UnityEngine.UI.Slider>().value = 1;

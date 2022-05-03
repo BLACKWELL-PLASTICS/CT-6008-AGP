@@ -19,9 +19,20 @@ public class WinCheck : MonoBehaviour
     {
         if (PersistentInfo.Instance.m_currentPlayerNum == 1)
         {
-            for (int i = 0; i < 8; i++)
+            drivableCars = GameObject.FindGameObjectsWithTag("Player");
+
+            int withGun = 0;
+            for (int i = 0; i < drivableCars.Length; i++)
             {
-                isfinished[i] = drivableCars[i].GetComponent<WinCondition>().isFinished;
+                if (i < isfinished.Length && i < drivableCars.Length)
+                {
+                    isfinished[i] = drivableCars[i].GetComponent<WinCondition>().isFinished;
+                    if (drivableCars[i].GetComponentInChildren<MergedShootingControllerScript>() != null)
+                    {
+                        isfinished[isfinished.Length - 1 - withGun] = drivableCars[i].GetComponentInChildren<WinCondition>().isFinished;
+                        withGun++;
+                    }
+                }
             }
 
             if (isfinished.All(x => x))
