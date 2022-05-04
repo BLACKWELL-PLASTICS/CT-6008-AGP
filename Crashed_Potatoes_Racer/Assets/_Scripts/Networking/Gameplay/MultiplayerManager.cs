@@ -186,9 +186,9 @@ public class MultiplayerManager : MonoBehaviour
         NetUtility.S_BIRD_POOP += OnBirdPoopServer;
         NetUtility.S_GUM += OnGumServer;
         NetUtility.S_BOOST += OnBoostServer;
-        //Timer
+            //Timer
         NetUtility.S_GAME_COUNTDOWN += OnGameCountdownServer;
-        //End Game
+            //End Game
         NetUtility.S_FINISHED += OnFinishedServer;
 
         //Client

@@ -21,7 +21,15 @@ public class SizeIncrease : MonoBehaviour {
         transform.localScale = originalScale * 1.5f;
         currentPos = transform.position;
 
-        Transform sphere = GetComponent<Controller>().rb.transform;
+        Transform sphere = null;
+        if (GetComponent<AIPlayer>() == null)
+        {
+            sphere = GetComponent<Controller>().rb.transform;
+        }
+        else
+        {
+            sphere = GetComponentInChildren<Rigidbody>().transform;
+        }
         transform.position = new Vector3(currentPos.x, currentPos.y + 1f, currentPos.z);
         sphere.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         //Added by Iain

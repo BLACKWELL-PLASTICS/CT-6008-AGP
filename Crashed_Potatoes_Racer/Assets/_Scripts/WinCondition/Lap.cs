@@ -16,7 +16,7 @@ public class Lap : MonoBehaviour
                 other.GetComponentInChildren<WinCondition>().checkpointNumber++;
             }
 
-            Debug.LogError(other.GetComponent<WinCondition>().checkpointNumber);
+            Debug.Log(other.GetComponent<WinCondition>().checkpointNumber);
         }
     }
 }

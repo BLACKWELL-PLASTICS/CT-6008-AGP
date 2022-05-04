@@ -22,6 +22,9 @@ public class UpdateMovement : MonoBehaviour
         netMakeMove.m_YRot = gameObject.transform.rotation.y;
         netMakeMove.m_ZRot = gameObject.transform.rotation.z;
         netMakeMove.m_WRot = gameObject.transform.rotation.w;
-        Client.Instance.SendToServer(netMakeMove);
+        if (Client.Instance.m_driver.IsCreated)
+        {
+            Client.Instance.SendToServer(netMakeMove);
+        }
     }
 }

@@ -49,7 +49,7 @@ public class WinCondition : MonoBehaviour
             // Send Packet Here
             NetFinished netFinished = new NetFinished();
             netFinished.m_Player = GetComponent<CarManagerScript>().m_playerNum;
-            netFinished.m_Action = NetFinished.ACTION.INDEVIDUAL;
+            netFinished.m_Action = NetFinished.ACTION.INDEVIDUAL;z
             Client.Instance.SendToServer(netFinished);
             // Will then need to check on the server if all players have send the finish packet
             // to load into next scene.
