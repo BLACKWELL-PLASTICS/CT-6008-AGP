@@ -39,15 +39,20 @@ public class Controller : MonoBehaviour {
     void Start() {
         // unparent sphere to smooth movement
         rb.transform.parent = null;
-        frontLeftWheel = GameObject.FindGameObjectWithTag("FLW").GetComponent<Transform>();
-        frontRightWheel = GameObject.FindGameObjectWithTag("FRW").GetComponent<Transform>();
-
         //fmod 
         emitter = GetComponent<FMODUnity.StudioEventEmitter>();
     }
 
     // Update is called once per frame
     void Update() {
+        if (frontLeftWheel == null)
+        {
+            frontLeftWheel = GameObject.FindGameObjectWithTag("FLW").GetComponent<Transform>();
+        }
+        if (frontRightWheel == null)
+        {
+            frontRightWheel = GameObject.FindGameObjectWithTag("FRW").GetComponent<Transform>();
+        }
         // BOOSTING CODE
         if (isBoosting == true && boostTimer <= 3f) {
             boostTimer += Time.deltaTime;

@@ -13,6 +13,7 @@ public class WinCondition : MonoBehaviour
 
     public bool isFinished = false;
 
+
     void Awake()
     {
         array = GameObject.FindGameObjectsWithTag("Waypoints");
@@ -37,7 +38,6 @@ public class WinCondition : MonoBehaviour
             }
         } else {
             // Disable Controller / AI script
-            isFinished = true;
             if (gameObject.name == "Car_Reg(Clone)") {
                 gameObject.GetComponent<Controller>().enabled = false;
             } else {
@@ -45,9 +45,20 @@ public class WinCondition : MonoBehaviour
             }
             // Lock Position
             gameObject.transform.position = gameObject.transform.position;
+            
+            if (!isFinished)
+            {
+                // Send Packet Here
+                NetFinished netFinished = new NetFinished();
+                netFinished.m_Player = GetComponent<CarManagerScript>().m_playerNum;
+                netFinished.m_Action = NetFinished.ACTION.INDEVIDUAL;
+                if (Client.Instance.m_driver.IsCreated)
+                {
+                    Client.Instance.SendToServer(netFinished);
+                }
+            }
 
-            // Send Packet Here
-
+            isFinished = true;
             // Will then need to check on the server if all players have send the finish packet
             // to load into next scene.
             // THIS SCRIPT HAS BEEN WRITTEN IN THE WinCheck.cs script

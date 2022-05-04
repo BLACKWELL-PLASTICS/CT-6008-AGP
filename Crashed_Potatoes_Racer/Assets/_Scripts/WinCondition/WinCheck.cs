@@ -17,12 +17,32 @@ public class WinCheck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < 8; i++) {
-            isfinished[i] = drivableCars[i].GetComponent<WinCondition>().isFinished;
-        }
+        if (PersistentInfo.Instance.m_currentPlayerNum == 1)
+        {
+            drivableCars = GameObject.FindGameObjectsWithTag("Player");
 
-        if (isfinished.All(x => x)) {
-            Debug.Log("ALL PLAYERS HAVE FINISHED THE GAME");
+            int withGun = 0;
+            for (int i = 0; i < drivableCars.Length; i++)
+            {
+                if (i < isfinished.Length && i < drivableCars.Length)
+                {
+                    isfinished[i] = drivableCars[i].GetComponent<WinCondition>().isFinished;
+                    if (drivableCars[i].GetComponentInChildren<MergedShootingControllerScript>() != null)
+                    {
+                        isfinished[isfinished.Length - 1 - withGun] = drivableCars[i].GetComponentInChildren<WinCondition>().isFinished;
+                        withGun++;
+                    }
+                }
+            }
+
+            if (isfinished.All(x => x))
+            {
+                Debug.Log("ALL PLAYERS HAVE FINISHED THE GAME");
+                NetFinished netFinsihed = new NetFinished();
+                netFinsihed.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+                netFinsihed.m_Action = NetFinished.ACTION.ALL;
+                Server.Instance.Broadcast(netFinsihed);
+            }
         }
     }
 }
