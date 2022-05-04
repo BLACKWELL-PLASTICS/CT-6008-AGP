@@ -6,18 +6,18 @@ public class BoidController : MonoBehaviour
 {
     private float speed;
     [HideInInspector]
-    public AIManager manager;
+    public BoidManager manager;
 
     void Start()
     {
-        speed = Random.Range(1, AIManager.GetMaxBoidSpeed);
+        speed = Random.Range(1, manager.maxBoidSpeed);
     }
     void Update()
     {
-        if (Vector3.Distance(transform.position, AIManager.GetBoidStart.position) >= AIManager.GetAreaLimit)
+        if (Vector3.Distance(transform.position, manager.boidLocation.position) >= manager.areaLimit)
         {
-            Vector3 direction = AIManager.GetBoidStart.position - transform.position; 
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), AIManager.GetBoidRotation * Time.deltaTime); 
+            Vector3 direction = manager.boidLocation.position - transform.position; 
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), manager.rotationSpeed * Time.deltaTime); 
             speed = Random.Range(1, 15); 
         }
         else
@@ -33,11 +33,11 @@ public class BoidController : MonoBehaviour
     private void ApplyRules()
     {
         GameObject[] otherBoids;
-        otherBoids = AIManager.GetBoids; 
+        otherBoids = manager.boidArray; 
 
         Vector3 center = Vector3.zero; 
         Vector3 avoid = Vector3.zero; 
-        Vector3 goalPos = AIManager.GetGoalPos;
+        Vector3 goalPos = manager.goalPos;
 
         float distance; 
         int groupSize = 0; 
@@ -48,7 +48,7 @@ public class BoidController : MonoBehaviour
             if (i != this.gameObject) 
             {
                 distance = Vector3.Distance(i.transform.position, this.transform.position); 
-                if (distance <= AIManager.GetNeighbourDist) 
+                if (distance <= manager.neighbourDist) 
                 {
                     center += i.transform.position; 
                     groupSize++; 
@@ -68,8 +68,8 @@ public class BoidController : MonoBehaviour
             speed = averageSpeed / groupSize;
 
             Vector3 direction = (center + avoid) - transform.position;
-            if (direction != AIManager.GetBoidStart.position)
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), AIManager.GetBoidRotation * Time.deltaTime);
+            if (direction != manager.boidLocation.position)
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), manager.rotationSpeed * Time.deltaTime);
 
         }
 
