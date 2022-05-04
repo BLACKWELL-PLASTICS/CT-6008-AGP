@@ -23,15 +23,11 @@ public class Position : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "Player") {
-            // if the first checkpoints not been gone past
-            if (GetComponent<WinCondition>().checkpointNumber < 0) {
-                return;
-            }
             // Check if on the same lap
             if (other.gameObject.GetComponent<WinCondition>().lap != GetComponent<WinCondition>().lap) {
                 return;
             } else { // On the same lap
-                GameObject checkpoint = GetComponent<WinCondition>().array[GetComponent<WinCondition>().checkpointNumber];
+                GameObject checkpoint = GetComponent<WinCondition>().array[GetComponent<WinCondition>().checkpointNumber + 1];
                 float carOneDistance = Vector3.Distance(checkpoint.transform.position, transform.position);
                 float carTwoDistance = Vector3.Distance(checkpoint.transform.position, other.transform.position);
                 if (carOneDistance < carTwoDistance) { // this car is closer
