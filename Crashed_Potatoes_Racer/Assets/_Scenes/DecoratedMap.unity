@@ -10774,6 +10774,7 @@ GameObject:
   - component: {fileID: 430631969}
   - component: {fileID: 430631971}
   - component: {fileID: 430631970}
+  - component: {fileID: 430631972}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -10837,6 +10838,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430631968}
   m_CullTransparentMesh: 0
+--- !u!114 &430631972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430631968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d503daf53a3cdd046a8473686d7218c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &433342107 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d2da1245dd3ba1c4bb37c41170e75e4f,
@@ -53401,17 +53414,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 63e08a362f29085439e9e4425c4eb3fa,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.2107859
+      value: -1.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 63e08a362f29085439e9e4425c4eb3fa,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -22.578201
+      value: -23.89
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 63e08a362f29085439e9e4425c4eb3fa,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.481753
+      value: -9.92
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 63e08a362f29085439e9e4425c4eb3fa,
         type: 3}

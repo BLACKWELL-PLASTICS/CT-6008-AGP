@@ -59,4 +59,10 @@ public class SizeIncrease : MonoBehaviour {
             //Added by Iain ~
         }
     }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag == "Player") {
+            other.gameObject.GetComponent<PlayerHit>().HitSpin();
+        }
+    }
 }

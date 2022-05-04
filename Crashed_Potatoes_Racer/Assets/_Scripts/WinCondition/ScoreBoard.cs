@@ -1,20 +1,21 @@
-﻿using System.Collections;
+﻿// DEPRICATED - NOT IN USE ANYMORE
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoreBoard : MonoBehaviour
 {
-    GameObject[] cars = new GameObject[8];
-    // Start is called before the first frame update
-    void Start()
-    {
-        cars = GameObject.FindGameObjectsWithTag("Player");
-    }
+    //GameObject[] cars = new GameObject[8];
+    //// Start is called before the first frame update
+    //void Start()
+    //{
+    //    cars = GameObject.FindGameObjectsWithTag("Player");
+    //}
 
     // Update is called once per frame
     //void Update()
     //{
-
+    //
     //    for (int one = 0; one < cars.Length; one++) {
     //        for (int two = 0; two < cars.Length; two++) {
     //            if (cars[one].GetComponent<WinCondition>().checkpointNumber < 0) {
