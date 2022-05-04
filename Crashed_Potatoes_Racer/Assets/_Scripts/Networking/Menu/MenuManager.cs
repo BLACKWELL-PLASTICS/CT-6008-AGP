@@ -49,7 +49,9 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
         MenuClient.Instance.Initlialise(m_severAdress, 8009);
+        m_startUI = PersistentInfo.Instance.m_CountdownUI;
     }
 
     private void Update()
@@ -455,8 +457,7 @@ public class MenuManager : MonoBehaviour
                 }
                 for (int i = 0; i < m_startUI.Length; i++)
                 {
-                    Destroy(m_startUI[i]);
-                    m_startUI[i] = null;
+                    m_startUI[i].SetActive(false);
                 }
                 m_startUI = new GameObject[0];
                 StartGame();

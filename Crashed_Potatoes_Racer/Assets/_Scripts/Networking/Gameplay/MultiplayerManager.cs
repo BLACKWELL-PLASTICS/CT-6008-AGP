@@ -165,8 +165,9 @@ public class MultiplayerManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.L))
         {
+            int pI = PersistentInfo.Instance.m_currentPlayerNum;
             Client.Instance.Shutdown();
-            if (PersistentInfo.Instance.m_currentPlayerNum == 1)
+            if (pI == 1)
             {
                 Server.Instance.Shutdown();
             }
@@ -506,7 +507,6 @@ public class MultiplayerManager : MonoBehaviour
                 }
                 else
                 {
-                    m_timerSlider.SetActive(true);
                     GameObject car = Instantiate(m_mergedOnlinePrefab, pos, Quaternion.identity);
                     car.transform.eulerAngles = midDir;
                     car.transform.up = Vector3.up;
