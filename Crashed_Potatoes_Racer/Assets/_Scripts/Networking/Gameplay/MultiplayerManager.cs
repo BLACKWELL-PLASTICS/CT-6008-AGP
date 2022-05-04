@@ -162,6 +162,18 @@ public class MultiplayerManager : MonoBehaviour
                 Client.Instance.SendToServer(netGameCountdown);
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Client.Instance.Shutdown();
+            if (PersistentInfo.Instance.m_currentPlayerNum == 1)
+            {
+                Server.Instance.Shutdown();
+            }
+            //PersistentInfo.Instance.Clear();
+            SceneManager.LoadScene(0);
+
+        }
     }
 
     void Awake()

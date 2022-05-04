@@ -71,7 +71,10 @@ public class Client : MonoBehaviour
 
         CheckAlive();
 
-        UpdateMessagePump();
+        if (m_driver.IsCreated)
+        {
+            UpdateMessagePump();
+        }
     }
     void CheckAlive()
     {
@@ -86,6 +89,10 @@ public class Client : MonoBehaviour
     {
         DataStreamReader stream;
         NetworkEvent.Type cmd;
+        if (m_connection == default(NetworkConnection))
+        {
+            return;
+        }
         while ((cmd = m_connection.PopEvent(m_driver, out stream)) != NetworkEvent.Type.Empty)
         {
             if (cmd == NetworkEvent.Type.Connect)
