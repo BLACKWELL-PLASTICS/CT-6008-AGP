@@ -1,40 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class WinCondition : MonoBehaviour
 {
-    [SerializeField] GameObject[] trackMarkers;
-    bool[] hasBeenChecked;
-    [SerializeField]
-    int lap;
+    public GameObject[] array;
+    public bool[] hasBeenChecked;
+
+    public int lap;
+    public int checkpointNumber;
 
     public bool isFinished = false;
 
     void Awake()
     {
+        array = GameObject.FindGameObjectsWithTag("Waypoints");
         lap = 0;
         // Set array length
-        trackMarkers = new GameObject[GameObject.FindGameObjectsWithTag("Waypoints").Length];
-        hasBeenChecked = new bool[trackMarkers.Length];
-        // Set array
-        trackMarkers = GameObject.FindGameObjectsWithTag("Waypoints");
+        hasBeenChecked = new bool[GameObject.FindGameObjectsWithTag("Waypoints").Length];
+        hasBeenChecked[0] = true;
+        checkpointNumber = -1;
     }
 
     // Update is called once per frame
     void Update()
     {
+        // if the lap is less than or equal to 3
         if (lap <= 3) { // This can be changed depending on lap limit
-            int x = 0;
-            for (int i = 0; i < trackMarkers.Length; i++) {
-                if (trackMarkers[i].GetComponent<Lap>().IsDrivenThroughGetter() == true) {
-                    x++;
-                }
-            }
-            if (x == trackMarkers.Length) {
-                lap++;
-                foreach (GameObject item in trackMarkers) {
-                    item.GetComponent<Lap>().IsDrivenThroughSetter();
+            if (hasBeenChecked.All(x => x)) { // if all of the waypoints are checked
+                lap++; // increase lap
+                checkpointNumber = 0;
+                for (int i = 0; i < hasBeenChecked.Length; i++) {
+                    hasBeenChecked[i] = false;
                 }
             }
         } else {

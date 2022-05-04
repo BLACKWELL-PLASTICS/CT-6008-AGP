@@ -40,7 +40,7 @@ public class SizeIncrease : MonoBehaviour {
             currentPos = transform.position;
             transform.localScale = originalScale;
             timer = 0f;
-            transform.position = new Vector3(currentPos.x, originalPos.y, currentPos.z);
+            transform.position = new Vector3(currentPos.x, currentPos.y, currentPos.z);
             //Added by Iain
             //shrink package
             NetGrow netGrow = new NetGrow();
@@ -49,6 +49,12 @@ public class SizeIncrease : MonoBehaviour {
             Client.Instance.SendToServer(netGrow);
             Destroy(gameObject.GetComponent<SizeIncrease>());
             //Added by Iain ~
+        }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag == "Player") {
+            other.gameObject.GetComponent<PlayerHit>().HitSpin();
         }
     }
 }
