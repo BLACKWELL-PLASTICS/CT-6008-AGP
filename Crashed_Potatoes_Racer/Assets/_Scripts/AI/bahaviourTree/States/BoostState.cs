@@ -18,6 +18,14 @@ public class BoostState : Node
             owner.DeBoostSpeed();
             owner.transform.Find("Boost").GetComponent<ParticleSystem>().Stop();
             owner.timer = 0f;
+            //Added by Iain
+            //Boost start package
+            NetBoost netBoost = new NetBoost();
+            netBoost.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+            netBoost.m_CarNum = owner.GetComponent<CarManagerScript>().m_playerNum;
+            netBoost.m_Action = NetBoost.ACTION.START;
+            Client.Instance.SendToServer(netBoost);
+            //Added by Iain ~
             owner.InventoryComponent.UsePowerup();
             return NodeState.SUCCESS;
         }

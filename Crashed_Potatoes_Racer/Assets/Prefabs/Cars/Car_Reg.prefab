@@ -9966,7 +9966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
+  attenuationObject: {fileID: 8738164446682236303}
   ListenerNumber: -1
 --- !u!1 &8738164446377299599
 GameObject:
@@ -10278,7 +10278,7 @@ MonoBehaviour:
       Data4: 1560646141
     Path: event:/car
   Event: 
-  PlayEvent: 0
+  PlayEvent: 1
   StopEvent: 0
   AllowFadeout: 1
   TriggerOnce: 0
@@ -10286,8 +10286,8 @@ MonoBehaviour:
   Params:
   - Name: Speed
     Value: 0
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
+  OverrideAttenuation: 1
+  OverrideMinDistance: 15
   OverrideMaxDistance: 20
 --- !u!114 &8989700593950683823
 MonoBehaviour:

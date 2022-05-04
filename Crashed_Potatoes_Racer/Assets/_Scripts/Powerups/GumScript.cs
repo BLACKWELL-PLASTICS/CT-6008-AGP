@@ -36,6 +36,10 @@ public class GumScript : MonoBehaviour
         else
         {
             other.gameObject.AddComponent<GumOnlineVisualTrigger>();
+            if(other.gameObject.GetComponent<AIPlayer>() != null)
+            {
+                other.gameObject.GetComponent<PlayerHit>().HitSpin();
+            }
         }
         //Added by Iain ~
 

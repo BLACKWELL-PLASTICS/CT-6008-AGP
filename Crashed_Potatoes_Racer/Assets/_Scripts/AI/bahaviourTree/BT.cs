@@ -11,6 +11,8 @@ public class BT : BTBase
     private Sequencer floatySequence;
     private Sequencer sizeSequence;
     private Sequencer boostSequence;
+    private Sequencer gumSequence;
+    private Sequencer birdSequence;
 
     //conditons
     private IsRocket rocketCheck;
@@ -19,6 +21,8 @@ public class BT : BTBase
     private IsFloaty floatyCheck;
     private IsSize sizeCheck;
     private IsBoost boostCheck;
+    private IsGum gumCheck;
+    private IsBird birdCheck;
 
     //nodes
     private WaypointState waypointNode;
@@ -26,6 +30,8 @@ public class BT : BTBase
     private FloatyState floatyFire;
     private SizeState sizeIncrease;
     private BoostState boostStart;
+    private GumState gumFire;
+    private PoopState birdFire;
 
     public BT(AIPlayer owner) : base(owner)
     {
@@ -36,12 +42,16 @@ public class BT : BTBase
         floatySequence = new Sequencer(owner);
         sizeSequence = new Sequencer(owner);
         boostSequence = new Sequencer(owner);
+        gumSequence = new Sequencer(owner);
+        birdSequence = new Sequencer(owner);
 
         waypointNode = new WaypointState(owner);
         rocketFire = new RocketState(owner);
         floatyFire = new FloatyState(owner);
         sizeIncrease = new SizeState(owner);
         boostStart = new BoostState(owner);
+        gumFire = new GumState(owner);
+        birdFire = new PoopState(owner);
 
         rocketCheck = new IsRocket(owner);
         rangeCheck = new InRange(owner);
@@ -49,6 +59,8 @@ public class BT : BTBase
         floatyCheck = new IsFloaty(owner);
         sizeCheck = new IsSize(owner);
         boostCheck = new IsBoost(owner);
+        gumCheck = new IsGum(owner);
+        birdCheck = new IsBird(owner);
 
         //linking nodes
         Root = rootSelector;
@@ -60,6 +72,8 @@ public class BT : BTBase
         powerUpSelector.AddNode(floatySequence);
         powerUpSelector.AddNode(sizeSequence);
         powerUpSelector.AddNode(boostSequence);
+        powerUpSelector.AddNode(gumSequence);
+        powerUpSelector.AddNode(birdSequence);
 
         rocketSequence.AddNode(rocketCheck);
         rocketSequence.AddNode(rangeCheck);
@@ -76,6 +90,11 @@ public class BT : BTBase
         boostSequence.AddNode(boostCheck);
         boostSequence.AddNode(boostStart);
 
+        gumSequence.AddNode(gumCheck);
+        gumSequence.AddNode(rangeCheckBack);
+        gumSequence.AddNode(gumFire);
 
+        birdSequence.AddNode(birdCheck);
+        birdSequence.AddNode(birdFire);
     }
 }

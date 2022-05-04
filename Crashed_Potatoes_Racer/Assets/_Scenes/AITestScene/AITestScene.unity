@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 4c20f1b0ecd020b48abfdc55a517011b,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -7159,6 +7159,7 @@ GameObject:
   - component: {fileID: 557315717}
   - component: {fileID: 557315716}
   - component: {fileID: 557315723}
+  - component: {fileID: 557315724}
   m_Layer: 11
   m_Name: Cube (2)
   m_TagString: Player
@@ -7336,6 +7337,19 @@ MonoBehaviour:
   OverrideAttenuation: 1
   OverrideMinDistance: 5
   OverrideMaxDistance: 20
+--- !u!114 &557315724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557315715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7720ae635ccad874eab8172062184f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rotAngle: 450
 --- !u!1 &558757314
 GameObject:
   m_ObjectHideFlags: 0
@@ -7632,6 +7646,7 @@ GameObject:
   - component: {fileID: 641107574}
   - component: {fileID: 641107580}
   - component: {fileID: 641107581}
+  - component: {fileID: 641107582}
   m_Layer: 11
   m_Name: Cube
   m_TagString: Player
@@ -7810,6 +7825,19 @@ MonoBehaviour:
   OverrideAttenuation: 1
   OverrideMinDistance: 5
   OverrideMaxDistance: 20
+--- !u!114 &641107582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641107573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7720ae635ccad874eab8172062184f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rotAngle: 450
 --- !u!1 &656995342
 GameObject:
   m_ObjectHideFlags: 0
@@ -9041,6 +9069,7 @@ GameObject:
   - component: {fileID: 987127627}
   - component: {fileID: 987127626}
   - component: {fileID: 987127633}
+  - component: {fileID: 987127634}
   m_Layer: 11
   m_Name: Cube (1)
   m_TagString: Player
@@ -9218,6 +9247,19 @@ MonoBehaviour:
   OverrideAttenuation: 1
   OverrideMinDistance: 5
   OverrideMaxDistance: 20
+--- !u!114 &987127634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987127625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7720ae635ccad874eab8172062184f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rotAngle: 450
 --- !u!1 &1002959705
 GameObject:
   m_ObjectHideFlags: 0
@@ -23199,6 +23241,7 @@ MonoBehaviour:
   powerUps:
   - {fileID: 1895209648162260296, guid: 1dec936bd56fcf64994fb09e7201a51b, type: 3}
   - {fileID: 1490930886457616683, guid: 87e9c095f5bb0a246acc7fcc770913db, type: 3}
+  - {fileID: 6830736905640621692, guid: a0e7f1b3a5377a546bacc3091daf6791, type: 3}
   maxSpeed: 40
   maxAcc: 38
   speedIncrease: 0.25
