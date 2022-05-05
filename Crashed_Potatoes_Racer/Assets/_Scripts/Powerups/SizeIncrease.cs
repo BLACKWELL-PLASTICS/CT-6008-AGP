@@ -36,6 +36,7 @@ public class SizeIncrease : MonoBehaviour {
         //grow packet
         NetGrow netGrow = new NetGrow();
         netGrow.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+        netGrow.m_CarNum = GetComponent<CarManagerScript>().m_playerNum;
         netGrow.m_Action = NetGrow.ACTION.START;
         Client.Instance.SendToServer(netGrow);
         //Added by Iain ~
@@ -53,6 +54,7 @@ public class SizeIncrease : MonoBehaviour {
             //shrink package
             NetGrow netGrow = new NetGrow();
             netGrow.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+            netGrow.m_CarNum = GetComponent<CarManagerScript>().m_playerNum;
             netGrow.m_Action = NetGrow.ACTION.END;
             Client.Instance.SendToServer(netGrow);
             Destroy(gameObject.GetComponent<SizeIncrease>());

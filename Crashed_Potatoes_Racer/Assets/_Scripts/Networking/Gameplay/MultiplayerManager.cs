@@ -163,18 +163,18 @@ public class MultiplayerManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            int pI = PersistentInfo.Instance.m_currentPlayerNum;
-            Client.Instance.Shutdown();
-            if (pI == 1)
-            {
-                Server.Instance.Shutdown();
-            }
-            //PersistentInfo.Instance.Clear();
-            SceneManager.LoadScene(0);
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    int pI = PersistentInfo.Instance.m_currentPlayerNum;
+        //    Client.Instance.Shutdown();
+        //    if (pI == 1)
+        //    {
+        //        Server.Instance.Shutdown();
+        //    }
+        //    //PersistentInfo.Instance.Clear();
+        //    SceneManager.LoadScene(0);
 
-        }
+        //}
     }
 
     void Awake()
@@ -647,7 +647,7 @@ public class MultiplayerManager : MonoBehaviour
                 case NetGrow.ACTION.START:
                     foreach (GameObject car in m_activeCars)
                     {
-                        if (car.GetComponent<CarManagerScript>().m_playerNum == netGrow.m_Player)
+                        if (car.GetComponent<CarManagerScript>().m_playerNum == netGrow.m_CarNum)
                         {
                             car.GetComponent<CarManagerScript>().m_oPos = car.transform.position;
                             car.GetComponent<CarManagerScript>().m_OriginalScale = car.transform.localScale;
@@ -660,7 +660,7 @@ public class MultiplayerManager : MonoBehaviour
                 case NetGrow.ACTION.END:
                     foreach (GameObject car in m_activeCars)
                     {
-                        if (car.GetComponent<CarManagerScript>().m_playerNum == netGrow.m_Player)
+                        if (car.GetComponent<CarManagerScript>().m_playerNum == netGrow.m_CarNum)
                         {
                             Vector3 pos = car.transform.position;
                             car.transform.localScale = car.GetComponent<CarManagerScript>().m_OriginalScale;
@@ -921,12 +921,13 @@ public class MultiplayerManager : MonoBehaviour
                 }
                 break;
             case NetFinished.ACTION.ALL:
+                int pI = PersistentInfo.Instance.m_currentPlayerNum;
                 Client.Instance.Shutdown();
-                if (PersistentInfo.Instance.m_currentPlayerNum == 1)
+                if (pI == 1)
                 {
                     Server.Instance.Shutdown();
                 }
-                PersistentInfo.Instance.Clear();
+                //PersistentInfo.Instance.Clear();
                 SceneManager.LoadScene(0);
 
                 break;

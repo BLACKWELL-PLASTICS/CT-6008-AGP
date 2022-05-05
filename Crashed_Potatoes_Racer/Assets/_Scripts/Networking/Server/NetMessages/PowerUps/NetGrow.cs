@@ -10,6 +10,7 @@ public class NetGrow : NetMessage
     }
 
     public int m_Player { get; set; }
+    public int m_CarNum { get; set; }
     public ACTION m_Action { get; set; }
 
     public NetGrow()
@@ -26,11 +27,13 @@ public class NetGrow : NetMessage
     {
         a_writer.WriteByte((byte)Code);
         a_writer.WriteInt(m_Player);
+        a_writer.WriteInt(m_CarNum);
         a_writer.WriteByte((byte)m_Action);
     }
     public override void Deserialize(DataStreamReader a_reader)
     {
         m_Player = a_reader.ReadInt();
+        m_CarNum = a_reader.ReadInt();
         m_Action = (ACTION)a_reader.ReadByte();
     }
 

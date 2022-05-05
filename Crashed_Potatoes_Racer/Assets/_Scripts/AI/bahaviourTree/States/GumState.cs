@@ -5,8 +5,8 @@ using UnityEngine;
 public class GumState : Node
 {
     private GameObject gum;
-    Vector3 eulerAngle;
-    Quaternion currentRot;
+    private Vector3 eulerAngle;
+    private Quaternion currentRot;
     public GumState(AIPlayer owner) : base(owner)
     {
 
@@ -16,11 +16,12 @@ public class GumState : Node
     {
         Vector3 pos = owner.transform.position - (owner.transform.forward * 2);
         gum = Object.Instantiate(AIManager.GetPowerUp[2], pos, Quaternion.identity);
+        owner.InventoryComponent.UsePowerup();
 
         eulerAngle = new Vector3(-90f, 0f, 0f);
         currentRot.eulerAngles = eulerAngle;
         gum.transform.rotation = currentRot;
-        owner.InventoryComponent.UsePowerup();
+
 
         //Added by Iain
         //gum start package

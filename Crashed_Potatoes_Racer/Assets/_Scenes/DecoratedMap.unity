@@ -34891,7 +34891,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1355214431}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 111.3, y: -33.34, z: -48.73}
+  m_LocalPosition: {x: 99.05, y: -55.4, z: -69.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1803163891}
@@ -48636,8 +48636,8 @@ MonoBehaviour:
   boidPrefab: {fileID: 8228376128580908735, guid: 9b343a1593787594fbc191c64369fad3,
     type: 3}
   boidLocation: {fileID: 1355214432}
-  amountBoids: 60
-  areaLimit: 35
+  amountBoids: 30
+  areaLimit: 15
   maxBoidSpeed: 12
   rotationSpeed: 8
   neighbourDist: 2
