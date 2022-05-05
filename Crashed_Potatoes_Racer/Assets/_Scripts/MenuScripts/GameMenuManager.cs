@@ -1,8 +1,8 @@
 ﻿//////////////////////////////////////////////////
 /// Created:                                   ///
 /// Author:                                    ///
-/// Edited By: Iain Farlow                     ///
-/// Last Edited: 30/04/2022                    ///
+/// Edited By: Henry Northway                  ///
+/// Last Edited: 04/05/2022                    ///
 //////////////////////////////////////////////////
 
 using System.Collections;
@@ -43,6 +43,15 @@ public class GameMenuManager : MonoBehaviour
             //    raycaster.enabled = true;
             //}
             SetActiveMenu(activeMenu);
+        }
+    }
+
+    private void Update()
+    {
+        //Activates the current back button when the B-button is pressed
+        if (Input.GetButtonDown("B_Button"))
+        {
+            BackButton();
         }
     }
 

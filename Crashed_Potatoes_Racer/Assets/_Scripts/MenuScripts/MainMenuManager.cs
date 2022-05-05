@@ -11,13 +11,25 @@ public class MainMenuManager : MonoBehaviour
     private Animator[] menuAnimator;
     [SerializeField]
     private Button[] activeButton;
+    [SerializeField]
+    private Button[] backButton;
 
     private int activeMenu = 0;
+    private Button currentBackButton;
 
     private void Start()
     {
         //Sets the title screen as the first loaded menu
         SetActiveMenu(activeMenu);
+    }
+
+    private void Update()
+    {
+        //Activates the current back button when the B-button is pressed
+        if (Input.GetButtonDown("B_Button"))
+        {
+            GoBack();
+        }
     }
 
     public void ButtonMenuTransition(int targetMenu)
@@ -45,6 +57,7 @@ public class MainMenuManager : MonoBehaviour
             {
                 menuPanels[i].SetActive(true);
                 activeButton[i].Select();
+                currentBackButton = backButton[i];
             }
             else
             {
@@ -68,5 +81,12 @@ public class MainMenuManager : MonoBehaviour
         }
 
         activeMenu = targetMenu;
+    }
+
+    private void GoBack()
+    {
+        //Calls the back button's function
+        currentBackButton.Select();
+        currentBackButton.onClick.Invoke();
     }
 }
