@@ -44,10 +44,10 @@ public class InventoryScript : MonoBehaviour
                         Client.Instance.SendToServer(netRocket);
                         //Added by Iain ~
                         break;
-                    case SeedPacketScript.POWERUPS.Hot_Potato:
+                    //case SeedPacketScript.POWERUPS.Hot_Potato:
 
-                        Debug.Log("HP");
-                        break;
+                    //    Debug.Log("HP");
+                    //    break;
                     case SeedPacketScript.POWERUPS.Blind:
                         //Added by Iain
                         //Bird Poop start package

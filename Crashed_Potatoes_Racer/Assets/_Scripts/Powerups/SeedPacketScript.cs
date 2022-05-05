@@ -6,7 +6,7 @@ public class SeedPacketScript : MonoBehaviour {
     public enum POWERUPS {
         None,
         Forward_Projectile,
-        Hot_Potato,
+        //Hot_Potato,
         Blind,
         Boost,
         Gum,
