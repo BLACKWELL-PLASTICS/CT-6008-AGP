@@ -10273,7 +10273,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fedd2e8fb06892c47a3324efd5e8f3fa, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12029,7 +12029,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487048150}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
@@ -12039,8 +12039,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7108848, y: 0.017121952}
   m_AnchorMax: {x: 0.9748848, y: 0.25843903}
-  m_AnchoredPosition: {x: 0, y: -1.5}
-  m_SizeDelta: {x: 192, y: 93}
+  m_AnchoredPosition: {x: 0.000061035156, y: -1.5}
+  m_SizeDelta: {x: 192.00003, y: 93}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &487048152
 MonoBehaviour:
@@ -52663,6 +52663,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUpAnimator: {fileID: 1913205213}
+  images:
+  - {fileID: 21300000, guid: 340fe07240c59f54e876f9ff2f2166d4, type: 3}
+  - {fileID: 21300000, guid: d5231137d2c67774b915375dffed3c5c, type: 3}
+  - {fileID: 21300000, guid: c72e8ae929d4de644a6ed944ff29ead2, type: 3}
+  - {fileID: 21300000, guid: fedd2e8fb06892c47a3324efd5e8f3fa, type: 3}
+  - {fileID: 21300000, guid: 9bc368fd9375da642b1abd321b4f99f3, type: 3}
+  - {fileID: 21300000, guid: 78a6ef7a80adeec4a930bb5b6ae2b9c7, type: 3}
+  - {fileID: 21300000, guid: 3c4827ed48ef9244c942cd9d8a844a3b, type: 3}
+  current: {fileID: 398019758}
 --- !u!1001 &1913325040
 PrefabInstance:
   m_ObjectHideFlags: 0
