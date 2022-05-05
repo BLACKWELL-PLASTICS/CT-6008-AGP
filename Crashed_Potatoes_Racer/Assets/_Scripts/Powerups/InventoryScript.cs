@@ -44,10 +44,6 @@ public class InventoryScript : MonoBehaviour
                         Client.Instance.SendToServer(netRocket);
                         //Added by Iain ~
                         break;
-                    case SeedPacketScript.POWERUPS.Hot_Potato:
-
-                        Debug.Log("HP");
-                        break;
                     case SeedPacketScript.POWERUPS.Blind:
                         //Added by Iain
                         //Bird Poop start package
@@ -76,6 +72,10 @@ public class InventoryScript : MonoBehaviour
                         break;
                     case SeedPacketScript.POWERUPS.Size_Increase:
                         gameObject.AddComponent<SizeIncrease>();
+                        break;
+                    case SeedPacketScript.POWERUPS.Hot_Potato:
+
+                        Debug.Log("HP");
                         break;
                 }
                 UsePowerup();

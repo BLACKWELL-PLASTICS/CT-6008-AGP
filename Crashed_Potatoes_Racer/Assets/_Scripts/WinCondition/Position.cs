@@ -27,7 +27,12 @@ public class Position : MonoBehaviour
             if (other.gameObject.GetComponent<WinCondition>().lap != GetComponent<WinCondition>().lap) {
                 return;
             } else { // On the same lap
-                GameObject checkpoint = GetComponent<WinCondition>().array[GetComponent<WinCondition>().checkpointNumber + 1];
+                GameObject checkpoint = null;
+                if (GetComponent<WinCondition>().checkpointNumber == GetComponent<WinCondition>().hasBeenChecked.Length - 1) {
+                    checkpoint = GetComponent<WinCondition>().array[0];
+                } else {
+                    checkpoint = GetComponent<WinCondition>().array[GetComponent<WinCondition>().checkpointNumber + 1];
+                }
                 float carOneDistance = Vector3.Distance(checkpoint.transform.position, transform.position);
                 float carTwoDistance = Vector3.Distance(checkpoint.transform.position, other.transform.position);
                 if (carOneDistance < carTwoDistance) { // this car is closer

@@ -56,8 +56,8 @@ public class Controller : MonoBehaviour {
         // BOOSTING CODE
         if (isBoosting == true && boostTimer <= 3f) {
             boostTimer += Time.deltaTime;
-            forwardAcceleration = 6500f;
-            maxSpeed = 85f;
+            forwardAcceleration = 8000f;
+            maxSpeed = 100f;
         } else {
             isBoosting = false;
             transform.Find("Boost").GetComponent<ParticleSystem>().Stop();
