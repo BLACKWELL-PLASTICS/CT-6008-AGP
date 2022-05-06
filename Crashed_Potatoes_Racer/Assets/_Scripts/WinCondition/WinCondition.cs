@@ -17,7 +17,7 @@ public class WinCondition : MonoBehaviour
     void Awake()
     {
         array = GameObject.FindGameObjectsWithTag("Waypoints");
-        lap = 1;
+        lap = 0;
         // Set array length
         hasBeenChecked = new bool[GameObject.FindGameObjectsWithTag("Waypoints").Length];
         hasBeenChecked[0] = true;
@@ -28,7 +28,7 @@ public class WinCondition : MonoBehaviour
     void Update()
     {
         // if the lap is less than or equal to 3
-        if (lap == 4) { // This can be changed depending on lap limit
+        if (lap <= 2) { // This can be changed depending on lap limit
             if (hasBeenChecked.All(x => x)) { // if all of the waypoints are checked
                 lap++; // increase lap
                 checkpointNumber = 0;
