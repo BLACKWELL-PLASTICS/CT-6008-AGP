@@ -125,7 +125,7 @@ public class GameMenuManager : MonoBehaviour
         MainMenuManager mainMenu = FindObjectOfType<MainMenuManager>();
         if (mainMenu != null)
         {
-            mainMenu.SetActiveMenu(7);
+            mainMenu.ReloadMenu();
         }
 
         SceneManager.SetActiveScene(SceneManager.GetSceneAt(0));

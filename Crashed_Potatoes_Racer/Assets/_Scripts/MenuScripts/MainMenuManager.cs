@@ -77,6 +77,7 @@ public class MainMenuManager : MonoBehaviour
             {
                 menuPanels[i].SetActive(true);
                 activeButton[i].Select();
+                currentBackButton = backButton[i];
             }
         }
 
@@ -88,5 +89,17 @@ public class MainMenuManager : MonoBehaviour
         //Calls the back button's function
         currentBackButton.Select();
         currentBackButton.onClick.Invoke();
+    }
+
+    public void ReloadMenu()
+    {
+        //Reloads the menu when KartSelectScene is unloaded
+        for (int i = 0; i < menuPanels.Length; i++)
+        {
+            if (menuPanels[i].activeSelf == true)
+            {
+                PopUpMenu(i);
+            }
+        }
     }
 }
