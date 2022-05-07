@@ -115,6 +115,7 @@ public class Client : MonoBehaviour
                 Debug.Log("Client got disconnected from server");
                 m_connection = default(NetworkConnection);
                 m_connectionDropped?.Invoke();
+                UnityEngine.SceneManagement.SceneManager.LoadScene(0);
                 Shutdown();
             }
         }

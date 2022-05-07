@@ -61,6 +61,7 @@ public class MenuManager : MonoBehaviour
             if (PersistentInfo.Instance.m_readyCars == PersistentInfo.Instance.m_connectedUsers)
             {
                 m_startCountdown = true;
+                m_timer = 0;
             }
         }
         if (m_startCountdown)
@@ -230,6 +231,9 @@ public class MenuManager : MonoBehaviour
         {
             case NetUnwelcome.REASON.FULL:
                 m_connectionFailedReasonText.GetComponent<UnityEngine.UI.Text>().text = "Server Full";
+                break;
+            case NetUnwelcome.REASON.SERVER_CLOSE:
+                m_connectionFailedReasonText.GetComponent<UnityEngine.UI.Text>().text = "Server Closed";
                 break;
             default:
                 Debug.LogError("Unrecognised reason for unwelcome");

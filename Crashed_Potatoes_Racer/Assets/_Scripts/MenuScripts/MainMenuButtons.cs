@@ -101,6 +101,9 @@ public class MainMenuButtons : MonoBehaviour
         ServerHostEnd serverHostEnd = new ServerHostEnd();
         serverHostEnd.m_ServerIP = GetLocalIPv4();
         MenuClient.Instance.SendToServer(serverHostEnd);
+        NetUnwelcome netUnwelcome = new NetUnwelcome();
+        netUnwelcome.m_Reason = NetUnwelcome.REASON.SERVER_CLOSE;
+        Server.Instance.Broadcast(netUnwelcome);
         Client.Instance.Shutdown();
         Server.Instance.Shutdown();
         foreach (GameObject text in m_connectedOtherTexts)

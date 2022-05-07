@@ -5,7 +5,8 @@ public class NetUnwelcome : NetMessage
 {
     public enum REASON
     {
-        FULL = 1
+        FULL = 1,
+        SERVER_CLOSE = 2
     }
 
     public REASON m_Reason { get; set; }
