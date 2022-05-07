@@ -6,12 +6,12 @@ public class SeedPacketScript : MonoBehaviour {
     public enum POWERUPS {
         None,
         Forward_Projectile,
-        Hot_Potato,
         Blind,
         Boost,
         Gum,
         Obsticles,
-        Size_Increase
+        Size_Increase,
+        Hot_Potato
     };
 
     POWERUPS choice;
@@ -49,7 +49,7 @@ public class SeedPacketScript : MonoBehaviour {
         if (collision.transform.tag != "Player") {
             return;
         }
-        int i = Random.Range(1, 9);
+        int i = Random.Range(1, 7);
         choice = (POWERUPS)i;
         collision.gameObject.GetComponent<InventoryScript>().AddPowerup(choice);
         gameObject.GetComponent<MeshRenderer>().enabled = false;

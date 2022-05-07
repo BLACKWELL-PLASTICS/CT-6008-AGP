@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 4c20f1b0ecd020b48abfdc55a517011b,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -7159,6 +7159,7 @@ GameObject:
   - component: {fileID: 557315717}
   - component: {fileID: 557315716}
   - component: {fileID: 557315723}
+  - component: {fileID: 557315724}
   m_Layer: 11
   m_Name: Cube (2)
   m_TagString: Player
@@ -7336,6 +7337,19 @@ MonoBehaviour:
   OverrideAttenuation: 1
   OverrideMinDistance: 5
   OverrideMaxDistance: 20
+--- !u!114 &557315724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557315715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7720ae635ccad874eab8172062184f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rotAngle: 450
 --- !u!1 &558757314
 GameObject:
   m_ObjectHideFlags: 0
@@ -7632,6 +7646,7 @@ GameObject:
   - component: {fileID: 641107574}
   - component: {fileID: 641107580}
   - component: {fileID: 641107581}
+  - component: {fileID: 641107582}
   m_Layer: 11
   m_Name: Cube
   m_TagString: Player
@@ -7810,6 +7825,19 @@ MonoBehaviour:
   OverrideAttenuation: 1
   OverrideMinDistance: 5
   OverrideMaxDistance: 20
+--- !u!114 &641107582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641107573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7720ae635ccad874eab8172062184f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rotAngle: 450
 --- !u!1 &656995342
 GameObject:
   m_ObjectHideFlags: 0
@@ -7903,7 +7931,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 681962061}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -206.8, y: 23.7, z: 110.2}
+  m_LocalPosition: {x: -282.5, y: 38.5, z: 32.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -9041,6 +9069,7 @@ GameObject:
   - component: {fileID: 987127627}
   - component: {fileID: 987127626}
   - component: {fileID: 987127633}
+  - component: {fileID: 987127634}
   m_Layer: 11
   m_Name: Cube (1)
   m_TagString: Player
@@ -9218,6 +9247,19 @@ MonoBehaviour:
   OverrideAttenuation: 1
   OverrideMinDistance: 5
   OverrideMaxDistance: 20
+--- !u!114 &987127634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987127625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7720ae635ccad874eab8172062184f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rotAngle: 450
 --- !u!1 &1002959705
 GameObject:
   m_ObjectHideFlags: 0
@@ -23049,6 +23091,7 @@ GameObject:
   - component: {fileID: 1854198203}
   - component: {fileID: 1854198205}
   - component: {fileID: 1854198206}
+  - component: {fileID: 1854198204}
   m_Layer: 0
   m_Name: AIMan (1)
   m_TagString: Untagged
@@ -23070,6 +23113,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1854198204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1854198202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ad593ec06b8f0f4da1412a4aac46049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boidPrefab: {fileID: 8228376128580908735, guid: 9b343a1593787594fbc191c64369fad3,
+    type: 3}
+  boidLocation: {fileID: 681962064}
+  amountBoids: 60
+  areaLimit: 35
+  maxBoidSpeed: 12
+  rotationSpeed: 8
+  neighbourDist: 2
+  goalRandomness: 10000
+  goalPos: {x: 0, y: 0, z: 0}
+  boidArray: []
 --- !u!114 &1854198205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23175,31 +23241,14 @@ MonoBehaviour:
   powerUps:
   - {fileID: 1895209648162260296, guid: 1dec936bd56fcf64994fb09e7201a51b, type: 3}
   - {fileID: 1490930886457616683, guid: 87e9c095f5bb0a246acc7fcc770913db, type: 3}
-  maxSpeed: 50
-  maxAcc: 45
-  speedIncrease: 0.2
-  slowDownPeriod: 1.7
+  - {fileID: 6830736905640621692, guid: a0e7f1b3a5377a546bacc3091daf6791, type: 3}
+  maxSpeed: 40
+  maxAcc: 38
+  speedIncrease: 0.25
+  slowDownPeriod: 1.8
   stoppingRay: 10
   detectionRay: 25
-  detectionAngle: 90
-  boidPrefab: {fileID: 8228376128580908735, guid: 9b343a1593787594fbc191c64369fad3,
-    type: 3}
-  boidLocation: {fileID: 681962064}
-  amountBoids: 35
-  areaLimit: 15
-  maxBoidSpeed: 10
-  rotationSpeed: 7
-  neighbourDist: 3
-  goalRandomness: 10000
-  goalPos: {x: 0, y: 0, z: 0}
-  boidArray: []
-  fishRandomnessSea: 1000
-  fishRandomnessWater: 500
-  fishSpeed: 6
-  fishJumpTime: 1.2
-  crabDistance: 3
-  crabTimer: 5
-  crabSpeed: 2
+  detectionAngle: 100
 --- !u!114 &1854198206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23220,6 +23269,10 @@ MonoBehaviour:
   - {fileID: 2100000, guid: fcca8f3c14d1538448a606580ea5fde4, type: 2}
   - {fileID: 2100000, guid: fcc99c9e2c5d1e145bd5d7cb1e75cfef, type: 2}
   - {fileID: 2100000, guid: d233c63ea0d88a7488c19c028718bffc, type: 2}
+  fishRandomnessSea: 3000
+  fishRandomnessWater: 8000
+  fishSpeed: 6.8
+  fishJumpTime: 1.3
 --- !u!1 &1861636882
 GameObject:
   m_ObjectHideFlags: 0

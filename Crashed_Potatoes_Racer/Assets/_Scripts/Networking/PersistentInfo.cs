@@ -13,6 +13,8 @@ class PersistentInfo : MonoBehaviour
     public int m_currentPlayerNum { get; set; }
     public string m_currentPlayerName { get; set; }
     public CarDesigns m_carDesign { get; set; }
+    [SerializeField]
+    public GameObject[] m_CountdownUI;
 
     public static PersistentInfo Instance { set; get; }
     void Awake()
@@ -22,8 +24,11 @@ class PersistentInfo : MonoBehaviour
             Instance = this;
             m_connectedNames = new List<string>();
             m_carDesigns = new List<CarDesigns>();
+            m_readyCars = 0;
             m_levelNum = 0;
             m_carDesign = new CarDesigns();
+            //m_lap = 0;
+            //m_checkpoint = 0;
         }
     }
     public void Clear()
@@ -31,8 +36,11 @@ class PersistentInfo : MonoBehaviour
         m_connectedUsers = 0;
         m_connectedNames.Clear();
         m_carDesigns.Clear();
+        m_readyCars = 0;
         m_levelNum = 0;
         m_currentPlayerNum = 0;
+        //m_lap = 0;
+        //m_checkpoint = 0;
     }
 }
 

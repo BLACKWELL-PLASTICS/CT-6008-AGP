@@ -3,31 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Lap : MonoBehaviour
-{
-    [SerializeField]
-    private bool isDrivenThrough;
-
-    public bool IsDrivenThroughGetter() {
-        return isDrivenThrough;
-    }
-    public void IsDrivenThroughSetter() {
-        isDrivenThrough = !isDrivenThrough;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+{ 
+    public int individualNo;
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "Player") {
-            isDrivenThrough = !isDrivenThrough;
+            //isDrivenThrough = !isDrivenThrough;
+            other.GetComponent<WinCondition>().hasBeenChecked[individualNo] = !other.GetComponent<WinCondition>().hasBeenChecked[individualNo];
+            other.GetComponent<WinCondition>().checkpointNumber++;
+            if (other.GetComponentInChildren<MergedShootingControllerScript>() != null)
+            {
+                other.GetComponentInChildren<WinCondition>().checkpointNumber++;
+            }
+
+            Debug.Log(other.GetComponent<WinCondition>().checkpointNumber);
         }
     }
 }

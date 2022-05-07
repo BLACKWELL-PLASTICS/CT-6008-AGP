@@ -11,6 +11,10 @@ public class PlayerHit : MonoBehaviour
     private bool m_hit = false;
     public void HitSpin()
     {
+        if (GetComponent<AIPlayer>() != null)
+        {
+            GetComponent<AIPlayer>().decreaseCheck = true;
+        }
         if (!m_hit)
         {
             int rnd = Random.Range(0, 2);

@@ -14,14 +14,14 @@ public class Rocket : MonoBehaviour {
     private void Start() {
 
         rb = GetComponent<Rigidbody>();
-        transform.position = new Vector3(transform.position.x, transform.position.y + 0.3f, transform.position.z);
+        transform.position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z) + Vector3.forward * 2;
     }
 
     // Update is called once per frame
     void Update() {
         timer += Time.deltaTime;
         if (timer > 5.0f) {
-            Explode();
+            Destroy(this.gameObject);
         }
     }
     private void FixedUpdate() {
@@ -33,12 +33,13 @@ public class Rocket : MonoBehaviour {
         if (other.gameObject == owner) {
             return;
         }
-        Debug.Log("T" + other.gameObject.name);
-        Explode();
+        Explode(other.gameObject);
     }
 
-    void Explode() {
-        rb.AddExplosionForce(10f, transform.position, 5f);
+    void Explode(GameObject go) {
+        if (go.tag == "Player") {
+            go.GetComponent<PlayerHit>().HitSpin();
+        }
         Destroy(this.gameObject);
     }
 }

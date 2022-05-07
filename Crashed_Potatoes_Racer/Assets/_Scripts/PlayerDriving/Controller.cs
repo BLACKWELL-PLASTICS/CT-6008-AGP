@@ -39,20 +39,25 @@ public class Controller : MonoBehaviour {
     void Start() {
         // unparent sphere to smooth movement
         rb.transform.parent = null;
-        frontLeftWheel = GameObject.FindGameObjectWithTag("FLW").GetComponent<Transform>();
-        frontRightWheel = GameObject.FindGameObjectWithTag("FRW").GetComponent<Transform>();
-
         //fmod 
         emitter = GetComponent<FMODUnity.StudioEventEmitter>();
     }
 
     // Update is called once per frame
     void Update() {
+        if (frontLeftWheel == null)
+        {
+            frontLeftWheel = GameObject.FindGameObjectWithTag("FLW").GetComponent<Transform>();
+        }
+        if (frontRightWheel == null)
+        {
+            frontRightWheel = GameObject.FindGameObjectWithTag("FRW").GetComponent<Transform>();
+        }
         // BOOSTING CODE
         if (isBoosting == true && boostTimer <= 3f) {
             boostTimer += Time.deltaTime;
-            forwardAcceleration = 6500f;
-            maxSpeed = 85f;
+            forwardAcceleration = 8000f;
+            maxSpeed = 100f;
         } else {
             isBoosting = false;
             transform.Find("Boost").GetComponent<ParticleSystem>().Stop();
@@ -132,7 +137,7 @@ public class Controller : MonoBehaviour {
                 rb.AddForce(transform.forward * speedInput);
             }
         } else {
-            rb.drag = 0.1f;
+            rb.drag = 0f;
             rb.AddForce(Vector3.up * -gravityForce * 100f);
         }
     }

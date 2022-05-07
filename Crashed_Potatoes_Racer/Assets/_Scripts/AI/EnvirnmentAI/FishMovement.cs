@@ -20,15 +20,15 @@ public class FishMovement : MonoBehaviour
 
     private IEnumerator Move()
     {
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y + 10, transform.position.z), AIManager.GetFishSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y + 10, transform.position.z), spawner.fishSpeed * Time.deltaTime);
         child.rotation = Quaternion.Lerp(transform.rotation, new Quaternion(transform.rotation.x, transform.rotation.y, -90, transform.rotation.w), Time.deltaTime * 0.005f);
 
-        yield return new WaitForSeconds(AIManager.GetFishTime);
+        yield return new WaitForSeconds(spawner.fishJumpTime);
 
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y - 11, transform.position.z), (AIManager.GetFishSpeed * 2) * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, transform.position.y - 11, transform.position.z), (spawner.fishSpeed * 2) * Time.deltaTime);
         child.rotation = Quaternion.Lerp(transform.rotation, new Quaternion(transform.rotation.x, transform.rotation.y, -90, transform.rotation.w), Time.deltaTime * 0.025f);
 
-        yield return new WaitForSeconds(AIManager.GetFishTime + 0.2f);
+        yield return new WaitForSeconds(spawner.fishJumpTime + 0.2f);
 
         Destroy(this.gameObject);
     }

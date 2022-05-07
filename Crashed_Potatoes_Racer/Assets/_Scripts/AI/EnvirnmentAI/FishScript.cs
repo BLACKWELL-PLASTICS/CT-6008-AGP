@@ -6,6 +6,10 @@ public class FishScript : MonoBehaviour
 {
     public GameObject[] fishPrefabs;
     public Material[] fishSkins;
+    public float fishRandomnessSea;
+    public float fishRandomnessWater;
+    public float fishSpeed;
+    public float fishJumpTime;
 
     private GameObject[] sceneObj;
     private List<GameObject> waterInScene = new List<GameObject>();
@@ -30,7 +34,7 @@ public class FishScript : MonoBehaviour
     }
     private void Update()
     {
-        if (Random.Range(0, AIManager.GetFishRandomnessSea) < 50)
+        if (Random.Range(0, fishRandomnessSea) < 50)
         {
             int ran = Random.Range(0, oceanInScene.Count);
             int ranFish = Random.Range(0, 2);
@@ -42,7 +46,7 @@ public class FishScript : MonoBehaviour
             fish.GetComponent<FishMovement>().spawner = this;
         }
 
-        if (Random.Range(0, AIManager.GetFishRandomnessWater) < 50)
+        if (Random.Range(0, fishRandomnessWater) < 50)
         {
             int ran = Random.Range(0, waterInScene.Count);
             int ranFish = Random.Range(0, 2);
