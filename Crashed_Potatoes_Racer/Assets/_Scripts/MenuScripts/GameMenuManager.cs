@@ -122,6 +122,12 @@ public class GameMenuManager : MonoBehaviour
             raycaster.enabled = true;
         }
 
+        MainMenuManager mainMenu = FindObjectOfType<MainMenuManager>();
+        if (mainMenu != null)
+        {
+            mainMenu.SetActiveMenu(7);
+        }
+
         SceneManager.SetActiveScene(SceneManager.GetSceneAt(0));
         SceneManager.UnloadSceneAsync(1);
     }
