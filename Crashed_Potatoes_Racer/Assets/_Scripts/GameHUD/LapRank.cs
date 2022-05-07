@@ -13,7 +13,19 @@ public class LapRank : MonoBehaviour
 
     void Update()
     {
-        UpdateRank(GameObject.Find("Car_Reg(Clone)").GetComponent<WinCondition>().lap + 1);
+        //Debugging purposes; replace with Oli's code when the player has completed a lap and call "UpdateRank()"
+        switch (GameObject.Find("Car_Reg(Clone)").GetComponent<WinCondition>().lap)
+        {
+            case 1:
+                UpdateRank(1);
+                break;
+            case 2:
+                UpdateRank(2);
+                break;
+            case 3:
+                UpdateRank(3);
+                break;
+        }
     }
 
     public void UpdateRank(int playerLap)
