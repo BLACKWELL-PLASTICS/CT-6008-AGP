@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ServerListManager : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class ServerListManager : MonoBehaviour
     GameObject m_serverButtonPrefab;
     [SerializeField]
     GameObject m_content;
+    [SerializeField]
+    Sprite[] m_levelPreviews;
 
     List<GameObject> m_serverButtons = new List<GameObject>();
 
@@ -20,21 +23,27 @@ public class ServerListManager : MonoBehaviour
         serverButton.m_passwordProtectedText = "U";
         serverButton.m_pingText = "0ms";
         serverButton.m_adress = a_serverAdress;
+
         switch (a_serverLevel)
         {
             case 0:
-                serverButton.m_levelText = "Jungle";
+                serverButton.m_levelText = "Jungle Island";
+                serverButton.m_levelImage = m_levelPreviews[0];
                 break;
             case 1:
-                serverButton.m_levelText = "Mine";
+                serverButton.m_levelText = "Mineshaft";
+                serverButton.m_levelImage = m_levelPreviews[1];
                 break;
             case 2:
-                serverButton.m_levelText = "Bedroom";
+                serverButton.m_levelText = "Toy Room";
+                serverButton.m_levelImage = m_levelPreviews[2];
                 break;
             default:
-                serverButton.m_levelText = "Jungle";
+                serverButton.m_levelText = "Jungle Island";
+                serverButton.m_levelImage = m_levelPreviews[0];
                 break;
         }
+
         serverButton.SetUI();
         button.transform.SetParent(m_content.transform);
         m_serverButtons.Add(button);
