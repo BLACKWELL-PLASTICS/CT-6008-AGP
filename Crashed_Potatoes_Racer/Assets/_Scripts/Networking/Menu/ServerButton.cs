@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ServerButton : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class ServerButton : MonoBehaviour
     public string m_pingText;
     public string m_adress;
     public string m_levelText;
+    public Sprite m_levelImage;
 
     [SerializeField]
     public GameObject m_nameTextField;
@@ -18,13 +20,18 @@ public class ServerButton : MonoBehaviour
     public GameObject m_pingTextField;
     [SerializeField]
     public GameObject m_levelTextField;
+    [SerializeField]
+    public GameObject m_levelImageField;
+
     public void SetUI()
     {
-        m_nameTextField.GetComponent<UnityEngine.UI.Text>().text = m_nameText;
-        m_passwordProtectedTextField.GetComponent<UnityEngine.UI.Text>().text = m_passwordProtectedText;
-        m_pingTextField.GetComponent<UnityEngine.UI.Text>().text = m_pingText;
-        m_levelTextField.GetComponent<UnityEngine.UI.Text>().text = m_levelText;
+        m_nameTextField.GetComponent<Text>().text = m_nameText;
+        m_passwordProtectedTextField.GetComponent<Text>().text = m_passwordProtectedText;
+        m_pingTextField.GetComponent<Text>().text = m_pingText;
+        m_levelTextField.GetComponent<Text>().text = m_levelText;
+        m_levelImageField.GetComponent<Image>().sprite = m_levelImage;
     }
+
     public void OnServerConnect()
     {
         Transform thisParent = gameObject.transform.parent;
