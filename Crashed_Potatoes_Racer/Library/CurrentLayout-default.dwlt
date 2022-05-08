@@ -113,10 +113,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 987
-  m_MinSize: {x: 708, y: 492}
-  m_MaxSize: {x: 18003, y: 14042}
+  m_MinSize: {x: 707, y: 492}
+  m_MaxSize: {x: 18002, y: 14042}
   vertical: 0
-  controlID: 14
+  controlID: 132
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 15
+  controlID: 133
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -243,8 +243,8 @@ MonoBehaviour:
     y: 0
     width: 384
     height: 987
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -403,7 +403,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -462,10 +462,10 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 2048}
-      m_SelectedIDs: 
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: c0810000
       m_LastClickedID: 0
-      m_ExpandedIDs: 960af9ffac0af9ffca0af9fff20bf9ff000cf9ffac0cf9ff420df9fff40df9ffa80ef9ffce0ef9ff1810f9ff3a10f9ff0e11f9ffd211f9ffe011f9ffee11f9ff0412f9ffbe12f9ff4a2bf9ffc62bf9ff182cf9ff7c2df9ff902df9ffa00efeff7e25feffda28feffda66feffa244ffff6655ffff6258ffffa85affffe078ffffe2d4ffff3cfbffff284e0000ec4f0000761d0100be1d010092ff0100900502003e06020024070200f2080200340b02008c810300dc810300
+      m_ExpandedIDs: f6dbfcffece0fcff36e3fcffac1ffdffcc67fdffb68afeffba8afeff44cfffff24dafffffedbffff78ddffff34f9ffff16fbffff968e0000fe91000044940000728e0100c68e01001c9a0100c8a70100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -525,9 +525,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -142.38455, y: 14.11915, z: 124.72072}
+    m_Target: {x: -46.28149, y: 28.530584, z: 12.353774}
     speed: 2
-    m_Value: {x: -142.38455, y: 14.11915, z: 124.72072}
+    m_Value: {x: -46.28149, y: 28.530584, z: 12.353774}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -573,13 +573,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.09250271, y: -0.14225453, z: -0.013423897, w: 0.9854769}
+    m_Target: {x: 0.056345794, y: 0.7459849, z: -0.06339829, w: 0.66087633}
     speed: 2
-    m_Value: {x: -0.09251636, y: -0.14076644, z: -0.013284211, w: 0.98562115}
+    m_Value: {x: 0.047106504, y: 0.7726061, z: -0.05750114, w: 0.6305191}
   m_Size:
-    m_Target: 52.147915
+    m_Target: 0.0107053155
     speed: 2
-    m_Value: 49.90231
+    m_Value: 0.010708423
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -643,20 +643,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets
+    - Assets/_Scenes
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/_Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\AdvanceGroupProject\CT-6008-AGP\Crashed_Potatoes_Racer
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 66420000
-    m_LastClickedID: 16998
-    m_ExpandedIDs: 0000000066420000260a0100280a01002a0a01002c0a01002e0a0100300a0100320a0100340a0100360a0100380a01003a0a01003c0a0100f60a0100f80a01001a0b0100322901003c2d0100dc2e0100f618020066190200ca850300d685030000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 79}
+    m_SelectedIDs: 9a7e0000
+    m_LastClickedID: 32410
+    m_ExpandedIDs: 00000000664200008c7e00008e7e0000907e0000927e0000947e0000967e0000987e00009a7e00009c7e00009e7e0000a07e0000a27e000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -684,7 +684,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000066420000260a0100280a01002a0a01002c0a01002e0a0100300a0100320a0100340a0100360a0100380a01003a0a01003c0a0100
+    m_ExpandedIDs: 00000000664200008c7e00008e7e0000907e0000927e0000947e0000967e0000987e00009a7e00009c7e00009e7e0000a07e0000a27e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
