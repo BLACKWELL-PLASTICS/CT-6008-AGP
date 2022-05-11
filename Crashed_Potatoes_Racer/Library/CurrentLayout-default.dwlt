@@ -113,10 +113,10 @@ MonoBehaviour:
     y: 30
     width: 1846
     height: 987
-  m_MinSize: {x: 708, y: 492}
-  m_MaxSize: {x: 18003, y: 14042}
+  m_MinSize: {x: 707, y: 492}
+  m_MaxSize: {x: 18002, y: 14042}
   vertical: 0
-  controlID: 59
+  controlID: 89
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 64
+  controlID: 122
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -241,8 +241,8 @@ MonoBehaviour:
     y: 0
     width: 553
     height: 987
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -310,7 +310,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -370,9 +370,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 924c0000
       m_LastClickedID: 0
-      m_ExpandedIDs: 92f6faffcebfffff68c2ffff3cfbffff
+      m_ExpandedIDs: 1e1ff9ff3c57f9ffbe57f9ffca1efcffc656fcff0ab1ffff50b3ffff3cfbfffff4fffffff63101003e5d0100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -432,9 +432,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -53.956253, y: 6.4612117, z: -52.521942}
+    m_Target: {x: 8.389427, y: 17.878834, z: 64.35302}
     speed: 2
-    m_Value: {x: -53.956253, y: 6.4612117, z: -52.521942}
+    m_Value: {x: 8.389427, y: 17.878834, z: 64.35302}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -480,13 +480,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.0047994563, y: 0.04438067, z: 0.00019026658, w: 0.9990281}
+    m_Target: {x: 0.056596026, y: -0.7222778, z: 0.05948433, w: 0.68674874}
     speed: 2
-    m_Value: {x: -0.004800144, y: 0.039883614, z: 0.00016866297, w: 0.9991928}
+    m_Value: {x: 0.056594595, y: -0.7222596, z: 0.059482824, w: 0.6867314}
   m_Size:
-    m_Target: 9.110315
+    m_Target: 0.58194196
     speed: 2
-    m_Value: 8.718005
+    m_Value: 0.58194196
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -550,20 +550,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Envrioment Assets/MinecartLevel/Mesh
+    - Assets/_Scenes/AITestScene
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Envrioment Assets/MinecartLevel/Mesh
+  - Assets/_Scenes/AITestScene
   m_LastFoldersGridSize: -1
   m_LastProjectPath: E:\github\CT-6008-AGP\Crashed_Potatoes_Racer
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 503}
-    m_SelectedIDs: a6c60100
-    m_LastClickedID: 116390
-    m_ExpandedIDs: 0000000066420000120a0100140a0100160a0100180a01001a0a01001c0a01001e0a0100200a0100220a0100240a0100260a0100280a0100540a010000ca9a3b
+    scrollPos: {x: 0, y: 47}
+    m_SelectedIDs: f64c0000
+    m_LastClickedID: 19702
+    m_ExpandedIDs: 0000000068420000d84c0000da4c0000dc4c0000de4c0000e04c0000e24c0000e44c0000e64c0000e84c0000ea4c0000ec4c0000ee4c00001c4d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -591,7 +591,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000066420000120a0100140a0100160a0100180a01001a0a01001c0a01001e0a0100200a0100220a0100240a0100260a0100280a0100
+    m_ExpandedIDs: 0000000068420000d84c0000da4c0000dc4c0000de4c0000e04c0000e24c0000e44c0000e64c0000e84c0000ea4c0000ec4c0000ee4c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -643,7 +643,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 130}
+    m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 64
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 144
