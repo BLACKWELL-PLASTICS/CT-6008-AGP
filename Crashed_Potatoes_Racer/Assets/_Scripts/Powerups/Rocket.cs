@@ -1,47 +1,45 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Rocket : MonoBehaviour {
     float timer = 0.0f;
+    Rigidbody rb;
     GameObject owner;
-    GameObject target;
-
-    NavMeshAgent agent;
-
-    public void PositionData(GameObject owner/*, GameObject target*/)
+    public void Owner(GameObject gameObject)
     {
-        this.owner = owner; 
-        //this.target = target;
+        owner = gameObject;
     }
 
     private void Start() {
-        // Set initial Position
+
+        rb = GetComponent<Rigidbody>();
         transform.position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z) + Vector3.forward * 2;
-        // Set destination
-        agent = gameObject.GetComponent<NavMeshAgent>();
-        agent.SetDestination(target.transform.position);
     }
 
     // Update is called once per frame
     void Update() {
-        // Update targets position
-        agent.SetDestination(target.transform.position);
-
-        // if the positions are the same
-        if (agent.transform.position == target.transform.position) {
-            // explode
-            Explode(target);
+        timer += Time.deltaTime;
+        if (timer > 5.0f) {
+            Destroy(this.gameObject);
         }
+    }
+    private void FixedUpdate() {
+        transform.position += (transform.forward * 22) * Time.deltaTime;
+    }
+
+    // If it collides with any object, Explode Rocket
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject == owner) {
+            return;
+        }
+        Explode(other.gameObject);
     }
 
     void Explode(GameObject go) {
         if (go.tag == "Player") {
-            // spin cars
             go.GetComponent<PlayerHit>().HitSpin();
         }
-        // destroy rocket
         Destroy(this.gameObject);
     }
 }
