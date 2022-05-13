@@ -27,8 +27,6 @@ public class AIPlayer : MonoBehaviour
     public Vector3 originalPos;
     public Vector3 currentPos;
     public Vector3 originalScale;
-    public int randomInOut;
-    public int randomSecret;
     public float timer = 0;
 
     [SerializeField]
@@ -38,12 +36,16 @@ public class AIPlayer : MonoBehaviour
     [SerializeField]
     private float speedDecrease = 0;
     private float speedIncrease = 0;
+    private int randomInOut;
+    private int randomSecret;
+    private int randomRoute;
 
     private BT bahaviourTree;
     private void Start()
     {
         randomInOut = Random.Range(0, 2);
         randomSecret = Random.Range(0, 6);
+        randomRoute = Random.Range(0, 4);
 
         target = AIManager.GetWaypoints[0];
 
@@ -69,11 +71,13 @@ public class AIPlayer : MonoBehaviour
     private void Update()
     {
         //waypoints
-        if(    AIManager.GetWaypoints != null 
-            && AIManager.GetWaypoints2 != null
-            && AIManager.GetWaypoints3 != null)
+        if(    AIManager.GetWaypoints8.Length == 0)
         {
             WayPoint3();
+        }
+        else if(AIManager.GetWaypoints8.Length != 0)
+        {
+            WayPoint8();
         }
 
         //power ups
@@ -185,6 +189,144 @@ public class AIPlayer : MonoBehaviour
                     }
                 }
                 target = AIManager.GetWaypoints2[currentWaypoint].transform;
+            }
+        }
+
+    }
+
+    private void WayPoint8()
+    {
+        if (IsCorner() == true)
+        {
+            decreaseCheck = true;
+        }
+        else
+        {
+            IncreaseSpeed();
+        }
+
+        if(randomRoute == 0)
+        {
+            if (randomInOut == 0)
+            {
+                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints[currentWaypoint].transform.position);
+                if (dist <= stoppingDistance)
+                {
+                    Debug.Log("waypoint +");
+                    currentWaypoint++;
+                    if (currentWaypoint >= AIManager.GetWaypoints.Length)
+                    {
+                        currentWaypoint = 0;
+                    }
+                }
+                target = AIManager.GetWaypoints[currentWaypoint].transform;
+            }
+            else if (randomInOut == 1)
+            {
+                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints2[currentWaypoint].transform.position);
+                if (dist <= stoppingDistance)
+                {
+                    Debug.Log("waypoint +");
+                    currentWaypoint++;
+                    if (currentWaypoint >= AIManager.GetWaypoints2.Length)
+                    {
+                        currentWaypoint = 0;
+                    }
+                }
+                target = AIManager.GetWaypoints2[currentWaypoint].transform;
+            }
+        }
+        else if(randomRoute == 1)
+        {
+            if (randomInOut == 0)
+            {
+                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints3[currentWaypoint].transform.position);
+                if (dist <= stoppingDistance)
+                {
+                    Debug.Log("waypoint +");
+                    currentWaypoint++;
+                    if (currentWaypoint >= AIManager.GetWaypoints3.Length)
+                    {
+                        currentWaypoint = 0;
+                    }
+                }
+                target = AIManager.GetWaypoints3[currentWaypoint].transform;
+            }
+            else if (randomInOut == 1)
+            {
+                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints4[currentWaypoint].transform.position);
+                if (dist <= stoppingDistance)
+                {
+                    Debug.Log("waypoint +");
+                    currentWaypoint++;
+                    if (currentWaypoint >= AIManager.GetWaypoints4.Length)
+                    {
+                        currentWaypoint = 0;
+                    }
+                }
+                target = AIManager.GetWaypoints4[currentWaypoint].transform;
+            }
+        }
+        else if (randomRoute == 2)
+        {
+            if (randomInOut == 0)
+            {
+                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints5[currentWaypoint].transform.position);
+                if (dist <= stoppingDistance)
+                {
+                    Debug.Log("waypoint +");
+                    currentWaypoint++;
+                    if (currentWaypoint >= AIManager.GetWaypoints5.Length)
+                    {
+                        currentWaypoint = 0;
+                    }
+                }
+                target = AIManager.GetWaypoints5[currentWaypoint].transform;
+            }
+            else if (randomInOut == 1)
+            {
+                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints6[currentWaypoint].transform.position);
+                if (dist <= stoppingDistance)
+                {
+                    Debug.Log("waypoint +");
+                    currentWaypoint++;
+                    if (currentWaypoint >= AIManager.GetWaypoints6.Length)
+                    {
+                        currentWaypoint = 0;
+                    }
+                }
+                target = AIManager.GetWaypoints6[currentWaypoint].transform;
+            }
+        }
+        else if (randomRoute == 3)
+        {
+            if (randomInOut == 0)
+            {
+                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints7[currentWaypoint].transform.position);
+                if (dist <= stoppingDistance)
+                {
+                    Debug.Log("waypoint +");
+                    currentWaypoint++;
+                    if (currentWaypoint >= AIManager.GetWaypoints7.Length)
+                    {
+                        currentWaypoint = 0;
+                    }
+                }
+                target = AIManager.GetWaypoints7[currentWaypoint].transform;
+            }
+            else if (randomInOut == 1)
+            {
+                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints8[currentWaypoint].transform.position);
+                if (dist <= stoppingDistance)
+                {
+                    Debug.Log("waypoint +");
+                    currentWaypoint++;
+                    if (currentWaypoint >= AIManager.GetWaypoints8.Length)
+                    {
+                        currentWaypoint = 0;
+                    }
+                }
+                target = AIManager.GetWaypoints8[currentWaypoint].transform;
             }
         }
 
