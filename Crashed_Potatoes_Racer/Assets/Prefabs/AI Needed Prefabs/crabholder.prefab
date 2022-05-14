@@ -31,6 +31,7 @@ GameObject:
   - component: {fileID: 3848294334962482312}
   - component: {fileID: 3848294334962482319}
   - component: {fileID: 6386292346892998992}
+  - component: {fileID: 7603818709791106922}
   m_Layer: 0
   m_Name: crabholder
   m_TagString: Untagged
@@ -103,6 +104,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.0692787, y: 1.7702041, z: 2.1507301}
   m_Center: {x: -0.023015976, y: 0.87694, z: -0.44135094}
+--- !u!114 &7603818709791106922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3848294334962482318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1417257748
+      Data2: 1104979681
+      Data3: 763867542
+      Data4: -727322304
+    Path: event:/Crab
+  Event: 
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 40
+  OverrideMaxDistance: 60
 --- !u!1001 &728363063992370766
 PrefabInstance:
   m_ObjectHideFlags: 0

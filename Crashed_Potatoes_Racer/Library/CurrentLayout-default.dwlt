@@ -46,7 +46,7 @@ MonoBehaviour:
     y: 0
     width: 1846
     height: 1037
-  m_MinSize: {x: 875, y: 300}
+  m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -113,10 +113,10 @@ MonoBehaviour:
     y: 30
     width: 1846
     height: 987
-  m_MinSize: {x: 709, y: 492}
-  m_MaxSize: {x: 18004, y: 14042}
+  m_MinSize: {x: 708, y: 492}
+  m_MaxSize: {x: 18003, y: 14042}
   vertical: 0
-  controlID: 138
+  controlID: 119
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -136,8 +136,8 @@ MonoBehaviour:
     y: 0
     width: 402
     height: 987
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 67
+  controlID: 48
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -463,20 +463,20 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 52a9e6ff
-      m_LastClickedID: -1660590
-      m_ExpandedIDs: 52a9e6ffd0cfe6ff1e0de7ffa833e7ff36cfefff2e5df0ff4c5df0ff9e32f1fffc38f2ffd6b9f4ffee20fbfff226fcfffa84fcffca77ffff3cfbffffca440000ce680100049f020094b00200ea310300283e0300483f0300d0550300
+      m_SelectedIDs: 8a680000
+      m_LastClickedID: 0
+      m_ExpandedIDs: d6ceedff0cd1edff92f9edff3202efff6c04efffc62fefff5a4cefff1460efff0036f0ff4038f0ffb870f0ffc811f1ffb875f1fff877f1ff7aa2f1ff0c00f2ff60a8f2ff8caaf2ff92d9f2ff7adff3ffd2e1f3ffb214f4ff3019f5ff841bf5ffa643f5ff004af6ff544cf6ff7c7bf6ff60b6f6ffc280f7ff0283f7ffe4b1f7ff0eb8f8ff72c0f9ff72ecf9ff0644faff08f2faff34f4faffb41dfbff2422fcff6424fcffa836fcff6e50fcffa857fcff765efdff9eacfdfffeb0feff5ab7ffff00bcffff3cfbffff8445000014470000404900008e8b0100548f01002a9f0100e4f7010010fa01009e400200226102004e620200fe6b0200f2760200f6790200a8cb0200d4cc020042cd0200face020072cf0200fcd1020084d6020038df020078e102007ce40200345b0300605c0300ce5c0300865e0300fe5e03008861030010660300c46e0300047103000874030032ca03005ecb0300cccb0300fccd03000ed50300c2dd030002e0030006e3030034140400161a04005e210400b83404009a3a0400789e04001e9f040042a00400bc0d0500e00e0500801805003421050074230500782605007e570500a2580500ba5d050090640500e27705001e7e0500f4840500308905005a8b0500368c0500a4c10500b6ce050008e205009ae30500cae50500ca2b0600e83806003a4c06001696060066b6060000000700
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Sphere (54)
-        m_OriginalName: Sphere (54)
+        m_Name: Sphere (29)
+        m_OriginalName: Sphere (29)
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -20830
+        m_UserData: 444606
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 0
@@ -525,9 +525,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -204.29016, y: 84.05326, z: 89.47182}
+    m_Target: {x: 36.555847, y: -35.34311, z: -24.043707}
     speed: 2
-    m_Value: {x: -204.29016, y: 84.05326, z: 89.47182}
+    m_Value: {x: 36.555847, y: -35.34311, z: -24.043707}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -573,13 +573,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.075360425, y: -0.9066489, z: 0.18178315, w: -0.37422144}
+    m_Target: {x: -0.037589688, y: -0.9591885, z: 0.19921061, w: -0.1997322}
     speed: 2
-    m_Value: {x: -0.0758979, y: -0.9068645, z: 0.18465969, w: -0.37112966}
+    m_Value: {x: 0.32915792, y: -0.5993594, z: 0.29575637, w: 0.66704696}
   m_Size:
-    m_Target: 9.956038
+    m_Target: 62.863247
     speed: 2
-    m_Value: 9.956041
+    m_Value: 1.1570544
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -643,20 +643,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/_Scenes
+    - Assets
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/_Scenes
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: E:\github\CT-6008-AGP\Crashed_Potatoes_Racer
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: fafb0000
-    m_LastClickedID: 64506
-    m_ExpandedIDs: 0000000068420000ecfb0000eefb0000f0fb0000f2fb0000f4fb0000f6fb0000f8fb0000fafb0000fcfb0000fefb000000fc000002fc000000ca9a3b
+    m_SelectedIDs: 68420000
+    m_LastClickedID: 17000
+    m_ExpandedIDs: 00000000684200006c0c01006e0c0100700c0100720c0100740c0100760c0100780c0100800c0100820c01007023070000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -684,7 +684,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000068420000ecfb0000eefb0000f0fb0000f2fb0000f4fb0000f6fb0000f8fb0000fafb0000fcfb0000fefb000000fc000002fc0000
+    m_ExpandedIDs: 00000000684200006c0c01006e0c0100700c0100720c0100740c0100760c0100780c01007a0c01007c0c01007e0c0100800c0100820c0100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
