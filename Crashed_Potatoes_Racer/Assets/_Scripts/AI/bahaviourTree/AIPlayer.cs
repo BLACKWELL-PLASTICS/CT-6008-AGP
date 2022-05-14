@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public enum CarState
-{
-    
-}
-
 public class AIPlayer : MonoBehaviour
 {
     [HideInInspector]
@@ -40,6 +35,11 @@ public class AIPlayer : MonoBehaviour
     private int randomSecret;
     private int randomRoute;
 
+    private Transform backLeft;
+    private Transform backRight;
+    private Transform frontLeft;
+    private Transform frontRight;
+
     private BT bahaviourTree;
     private void Start()
     {
@@ -55,6 +55,12 @@ public class AIPlayer : MonoBehaviour
         InventoryComponent = gameObject.GetComponent<InventoryScript>();
         RenderComponent = GetComponent<Renderer>();
         emitter = GetComponent<FMODUnity.StudioEventEmitter>();
+
+        //ray locations for up orientation
+        backLeft = gameObject.transform.Find("backLeft").transform;
+        backRight = gameObject.transform.Find("backRight").transform;
+        frontLeft = gameObject.transform.Find("frontLeft").transform;
+        frontRight = gameObject.transform.Find("frontRight").transform;
 
         //behaviour tree
         bahaviourTree = new BT(this);
@@ -79,6 +85,9 @@ public class AIPlayer : MonoBehaviour
         {
             WayPoint8();
         }
+
+        //correct up direction with terrian
+        //transform.up = Vector3.Lerp(transform.up, OrientateUp(), Time.deltaTime);
 
         //power ups
         powerUp1 = InventoryComponent.p1;
@@ -344,5 +353,30 @@ public class AIPlayer : MonoBehaviour
         {
             return false;
         }
+    }
+
+    private Vector3 OrientateUp()
+    {
+        Physics.Raycast(backLeft.position + Vector3.up, Vector3.down, out RaycastHit lBack);
+        Physics.Raycast(backRight.position + Vector3.up, Vector3.down, out RaycastHit rBack);
+        Physics.Raycast(frontLeft.position + Vector3.up, Vector3.down, out RaycastHit lFront);
+        Physics.Raycast(frontRight.position + Vector3.up, Vector3.down, out RaycastHit rFront);
+
+        Vector3 a = rBack.point - lBack.point;
+        Vector3 b = rFront.point - rBack.point;
+        Vector3 c = lFront.point - rFront.point;
+        Vector3 d = rBack.point - lFront.point;
+
+        // Get the normal at each corner
+
+        Vector3 crossBA = Vector3.Cross(b, a);
+        Vector3 crossCB = Vector3.Cross(c, b);
+        Vector3 crossDC = Vector3.Cross(d, c);
+        Vector3 crossAD = Vector3.Cross(a, d);
+
+        // Calculate composite normal
+
+        Vector3 newUp = (crossBA + crossCB + crossDC + crossAD).normalized;
+        return newUp;
     }
 }
