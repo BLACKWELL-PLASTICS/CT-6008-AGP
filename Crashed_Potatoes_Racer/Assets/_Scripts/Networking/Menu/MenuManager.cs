@@ -512,7 +512,7 @@ public class MenuManager : MonoBehaviour
                 SceneManager.LoadScene(2);
                 break;
             case 1:
-                SceneManager.LoadScene(2); //change for new levels
+                SceneManager.LoadScene(3);
                 break;
             case 2:
                 SceneManager.LoadScene(2); //change for new levels
