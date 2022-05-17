@@ -22,12 +22,11 @@ public class Position : MonoBehaviour
         }
         if (GetComponent<WinCondition>().checkpointNumber >= 0) {
             currentPosition = newPosition;
-        }
-        if (currentPosition < 1) {
-            currentPosition = 1;
-        }
-        if (currentPosition > 8) {
-            currentPosition = 8;
+            if (currentPosition < 1) {
+                currentPosition = 1;
+            } else if (currentPosition > 8) {
+                currentPosition = 8;
+            }
         }
     }
 
@@ -43,10 +42,6 @@ public class Position : MonoBehaviour
             // if this car has a higher checkpoint number
             newPosition--;
         }
-        //else if (gameObject.GetComponent<WinCondition>().checkpointNumber > car.GetComponent<WinCondition>().checkpointNumber) {
-        //    // if the other car has a higher checkpoint number
-        //    newPosition++;
-        //}
         else if (gameObject.GetComponent<WinCondition>().checkpointNumber == car.GetComponent<WinCondition>().checkpointNumber) {
             // if the checkpoint number is the same
             GameObject checkpoint = gameObject.GetComponent<WinCondition>().array[gameObject.GetComponent<WinCondition>().checkpointNumber];
@@ -55,9 +50,6 @@ public class Position : MonoBehaviour
             if (carOneDistance < carTwoDistance) {
                 newPosition--;
             }
-            //else {
-            //    newPosition++;
-            //}
         }
     }
 }
