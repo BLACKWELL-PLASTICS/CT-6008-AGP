@@ -7,19 +7,35 @@ public class Position : MonoBehaviour
     public int currentPosition;
     private int newPosition;
 
+    GameObject UI;
+
     private void Start() {
         currentPosition = GetComponent<CarManagerScript>().m_playerNum;
+        UI = GameObject.Find("Placing");
+        if (Time.timeScale == 0) {
+            UI.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Time.timeScale != 0) {
+            UI.SetActive(true);
+        }
+
+        // If the car is finished, stop calculating
+        if (GetComponent<WinCondition>().isFinished == true) {
+            return;
+        }
+
         newPosition = 8;
         foreach (GameObject car in GameObject.Find("Manager").GetComponent<MultiplayerManager>().m_activeCars) {
             if (car != this.gameObject) {
                 CheckPosition(car);
             }
         }
+
         if (GetComponent<WinCondition>().checkpointNumber >= 0) {
             currentPosition = newPosition;
             if (currentPosition < 1) {
@@ -28,21 +44,24 @@ public class Position : MonoBehaviour
                 currentPosition = 8;
             }
         }
+
+        UI.GetComponent<PlacingRank>().UpdateRank(currentPosition);
     }
 
     void CheckPosition(GameObject car) {
         if (car.GetComponent<WinCondition>().checkpointNumber < 0 || gameObject.GetComponent<WinCondition>().checkpointNumber < 0) {
             return;
         }
+
         // Check the lap
-        if (car.GetComponent<WinCondition>().lap != gameObject.GetComponent<WinCondition>().lap) {
+        if (gameObject.GetComponent<WinCondition>().lap > car.GetComponent<WinCondition>().lap) {
             newPosition--;
         }
         if (gameObject.GetComponent<WinCondition>().checkpointNumber > car.GetComponent<WinCondition>().checkpointNumber) {
             // if this car has a higher checkpoint number
             newPosition--;
         }
-        else if (gameObject.GetComponent<WinCondition>().checkpointNumber == car.GetComponent<WinCondition>().checkpointNumber) {
+        if (gameObject.GetComponent<WinCondition>().checkpointNumber == car.GetComponent<WinCondition>().checkpointNumber) {
             // if the checkpoint number is the same
             GameObject checkpoint = gameObject.GetComponent<WinCondition>().array[gameObject.GetComponent<WinCondition>().checkpointNumber];
             float carOneDistance = Vector3.Distance(checkpoint.transform.position, gameObject.transform.position);
