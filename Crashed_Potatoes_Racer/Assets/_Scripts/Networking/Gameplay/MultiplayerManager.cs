@@ -87,9 +87,9 @@ public class MultiplayerManager : MonoBehaviour
                 }
                 else
                 {
-                    car.GetComponent<CustomisedSpawning>().Spawn(0,
-                                                                 0,
-                                                                 0);
+                    car.GetComponent<CustomisedSpawning>().Spawn(Random.Range(0, 8),
+                                                                 Random.Range(0, 12),
+                                                                 Random.Range(0, 3));
                 }
                 m_activeCars.Add(car);
             }

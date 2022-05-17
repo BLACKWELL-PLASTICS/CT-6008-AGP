@@ -25,7 +25,7 @@ public class BT : BTBase
     private IsBird birdCheck;
 
     //nodes
-    private WaypointState waypointNode;
+    //private WaypointState waypointNode;
     private RocketState rocketFire;
     private FloatyState floatyFire;
     private SizeState sizeIncrease;
@@ -45,7 +45,7 @@ public class BT : BTBase
         gumSequence = new Sequencer(owner);
         birdSequence = new Sequencer(owner);
 
-        waypointNode = new WaypointState(owner);
+        //waypointNode = new WaypointState(owner);
         rocketFire = new RocketState(owner);
         floatyFire = new FloatyState(owner);
         sizeIncrease = new SizeState(owner);
