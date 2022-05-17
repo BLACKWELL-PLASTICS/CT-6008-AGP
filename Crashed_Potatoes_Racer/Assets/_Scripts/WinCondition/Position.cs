@@ -5,6 +5,7 @@ using UnityEngine;
 public class Position : MonoBehaviour
 {
     public int currentPosition;
+    private int newPosition;
 
     private void Start() {
         currentPosition = GetComponent<CarManagerScript>().m_playerNum;
@@ -13,6 +14,15 @@ public class Position : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        newPosition = 0;
+        foreach (GameObject car in GameObject.Find("Manager").GetComponent<MultiplayerManager>().m_activeCars) {
+            if (car != this.gameObject) {
+                CheckPosition(car);
+            }
+        }
+        if (GetComponent<WinCondition>().checkpointNumber >= 0) {
+            currentPosition = newPosition;
+        }
         if (currentPosition < 1) {
             currentPosition = 1;
         }
@@ -21,33 +31,30 @@ public class Position : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "Player") {
-            // Check if on the same lap
-            if (other.gameObject.GetComponent<WinCondition>().lap != GetComponent<WinCondition>().lap) {
-                return;
-            } else { // On the same lap
-                GameObject checkpoint = null;
-                if (GetComponent<WinCondition>().checkpointNumber == GetComponent<WinCondition>().hasBeenChecked.Length - 1) {
-                    checkpoint = GetComponent<WinCondition>().array[0];
-                } else {
-                    checkpoint = GetComponent<WinCondition>().array[GetComponent<WinCondition>().checkpointNumber + 1];
-                }
-                float carOneDistance = Vector3.Distance(checkpoint.transform.position, transform.position);
-                float carTwoDistance = Vector3.Distance(checkpoint.transform.position, other.transform.position);
-                if (carOneDistance < carTwoDistance) { // this car is closer
-                    currentPosition++;
-                } else {
-                    currentPosition--;
-                }
+    void CheckPosition(GameObject car) {
+        if (car.GetComponent<WinCondition>().checkpointNumber < 0 || gameObject.GetComponent<WinCondition>().checkpointNumber < 0) {
+            return;
+        }
+        // Check the lap
+        if (car.GetComponent<WinCondition>().lap != gameObject.GetComponent<WinCondition>().lap) {
+            return;
+        }
+        if (gameObject.GetComponent<WinCondition>().checkpointNumber > car.GetComponent<WinCondition>().checkpointNumber) {
+            // if this car has a higher checkpoint number
+            newPosition--;
+        } else if (gameObject.GetComponent<WinCondition>().checkpointNumber > car.GetComponent<WinCondition>().checkpointNumber) {
+            // if the other car has a higher checkpoint number
+            newPosition++;
+        } else if (gameObject.GetComponent<WinCondition>().checkpointNumber == car.GetComponent<WinCondition>().checkpointNumber) {
+            // if the checkpoint number is the same
+            GameObject checkpoint = gameObject.GetComponent<WinCondition>().array[gameObject.GetComponent<WinCondition>().checkpointNumber];
+            float carOneDistance = Vector3.Distance(checkpoint.transform.position, gameObject.transform.position);
+            float carTwoDistance = Vector3.Distance(checkpoint.transform.position, car.transform.position);
+            if (carOneDistance < carTwoDistance) {
+                newPosition--;
+            } else {
+                newPosition++;
             }
         }
-    }
-
-    public void MoveUpOne() {
-        currentPosition++;
-    }
-    public void MoveDownOne() {
-        currentPosition--;
     }
 }
