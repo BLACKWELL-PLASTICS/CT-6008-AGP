@@ -3,7 +3,7 @@
   "Assemblies": [
     {
       "FullName": "Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-      "LastWriteTime": "2022-05-13T16:18:18.0035871Z"
+      "LastWriteTime": "2022-05-17T11:47:32.5018293Z"
     },
     {
       "FullName": "netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51",
@@ -15,7 +15,7 @@
     },
     {
       "FullName": "Unity.Networking.Transport, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-      "LastWriteTime": "2022-05-13T16:18:18.0466814Z"
+      "LastWriteTime": "2022-05-17T11:47:37.2122041Z"
     },
     {
       "FullName": "UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -27,11 +27,11 @@
     },
     {
       "FullName": "Unity.Mathematics, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-      "LastWriteTime": "2022-05-13T16:18:18.0363329Z"
+      "LastWriteTime": "2022-05-17T11:47:34.0815805Z"
     },
     {
       "FullName": "Unity.Collections, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-      "LastWriteTime": "2022-05-13T16:18:18.0178994Z"
+      "LastWriteTime": "2022-05-17T11:47:36.1245512Z"
     },
     {
       "FullName": "Unity.Burst.Unsafe, Version=4.0.5.0, Culture=neutral, PublicKeyToken=null",
@@ -46,7 +46,7 @@
     {
       "FullName": "System.Int32 Unity.Burst.Intrinsics.X86::DoGetCSRTrampoline()",
       "ModuleOptionsHash": 8794384452606821980,
-      "ModuleHash": "466fd63e9c56ab85dac34c1a7fecd7f9",
+      "ModuleHash": "a71b9911cbaa2186307cc401d0739485",
       "LinkName": "CDCA4A5193BE5947",
       "AssemblyDependencyIndices": [
         0,
@@ -57,7 +57,7 @@
     {
       "FullName": "System.Void Unity.Burst.Intrinsics.X86::DoSetCSRTrampoline(System.Int32)",
       "ModuleOptionsHash": 8794384452606821980,
-      "ModuleHash": "39da3da1fe240fc61ee01c28d04f1e51",
+      "ModuleHash": "895aa2ede7faaface1d2a59eee884938",
       "LinkName": "801E9A000BB37B05",
       "AssemblyDependencyIndices": [
         0,
@@ -68,7 +68,7 @@
     {
       "FullName": "System.Void Unity.Networking.Transport.UDPNetworkInterface::AbortSendMessage(Unity.Networking.Transport.NetworkInterfaceSendHandle&,System.IntPtr)",
       "ModuleOptionsHash": 8794384452606821980,
-      "ModuleHash": "7e4264ebab80a83ad62aeac44e1b7c13",
+      "ModuleHash": "74e2c064905bea345f15c2a24479e8b2",
       "LinkName": "578FFC8DB1331D99",
       "AssemblyDependencyIndices": [
         3,
@@ -79,7 +79,7 @@
     {
       "FullName": "System.Int32 Unity.Networking.Transport.UDPNetworkInterface::EndSendMessage(Unity.Networking.Transport.NetworkInterfaceSendHandle&,Unity.Networking.Transport.NetworkInterfaceEndPoint&,System.IntPtr,Unity.Networking.Transport.NetworkSendQueueHandle&)",
       "ModuleOptionsHash": 8794384452606821980,
-      "ModuleHash": "b1491b39372aa1408abb0765e7027339",
+      "ModuleHash": "375f3e8529c66c47d84b9bf3abcb8bdc",
       "LinkName": "2B0D010C6271F443",
       "AssemblyDependencyIndices": [
         3,
@@ -90,7 +90,7 @@
     {
       "FullName": "System.Int32 Unity.Networking.Transport.UDPNetworkInterface::BeginSendMessage(Unity.Networking.Transport.NetworkInterfaceSendHandle&,System.IntPtr,System.Int32)",
       "ModuleOptionsHash": 8794384452606821980,
-      "ModuleHash": "d4422a169294125cd0ea072ed6ec712b",
+      "ModuleHash": "d59527b0f949c59c72294c147a1f57f8",
       "LinkName": "8BFC1B44FCB3BB9E",
       "AssemblyDependencyIndices": [
         3,
@@ -103,7 +103,7 @@
     {
       "FullName": "System.Void Unity.Networking.Transport.NullPipelineStage::Receive(Unity.Networking.Transport.NetworkPipelineContext&,Unity.Networking.Transport.InboundRecvBuffer&,Unity.Networking.Transport.NetworkPipelineStage/Requests&)",
       "ModuleOptionsHash": 8794384452606821980,
-      "ModuleHash": "af5513dcf0afd42ce12b8438c2d648ec",
+      "ModuleHash": "4273414d356054c1c537094abaf7bebd",
       "LinkName": "51F552637D3E151F",
       "AssemblyDependencyIndices": [
         3,
@@ -114,7 +114,7 @@
     {
       "FullName": "System.Void Unity.Networking.Transport.NullPipelineStage::Send(Unity.Networking.Transport.NetworkPipelineContext&,Unity.Networking.Transport.InboundSendBuffer&,Unity.Networking.Transport.NetworkPipelineStage/Requests&)",
       "ModuleOptionsHash": 8794384452606821980,
-      "ModuleHash": "896ee39dced0604a92cceed583467a28",
+      "ModuleHash": "8bf70dc3ee5127a5e4fdd388984022c6",
       "LinkName": "4FEA16903D1779F7",
       "AssemblyDependencyIndices": [
         3,
@@ -125,7 +125,7 @@
     {
       "FullName": "System.Void Unity.Networking.Transport.NullPipelineStage::InitializeConnection(System.Byte*,System.Int32,System.Byte*,System.Int32,System.Byte*,System.Int32,System.Byte*,System.Int32)",
       "ModuleOptionsHash": 8794384452606821980,
-      "ModuleHash": "fe50a84e86e32cdd456efef0a67c30b8",
+      "ModuleHash": "cae1c595ce9a75327fb146acb4e1dc33",
       "LinkName": "AB6431E798DCDD09",
       "AssemblyDependencyIndices": [
         3,
@@ -136,7 +136,7 @@
     {
       "FullName": "System.Void Unity.Networking.Transport.ReliableSequencedPipelineStage::Receive(Unity.Networking.Transport.NetworkPipelineContext&,Unity.Networking.Transport.InboundRecvBuffer&,Unity.Networking.Transport.NetworkPipelineStage/Requests&)",
       "ModuleOptionsHash": 8794384452606821980,
-      "ModuleHash": "c6a0d8ab260cfe7912e1363ad0a85c1b",
+      "ModuleHash": "f6149ba08ab1fb493f33232de53f15b1",
       "LinkName": "90B271FA71ACEBFD",
       "AssemblyDependencyIndices": [
         3,
@@ -149,7 +149,7 @@
     {
       "FullName": "System.Void Unity.Networking.Transport.ReliableSequencedPipelineStage::Send(Unity.Networking.Transport.NetworkPipelineContext&,Unity.Networking.Transport.InboundSendBuffer&,Unity.Networking.Transport.NetworkPipelineStage/Requests&)",
       "ModuleOptionsHash": 8794384452606821980,
-      "ModuleHash": "3b51e26509cd35d25a1cd3cb773f4143",
+      "ModuleHash": "d79ba42f415514e5cd01cdee1417c6ac",
       "LinkName": "6290A858D24C9591",
       "AssemblyDependencyIndices": [
         3,
@@ -162,7 +162,7 @@
     {
       "FullName": "System.Void Unity.Networking.Transport.ReliableSequencedPipelineStage::InitializeConnection(System.Byte*,System.Int32,System.Byte*,System.Int32,System.Byte*,System.Int32,System.Byte*,System.Int32)",
       "ModuleOptionsHash": 8794384452606821980,
-      "ModuleHash": "869a9ff996767441813e8e492722a8e6",
+      "ModuleHash": "aa48f8c8b954a1336fb4fafee491cb89",
       "LinkName": "2F483606ED7F5C8A",
       "AssemblyDependencyIndices": [
         3,
@@ -175,7 +175,7 @@
     {
       "FullName": "System.Void Unity.Networking.Transport.UnreliableSequencedPipelineStage::Receive(Unity.Networking.Transport.NetworkPipelineContext&,Unity.Networking.Transport.InboundRecvBuffer&,Unity.Networking.Transport.NetworkPipelineStage/Requests&)",
       "ModuleOptionsHash": 8794384452606821980,
-      "ModuleHash": "a765468b420d31897fcc129d6a97e962",
+      "ModuleHash": "ad93a3506d0790fe244c3d97cdba9c54",
       "LinkName": "4E0E2EBE8D359B89",
       "AssemblyDependencyIndices": [
         3,
@@ -188,7 +188,7 @@
     {
       "FullName": "System.Void Unity.Networking.Transport.UnreliableSequencedPipelineStage::Send(Unity.Networking.Transport.NetworkPipelineContext&,Unity.Networking.Transport.InboundSendBuffer&,Unity.Networking.Transport.NetworkPipelineStage/Requests&)",
       "ModuleOptionsHash": 8794384452606821980,
-      "ModuleHash": "838fefdcbf0a296b40a2d203ae883672",
+      "ModuleHash": "3b6e02e0342f553d832838cad2ceebf8",
       "LinkName": "858147B957D86ED6",
       "AssemblyDependencyIndices": [
         3,
@@ -201,7 +201,7 @@
     {
       "FullName": "System.Void Unity.Networking.Transport.UnreliableSequencedPipelineStage::InitializeConnection(System.Byte*,System.Int32,System.Byte*,System.Int32,System.Byte*,System.Int32,System.Byte*,System.Int32)",
       "ModuleOptionsHash": 8794384452606821980,
-      "ModuleHash": "9d30c039de88e1d13c00b068505ce970",
+      "ModuleHash": "758f6f9857af795b936ccc8eb316431a",
       "LinkName": "8BCAA01A321CA107",
       "AssemblyDependencyIndices": [
         3,
@@ -212,7 +212,7 @@
     {
       "FullName": "System.Void Unity.Networking.Transport.SimulatorPipelineStage::Receive(Unity.Networking.Transport.NetworkPipelineContext&,Unity.Networking.Transport.InboundRecvBuffer&,Unity.Networking.Transport.NetworkPipelineStage/Requests&)",
       "ModuleOptionsHash": 8794384452606821980,
-      "ModuleHash": "915392d2f03ceb59daf751b04206c0ac",
+      "ModuleHash": "7dbada2d7871be1d2f3af9e8396d8a56",
       "LinkName": "4DB96AA94E6326F7",
       "AssemblyDependencyIndices": [
         3,
@@ -226,7 +226,7 @@
     {
       "FullName": "System.Void Unity.Networking.Transport.SimulatorPipelineStage::Send(Unity.Networking.Transport.NetworkPipelineContext&,Unity.Networking.Transport.InboundSendBuffer&,Unity.Networking.Transport.NetworkPipelineStage/Requests&)",
       "ModuleOptionsHash": 8794384452606821980,
-      "ModuleHash": "d1ee0ac944e1510eec29b076fdecce0b",
+      "ModuleHash": "e7e76771125953ce75106e94f5390e8d",
       "LinkName": "DB22BD6CD4A91D8F",
       "AssemblyDependencyIndices": [
         3,
@@ -237,7 +237,7 @@
     {
       "FullName": "System.Void Unity.Networking.Transport.SimulatorPipelineStage::InitializeConnection(System.Byte*,System.Int32,System.Byte*,System.Int32,System.Byte*,System.Int32,System.Byte*,System.Int32)",
       "ModuleOptionsHash": 8794384452606821980,
-      "ModuleHash": "51954efb2300fab04d8990d7a5e26144",
+      "ModuleHash": "dacc454fdcc33380a3c7dffdd04776df",
       "LinkName": "834661DA2978B91C",
       "AssemblyDependencyIndices": [
         3,
@@ -251,7 +251,7 @@
     {
       "FullName": "System.Void Unity.Networking.Transport.SimulatorPipelineStageInSend::Receive(Unity.Networking.Transport.NetworkPipelineContext&,Unity.Networking.Transport.InboundRecvBuffer&,Unity.Networking.Transport.NetworkPipelineStage/Requests&)",
       "ModuleOptionsHash": 8794384452606821980,
-      "ModuleHash": "6cde83e718051d0055dbc30d2d8d62d6",
+      "ModuleHash": "68026c41d3991739a637f9e1f1bc0467",
       "LinkName": "740748C929C56FB9",
       "AssemblyDependencyIndices": [
         3,
@@ -262,7 +262,7 @@
     {
       "FullName": "System.Void Unity.Networking.Transport.SimulatorPipelineStageInSend::Send(Unity.Networking.Transport.NetworkPipelineContext&,Unity.Networking.Transport.InboundSendBuffer&,Unity.Networking.Transport.NetworkPipelineStage/Requests&)",
       "ModuleOptionsHash": 8794384452606821980,
-      "ModuleHash": "083d42d3c1a429914ce704814126e21a",
+      "ModuleHash": "efac70550ecf794ee42b24666f97ab76",
       "LinkName": "F7D896FB42351B32",
       "AssemblyDependencyIndices": [
         3,
@@ -276,7 +276,7 @@
     {
       "FullName": "System.Void Unity.Networking.Transport.SimulatorPipelineStageInSend::InitializeConnection(System.Byte*,System.Int32,System.Byte*,System.Int32,System.Byte*,System.Int32,System.Byte*,System.Int32)",
       "ModuleOptionsHash": 8794384452606821980,
-      "ModuleHash": "a71f6af155f74c54b1f15663ee16cb12",
+      "ModuleHash": "9446fa35891b242e9827cb6870f1973a",
       "LinkName": "F4BD41705BF46512",
       "AssemblyDependencyIndices": [
         3,
@@ -290,7 +290,7 @@
     {
       "FullName": "System.Void Unity.Jobs.IJobExtensions/JobStruct`1<Unity.Networking.Transport.NetworkDriver/UpdateJob>::Execute(T&,System.IntPtr,System.IntPtr,Unity.Jobs.LowLevel.Unsafe.JobRanges&,System.Int32)",
       "ModuleOptionsHash": 8794384452606821980,
-      "ModuleHash": "c42f1ee1fde25db09ad694a96092760c",
+      "ModuleHash": "7b639380e8b28af00de171c0d5993930",
       "LinkName": "08B4350BD6936DAB",
       "AssemblyDependencyIndices": [
         4,
@@ -308,7 +308,7 @@
     {
       "FullName": "System.Void Unity.Jobs.IJobExtensions/JobStruct`1<Unity.Networking.Transport.UDPNetworkInterface/ReceiveJob>::Execute(T&,System.IntPtr,System.IntPtr,Unity.Jobs.LowLevel.Unsafe.JobRanges&,System.Int32)",
       "ModuleOptionsHash": 8794384452606821980,
-      "ModuleHash": "e7a024c0a1908f283d9212f29a429594",
+      "ModuleHash": "6502e139b73224a7ce04d4e3e258228a",
       "LinkName": "C481773F4D6E4340",
       "AssemblyDependencyIndices": [
         4,

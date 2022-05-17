@@ -14,7 +14,7 @@ public class Position : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        newPosition = 0;
+        newPosition = 8;
         foreach (GameObject car in GameObject.Find("Manager").GetComponent<MultiplayerManager>().m_activeCars) {
             if (car != this.gameObject) {
                 CheckPosition(car);
@@ -37,24 +37,27 @@ public class Position : MonoBehaviour
         }
         // Check the lap
         if (car.GetComponent<WinCondition>().lap != gameObject.GetComponent<WinCondition>().lap) {
-            return;
+            newPosition--;
         }
         if (gameObject.GetComponent<WinCondition>().checkpointNumber > car.GetComponent<WinCondition>().checkpointNumber) {
             // if this car has a higher checkpoint number
             newPosition--;
-        } else if (gameObject.GetComponent<WinCondition>().checkpointNumber > car.GetComponent<WinCondition>().checkpointNumber) {
-            // if the other car has a higher checkpoint number
-            newPosition++;
-        } else if (gameObject.GetComponent<WinCondition>().checkpointNumber == car.GetComponent<WinCondition>().checkpointNumber) {
+        }
+        //else if (gameObject.GetComponent<WinCondition>().checkpointNumber > car.GetComponent<WinCondition>().checkpointNumber) {
+        //    // if the other car has a higher checkpoint number
+        //    newPosition++;
+        //}
+        else if (gameObject.GetComponent<WinCondition>().checkpointNumber == car.GetComponent<WinCondition>().checkpointNumber) {
             // if the checkpoint number is the same
             GameObject checkpoint = gameObject.GetComponent<WinCondition>().array[gameObject.GetComponent<WinCondition>().checkpointNumber];
             float carOneDistance = Vector3.Distance(checkpoint.transform.position, gameObject.transform.position);
             float carTwoDistance = Vector3.Distance(checkpoint.transform.position, car.transform.position);
             if (carOneDistance < carTwoDistance) {
                 newPosition--;
-            } else {
-                newPosition++;
             }
+            //else {
+            //    newPosition++;
+            //}
         }
     }
 }
