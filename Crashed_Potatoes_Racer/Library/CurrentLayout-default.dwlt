@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -46,7 +46,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 1037
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_MinSize: {x: 709, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 67
+  controlID: 137
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 68
+  controlID: 83
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -411,11 +411,11 @@ MonoBehaviour:
     m_DrawArea:
       serializedVersion: 2
       x: 0
-      y: 21
+      y: 0
       width: 1185
-      height: 674
+      height: 695
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 592.5, y: 337}
+    m_Translation: {x: 592.5, y: 347.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
@@ -423,9 +423,9 @@ MonoBehaviour:
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
       x: -592.5
-      y: -337
+      y: -347.5
       width: 1185
-      height: 674
+      height: 695
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 1185, y: 695}
@@ -462,24 +462,24 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 527}
-      m_SelectedIDs: 5632fcff
-      m_LastClickedID: -249258
-      m_ExpandedIDs: ca33fcffb0b1fcff085ffdffc2a9fdffb4e6fdffa037ffffaa37ffffb437ffffbe37ffffc437ffffdc43ffffde43fffff243ffff2044ffff2a44ffffd04bffffd24bffffd44bffffda4bffffe44bffffee4bfffff44bffffd850ffffe650ffffe850ffffee50fffff450fffffa50ffff0051ffff8253ffff8453ffff8653ffff8c53ffff9653ffffa053ffffa653ffffe654ffffec54fffff254ffff2459ffff2659ffffbe5dffffc45dffffee62fffff062ffff1e6bffff246bffff2a6bffff306bffffc473ffffca73ffffd073ffffd673ffffb877ffffba77ffff3e7affff407affffde7fffffe07fffff6c87ffff6e8cffff0c9affff029fffff2aa3ffffd0d1ffffd4d1ffff3cfbffffb64400000a450000946d0100b4730100
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 86faffff8afaffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Mushroom3 (1)
-        m_OriginalName: Mushroom3 (1)
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -44130
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 4
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 6}
       m_SearchString: 
@@ -525,9 +525,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -64.33333, y: -509.96442, z: -589.0248}
+    m_Target: {x: -214.78995, y: -494.12317, z: -801.232}
     speed: 2
-    m_Value: {x: -64.33333, y: -509.96442, z: -589.0248}
+    m_Value: {x: -214.78995, y: -494.12317, z: -801.232}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -573,22 +573,22 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.018432163, y: 0.9160182, z: -0.3985699, w: -0.042351775}
+    m_Target: {x: -0.02610968, y: 0.9600454, z: -0.26199627, w: -0.09600283}
     speed: 2
-    m_Value: {x: -0.017833566, y: 0.9160437, z: -0.39858103, w: -0.040976044}
+    m_Value: {x: -0.026499633, y: 0.9597912, z: -0.261927, w: -0.09743171}
   m_Size:
-    m_Target: 419.89462
+    m_Target: 533.4581
     speed: 2
-    m_Value: 439.68024
+    m_Value: 405.67157
   m_Ortho:
     m_Target: 0
     speed: 2
     m_Value: 0
   m_CameraSettings:
-    m_Speed: 5
-    m_SpeedNormalized: 1
+    m_Speed: 21
+    m_SpeedNormalized: 0.19587629
     m_SpeedMin: 2
-    m_SpeedMax: 5
+    m_SpeedMax: 99
     m_EasingEnabled: 1
     m_EasingDuration: 0.4
     m_AccelerationEnabled: 1
@@ -641,22 +641,22 @@ MonoBehaviour:
     m_SceneHandles: 
     m_ShowAllHits: 0
     m_SkipHidden: 0
-    m_SearchArea: 0
+    m_SearchArea: 1
     m_Folders:
-    - Assets/Envrioment Assets/ToyTown/Mesh
+    - Assets/Envrioment Assets/ChildsRoom/materials
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Envrioment Assets/ToyTown/Mesh
+  - Assets/Envrioment Assets/ChildsRoom/materials
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\AdvanceGroupProject\CT-6008-AGP\Crashed_Potatoes_Racer
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 794}
-    m_SelectedIDs: 52770100
-    m_LastClickedID: 96082
-    m_ExpandedIDs: 00000000664200003e7e0000407e0000427e0000447e0000467e0000487e00004a7e00004c7e00004e7e0000507e0000527e0000547e0000207f0000aa7f00009c8d0000c48d00004e77010000ca9a3b
+    scrollPos: {x: 0, y: 479}
+    m_SelectedIDs: 2a7b0000
+    m_LastClickedID: 31530
+    m_ExpandedIDs: 000000008e420000b47a0000b67a0000b87a0000ba7a0000bc7a0000be7a0000c07a0000c27a0000c47a0000c67a0000c87a0000ca7a0000fe7a0000287b00002a7b0000067e000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -684,7 +684,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000664200003e7e0000407e0000427e0000447e0000467e0000487e00004a7e00004c7e00004e7e0000507e0000527e0000547e0000
+    m_ExpandedIDs: 000000008e420000b47a0000b67a0000b87a0000ba7a0000bc7a0000be7a0000c07a0000c27a0000c47a0000c67a0000c87a0000ca7a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
