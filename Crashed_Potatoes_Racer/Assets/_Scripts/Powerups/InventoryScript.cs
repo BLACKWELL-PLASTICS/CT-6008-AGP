@@ -26,7 +26,7 @@ public class InventoryScript : MonoBehaviour
                 {
                     case SeedPacketScript.POWERUPS.Forward_Projectile:
                         GameObject rocket = Instantiate(prefabs[0], transform.position + (transform.forward * 2), Quaternion.LookRotation(this.gameObject.transform.forward, this.gameObject.transform.up));
-                        rocket.GetComponent<Rocket>().Owner(this.gameObject);
+                        rocket.GetComponent<Rocket>().OwnerAndTarget(this.gameObject);
                         //Added by Iain
                         Vector3 spawnPos = transform.position + (transform.forward * 2);
                         Quaternion spawnRot = Quaternion.LookRotation(this.gameObject.transform.forward, this.gameObject.transform.up);

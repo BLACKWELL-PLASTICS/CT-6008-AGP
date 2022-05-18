@@ -13,13 +13,14 @@ public class GumScript : MonoBehaviour
 {
     float timer = 0f;
     int counter = 0;
+    [SerializeField] int MAXHITCOUNTER;
 
     private void Update() {
         timer += Time.deltaTime;
         if (counter == 1) {
             gameObject.transform.localScale = gameObject.transform.localScale / 2;
         }
-        if (timer >= 30f  || counter > 2) {
+        if (timer >= 30f  || counter > MAXHITCOUNTER) {
             Destroy(this.gameObject);
         }
     }

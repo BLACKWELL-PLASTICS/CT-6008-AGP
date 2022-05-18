@@ -20,7 +20,7 @@ public class Gum : MonoBehaviour
         Vector3 pos = transform.position - (transform.forward * 2);
         gum = Instantiate(prefab, pos, Quaternion.identity);
 
-        eulerAngle = new Vector3(-90f, 0f, 0f);
+        eulerAngle = new Vector3(0f, 0f, 0f);
         currentRot.eulerAngles = eulerAngle;
         gum.transform.rotation = currentRot;
 

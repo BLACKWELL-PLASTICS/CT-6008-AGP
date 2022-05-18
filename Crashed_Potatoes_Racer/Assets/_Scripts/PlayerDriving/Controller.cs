@@ -6,7 +6,7 @@ using XInputDotNetPure;
 public class Controller : MonoBehaviour {
     public Rigidbody rb;
     float forwardAcceleration = 5500f;
-    float reverseAcceleration = 3000f;
+    float reverseAcceleration = -3000f;
     float maxSpeed = 70f;
     float turnStrength = 100f;
     float gravityForce = 10f;
@@ -56,8 +56,8 @@ public class Controller : MonoBehaviour {
         // BOOSTING CODE
         if (isBoosting == true && boostTimer <= 3f) {
             boostTimer += Time.deltaTime;
-            forwardAcceleration = 8000f;
-            maxSpeed = 100f;
+            forwardAcceleration = 10000f;
+            maxSpeed = 150f;
         } else {
             isBoosting = false;
             transform.Find("Boost").GetComponent<ParticleSystem>().Stop();
@@ -82,23 +82,15 @@ public class Controller : MonoBehaviour {
         // Reset Speed input each frame
         speedInput = 0f;
         // set speed input depending on movement
-        if ((Input.GetButton("A_Button") || Input.GetKey(KeyCode.W)) && speedInput != maxSpeed) {
-            speedInput = 1 * forwardAcceleration;
+        if ((Input.GetAxisRaw("RT") > 0.01f && speedInput != maxSpeed) || (Input.GetKey(KeyCode.W) && speedInput != maxSpeed)) {
+            speedInput = forwardAcceleration;
             GamePad.SetVibration(index, 0.2f, 0.2f);
-        } else if ((Input.GetButton("B_Button") || Input.GetKey(KeyCode.S)) && speedInput != maxSpeed) {
-            speedInput = -1 * reverseAcceleration;
+        } else if ((Input.GetAxisRaw("LT") > 0.01f && speedInput != maxSpeed) || (Input.GetKey(KeyCode.W) && speedInput != maxSpeed)) {
+            speedInput = reverseAcceleration;
             GamePad.SetVibration(index, 0.1f, 0.1f);
         } else {
             GamePad.SetVibration(index, 0f, 0f);
-
         }
-
-        // PC Input
-        //if (Input.GetAxis("Vertical") > 0 && speedInput != maxSpeed) {
-        //    speedInput = Input.GetAxis("Vertical") * forwardAcceleration;
-        //} else if (Input.GetAxis("Vertical") < 0 && speedInput != maxSpeed) {
-        //    speedInput = Input.GetAxis("Vertical") * reverseAcceleration;
-        //}
 
         // Turn input equals the horizontal movement
         turnInput = Input.GetAxisRaw("Horizontal");

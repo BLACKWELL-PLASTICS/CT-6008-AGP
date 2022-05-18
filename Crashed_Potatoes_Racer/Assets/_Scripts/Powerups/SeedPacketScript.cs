@@ -63,7 +63,6 @@ public class SeedPacketScript : MonoBehaviour {
         Client.Instance.SendToServer(netPickedUp);
         //Added by Iain ~
         isActive = false;
-        //Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -71,7 +70,7 @@ public class SeedPacketScript : MonoBehaviour {
         if (other.transform.tag != "Player") {
             return;
         }
-        int i = Random.Range(1, 9);
+        int i = Random.Range(1, 7);
         choice = (POWERUPS)i;
         other.gameObject.GetComponent<InventoryScript>().AddPowerup(choice);
         gameObject.GetComponent<MeshRenderer>().enabled = false;

@@ -1,39 +1,53 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Rocket : MonoBehaviour {
-    float timer = 0.0f;
-    Rigidbody rb;
-    GameObject owner;
-    public void Owner(GameObject gameObject)
+
+    GameObject target;
+    NavMeshAgent agent;
+    bool isFirst = false;
+    public void OwnerAndTarget(GameObject owner)
     {
-        owner = gameObject;
+        foreach (GameObject item in GameObject.FindGameObjectsWithTag("Player")) {
+            int i = owner.GetComponent<Position>().currentPosition;
+            if (i != 1) {
+                isFirst = false;
+                if (item.GetComponent<Position>().currentPosition == i - 1) {
+                    target = item;
+                }
+                GetComponent<NavMeshAgent>().Warp(transform.position);
+            } else {
+                isFirst = true;
+                transform.position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z) + Vector3.forward * 2;
+            }
+        }
     }
 
     private void Start() {
-
-        rb = GetComponent<Rigidbody>();
-        transform.position = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z) + Vector3.forward * 2;
+        agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update() {
-        timer += Time.deltaTime;
-        if (timer > 5.0f) {
-            Destroy(this.gameObject);
+        if (isFirst == true) {
+            transform.position += (transform.forward * 30) * Time.deltaTime;
+        } else {
+            agent.SetDestination(target.transform.position);
+            if (transform.position == target.transform.position) {
+                Explode(target);
+            }
         }
-    }
-    private void FixedUpdate() {
-        transform.position += (transform.forward * 22) * Time.deltaTime;
-    }
 
+    }
     // If it collides with any object, Explode Rocket
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject == owner) {
+        if (isFirst == true) {
+            Explode(other.gameObject);
+        } else {
             return;
         }
-        Explode(other.gameObject);
     }
 
     void Explode(GameObject go) {

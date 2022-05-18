@@ -12,7 +12,7 @@ public class RocketState : Node
     public override NodeState Update()
     {
         GameObject rocket = Object.Instantiate(AIManager.GetPowerUp[0], owner.transform.position + (owner.transform.forward * 2), Quaternion.LookRotation(owner.gameObject.transform.forward, owner.gameObject.transform.up));
-        rocket.GetComponent<Rocket>().Owner(owner.gameObject);
+        rocket.GetComponent<Rocket>().OwnerAndTarget(owner.gameObject);
         //Added by Iain
         Vector3 spawnPos = owner.transform.position + (owner.transform.forward * 2);
         Quaternion spawnRot = Quaternion.LookRotation(owner.gameObject.transform.forward, owner.gameObject.transform.up);
