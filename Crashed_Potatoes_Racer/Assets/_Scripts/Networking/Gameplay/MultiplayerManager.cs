@@ -43,6 +43,10 @@ public class MultiplayerManager : MonoBehaviour
     GameObject m_Gum;
     [SerializeField]
     GameObject m_projectile;
+    [SerializeField]
+    GameObject m_explosivePrefab;
+    [SerializeField]
+    GameObject m_minePrefab;
 
     Dictionary<int, int> m_mergeCars = new Dictionary<int, int>();
     Dictionary<int, int> m_demergeCars = new Dictionary<int, int>();
@@ -87,9 +91,18 @@ public class MultiplayerManager : MonoBehaviour
                 }
                 else
                 {
-                    car.GetComponent<CustomisedSpawning>().Spawn(Random.Range(0, 8),
-                                                                 Random.Range(0, 12),
-                                                                 Random.Range(0, 3));
+                    int body = Random.Range(0, 8);
+                    int wheels = Random.Range(0, 12);
+                    int guns = Random.Range(0, 3);
+                    car.GetComponent<CustomisedSpawning>().Spawn(body,
+                                                                 wheels,
+                                                                 guns);
+                    NetAISpawn netAISpawn = new NetAISpawn();
+                    netAISpawn.m_Player = car.GetComponent<CarManagerScript>().m_playerNum;
+                    netAISpawn.m_Body = body;
+                    netAISpawn.m_Wheels = wheels;
+                    netAISpawn.m_Gun = guns;
+                    Server.Instance.Broadcast(netAISpawn);
                 }
                 m_activeCars.Add(car);
             }
@@ -113,12 +126,6 @@ public class MultiplayerManager : MonoBehaviour
                     car.GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_carDesigns[i].m_carChoice,
                                                                  PersistentInfo.Instance.m_carDesigns[i].m_wheelChoice,
                                                                  PersistentInfo.Instance.m_carDesigns[i].m_gunChoice);
-                }
-                else
-                {
-                    car.GetComponent<CustomisedSpawning>().Spawn(0,
-                                                                 0,
-                                                                 0);
                 }
                 m_activeCars.Add(car);
             }
@@ -220,6 +227,8 @@ public class MultiplayerManager : MonoBehaviour
         NetUtility.C_BOOST += OnBoostClient;
             //Timer
         NetUtility.C_GAME_COUNTDOWN += OnGameCountdownClient;
+        //Cusomised Spawning
+        NetUtility.C_AI_SPAWN += OnAISpawnClient;
             //End Game
         NetUtility.C_FINISHED += OnFinishedClient;
 
@@ -262,7 +271,9 @@ public class MultiplayerManager : MonoBehaviour
         NetUtility.C_BOOST -= OnBoostClient;
             //Timer
         NetUtility.C_GAME_COUNTDOWN -= OnGameCountdownClient;
-            //End Game
+            //Cusomised Spawning
+        NetUtility.C_AI_SPAWN += OnAISpawnClient;
+        //End Game
         NetUtility.C_FINISHED -= OnFinishedClient;
     }
 
@@ -841,23 +852,72 @@ public class MultiplayerManager : MonoBehaviour
                 break;
         }
     }
+    void OnAISpawnClient(NetMessage a_msg)
+    {
+        NetAISpawn netAISpawn = a_msg as NetAISpawn;
+        if (netAISpawn.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
+        {
+            foreach (GameObject car in m_activeCars)
+            {
+                if (car.GetComponent<CarManagerScript>().m_playerNum == netAISpawn.m_Player)
+                {
+                    car.GetComponent<CustomisedSpawning>().Spawn(netAISpawn.m_Body,
+                                                                 netAISpawn.m_Wheels,
+                                                                 netAISpawn.m_Gun);
+                }
+            }
+        }
+    }
+
     void OnShootClient(NetMessage a_msg)
     {
         NetShoot netShoot = a_msg as NetShoot;
-        if (netShoot.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
+        switch (netShoot.m_Action)
         {
-            Vector3 spawnPos = new Vector3(netShoot.m_XPos, netShoot.m_YPos, netShoot.m_ZPos);
-            Vector3 spawnDir = new Vector3(netShoot.m_XDir, netShoot.m_YDir, netShoot.m_ZDir);
-            GameObject projectile = Instantiate(m_projectile, spawnPos, Quaternion.identity);
-            projectile.GetComponent<Rigidbody>().AddForce(spawnDir * netShoot.m_Force, ForceMode.Impulse);
-        }
+            case NetShoot.ACTION.EXPLOSIVE:
+                {
+                    if (netShoot.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
+                    {
+                        Vector3 spawnPos = new Vector3(netShoot.m_XPos, netShoot.m_YPos, netShoot.m_ZPos);
+                        Vector3 spawnDir = new Vector3(netShoot.m_XDir, netShoot.m_YDir, netShoot.m_ZDir);
+                        GameObject projectile = Instantiate(m_explosivePrefab, spawnPos, Quaternion.identity);
+                        projectile.GetComponent<Rigidbody>().AddForce(spawnDir * netShoot.m_Force, ForceMode.Impulse);
+                    }
+                    break;
+                }
+            case NetShoot.ACTION.HITSCAN:
+                {
+                    if (netShoot.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
+                    {
+                        Vector3 spawnPos = new Vector3(netShoot.m_XPos, netShoot.m_YPos, netShoot.m_ZPos);
+                        Vector3 spawnDir = new Vector3(netShoot.m_XDir, netShoot.m_YDir, netShoot.m_ZDir);
+                        GameObject projectile = Instantiate(m_projectile, spawnPos, Quaternion.identity);
+                        projectile.GetComponent<Rigidbody>().AddForce(spawnDir * netShoot.m_Force, ForceMode.Impulse);
+                    }
 
-        foreach (GameObject car in m_activeCars)
-        {
-            if (car.GetComponent<CarManagerScript>().m_playerNum == netShoot.m_Other)
-            {
-                car.GetComponent<PlayerHit>().HitSpin();
-            }
+                    foreach (GameObject car in m_activeCars)
+                    {
+                        if (car.GetComponent<CarManagerScript>().m_playerNum == netShoot.m_Other)
+                        {
+                            car.GetComponent<PlayerHit>().HitSpin();
+                        }
+                    }
+                    break;
+                }
+            case NetShoot.ACTION.MINE:
+                {
+                    if (netShoot.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
+                    {
+                        Vector3 spawnPos = new Vector3(netShoot.m_XPos, netShoot.m_YPos, netShoot.m_ZPos);
+                        Vector3 spawnDir = new Vector3(netShoot.m_XDir, netShoot.m_YDir, netShoot.m_ZDir);
+                        GameObject projectile = Instantiate(m_minePrefab, spawnPos, Quaternion.identity);
+                        projectile.GetComponent<Rigidbody>().AddForce(spawnDir * netShoot.m_Force, ForceMode.Impulse);
+                    }
+                    break;
+                }
+            default:
+                Debug.LogError("Unknow ACTION in shoot");
+                break;
         }
     }
     void OnGumClient(NetMessage a_msg)

@@ -16,9 +16,14 @@ MonoBehaviour:
   m_gun: {fileID: 0}
   m_active: 1
   m_turnSpeed: 100
-  m_projectile: {fileID: 8848499802267235854, guid: 62d6897405b27d54fb2d4df361870ef3,
+  m_projectilePrefab: {fileID: 8848499802267235854, guid: b8e5bafc46fcbab4aafac695831865a7,
+    type: 3}
+  m_explosivePrefab: {fileID: 8848499802267235854, guid: b8e5bafc46fcbab4aafac695831865a7,
+    type: 3}
+  m_minePrefab: {fileID: 8848499802267235854, guid: b8e5bafc46fcbab4aafac695831865a7,
     type: 3}
   m_fireForce: 100
+  m_arcForce: 1
   m_horizontalCap: 360
   m_verticalCap: 25
 --- !u!114 &7036188321338897062
@@ -5170,9 +5175,14 @@ MonoBehaviour:
   m_gun: {fileID: 0}
   m_active: 1
   m_turnSpeed: 100
-  m_projectile: {fileID: 8848499802267235854, guid: 62d6897405b27d54fb2d4df361870ef3,
+  m_projectilePrefab: {fileID: 8848499802267235854, guid: b8e5bafc46fcbab4aafac695831865a7,
+    type: 3}
+  m_explosivePrefab: {fileID: 8848499802267235854, guid: b8e5bafc46fcbab4aafac695831865a7,
+    type: 3}
+  m_minePrefab: {fileID: 8848499802267235854, guid: b8e5bafc46fcbab4aafac695831865a7,
     type: 3}
   m_fireForce: 100
+  m_arcForce: 1
   m_horizontalCap: 360
   m_verticalCap: 25
 --- !u!1 &4308400865080813663
@@ -10060,9 +10070,14 @@ MonoBehaviour:
   m_gun: {fileID: 0}
   m_active: 1
   m_turnSpeed: 100
-  m_projectile: {fileID: 8848499802267235854, guid: 62d6897405b27d54fb2d4df361870ef3,
+  m_projectilePrefab: {fileID: 8848499802267235854, guid: b8e5bafc46fcbab4aafac695831865a7,
+    type: 3}
+  m_explosivePrefab: {fileID: 8848499802267235854, guid: b8e5bafc46fcbab4aafac695831865a7,
+    type: 3}
+  m_minePrefab: {fileID: 8848499802267235854, guid: b8e5bafc46fcbab4aafac695831865a7,
     type: 3}
   m_fireForce: 100
+  m_arcForce: 1
   m_horizontalCap: 360
   m_verticalCap: 25
 --- !u!114 &2549702858501836086
@@ -10306,9 +10321,14 @@ MonoBehaviour:
   m_gun: {fileID: 0}
   m_active: 1
   m_turnSpeed: 100
-  m_projectile: {fileID: 8848499802267235854, guid: 62d6897405b27d54fb2d4df361870ef3,
+  m_projectilePrefab: {fileID: 8848499802267235854, guid: b8e5bafc46fcbab4aafac695831865a7,
+    type: 3}
+  m_explosivePrefab: {fileID: 8848499802267235854, guid: b8e5bafc46fcbab4aafac695831865a7,
+    type: 3}
+  m_minePrefab: {fileID: 8848499802267235854, guid: b8e5bafc46fcbab4aafac695831865a7,
     type: 3}
   m_fireForce: 100
+  m_arcForce: 1
   m_horizontalCap: 360
   m_verticalCap: 25
 --- !u!114 &6491171951820558668
@@ -10344,9 +10364,14 @@ MonoBehaviour:
   m_gun: {fileID: 0}
   m_active: 1
   m_turnSpeed: 100
-  m_projectile: {fileID: 8848499802267235854, guid: 62d6897405b27d54fb2d4df361870ef3,
+  m_projectilePrefab: {fileID: 8848499802267235854, guid: b8e5bafc46fcbab4aafac695831865a7,
+    type: 3}
+  m_explosivePrefab: {fileID: 8848499802267235854, guid: b8e5bafc46fcbab4aafac695831865a7,
+    type: 3}
+  m_minePrefab: {fileID: 8848499802267235854, guid: b8e5bafc46fcbab4aafac695831865a7,
     type: 3}
   m_fireForce: 100
+  m_arcForce: 1
   m_horizontalCap: 360
   m_verticalCap: 25
 --- !u!114 &7580569775411378830
@@ -10497,9 +10522,14 @@ MonoBehaviour:
   m_gun: {fileID: 0}
   m_active: 1
   m_turnSpeed: 100
-  m_projectile: {fileID: 8848499802267235854, guid: 62d6897405b27d54fb2d4df361870ef3,
+  m_projectilePrefab: {fileID: 8848499802267235854, guid: b8e5bafc46fcbab4aafac695831865a7,
+    type: 3}
+  m_explosivePrefab: {fileID: 8848499802267235854, guid: b8e5bafc46fcbab4aafac695831865a7,
+    type: 3}
+  m_minePrefab: {fileID: 8848499802267235854, guid: b8e5bafc46fcbab4aafac695831865a7,
     type: 3}
   m_fireForce: 100
+  m_arcForce: 1
   m_horizontalCap: 360
   m_verticalCap: 25
 --- !u!114 &3457167608722929546
@@ -10552,9 +10582,14 @@ MonoBehaviour:
   m_gun: {fileID: 0}
   m_active: 1
   m_turnSpeed: 100
-  m_projectile: {fileID: 8848499802267235854, guid: 62d6897405b27d54fb2d4df361870ef3,
+  m_projectilePrefab: {fileID: 8848499802267235854, guid: b8e5bafc46fcbab4aafac695831865a7,
+    type: 3}
+  m_explosivePrefab: {fileID: 8848499802267235854, guid: b8e5bafc46fcbab4aafac695831865a7,
+    type: 3}
+  m_minePrefab: {fileID: 8848499802267235854, guid: b8e5bafc46fcbab4aafac695831865a7,
     type: 3}
   m_fireForce: 100
+  m_arcForce: 1
   m_horizontalCap: 360
   m_verticalCap: 25
 --- !u!114 &5367935762360967440
@@ -10590,9 +10625,14 @@ MonoBehaviour:
   m_gun: {fileID: 0}
   m_active: 1
   m_turnSpeed: 100
-  m_projectile: {fileID: 8848499802267235854, guid: 62d6897405b27d54fb2d4df361870ef3,
+  m_projectilePrefab: {fileID: 8848499802267235854, guid: b8e5bafc46fcbab4aafac695831865a7,
+    type: 3}
+  m_explosivePrefab: {fileID: 8848499802267235854, guid: b8e5bafc46fcbab4aafac695831865a7,
+    type: 3}
+  m_minePrefab: {fileID: 8848499802267235854, guid: b8e5bafc46fcbab4aafac695831865a7,
     type: 3}
   m_fireForce: 100
+  m_arcForce: 1
   m_horizontalCap: 360
   m_verticalCap: 25
 --- !u!1 &8720226032362267099
