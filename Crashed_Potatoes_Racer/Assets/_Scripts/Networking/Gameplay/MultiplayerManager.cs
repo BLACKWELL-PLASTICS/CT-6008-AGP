@@ -771,7 +771,7 @@ public class MultiplayerManager : MonoBehaviour
                 PersistentInfo.Instance.m_readyCars--;
                 break;
             case NetGameCountdown.ACTION.COUNTING:
-                if (netGameCountdown.m_Count < 1.0f)
+                if (netGameCountdown.m_Count < 5.0f)
                 {
                     for (int i = 0; i < m_startUI.Length; i++)
                     {
@@ -785,7 +785,7 @@ public class MultiplayerManager : MonoBehaviour
                         }
                     }
                 }
-                else if (netGameCountdown.m_Count < 2.0f)
+                else
                 {
                     for (int i = 0; i < m_startUI.Length; i++)
                     {
@@ -799,47 +799,61 @@ public class MultiplayerManager : MonoBehaviour
                         }
                     }
                 }
-                else if (netGameCountdown.m_Count < 3.0f)
-                {
-                    for (int i = 0; i < m_startUI.Length; i++)
-                    {
-                        if (i != 2)
-                        {
-                            m_startUI[i].SetActive(false);
-                        }
-                        else
-                        {
-                            m_startUI[i].SetActive(true);
-                        }
-                    }
-                }
-                else if (netGameCountdown.m_Count < 4.0f)
-                {
-                    for (int i = 0; i < m_startUI.Length; i++)
-                    {
-                        if (i != 3)
-                        {
-                            m_startUI[i].SetActive(false);
-                        }
-                        else
-                        {
-                            m_startUI[i].SetActive(true);
-                        }
-                    }
-                }
+                //else if (netGameCountdown.m_Count < 2.0f)
+                //{
+                //    for (int i = 0; i < m_startUI.Length; i++)
+                //    {
+                //        if (i != 1)
+                //        {
+                //            m_startUI[i].SetActive(false);
+                //        }
+                //        else
+                //        {
+                //            m_startUI[i].SetActive(true);
+                //        }
+                //    }
+                //}
+                //else if (netGameCountdown.m_Count < 3.0f)
+                //{
+                //    for (int i = 0; i < m_startUI.Length; i++)
+                //    {
+                //        if (i != 2)
+                //        {
+                //            m_startUI[i].SetActive(false);
+                //        }
+                //        else
+                //        {
+                //            m_startUI[i].SetActive(true);
+                //        }
+                //    }
+                //}
+                //else if (netGameCountdown.m_Count < 4.0f)
+                //{
+                //    for (int i = 0; i < m_startUI.Length; i++)
+                //    {
+                //        if (i != 3)
+                //        {
+                //            m_startUI[i].SetActive(false);
+                //        }
+                //        else
+                //        {
+                //            m_startUI[i].SetActive(true);
+                //        }
+                //    }
+                //}
                 break;
             case NetGameCountdown.ACTION.GO:
-                for (int i = 0; i < m_startUI.Length; i++)
-                {
-                    if (i != 4)
-                    {
-                        m_startUI[i].SetActive(false);
-                    }
-                    else
-                    {
-                        m_startUI[i].SetActive(true);
-                    }
-                }
+                //for (int i = 0; i < m_startUI.Length; i++)
+                //{
+                //    if (i != 1)
+                //    {
+                //        m_startUI[i].SetActive(false);
+                //    }
+                //    else
+                //    {
+                //        m_startUI[i].SetActive(true);
+                //    }
+                //}
                 for (int i = 0; i < m_startUI.Length; i++)
                 {
                     Destroy(m_startUI[i]);
@@ -855,7 +869,7 @@ public class MultiplayerManager : MonoBehaviour
     void OnAISpawnClient(NetMessage a_msg)
     {
         NetAISpawn netAISpawn = a_msg as NetAISpawn;
-        if (netAISpawn.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
+        if ((netAISpawn.m_Player > PersistentInfo.Instance.m_connectedUsers))
         {
             foreach (GameObject car in m_activeCars)
             {

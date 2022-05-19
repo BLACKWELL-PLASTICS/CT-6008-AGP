@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -775,7 +775,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1229435612}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 500, y: 1, z: 255}
+  m_LocalPosition: {x: 500, y: 2, z: 255}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -811,7 +811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_activeCars: []
-  m_DivableCar: {fileID: 8738164446682236303, guid: 79670fa313269ef49ad54cb05a8682b0,
+  m_DivableCar: {fileID: 8738164446682236303, guid: 0c67cb8b6e8d5ee43afe60deaccadc8c,
     type: 3}
   m_onlineCar: {fileID: 8738164446682236303, guid: b3cb44d97d379a14a9e7890ff2f29a2c,
     type: 3}
@@ -832,28 +832,19 @@ MonoBehaviour:
   - {fileID: 2019726601}
   - {fileID: 10072379}
   - {fileID: 518019329}
-  m_seedPackets:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  m_timerSlider: {fileID: 0}
+  m_seedPackets: []
   m_obstacle: {fileID: 1490930886457616683, guid: 87e9c095f5bb0a246acc7fcc770913db,
     type: 3}
   m_rocket: {fileID: 1895209648162260296, guid: 1dec936bd56fcf64994fb09e7201a51b,
     type: 3}
   m_BirdPoop: {fileID: 230667084}
-  m_projectile: {fileID: 8848499802267235854, guid: 62d6897405b27d54fb2d4df361870ef3,
+  m_Gum: {fileID: 6830736905640621692, guid: a0e7f1b3a5377a546bacc3091daf6791, type: 3}
+  m_projectile: {fileID: 8848499802267235854, guid: b8e5bafc46fcbab4aafac695831865a7,
+    type: 3}
+  m_explosivePrefab: {fileID: 8848499802267235854, guid: 411e4b70abe4abe4c885064cf0bfa613,
+    type: 3}
+  m_minePrefab: {fileID: 8848499802267235854, guid: f78f8cae20297c14e9152a701a131554,
     type: 3}
 --- !u!4 &1337587834
 Transform:
@@ -863,7 +854,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1337587832}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 134, y: 0, z: 87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
