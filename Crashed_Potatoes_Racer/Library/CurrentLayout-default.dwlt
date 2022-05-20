@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 16
+  controlID: 64
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 17
+  controlID: 65
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 18
+  controlID: 66
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -450,20 +450,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/_Scenes
+    - Assets/_Scripts/MenuScripts
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/_Scenes
+  - Assets/_Scripts/MenuScripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\GitHub\CT-6008-AGP\Crashed_Potatoes_Racer
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: e64b0000
-    m_LastClickedID: 19430
-    m_ExpandedIDs: 00000000b2420000a84b0000aa4b0000ac4b0000ae4b0000b04b0000b24b0000b44b0000b64b0000b84b0000ba4b0000e64b000000ca9a3b
+    m_SelectedIDs: f4120100
+    m_LastClickedID: 70388
+    m_ExpandedIDs: 00000000c242000000100100021001000410010006100100081001000a1001000c1001000e1001001010010012100100aa100100ac10010000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -491,7 +491,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000b2420000a84b0000aa4b0000ac4b0000ae4b0000b04b0000b24b0000b44b0000b64b0000b84b0000ba4b0000
+    m_ExpandedIDs: 00000000c242000000100100021001000410010006100100081001000a1001000c1001000e1001001010010012100100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -535,7 +535,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 0}
+      m_ClientGUIView: {fileID: 5}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0
@@ -616,7 +616,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: daf9ffff30fbffff
+      m_ExpandedIDs: 0cbcffff66faffffde550000fa2601008e290100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -671,14 +671,14 @@ MonoBehaviour:
   m_Gizmos: 1
   m_SceneIsLit: 1
   m_SceneLighting: 1
-  m_2DMode: 0
+  m_2DMode: 1
   m_isRotationLocked: 0
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -38.458794, y: -22.297277, z: -91.03271}
+    m_Target: {x: 0.43231222, y: -1.2265729, z: -26.653347}
     speed: 2
-    m_Value: {x: -38.458794, y: -22.297277, z: -91.03271}
+    m_Value: {x: 0.43231222, y: -1.2265729, z: -26.653347}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -706,7 +706,7 @@ MonoBehaviour:
       m_Size: {x: 0, y: 0}
     yGrid:
       m_Fade:
-        m_Target: 1
+        m_Target: 0
         speed: 2
         m_Value: 1
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
@@ -714,7 +714,7 @@ MonoBehaviour:
       m_Size: {x: 1, y: 1}
     zGrid:
       m_Fade:
-        m_Target: 0
+        m_Target: 1
         speed: 2
         m_Value: 1
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
@@ -724,17 +724,17 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
+    m_Target: {x: 0, y: 0, z: 0, w: 1}
     speed: 2
-    m_Value: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
+    m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 79.82353
+    m_Target: 7.2488046
     speed: 2
-    m_Value: 73.2326
+    m_Value: 7.2488046
   m_Ortho:
-    m_Target: 0
+    m_Target: 1
     speed: 2
-    m_Value: 0
+    m_Value: 1
   m_CameraSettings:
     m_Speed: 1
     m_SpeedNormalized: 0.5
@@ -748,7 +748,7 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
+  m_LastSceneViewRotation: {x: -0.23197553, y: 0.039962906, z: -0.009538965, w: -0.971854}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
@@ -804,10 +804,10 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -490
-    m_HBaseRangeMax: 490
-    m_VBaseRangeMin: -275.5
-    m_VBaseRangeMax: 275.5
+    m_HBaseRangeMin: -471
+    m_HBaseRangeMax: 471
+    m_VBaseRangeMin: -265
+    m_VBaseRangeMax: 265
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -824,11 +824,11 @@ MonoBehaviour:
     m_DrawArea:
       serializedVersion: 2
       x: 0
-      y: 0
+      y: 21
       width: 1150
-      height: 551
+      height: 530
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 575, y: 275.5}
+    m_Translation: {x: 575, y: 265}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
@@ -836,9 +836,9 @@ MonoBehaviour:
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
       x: -575
-      y: -275.5
+      y: -265
       width: 1150
-      height: 551
+      height: 530
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 1150, y: 551}
