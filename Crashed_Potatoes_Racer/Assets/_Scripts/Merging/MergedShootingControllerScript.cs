@@ -153,7 +153,7 @@ public class MergedShootingControllerScript : MonoBehaviour
 
     void Fire()
     {
-        //switch(PersistentInfo.Instance.m_carDesign.m_gunChoice)
+        //switch (PersistentInfo.Instance.m_carDesign.m_gunChoice)
         //{
         //    case 0:
         //        {
@@ -240,6 +240,7 @@ public class MergedShootingControllerScript : MonoBehaviour
         //        }
         //    default:
         //        break;
+        //}
 
         RaycastHit hit;
         if (Physics.Raycast(m_gun.transform.position, m_gun.transform.right, out hit, 100000.0f, 11, QueryTriggerInteraction.Collide))
