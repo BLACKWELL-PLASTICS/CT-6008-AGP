@@ -11,7 +11,7 @@ using UnityEngine;
 
 public class BirdPoop : MonoBehaviour
 {
-    float timer = 5.0f;
+    float timer = 3.5f;
     private void Update()
     {
         if (isActive)
@@ -29,6 +29,6 @@ public class BirdPoop : MonoBehaviour
     {
         isActive = !isActive;
         this.gameObject.SetActive(isActive);
-        timer = 5.0f;
+        timer = 3.5f;
     }
 }
