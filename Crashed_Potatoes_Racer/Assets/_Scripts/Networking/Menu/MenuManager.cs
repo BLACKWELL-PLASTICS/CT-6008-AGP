@@ -262,6 +262,10 @@ public class MenuManager : MonoBehaviour
     {
         NetOtherDisconnected netOtherDisconnected = a_msg as NetOtherDisconnected;
         PersistentInfo.Instance.m_connectedUsers--;
+        if (PersistentInfo.Instance.m_currentPlayerNum > (netOtherDisconnected.m_PlayerNum + 1))
+        {
+            PersistentInfo.Instance.m_currentPlayerNum--;
+        }
         PersistentInfo.Instance.m_connectedNames.RemoveAt(netOtherDisconnected.m_PlayerNum);
         PersistentInfo.Instance.m_carDesigns.RemoveAt(netOtherDisconnected.m_PlayerNum);
 
