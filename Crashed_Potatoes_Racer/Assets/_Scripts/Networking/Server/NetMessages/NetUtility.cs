@@ -25,7 +25,8 @@ public enum ServerOpCode
     GUM = 17,
     BOOST = 18,
     CUSTOMISER_UPDATE = 19,
-    FINISHED = 20
+    FINISHED = 20,
+    AI_SPAWN = 21
 }
 public static class NetUtility
 {
@@ -95,6 +96,9 @@ public static class NetUtility
             case ServerOpCode.FINISHED:
                 msg = new NetFinished(a_stream);
                 break;
+            case ServerOpCode.AI_SPAWN:
+                msg = new NetAISpawn(a_stream);
+                break;
             default:
                 Debug.LogError("Message received has unrecognised OpCode");
                 break;
@@ -132,6 +136,7 @@ public static class NetUtility
     public static Action<NetMessage> C_BOOST;
     public static Action<NetMessage> C_CUSTOMISER_UPDATE;
     public static Action<NetMessage> C_FINISHED;
+    public static Action<NetMessage> C_AI_SPAWN;
 
     //Server
     public static Action<NetMessage, NetworkConnection> S_KEEP_ALIVE;
@@ -154,4 +159,5 @@ public static class NetUtility
     public static Action<NetMessage, NetworkConnection> S_BOOST;
     public static Action<NetMessage, NetworkConnection> S_CUSTOMISER_UPDATE;
     public static Action<NetMessage, NetworkConnection> S_FINISHED;
+    public static Action<NetMessage, NetworkConnection> S_AI_SPAWN;
 }

@@ -5,7 +5,9 @@ public class NetShoot : NetMessage
 {
     public enum ACTION
     {
-        FIRE = 1
+        EXPLOSIVE = 1,
+        HITSCAN = 2,
+        MINE = 3
     }
 
     public int m_Player { get; set; }
