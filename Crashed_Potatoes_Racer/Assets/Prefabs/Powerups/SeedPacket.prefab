@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7022309675086233171}
   - component: {fileID: 273407000018663389}
   - component: {fileID: 8563049052674436440}
+  - component: {fileID: -3040600503985044468}
   m_Layer: 0
   m_Name: SeedPacket
   m_TagString: Untagged
@@ -107,3 +108,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a6ebf3302b8d8041b3faf98200ed95a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_packetNum: 0
+--- !u!114 &-3040600503985044468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103675481833802789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 869834758
+      Data2: 1264292244
+      Data3: -1561944427
+      Data4: -1300178228
+    Path: event:/PowerUpSparkle
+  Event: 
+  PlayEvent: 2
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 20
+  OverrideMaxDistance: 20
