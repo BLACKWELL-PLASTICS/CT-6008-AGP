@@ -8054,37 +8054,37 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 14180112ecf52f34fb4c813ab6fa09b8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -99.8812
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14180112ecf52f34fb4c813ab6fa09b8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20.410128
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14180112ecf52f34fb4c813ab6fa09b8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -42.192265
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14180112ecf52f34fb4c813ab6fa09b8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.7071068
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14180112ecf52f34fb4c813ab6fa09b8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14180112ecf52f34fb4c813ab6fa09b8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14180112ecf52f34fb4c813ab6fa09b8,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071067
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14180112ecf52f34fb4c813ab6fa09b8,
         type: 3}
@@ -8094,7 +8094,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 14180112ecf52f34fb4c813ab6fa09b8,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14180112ecf52f34fb4c813ab6fa09b8,
         type: 3}
@@ -8109,17 +8109,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 14180112ecf52f34fb4c813ab6fa09b8,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14180112ecf52f34fb4c813ab6fa09b8,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 14180112ecf52f34fb4c813ab6fa09b8,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 14180112ecf52f34fb4c813ab6fa09b8,
         type: 3}
@@ -25987,7 +25987,7 @@ MonoBehaviour:
     Path: event:/Level2Music
   Event: 
   PlayEvent: 1
-  StopEvent: 0
+  StopEvent: 2
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0

@@ -94,9 +94,6 @@ public class MultiplayerManager : MonoBehaviour
                     int body = Random.Range(0, 8);
                     int wheels = Random.Range(0, 12);
                     int guns = Random.Range(0, 3);
-                    car.GetComponent<CustomisedSpawning>().Spawn(body,
-                                                                 wheels,
-                                                                 guns);
                     NetAISpawn netAISpawn = new NetAISpawn();
                     netAISpawn.m_Player = car.GetComponent<CarManagerScript>().m_playerNum;
                     netAISpawn.m_Body = body;

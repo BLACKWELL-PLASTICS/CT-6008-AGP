@@ -11,7 +11,8 @@ using UnityEngine;
 
 public class BirdPoop : MonoBehaviour
 {
-    float timer = 3.5f;
+    [SerializeField]
+    private float timer = 3.5f;
     private void Update()
     {
         if (isActive)
