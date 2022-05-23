@@ -170,13 +170,23 @@ public class MultiplayerManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             int pI = PersistentInfo.Instance.m_currentPlayerNum;
-            Client.Instance.Shutdown();
+            Client.Instance.Shutdown(false);
             if (pI == 1)
             {
-                Server.Instance.Shutdown();
+                Server.Instance.Shutdown(false);
             }
-            //PersistentInfo.Instance.Clear();
-            SceneManager.LoadScene(0);
+            foreach (GameObject car in m_activeCars)
+            {
+                if (car.GetComponent<CarManagerScript>().m_playerNum - 1 < PersistentInfo.Instance.m_connectedNames.Count)
+                {
+                    PersistentInfo.Instance.m_winOrder[car.GetComponent<Position>().currentPosition - 1] = PersistentInfo.Instance.m_connectedNames[car.GetComponent<CarManagerScript>().m_playerNum - 1];
+                }
+                else
+                {
+                    PersistentInfo.Instance.m_winOrder[car.GetComponent<Position>().currentPosition - 1] = "AI";
+                }
+            }
+            SceneManager.LoadScene(4);
         }
     }
 
@@ -999,7 +1009,7 @@ public class MultiplayerManager : MonoBehaviour
                     Server.Instance.Shutdown();
                 }
                 //PersistentInfo.Instance.Clear();
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(4);
 
                 break;
             default:

@@ -43,11 +43,14 @@ public class Client : MonoBehaviour
 
         RegisterToEvent();
     }
-    public void Shutdown()
+    public void Shutdown(bool a_clearPI = true)
     {
         if (m_isActive)
         {
-            PersistentInfo.Instance.Clear();
+            if (a_clearPI)
+            {
+                PersistentInfo.Instance.Clear();
+            }
             UnregisterToEvent();
             m_driver.Disconnect(m_connection);
             m_driver.Dispose();

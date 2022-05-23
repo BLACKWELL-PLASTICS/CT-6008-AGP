@@ -13,6 +13,7 @@ class PersistentInfo : MonoBehaviour
     public int m_currentPlayerNum { get; set; }
     public string m_currentPlayerName { get; set; }
     public CarDesigns m_carDesign { get; set; }
+    public string[] m_winOrder = new string[8];
     [SerializeField]
     public GameObject[] m_CountdownUI;
 

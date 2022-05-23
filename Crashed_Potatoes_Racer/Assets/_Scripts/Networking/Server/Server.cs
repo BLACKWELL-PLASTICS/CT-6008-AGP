@@ -51,11 +51,14 @@ public class Server : MonoBehaviour
         m_connections = new NativeList<NetworkConnection>(2, Allocator.Persistent);
         m_isActive = true;
     }
-    public void Shutdown()
+    public void Shutdown(bool a_clearPI = true)
     {
         if (m_isActive)
         {
-            PersistentInfo.Instance.Clear();
+            if (a_clearPI)
+            {
+                PersistentInfo.Instance.Clear();
+            }
             m_driver.Dispose();
             m_connections.Dispose();
             m_isActive = false;
