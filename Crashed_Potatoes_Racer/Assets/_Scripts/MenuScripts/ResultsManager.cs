@@ -14,7 +14,7 @@ public class ResultsManager : MonoBehaviour
     {
         for(int i = 0; i < PersistentInfo.Instance.m_winOrder.Length; i++)
         {
-            m_nameFields[i].GetComponent<TextMeshPro>().text = PersistentInfo.Instance.m_winOrder[i];
+            m_nameFields[i].GetComponent<TextMeshProUGUI>().text = PersistentInfo.Instance.m_winOrder[i];
         }
     }
 

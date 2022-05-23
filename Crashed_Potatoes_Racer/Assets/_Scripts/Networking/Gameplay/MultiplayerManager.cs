@@ -185,6 +185,18 @@ public class MultiplayerManager : MonoBehaviour
                 {
                     PersistentInfo.Instance.m_winOrder[car.GetComponent<Position>().currentPosition - 1] = "AI";
                 }
+
+                if (car.GetComponent<Position>().currentPosition <= 3)
+                {
+                    if (car.GetComponent<CarManagerScript>().m_playerNum - 1 < PersistentInfo.Instance.m_winDesigns.Length)
+                    {
+                        PersistentInfo.Instance.m_winDesigns[car.GetComponent<Position>().currentPosition - 1] = PersistentInfo.Instance.m_carDesigns[car.GetComponent<CarManagerScript>().m_playerNum - 1];
+                    }
+                    else
+                    {
+                        PersistentInfo.Instance.m_winDesigns[car.GetComponent<Position>().currentPosition - 1] = PersistentInfo.Instance.m_AIDesigns[(car.GetComponent<CarManagerScript>().m_playerNum - 1) - (PersistentInfo.Instance.m_winDesigns.Length - 1)];
+                    }
+                }
             }
             SceneManager.LoadScene(4);
         }
@@ -885,6 +897,11 @@ public class MultiplayerManager : MonoBehaviour
                     car.GetComponent<CustomisedSpawning>().Spawn(netAISpawn.m_Body,
                                                                  netAISpawn.m_Wheels,
                                                                  netAISpawn.m_Gun);
+                    CarDesigns carDesigns = new CarDesigns();
+                    carDesigns.m_carChoice = netAISpawn.m_Body;
+                    carDesigns.m_wheelChoice = netAISpawn.m_Wheels;
+                    carDesigns.m_gunChoice = netAISpawn.m_Gun;
+                    PersistentInfo.Instance.m_AIDesigns.Add(carDesigns);
                 }
             }
         }
