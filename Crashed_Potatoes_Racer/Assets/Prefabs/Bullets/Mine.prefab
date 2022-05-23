@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 2495432003800213300}
   - component: {fileID: 1517244385675716753}
   - component: {fileID: 3668924011271216219}
-  - component: {fileID: 8629185873788432345}
+  - component: {fileID: -814521539180170122}
   - component: {fileID: 2623346355676588551}
   - component: {fileID: 4039936015945174054}
+  - component: {fileID: -1597861427333799582}
   m_Layer: 0
   m_Name: Mine
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 3020330417796906382}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 61.267807, y: -1.9156892, z: 65.46714}
-  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
+  m_LocalScale: {x: 0.04, y: 0.04, z: 0.04}
   m_Children:
   - {fileID: 69318345255907315}
   m_Father: {fileID: 0}
@@ -83,8 +84,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &8629185873788432345
-MeshCollider:
+--- !u!135 &-814521539180170122
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -92,11 +93,10 @@ MeshCollider:
   m_GameObject: {fileID: 3020330417796906382}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2850042548880779394, guid: 4e5f0527235f86f49b77cf1ce451030f, type: 3}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 14.67492
+  m_Center: {x: 0.79643583, y: 0, z: -0.017486576}
 --- !u!54 &2623346355676588551
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -125,6 +125,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 531e8709142cd314aa292fe468e0c69b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-1597861427333799582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3020330417796906382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f789f8ff793ea4d83278e253de6cf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 10
 --- !u!1 &7799160163232254097
 GameObject:
   m_ObjectHideFlags: 0
