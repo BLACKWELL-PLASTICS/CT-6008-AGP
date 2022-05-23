@@ -26,15 +26,30 @@ public class MergedShootingControllerScript : MonoBehaviour
     float m_horizontalCap = 180.0f;
     [SerializeField]
     float m_verticalCap = 360.0f;
+    [SerializeField]
+    float m_shootTimerMax = 3.0f;
 
     // Controller Vibration
     PlayerIndex index;
     //Projectile
     GameObject projectile;
+    //shooting
+    float m_shootTimer = 0.0f;
+    bool m_canFire = false;
 
     // Update is called once per frame
     void Update()
     {
+        if (m_shootTimer < m_shootTimerMax && !m_canFire)
+        {
+            m_shootTimer += Time.deltaTime;
+        }
+        else
+        {
+            m_shootTimer = 0.0f;
+            m_canFire = true;
+        }
+
         float verticalRotation = 0.0f;
         float horizontalRotation = 0.0f;
         if (m_active)
@@ -65,31 +80,35 @@ public class MergedShootingControllerScript : MonoBehaviour
             }
             if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.H))
             {
-                Debug.Log("Fire");
-                Fire();
+                if (m_canFire)
+                {
+                    Debug.Log("Fire");
+                    m_canFire = false;
+                    Fire();
+                }
             }
 
-            if (Input.GetKey(KeyCode.S))
-            {
-                verticalRotation = m_turnSpeed * Time.deltaTime;
-            }
-            else if (Input.GetKey(KeyCode.W))
-            {
-                verticalRotation = -1 * m_turnSpeed * Time.deltaTime;
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                horizontalRotation = m_turnSpeed * Time.deltaTime;
-            }
-            else if (Input.GetKey(KeyCode.A))
-            {
-                horizontalRotation = -1 * m_turnSpeed * Time.deltaTime;
-            }
-            if (Input.GetKeyDown(KeyCode.H))
-            {
-                Debug.Log("Fire");
-                Fire();
-            }
+            //if (Input.GetKey(KeyCode.S))
+            //{
+            //    verticalRotation = m_turnSpeed * Time.deltaTime;
+            //}
+            //else if (Input.GetKey(KeyCode.W))
+            //{
+            //    verticalRotation = -1 * m_turnSpeed * Time.deltaTime;
+            //}
+            //if (Input.GetKey(KeyCode.D))
+            //{
+            //    horizontalRotation = m_turnSpeed * Time.deltaTime;
+            //}
+            //else if (Input.GetKey(KeyCode.A))
+            //{
+            //    horizontalRotation = -1 * m_turnSpeed * Time.deltaTime;
+            //}
+            //if (Input.GetKeyDown(KeyCode.H))
+            //{
+            //    Debug.Log("Fire");
+            //    Fire();
+            //}
 
             if (GetPartToRotate(this.gameObject, 2).transform.localEulerAngles.y < 180.0f)
             {
@@ -153,131 +172,131 @@ public class MergedShootingControllerScript : MonoBehaviour
 
     void Fire()
     {
-        //switch (PersistentInfo.Instance.m_carDesign.m_gunChoice)
-        //{
-        //    case 0:
-        //        {
-        //            Vector3 fireAngle = (m_gun.transform.right + (m_gun.transform.forward * 0.5f));
-
-        //            NetShoot netShoot = new NetShoot();
-        //            netShoot.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
-        //            netShoot.m_Action = NetShoot.ACTION.EXPLOSIVE;
-        //            netShoot.m_Other = 0;
-        //            netShoot.m_Force = m_arcForce;
-        //            netShoot.m_XPos = m_gun.transform.position.x;
-        //            netShoot.m_YPos = m_gun.transform.position.y;
-        //            netShoot.m_ZPos = m_gun.transform.position.z;
-        //            netShoot.m_XDir = fireAngle.x;
-        //            netShoot.m_YDir = fireAngle.y;
-        //            netShoot.m_ZDir = fireAngle.z;
-        //            Client.Instance.SendToServer(netShoot);
-
-        //            projectile = Instantiate(m_explosivePrefab, m_gun.transform.position, Quaternion.identity);
-        //            projectile.GetComponent<Rigidbody>().AddForce(fireAngle * m_arcForce, ForceMode.Impulse);
-        //            break;
-        //        }
-        //    case 1:
-        //        {
-        //            RaycastHit hit;
-        //            if (Physics.Raycast(m_gun.transform.position, m_gun.transform.right, out hit, 100000.0f, 11, QueryTriggerInteraction.Collide))
-        //            {
-        //                if (hit.transform.gameObject.tag == "Player")
-        //                {
-        //                    NetShoot netShoot = new NetShoot();
-        //                    netShoot.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
-        //                    netShoot.m_Action = NetShoot.ACTION.HITSCAN;
-        //                    netShoot.m_Other = hit.transform.gameObject.GetComponent<CarManagerScript>().m_playerNum;
-        //                    netShoot.m_Force = m_fireForce;
-        //                    netShoot.m_XPos = m_gun.transform.position.x;
-        //                    netShoot.m_YPos = m_gun.transform.position.y;
-        //                    netShoot.m_ZPos = m_gun.transform.position.z;
-        //                    netShoot.m_XDir = m_gun.transform.right.x;
-        //                    netShoot.m_YDir = m_gun.transform.right.y;
-        //                    netShoot.m_ZDir = m_gun.transform.right.z;
-        //                    Client.Instance.SendToServer(netShoot);
-        //                }
-        //                else
-        //                {
-        //                    NetShoot netShoot = new NetShoot();
-        //                    netShoot.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
-        //                    netShoot.m_Action = NetShoot.ACTION.HITSCAN;
-        //                    netShoot.m_Other = 0;
-        //                    netShoot.m_Force = m_fireForce;
-        //                    netShoot.m_XPos = m_gun.transform.position.x;
-        //                    netShoot.m_YPos = m_gun.transform.position.y;
-        //                    netShoot.m_ZPos = m_gun.transform.position.z;
-        //                    netShoot.m_XDir = m_gun.transform.right.x;
-        //                    netShoot.m_YDir = m_gun.transform.right.y;
-        //                    netShoot.m_ZDir = m_gun.transform.right.z;
-        //                    Client.Instance.SendToServer(netShoot);
-        //                }
-        //            }
-
-        //            projectile = Instantiate(m_projectilePrefab, m_gun.transform.position, Quaternion.identity);
-        //            projectile.GetComponent<Rigidbody>().AddForce(m_gun.transform.right * m_fireForce, ForceMode.Impulse);
-        //            break;
-        //        }
-        //    case 2:
-        //        {
-        //            Vector3 fireAngle = (m_gun.transform.right + (m_gun.transform.forward * 0.5f));
-
-        //            NetShoot netShoot = new NetShoot();
-        //            netShoot.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
-        //            netShoot.m_Action = NetShoot.ACTION.MINE;
-        //            netShoot.m_Other = 0;
-        //            netShoot.m_Force = m_arcForce;
-        //            netShoot.m_XPos = m_gun.transform.position.x;
-        //            netShoot.m_YPos = m_gun.transform.position.y;
-        //            netShoot.m_ZPos = m_gun.transform.position.z;
-        //            netShoot.m_XDir = fireAngle.x;
-        //            netShoot.m_YDir = fireAngle.y;
-        //            netShoot.m_ZDir = fireAngle.z;
-        //            Client.Instance.SendToServer(netShoot);
-
-        //            projectile = Instantiate(m_minePrefab, m_gun.transform.position, Quaternion.identity);
-        //            projectile.GetComponent<Rigidbody>().AddForce(fireAngle * m_arcForce, ForceMode.Impulse);
-        //            break;
-        //        }
-        //    default:
-        //        break;
-        //}
-
-        RaycastHit hit;
-        if (Physics.Raycast(m_gun.transform.position, m_gun.transform.right, out hit, 100000.0f, 11, QueryTriggerInteraction.Collide))
+        switch (PersistentInfo.Instance.m_carDesign.m_gunChoice)
         {
-            if (hit.transform.gameObject.tag == "Player")
-            {
-                NetShoot netShoot = new NetShoot();
-                netShoot.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
-                netShoot.m_Action = NetShoot.ACTION.HITSCAN;
-                netShoot.m_Other = hit.transform.gameObject.GetComponent<CarManagerScript>().m_playerNum;
-                netShoot.m_Force = m_fireForce;
-                netShoot.m_XPos = m_gun.transform.position.x;
-                netShoot.m_YPos = m_gun.transform.position.y;
-                netShoot.m_ZPos = m_gun.transform.position.z;
-                netShoot.m_XDir = m_gun.transform.right.x;
-                netShoot.m_YDir = m_gun.transform.right.y;
-                netShoot.m_ZDir = m_gun.transform.right.z;
-                Client.Instance.SendToServer(netShoot);
-            }
-            else
-            {
-                NetShoot netShoot = new NetShoot();
-                netShoot.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
-                netShoot.m_Action = NetShoot.ACTION.HITSCAN;
-                netShoot.m_Other = 0;
-                netShoot.m_Force = m_fireForce;
-                netShoot.m_XPos = m_gun.transform.position.x;
-                netShoot.m_YPos = m_gun.transform.position.y;
-                netShoot.m_ZPos = m_gun.transform.position.z;
-                netShoot.m_XDir = m_gun.transform.right.x;
-                netShoot.m_YDir = m_gun.transform.right.y;
-                netShoot.m_ZDir = m_gun.transform.right.z;
-                Client.Instance.SendToServer(netShoot);
-            }
+            case 0:
+                {
+                    Vector3 fireAngle = (m_gun.transform.right + (m_gun.transform.forward * 0.5f));
+
+                    NetShoot netShoot = new NetShoot();
+                    netShoot.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+                    netShoot.m_Action = NetShoot.ACTION.EXPLOSIVE;
+                    netShoot.m_Other = 0;
+                    netShoot.m_Force = m_arcForce;
+                    netShoot.m_XPos = m_gun.transform.position.x;
+                    netShoot.m_YPos = m_gun.transform.position.y;
+                    netShoot.m_ZPos = m_gun.transform.position.z;
+                    netShoot.m_XDir = fireAngle.x;
+                    netShoot.m_YDir = fireAngle.y;
+                    netShoot.m_ZDir = fireAngle.z;
+                    Client.Instance.SendToServer(netShoot);
+
+                    projectile = Instantiate(m_explosivePrefab, m_gun.transform.position, Quaternion.identity);
+                    projectile.GetComponent<Rigidbody>().AddForce(fireAngle * m_arcForce, ForceMode.Impulse);
+                    break;
+                }
+            case 1:
+                {
+                    RaycastHit hit;
+                    if (Physics.Raycast(m_gun.transform.position, m_gun.transform.right, out hit, 100000.0f, 11, QueryTriggerInteraction.Collide))
+                    {
+                        if (hit.transform.gameObject.tag == "Player")
+                        {
+                            NetShoot netShoot = new NetShoot();
+                            netShoot.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+                            netShoot.m_Action = NetShoot.ACTION.HITSCAN;
+                            netShoot.m_Other = hit.transform.gameObject.GetComponent<CarManagerScript>().m_playerNum;
+                            netShoot.m_Force = m_fireForce;
+                            netShoot.m_XPos = m_gun.transform.position.x;
+                            netShoot.m_YPos = m_gun.transform.position.y;
+                            netShoot.m_ZPos = m_gun.transform.position.z;
+                            netShoot.m_XDir = m_gun.transform.right.x;
+                            netShoot.m_YDir = m_gun.transform.right.y;
+                            netShoot.m_ZDir = m_gun.transform.right.z;
+                            Client.Instance.SendToServer(netShoot);
+                        }
+                        else
+                        {
+                            NetShoot netShoot = new NetShoot();
+                            netShoot.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+                            netShoot.m_Action = NetShoot.ACTION.HITSCAN;
+                            netShoot.m_Other = 0;
+                            netShoot.m_Force = m_fireForce;
+                            netShoot.m_XPos = m_gun.transform.position.x;
+                            netShoot.m_YPos = m_gun.transform.position.y;
+                            netShoot.m_ZPos = m_gun.transform.position.z;
+                            netShoot.m_XDir = m_gun.transform.right.x;
+                            netShoot.m_YDir = m_gun.transform.right.y;
+                            netShoot.m_ZDir = m_gun.transform.right.z;
+                            Client.Instance.SendToServer(netShoot);
+                        }
+                    }
+
+                    projectile = Instantiate(m_projectilePrefab, m_gun.transform.position, Quaternion.identity);
+                    projectile.GetComponent<Rigidbody>().AddForce(m_gun.transform.right * m_fireForce, ForceMode.Impulse);
+                    break;
+                }
+            case 2:
+                {
+                    Vector3 fireAngle = (m_gun.transform.right + (m_gun.transform.forward * 0.5f));
+
+                    NetShoot netShoot = new NetShoot();
+                    netShoot.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+                    netShoot.m_Action = NetShoot.ACTION.MINE;
+                    netShoot.m_Other = 0;
+                    netShoot.m_Force = m_arcForce;
+                    netShoot.m_XPos = m_gun.transform.position.x;
+                    netShoot.m_YPos = m_gun.transform.position.y;
+                    netShoot.m_ZPos = m_gun.transform.position.z;
+                    netShoot.m_XDir = fireAngle.x;
+                    netShoot.m_YDir = fireAngle.y;
+                    netShoot.m_ZDir = fireAngle.z;
+                    Client.Instance.SendToServer(netShoot);
+
+                    projectile = Instantiate(m_minePrefab, m_gun.transform.position, Quaternion.identity);
+                    projectile.GetComponent<Rigidbody>().AddForce(fireAngle * m_arcForce, ForceMode.Impulse);
+                    break;
+                }
+            default:
+                break;
         }
 
-        projectile = Instantiate(m_projectilePrefab, m_gun.transform.position, Quaternion.identity);
-        projectile.GetComponent<Rigidbody>().AddForce(m_gun.transform.right * m_fireForce, ForceMode.Impulse);
+        //RaycastHit hit;
+        //if (Physics.Raycast(m_gun.transform.position, m_gun.transform.right, out hit, 100000.0f, 11, QueryTriggerInteraction.Collide))
+        //{
+        //    if (hit.transform.gameObject.tag == "Player")
+        //    {
+        //        NetShoot netShoot = new NetShoot();
+        //        netShoot.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+        //        netShoot.m_Action = NetShoot.ACTION.HITSCAN;
+        //        netShoot.m_Other = hit.transform.gameObject.GetComponent<CarManagerScript>().m_playerNum;
+        //        netShoot.m_Force = m_fireForce;
+        //        netShoot.m_XPos = m_gun.transform.position.x;
+        //        netShoot.m_YPos = m_gun.transform.position.y;
+        //        netShoot.m_ZPos = m_gun.transform.position.z;
+        //        netShoot.m_XDir = m_gun.transform.right.x;
+        //        netShoot.m_YDir = m_gun.transform.right.y;
+        //        netShoot.m_ZDir = m_gun.transform.right.z;
+        //        Client.Instance.SendToServer(netShoot);
+        //    }
+        //    else
+        //    {
+        //        NetShoot netShoot = new NetShoot();
+        //        netShoot.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+        //        netShoot.m_Action = NetShoot.ACTION.HITSCAN;
+        //        netShoot.m_Other = 0;
+        //        netShoot.m_Force = m_fireForce;
+        //        netShoot.m_XPos = m_gun.transform.position.x;
+        //        netShoot.m_YPos = m_gun.transform.position.y;
+        //        netShoot.m_ZPos = m_gun.transform.position.z;
+        //        netShoot.m_XDir = m_gun.transform.right.x;
+        //        netShoot.m_YDir = m_gun.transform.right.y;
+        //        netShoot.m_ZDir = m_gun.transform.right.z;
+        //        Client.Instance.SendToServer(netShoot);
+        //    }
+        //}
+
+        //projectile = Instantiate(m_projectilePrefab, m_gun.transform.position, Quaternion.identity);
+        //projectile.GetComponent<Rigidbody>().AddForce(m_gun.transform.right * m_fireForce, ForceMode.Impulse);
     }
 }

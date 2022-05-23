@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class BulletTimer : MonoBehaviour
 {
+    [SerializeField]
+    private float time = 3.0f;
+
     private void Start()
     {
-        Destroy(this, 3.0f);
+        Destroy(this, time);
     }
 }

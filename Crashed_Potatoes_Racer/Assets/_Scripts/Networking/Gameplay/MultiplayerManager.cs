@@ -167,18 +167,17 @@ public class MultiplayerManager : MonoBehaviour
             }
         }
 
-        //if (Input.GetKeyDown(KeyCode.L))
-        //{
-        //    int pI = PersistentInfo.Instance.m_currentPlayerNum;
-        //    Client.Instance.Shutdown();
-        //    if (pI == 1)
-        //    {
-        //        Server.Instance.Shutdown();
-        //    }
-        //    //PersistentInfo.Instance.Clear();
-        //    SceneManager.LoadScene(0);
-
-        //}
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            int pI = PersistentInfo.Instance.m_currentPlayerNum;
+            Client.Instance.Shutdown();
+            if (pI == 1)
+            {
+                Server.Instance.Shutdown();
+            }
+            //PersistentInfo.Instance.Clear();
+            SceneManager.LoadScene(0);
+        }
     }
 
     void Awake()
@@ -694,7 +693,8 @@ public class MultiplayerManager : MonoBehaviour
                     {
                         if (car.GetComponent<CarManagerScript>().m_playerNum == netRocket.m_Player)
                         {
-                            Instantiate(m_rocket, new Vector3(netRocket.m_XPos, netRocket.m_YPos, netRocket.m_ZPos), new Quaternion(netRocket.m_XRot, netRocket.m_YRot, netRocket.m_ZRot, netRocket.m_WRot));
+                            GameObject rocket = Instantiate(m_rocket, new Vector3(netRocket.m_XPos, netRocket.m_YPos, netRocket.m_ZPos), new Quaternion(netRocket.m_XRot, netRocket.m_YRot, netRocket.m_ZRot, netRocket.m_WRot));
+                            rocket.GetComponent<Rocket>().OwnerAndTarget(car.gameObject);
                         }
                     }
                     break;
