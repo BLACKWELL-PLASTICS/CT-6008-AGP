@@ -16,7 +16,7 @@ public class MergedTimer : MonoBehaviour
     void Start()
     {
         m_timer = m_maxTimer;
-        m_timerBar = GameObject.Find("MergeSlider");
+        m_timerBar = GameObject.Find("Merge Timer");
     }
 
     // Update is called once per frame
