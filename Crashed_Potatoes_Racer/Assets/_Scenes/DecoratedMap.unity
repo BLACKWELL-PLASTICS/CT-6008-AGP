@@ -24792,6 +24792,7 @@ GameObject:
   m_Component:
   - component: {fileID: 595880973}
   - component: {fileID: 595880972}
+  - component: {fileID: 595880974}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -24878,6 +24879,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &595880974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595880971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7c3c6f4cd03974ba47d819c0671b11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drivableCars:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &598294484 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 30f78fedb00a72747aa604ed1f587d68,
