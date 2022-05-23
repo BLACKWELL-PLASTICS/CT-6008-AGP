@@ -14,19 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/BirdPoop
   Guid:
-    Data1: -580717017
-    Data2: 1219940755
-    Data3: -657107325
-    Data4: 1870852765
+    Data1: -1736608294
+    Data2: 1204077308
+    Data3: 1364425102
+    Data4: -666746717
   Banks:
   - {fileID: -3271121658061856688}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2500
+  Length: 6026
 --- !u!114 &-8361924809319971694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41,19 +41,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/CountDownBeep
   Guid:
-    Data1: 2124373674
-    Data2: 1143158082
-    Data3: 628307885
-    Data4: 1026329977
+    Data1: 1693914327
+    Data2: 1260108910
+    Data3: 1030184864
+    Data4: -1348687886
   Banks:
   - {fileID: -3271121658061856688}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1116
+  Length: 400
 --- !u!114 &-8311511386784488682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,19 +95,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SizeUp
   Guid:
-    Data1: -74859684
-    Data2: 1177079848
-    Data3: -333912656
-    Data4: -982778391
+    Data1: -1940323426
+    Data2: 1266053363
+    Data3: -967310920
+    Data4: -342819360
   Banks:
   - {fileID: -3271121658061856688}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2150
+  Length: 1400
 --- !u!114 &-6388928796941455519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,14 +176,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Spin
   Guid:
-    Data1: -629774798
-    Data2: 1114594363
-    Data3: 1808321959
-    Data4: 997373141
+    Data1: 580582812
+    Data2: 1195192360
+    Data3: -645739108
+    Data4: 1640998162
   Banks:
   - {fileID: -3271121658061856688}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -231,7 +231,7 @@ MonoBehaviour:
   Path: Assets/Plugins/lvl1/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637872876400219745
+  lastModified: 637889339922489554
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -278,10 +278,10 @@ MonoBehaviour:
   Path: Assets/Plugins/lvl1/Build/Desktop/ARG.bank
   Name: ARG
   StudioPath: bank:/ARG
-  lastModified: 637889275453455057
+  lastModified: 637889339922489554
   FileSizes:
   - Name: Desktop
-    Value: 5551648
+    Value: 5550272
   Exists: 1
 --- !u!114 &-3132587157091871395
 MonoBehaviour:
@@ -336,7 +336,6 @@ MonoBehaviour:
   - {fileID: 1990160489651440645}
   - {fileID: -6335997092722516616}
   - {fileID: 8010050866365643679}
-  - {fileID: 3585384595657581847}
   - {fileID: 8869055704856629264}
   - {fileID: 1644663075484745345}
   - {fileID: -8361924809319971694}
@@ -350,12 +349,13 @@ MonoBehaviour:
   - {fileID: -5966921846860062362}
   - {fileID: -6388928796941455519}
   - {fileID: 6919079424321149244}
+  - {fileID: 7774059875705634801}
   EditorParameters: []
   MasterBanks:
   - {fileID: -5351324987820102597}
   StringsBanks:
   - {fileID: 2331918171055264261}
-  cacheTime: 637889275453465062
+  cacheTime: 637889339922489554
   cacheVersion: 10
 --- !u!114 &83554683493846561
 MonoBehaviour:
@@ -480,38 +480,11 @@ MonoBehaviour:
   Path: Assets/Plugins/lvl1/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637889275453465062
+  lastModified: 637889339922489554
   FileSizes:
   - Name: Desktop
     Value: 1788
   Exists: 1
---- !u!114 &3585384595657581847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/BirdPoop Splat
-  m_EditorClassIdentifier: 
-  Path: event:/BirdPoop Splat
-  Guid:
-    Data1: -1743533505
-    Data2: 1125117848
-    Data3: 1235226252
-    Data4: -559344846
-  Banks:
-  - {fileID: -3271121658061856688}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1413
 --- !u!114 &4780206226357799951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,10 +499,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/PowerUpSparkle
   Guid:
-    Data1: 869834758
-    Data2: 1264292244
-    Data3: -1561944427
-    Data4: -1300178228
+    Data1: -600989858
+    Data2: 1290475837
+    Data3: 142359199
+    Data4: -301492898
   Banks:
   - {fileID: -3271121658061856688}
   IsStream: 0
@@ -538,7 +511,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2500
+  Length: 1800
 --- !u!114 &5638415884438315086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -658,10 +631,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/Boost
   Guid:
-    Data1: -1159682067
-    Data2: 1078860737
-    Data3: 1428645284
-    Data4: 1802632929
+    Data1: -1924466968
+    Data2: 1190004284
+    Data3: 473085872
+    Data4: 1108264753
   Banks:
   - {fileID: -3271121658061856688}
   IsStream: 0
@@ -670,7 +643,34 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 4653
+  Length: 5453
+--- !u!114 &7774059875705634801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BirdPoopSplat
+  m_EditorClassIdentifier: 
+  Path: event:/BirdPoopSplat
+  Guid:
+    Data1: 458493314
+    Data2: 1275410679
+    Data3: 212700062
+    Data4: -1862135478
+  Banks:
+  - {fileID: -3271121658061856688}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1413
 --- !u!114 &8010050866365643679
 MonoBehaviour:
   m_ObjectHideFlags: 0
