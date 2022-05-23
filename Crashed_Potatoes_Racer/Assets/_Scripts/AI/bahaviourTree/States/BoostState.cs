@@ -12,6 +12,7 @@ public class BoostState : Node
     public override NodeState Update()
     {
         owner.transform.Find("Boost").GetComponent<ParticleSystem>().Play();
+        FMODUnity.RuntimeManager.PlayOneShotAttached(owner.boost.Path, owner.gameObject);
         owner.BoostSpeed();
         if (owner.timer >= 3f)
         {

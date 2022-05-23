@@ -14,6 +14,7 @@ public class PoopState : Node
         NetBirdPoop netBirdPoop = new NetBirdPoop();
         netBirdPoop.m_Player = owner.GetComponent<CarManagerScript>().m_playerNum;
         Client.Instance.SendToServer(netBirdPoop);
+        FMODUnity.RuntimeManager.PlayOneShotAttached(owner.poop.Path, owner.gameObject);
         owner.InventoryComponent.UsePowerup();
         return NodeState.SUCCESS;
     }
