@@ -34,6 +34,7 @@ class PersistentInfo : MonoBehaviour
             m_carDesign = new CarDesigns();
             m_winOrder = new string[8];
             m_winDesigns = new CarDesigns[3];
+            m_CountdownUI = new GameObject[0];
             //m_lap = 0;
             //m_checkpoint = 0;
         }
@@ -49,6 +50,8 @@ class PersistentInfo : MonoBehaviour
         m_currentPlayerNum = 0;
         m_winOrder = new string[8];
         m_winDesigns = new CarDesigns[3];
+        m_CountdownUI = new GameObject[0];
+
         //m_lap = 0;
         //m_checkpoint = 0;
     }
