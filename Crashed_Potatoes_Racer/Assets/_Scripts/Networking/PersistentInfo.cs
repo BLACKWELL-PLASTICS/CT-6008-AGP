@@ -33,7 +33,7 @@ class PersistentInfo : MonoBehaviour
             m_levelNum = 0;
             m_carDesign = new CarDesigns();
             m_winOrder = new string[8];
-            m_winDesigns = new CarDesigns[8];
+            m_winDesigns = new CarDesigns[3];
             //m_lap = 0;
             //m_checkpoint = 0;
         }
@@ -48,7 +48,7 @@ class PersistentInfo : MonoBehaviour
         m_levelNum = 0;
         m_currentPlayerNum = 0;
         m_winOrder = new string[8];
-        m_winDesigns = new CarDesigns[8];
+        m_winDesigns = new CarDesigns[3];
         //m_lap = 0;
         //m_checkpoint = 0;
     }
