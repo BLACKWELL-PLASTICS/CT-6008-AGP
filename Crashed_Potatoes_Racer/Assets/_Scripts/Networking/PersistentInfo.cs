@@ -16,7 +16,7 @@ class PersistentInfo : MonoBehaviour
     public string m_currentPlayerName { get; set; }
     public CarDesigns m_carDesign { get; set; }
     public string[] m_winOrder = new string[8];
-    public CarDesigns[] m_winDesigns = new CarDesigns[3];
+    public CarDesigns[] m_winDesigns = new CarDesigns[8];
 
     [SerializeField]
     public GameObject[] m_CountdownUI;
@@ -35,7 +35,7 @@ class PersistentInfo : MonoBehaviour
             m_levelNum = 0;
             m_carDesign = new CarDesigns();
             m_winOrder = new string[8];
-            m_winDesigns = new CarDesigns[3];
+            m_winDesigns = new CarDesigns[8];
             m_CountdownUI = new GameObject[0];
             //m_lap = 0;
             //m_checkpoint = 0;
@@ -52,7 +52,7 @@ class PersistentInfo : MonoBehaviour
         m_levelNum = 0;
         m_currentPlayerNum = 0;
         m_winOrder = new string[8];
-        m_winDesigns = new CarDesigns[3];
+        m_winDesigns = new CarDesigns[8];
         m_CountdownUI = new GameObject[0];
 
         //m_lap = 0;
