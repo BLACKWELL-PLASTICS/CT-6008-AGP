@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{175548b5-7fc4-4457-9c7d-50443d236ed4}">
 		<property name="name">
-			<value>Birds</value>
+			<value>Ptera</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -96,7 +96,7 @@
 			<value>10</value>
 		</property>
 		<property name="volume">
-			<value>-9.5</value>
+			<value>-6.5</value>
 		</property>
 		<property name="polyphony">
 			<value>20</value>
@@ -106,6 +106,9 @@
 		</property>
 		<property name="maximumTimeBetweenSounds">
 			<value>4500</value>
+		</property>
+		<property name="spawnRate">
+			<value>78</value>
 		</property>
 		<property name="minimumScatterDistance">
 			<value>2.20000005</value>
@@ -164,8 +167,9 @@
 	<object class="MixerBusFader" id="{582f5de8-8d6b-407c-8b83-5d4af72568b1}" />
 	<object class="MultiSound" id="{77b584ca-0918-4d04-ad6f-dc4437d2c190}">
 		<relationship name="sounds">
-			<destination>{b9c15004-0ccb-43b1-b864-22c1d659ed49}</destination>
-			<destination>{bc73eea6-2dbb-446f-8f97-2ae7cf64787b}</destination>
+			<destination>{d0de287e-792f-46a4-80ef-2e6508717cf7}</destination>
+			<destination>{9a3896f5-6824-4df4-b8d4-17d48a86cf3c}</destination>
+			<destination>{63f488d1-bebc-4b86-bb21-dd99bc291c07}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{b0822105-92d8-4ee9-a136-c831e8d6d004}">
@@ -177,14 +181,25 @@
 	<object class="MixerBusPanner" id="{3be54a9d-049f-4b97-b903-cb216a31f0bd}" />
 	<object class="MixerBusFader" id="{56e2773a-7192-412d-9531-1d2008080075}" />
 	<object class="SpatialiserEffect" id="{8976930a-43a4-4ed6-bafb-b3ced06af67c}" />
-	<object class="SingleSound" id="{b9c15004-0ccb-43b1-b864-22c1d659ed49}">
+	<object class="SingleSound" id="{d0de287e-792f-46a4-80ef-2e6508717cf7}">
 		<relationship name="audioFile">
-			<destination>{e9554449-fa91-474a-bd3c-2bece634ec8b}</destination>
+			<destination>{fe171af1-3b01-49d1-9cd3-5355403f6915}</destination>
 		</relationship>
 	</object>
-	<object class="SingleSound" id="{bc73eea6-2dbb-446f-8f97-2ae7cf64787b}">
+	<object class="SingleSound" id="{9a3896f5-6824-4df4-b8d4-17d48a86cf3c}">
+		<property name="pitch">
+			<value>2.4000001</value>
+		</property>
 		<relationship name="audioFile">
-			<destination>{68b3bf4b-a4ca-405c-a2f0-692c05bd7b77}</destination>
+			<destination>{fe171af1-3b01-49d1-9cd3-5355403f6915}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{63f488d1-bebc-4b86-bb21-dd99bc291c07}">
+		<property name="pitch">
+			<value>-1.20000005</value>
+		</property>
+		<relationship name="audioFile">
+			<destination>{fe171af1-3b01-49d1-9cd3-5355403f6915}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{ded241c6-db63-465d-a8b0-e4dd7a2eadd7}" />
