@@ -18,7 +18,7 @@ public class ResultsManager : MonoBehaviour
         {
             m_nameFields[i].GetComponent<TextMeshProUGUI>().text = PersistentInfo.Instance.m_winOrder[i];
         }
-        for(int i = 0; i < PersistentInfo.Instance.m_winDesigns.Length; i++)
+        for(int i = 0; i < m_cars.Length; i++)
         {
             m_cars[i].GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_winDesigns[i].m_carChoice, PersistentInfo.Instance.m_winDesigns[i].m_wheelChoice, PersistentInfo.Instance.m_winDesigns[i].m_gunChoice);
         }
