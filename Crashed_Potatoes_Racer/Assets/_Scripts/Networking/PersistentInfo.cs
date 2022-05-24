@@ -5,6 +5,7 @@ using UnityEngine;
 
 class PersistentInfo : MonoBehaviour
 {
+    public bool m_singleplayer { get; set; }
     public int m_connectedUsers { get; set; }
     public List<string> m_connectedNames { get; set; }
     public List<CarDesigns> m_carDesigns { get; set; }
@@ -26,6 +27,7 @@ class PersistentInfo : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            m_singleplayer = false;
             m_connectedNames = new List<string>();
             m_carDesigns = new List<CarDesigns>();
             m_AIDesigns = new List<CarDesigns>();
@@ -41,6 +43,7 @@ class PersistentInfo : MonoBehaviour
     }
     public void Clear()
     {
+        m_singleplayer = false;
         m_connectedUsers = 0;
         m_connectedNames.Clear();
         m_carDesigns.Clear();

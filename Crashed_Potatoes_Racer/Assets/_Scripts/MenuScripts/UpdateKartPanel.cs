@@ -16,8 +16,22 @@ public class UpdateKartPanel : MonoBehaviour
 
     void Start()
     {
-        targetImage = GameObject.Find("(7) LobbyPanel/PlayerKartPanel/KartImage").GetComponent<Image>();
-        targetText = GameObject.Find("(7) LobbyPanel/PlayerKartPanel/KartName").GetComponent<TextMeshProUGUI>();
+        if (GameObject.Find("(7) LobbyPanel/PlayerKartPanel/KartImage") != null)
+        {
+            targetImage = GameObject.Find("(7) LobbyPanel/PlayerKartPanel/KartImage").GetComponent<Image>();
+        }
+        if (GameObject.Find("(9) SingleplayerPanel/PlayerKartPanel/KartImage") != null)
+        {
+            targetImage = GameObject.Find("(9) SingleplayerPanel/PlayerKartPanel/KartImage").GetComponent<Image>();
+        }
+        if (GameObject.Find("(7) LobbyPanel/PlayerKartPanel/KartName") != null)
+        {
+            targetText = GameObject.Find("(7) LobbyPanel/PlayerKartPanel/KartName").GetComponent<TextMeshProUGUI>();
+        }
+        if (GameObject.Find("(9) SingleplayerPanel/PlayerKartPanel/KartName") != null)
+        {
+            targetText = GameObject.Find("(9) SingleplayerPanel/PlayerKartPanel/KartName").GetComponent<TextMeshProUGUI>();
+        }
     }
 
     public void UpdateLobbyPanel(int kartIndex)

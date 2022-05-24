@@ -205,26 +205,34 @@ public class MenuManager : MonoBehaviour
         PersistentInfo.Instance.m_carDesigns.Add(carDesign);
         PersistentInfo.Instance.m_levelNum = netWelcome.m_levelNum;
 
-        m_connectedPlayerText.GetComponent<UnityEngine.UI.Text>().text = $"You are player {PersistentInfo.Instance.m_currentPlayerNum} of {PersistentInfo.Instance.m_connectedUsers}";
-        for (int i = 0; i < PersistentInfo.Instance.m_connectedNames.Count; i++)
-        {
-            m_connectedOtherTexts[i].GetComponent<UnityEngine.UI.Text>().text = $"{PersistentInfo.Instance.m_connectedNames[i]}";
-        }
 
-        if (PersistentInfo.Instance.m_currentPlayerNum == 1)
+        if (PersistentInfo.Instance.m_singleplayer)
         {
-            m_connectedDisconnectButton.SetActive(false);
-            m_connectedCloseServerButton.SetActive(true);
-            m_connectedStartButton.SetActive(true);
+            m_mainMenuManager.SetActiveMenu(9);
         }
         else
         {
-            m_connectedDisconnectButton.SetActive(true);
-            m_connectedCloseServerButton.SetActive(false);
-            m_connectedStartButton.SetActive(false);
-        }
+            m_connectedPlayerText.GetComponent<UnityEngine.UI.Text>().text = $"You are player {PersistentInfo.Instance.m_currentPlayerNum} of {PersistentInfo.Instance.m_connectedUsers}";
+            for (int i = 0; i < PersistentInfo.Instance.m_connectedNames.Count; i++)
+            {
+                m_connectedOtherTexts[i].GetComponent<UnityEngine.UI.Text>().text = $"{PersistentInfo.Instance.m_connectedNames[i]}";
+            }
 
-        m_mainMenuManager.SetActiveMenu(7);
+            if (PersistentInfo.Instance.m_currentPlayerNum == 1)
+            {
+                m_connectedDisconnectButton.SetActive(false);
+                m_connectedCloseServerButton.SetActive(true);
+                m_connectedStartButton.SetActive(true);
+            }
+            else
+            {
+                m_connectedDisconnectButton.SetActive(true);
+                m_connectedCloseServerButton.SetActive(false);
+                m_connectedStartButton.SetActive(false);
+            }
+
+            m_mainMenuManager.SetActiveMenu(7);
+        }
 
         //m_connectedPanel.SetActive(true);
         //m_connectingPanel.SetActive(false);
