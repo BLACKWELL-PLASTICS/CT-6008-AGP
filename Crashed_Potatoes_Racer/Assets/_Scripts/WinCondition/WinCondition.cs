@@ -38,8 +38,16 @@ public class WinCondition : MonoBehaviour
             }
         } else {
             // Disable Controller / AI script
-            if (gameObject.name == "Car_Reg(Clone)") {
-                gameObject.GetComponent<Controller>().enabled = false;
+            if (gameObject.name == "Car_Reg(Clone)" || gameObject.name == "Car_MergeDrive(Clone)" || gameObject.name == "Car_MergeShoot(Clone)") {
+
+                if (gameObject.GetComponent<Controller>() != null) {
+                    gameObject.GetComponent<Controller>().enabled = false;
+                } 
+
+                if(gameObject.GetComponent<MergedTimer>() != null){
+                    Destroy(gameObject.GetComponent<MergedTimer>());
+                }
+
             } else {
                 gameObject.GetComponent<AIPlayer>().enabled = false;
             }

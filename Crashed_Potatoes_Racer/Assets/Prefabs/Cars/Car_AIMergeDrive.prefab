@@ -9759,6 +9759,7 @@ GameObject:
   - component: {fileID: 8738164446682236289}
   - component: {fileID: 7610118226005966160}
   - component: {fileID: 483657758832201034}
+  - component: {fileID: 4715511485370477243}
   m_Layer: 0
   m_Name: Car_AIMergeDrive
   m_TagString: Player
@@ -9864,8 +9865,6 @@ MonoBehaviour:
   originalPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
   originalScale: {x: 0, y: 0, z: 0}
-  randomInOut: 0
-  randomSecret: 0
   timer: 0
   speed: 0
   accel: 0
@@ -9969,6 +9968,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_rotAngle: 450
+--- !u!114 &4715511485370477243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8738164446682236303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e98f2e2f55870546856fdee5e205ea4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentPosition: 0
 --- !u!1001 &8738164444770912762
 PrefabInstance:
   m_ObjectHideFlags: 0
