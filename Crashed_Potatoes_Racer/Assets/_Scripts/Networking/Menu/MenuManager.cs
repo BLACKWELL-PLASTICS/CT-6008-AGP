@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Networking.Transport;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class MenuManager : MonoBehaviour
 {
@@ -50,7 +51,17 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
-        MenuClient.Instance.Initlialise(m_severAdress, 8009);
+        string path = "/../ServerAdress";
+        if (File.Exists(path))
+        {
+            StreamReader stream = new StreamReader(path);
+            string address = stream.ReadLine();
+            MenuClient.Instance.Initlialise(address, 8009);
+        }
+        else
+        {
+            MenuClient.Instance.Initlialise(m_severAdress, 8009);
+        }
         m_startUI = PersistentInfo.Instance.m_CountdownUI;
     }
 
