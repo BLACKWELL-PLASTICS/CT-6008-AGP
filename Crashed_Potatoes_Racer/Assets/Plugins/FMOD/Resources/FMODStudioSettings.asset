@@ -402,7 +402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   identifier: 2c5177b11d81d824dbb064f9ac8527da
   parentIdentifier: default
-  active: 1
+  active: 0
   Properties:
     LiveUpdate:
       Value: 0
@@ -438,10 +438,8 @@ MonoBehaviour:
       Value: 0
       HasValue: 0
     Plugins:
-      Value:
-      - fmodstudio
-      - fmodstudioL
-      HasValue: 1
+      Value: []
+      HasValue: 0
     StaticPlugins:
       Value: []
       HasValue: 0
@@ -504,9 +502,7 @@ MonoBehaviour:
       Value: 0
       HasValue: 0
     Plugins:
-      Value:
-      - fmodstudio
-      - fmodstudioL
+      Value: []
       HasValue: 1
     StaticPlugins:
       Value: []

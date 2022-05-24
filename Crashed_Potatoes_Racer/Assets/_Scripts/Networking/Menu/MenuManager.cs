@@ -51,7 +51,7 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
-        string path = "/../ServerAdress";
+        string path = Application.dataPath + "/../ServerAdress.txt";
         if (File.Exists(path))
         {
             StreamReader stream = new StreamReader(path);
@@ -62,6 +62,7 @@ public class MenuManager : MonoBehaviour
         {
             MenuClient.Instance.Initlialise(m_severAdress, 8009);
         }
+        //MenuClient.Instance.Initlialise(m_severAdress, 8009);
         m_startUI = PersistentInfo.Instance.m_CountdownUI;
     }
 
