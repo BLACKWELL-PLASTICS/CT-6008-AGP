@@ -167,39 +167,36 @@ public class MultiplayerManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            int pI = PersistentInfo.Instance.m_currentPlayerNum;
-            Client.Instance.Shutdown(false);
-            if (pI == 1)
-            {
-                Server.Instance.Shutdown(false);
-            }
-            foreach (GameObject car in m_activeCars)
-            {
-                if (car.GetComponent<CarManagerScript>().m_playerNum - 1 < PersistentInfo.Instance.m_connectedNames.Count)
-                {
-                    PersistentInfo.Instance.m_winOrder[car.GetComponent<Position>().currentPosition - 1] = PersistentInfo.Instance.m_connectedNames[car.GetComponent<CarManagerScript>().m_playerNum - 1];
-                }
-                else
-                {
-                    PersistentInfo.Instance.m_winOrder[car.GetComponent<Position>().currentPosition - 1] = "AI";
-                }
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    int pI = PersistentInfo.Instance.m_currentPlayerNum;
+        //    Client.Instance.Shutdown(false);
+        //    if (pI == 1)
+        //    {
+        //        Server.Instance.Shutdown(false);
+        //    }
+        //    foreach (GameObject car in m_activeCars)
+        //    {
+        //        if (car.GetComponent<CarManagerScript>().m_playerNum - 1 < PersistentInfo.Instance.m_connectedNames.Count)
+        //        {
+        //            PersistentInfo.Instance.m_winOrder[car.GetComponent<Position>().currentPosition - 1] = PersistentInfo.Instance.m_connectedNames[car.GetComponent<CarManagerScript>().m_playerNum - 1];
+        //        }
+        //        else
+        //        {
+        //            PersistentInfo.Instance.m_winOrder[car.GetComponent<Position>().currentPosition - 1] = "AI";
+        //        }
 
-                if (car.GetComponent<Position>().currentPosition <= 3)
-                {
-                    if (car.GetComponent<CarManagerScript>().m_playerNum - 1 < PersistentInfo.Instance.m_carDesigns.Count)
-                    {
-                        PersistentInfo.Instance.m_winDesigns[car.GetComponent<Position>().currentPosition - 1] = PersistentInfo.Instance.m_carDesigns[car.GetComponent<CarManagerScript>().m_playerNum - 1];
-                    }
-                    else
-                    {
-                        PersistentInfo.Instance.m_winDesigns[car.GetComponent<Position>().currentPosition - 1] = PersistentInfo.Instance.m_AIDesigns[(car.GetComponent<CarManagerScript>().m_playerNum - 1) - PersistentInfo.Instance.m_carDesigns.Count];
-                    }
-                }
-            }
-            SceneManager.LoadScene(4);
-        }
+        //        if (car.GetComponent<CarManagerScript>().m_playerNum - 1 < PersistentInfo.Instance.m_carDesigns.Count)
+        //        {
+        //            PersistentInfo.Instance.m_winDesigns[car.GetComponent<Position>().currentPosition - 1] = PersistentInfo.Instance.m_carDesigns[car.GetComponent<CarManagerScript>().m_playerNum - 1];
+        //        }
+        //        else
+        //        {
+        //            PersistentInfo.Instance.m_winDesigns[car.GetComponent<Position>().currentPosition - 1] = PersistentInfo.Instance.m_AIDesigns[(car.GetComponent<CarManagerScript>().m_playerNum - 1) - PersistentInfo.Instance.m_carDesigns.Count];
+        //        }
+        //    }
+        //    SceneManager.LoadScene(4);
+        //}
     }
 
     void Awake()
@@ -1036,16 +1033,13 @@ public class MultiplayerManager : MonoBehaviour
                         PersistentInfo.Instance.m_winOrder[car.GetComponent<Position>().currentPosition - 1] = "AI";
                     }
 
-                    if (car.GetComponent<Position>().currentPosition <= 3)
+                    if (car.GetComponent<CarManagerScript>().m_playerNum - 1 < PersistentInfo.Instance.m_carDesigns.Count)
                     {
-                        if (car.GetComponent<CarManagerScript>().m_playerNum - 1 < PersistentInfo.Instance.m_carDesigns.Count)
-                        {
-                            PersistentInfo.Instance.m_winDesigns[car.GetComponent<Position>().currentPosition - 1] = PersistentInfo.Instance.m_carDesigns[car.GetComponent<CarManagerScript>().m_playerNum - 1];
-                        }
-                        else
-                        {
-                            PersistentInfo.Instance.m_winDesigns[car.GetComponent<Position>().currentPosition - 1] = PersistentInfo.Instance.m_AIDesigns[(car.GetComponent<CarManagerScript>().m_playerNum - 1) - PersistentInfo.Instance.m_carDesigns.Count];
-                        }
+                        PersistentInfo.Instance.m_winDesigns[car.GetComponent<Position>().currentPosition - 1] = PersistentInfo.Instance.m_carDesigns[car.GetComponent<CarManagerScript>().m_playerNum - 1];
+                    }
+                    else
+                    {
+                        PersistentInfo.Instance.m_winDesigns[car.GetComponent<Position>().currentPosition - 1] = PersistentInfo.Instance.m_AIDesigns[(car.GetComponent<CarManagerScript>().m_playerNum - 1) - PersistentInfo.Instance.m_carDesigns.Count];
                     }
                 }
                 SceneManager.LoadScene(4);

@@ -53,8 +53,8 @@ public class MainMenuButtons : MonoBehaviour
     {
         PersistentInfo.Instance.m_levelNum = a_level;
 
-        m_activeInputField = FindObjectOfType<InputField>();
-        m_activeInputField.Select();
+        //m_activeInputField = FindObjectOfType<InputField>();
+        //m_activeInputField.Select();
     }
 
     public void OnHostButton(GameObject a_inputField)
@@ -116,6 +116,14 @@ public class MainMenuButtons : MonoBehaviour
     public void OnStartGameButton()
     {
         Server.Instance.Broadcast(new NetStartGame());
+    }
+    public void OnSingleplayerButton()
+    {
+        Server.Instance.Initlialise(8008);
+        Client.Instance.m_clientName = PersistentInfo.Instance.m_currentPlayerName;
+        Client.Instance.Initlialise("127.0.0.1", 8008);
+        MenuClient.Instance.m_IsHost = true;
+        PersistentInfo.Instance.m_singleplayer = true;
     }
     public void OnReadyButton()
     {

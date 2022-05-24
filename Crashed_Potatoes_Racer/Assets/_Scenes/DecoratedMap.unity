@@ -20377,6 +20377,67 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 397539949}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &404662675
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 404662676}
+  - component: {fileID: 404662677}
+  m_Layer: 0
+  m_Name: boids (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &404662676
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404662675}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 363.9, y: -38.9, z: -16.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1601210888}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &404662677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404662675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 391465141
+      Data2: 1146585028
+      Data3: 1146125724
+      Data4: -730979523
+    Path: event:/Ptera
+  Event: 
+  PlayEvent: 1
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &405048616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58268,7 +58329,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1355214431}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 105.78, y: -53.8, z: -70}
+  m_LocalPosition: {x: 175, y: -43.2, z: -307.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1601210888}
@@ -58293,7 +58354,7 @@ MonoBehaviour:
       Data2: 1146585028
       Data3: 1146125724
       Data4: -730979523
-    Path: event:/Birds
+    Path: event:/Ptera
   Event: 
   PlayEvent: 1
   StopEvent: 0
@@ -58301,9 +58362,9 @@ MonoBehaviour:
   TriggerOnce: 0
   Preload: 0
   Params: []
-  OverrideAttenuation: 1
-  OverrideMinDistance: 80
-  OverrideMaxDistance: 90
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &1360935738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -69171,6 +69232,7 @@ GameObject:
   - component: {fileID: 1601210887}
   - component: {fileID: 1601210885}
   - component: {fileID: 1601210886}
+  - component: {fileID: 1601210889}
   m_Layer: 0
   m_Name: AI Manager
   m_TagString: Untagged
@@ -69199,9 +69261,9 @@ MonoBehaviour:
   - {fileID: 2100000, guid: fcc99c9e2c5d1e145bd5d7cb1e75cfef, type: 2}
   - {fileID: 2100000, guid: d233c63ea0d88a7488c19c028718bffc, type: 2}
   fishRandomnessSea: 1000
-  fishRandomnessWater: 3000
-  fishSpeed: 1.2
-  fishJumpTime: 1
+  fishRandomnessWater: 3500
+  fishSpeed: 6.8
+  fishJumpTime: 1.3
 --- !u!114 &1601210886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69217,11 +69279,11 @@ MonoBehaviour:
   boidPrefab: {fileID: 8228376128580908735, guid: 9b343a1593787594fbc191c64369fad3,
     type: 3}
   boidLocation: {fileID: 1355214432}
-  amountBoids: 30
-  areaLimit: 30
-  maxBoidSpeed: 10
-  rotationSpeed: 7
-  neighbourDist: 3
+  amountBoids: 10
+  areaLimit: 40
+  maxBoidSpeed: 40
+  rotationSpeed: 35
+  neighbourDist: 2
   goalRandomness: 10000
   goalPos: {x: 0, y: 0, z: 0}
   boidArray: []
@@ -69360,9 +69422,33 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1355214432}
+  - {fileID: 404662676}
   m_Father: {fileID: 1713417967}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1601210889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601210884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ad593ec06b8f0f4da1412a4aac46049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boidPrefab: {fileID: 8228376128580908735, guid: 9b343a1593787594fbc191c64369fad3,
+    type: 3}
+  boidLocation: {fileID: 404662676}
+  amountBoids: 10
+  areaLimit: 40
+  maxBoidSpeed: 40
+  rotationSpeed: 35
+  neighbourDist: 2
+  goalRandomness: 10000
+  goalPos: {x: 0, y: 0, z: 0}
+  boidArray: []
 --- !u!1001 &1601902915
 PrefabInstance:
   m_ObjectHideFlags: 0
