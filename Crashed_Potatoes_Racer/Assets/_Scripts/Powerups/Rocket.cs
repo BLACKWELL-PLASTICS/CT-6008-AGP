@@ -6,19 +6,24 @@ using UnityEngine.AI;
 public class Rocket : MonoBehaviour {
 
     GameObject target;
+    GameObject owner;
     NavMeshAgent agent;
     public void OwnerAndTarget(GameObject owner)
     {
         int i = owner.GetComponent<Position>().currentPosition;
+        this.owner = owner;
         foreach (GameObject item in GameObject.FindGameObjectsWithTag("Player")) {
             if (i != 1) {
                 if (item.GetComponent<Position>().currentPosition == i - 1) {
                     target = item;
+                    GetComponent<NavMeshAgent>().Warp(transform.position);
+                    return;
                 }
-                GetComponent<NavMeshAgent>().Warp(transform.position);
             } else {
                 if (item.GetComponent<Position>().currentPosition == i + 1) {
                     target = item;
+                    GetComponent<NavMeshAgent>().Warp(transform.position);
+                    return;
                 }
             }
         }
@@ -30,12 +35,13 @@ public class Rocket : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-            agent.SetDestination(target.transform.position);
+        agent.SetDestination(target.transform.position);
     }
 
     // If it collides with any object, Explode Rocket
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "Player") {
+
+        if (other.gameObject.tag == "Player" && other.gameObject != owner) {
             Explode(other.gameObject);
         } else {
             return;

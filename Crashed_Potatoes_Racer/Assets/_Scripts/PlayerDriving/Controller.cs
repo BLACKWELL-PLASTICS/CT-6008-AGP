@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using XInputDotNetPure;
 
 public class Controller : MonoBehaviour {
@@ -41,6 +42,12 @@ public class Controller : MonoBehaviour {
         rb.transform.parent = null;
         //fmod 
         emitter = GetComponent<FMODUnity.StudioEventEmitter>();
+
+        if (SceneManager.GetActiveScene().buildIndex == 3) {
+            rb.mass = 40;
+            rb.drag = 0;
+            rb.angularDrag = 0;
+        }
     }
 
     // Update is called once per frame
@@ -53,31 +60,64 @@ public class Controller : MonoBehaviour {
         {
             frontRightWheel = GameObject.FindGameObjectWithTag("FRW").GetComponent<Transform>();
         }
-        // BOOSTING CODE
-        if (isBoosting == true && boostTimer <= 3f) {
-            boostTimer += Time.deltaTime;
-            forwardAcceleration = 10000f;
-            maxSpeed = 150f;
-        } else {
-            isBoosting = false;
-            transform.Find("Boost").GetComponent<ParticleSystem>().Stop();
-            boostTimer = 0f;
-            maxSpeed = 70f;
-            forwardAcceleration = 5500f;
+
+        if (SceneManager.GetActiveScene().buildIndex == 2) {
+            // BOOSTING CODE
+            if (isBoosting == true && boostTimer <= 3f) {
+                boostTimer += Time.deltaTime;
+                forwardAcceleration = 10000f;
+                maxSpeed = 120f;
+                rb.mass = 55f;
+            } else {
+                isBoosting = false;
+                transform.Find("Boost").GetComponent<ParticleSystem>().Stop();
+                boostTimer = 0f;
+                forwardAcceleration = 5500f;
+                maxSpeed = 70f;
+                rb.mass = 70f;
+            }
+
+            // GUM CODE
+            if (isStuck == true && gumTimer <= 3f) {
+                gumTimer += Time.deltaTime;
+                forwardAcceleration = 2000f;
+                maxSpeed = 30f;
+            } else {
+                transform.Find("Smoke").GetComponent<ParticleSystem>().Stop();
+                isStuck = false;
+                gumTimer = 0f;
+                maxSpeed = 70f;
+                forwardAcceleration = 5500f;
+            }
+        } else if (SceneManager.GetActiveScene().buildIndex == 3) {
+
+            // BOOSTING CODE
+            if (isBoosting == true && boostTimer <= 3f) {
+                boostTimer += Time.deltaTime;
+                forwardAcceleration = 7000f;
+                maxSpeed = 150f;
+            } else {
+                isBoosting = false;
+                transform.Find("Boost").GetComponent<ParticleSystem>().Stop();
+                boostTimer = 0f;
+                maxSpeed = 70f;
+                forwardAcceleration = 5500f;
+            }
+
+            // GUM CODE
+            if (isStuck == true && gumTimer <= 3f) {
+                gumTimer += Time.deltaTime;
+                forwardAcceleration = 2000f;
+                maxSpeed = 30f;
+            } else {
+                transform.Find("Smoke").GetComponent<ParticleSystem>().Stop();
+                isStuck = false;
+                gumTimer = 0f;
+                maxSpeed = 70f;
+                forwardAcceleration = 5500f;
+            }
         }
 
-        // GUM CODE
-        if (isStuck == true && gumTimer <= 3f) {
-            gumTimer += Time.deltaTime;
-            forwardAcceleration = 2000f;
-            maxSpeed = 30f;
-        } else {
-            transform.Find("Smoke").GetComponent<ParticleSystem>().Stop();
-            isStuck = false;
-            gumTimer = 0f;
-            maxSpeed = 70f;
-            forwardAcceleration = 5500f;
-        }
 
         // Reset Speed input each frame
         speedInput = 0f;

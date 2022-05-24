@@ -9756,6 +9756,7 @@ GameObject:
   - component: {fileID: 8738164446682236289}
   - component: {fileID: 4043633707238480546}
   - component: {fileID: 7033548764427529176}
+  - component: {fileID: 1374868390754452170}
   m_Layer: 11
   m_Name: Car_OnlineMerge
   m_TagString: Player
@@ -9891,6 +9892,19 @@ MonoBehaviour:
   lap: 0
   checkpointNumber: 0
   isFinished: 0
+--- !u!114 &1374868390754452170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8738164446682236303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e98f2e2f55870546856fdee5e205ea4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentPosition: 0
 --- !u!1001 &8738164444770912762
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10309,15 +10323,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d56d3d1b6d5e824db141b8995c6ed76, type: 3}
---- !u!1 &3740085230352402634 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5378214912783360476, guid: 2d56d3d1b6d5e824db141b8995c6ed76,
-    type: 3}
-  m_PrefabInstance: {fileID: 8738164446171375894}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4083818316100489840 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4749205628174039910, guid: 2d56d3d1b6d5e824db141b8995c6ed76,
+    type: 3}
+  m_PrefabInstance: {fileID: 8738164446171375894}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3740085230352402634 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5378214912783360476, guid: 2d56d3d1b6d5e824db141b8995c6ed76,
     type: 3}
   m_PrefabInstance: {fileID: 8738164446171375894}
   m_PrefabAsset: {fileID: 0}
