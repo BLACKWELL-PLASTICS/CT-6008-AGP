@@ -8,7 +8,6 @@ public class Lap : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "Player") {
-            //isDrivenThrough = !isDrivenThrough;
             other.GetComponent<WinCondition>().hasBeenChecked[individualNo] = !other.GetComponent<WinCondition>().hasBeenChecked[individualNo];
             other.GetComponent<WinCondition>().checkpointNumber++;
             if (other.GetComponentInChildren<MergedShootingControllerScript>() != null)
