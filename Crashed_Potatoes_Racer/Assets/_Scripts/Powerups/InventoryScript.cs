@@ -57,12 +57,12 @@ public class InventoryScript : MonoBehaviour
                         Client.Instance.SendToServer(netBirdPoop);
                         //Added by Iain ~
                         //added by anna
-                        FMODUnity.RuntimeManager.PlayOneShotAttached(poopSound.Path, gameObject);
+                        FMODUnity.RuntimeManager.PlayOneShot(poopSound, gameObject.transform.position);
                         break;
                     case SeedPacketScript.POWERUPS.Boost:
                         GetComponent<Controller>().Boost();
                         transform.Find("Boost").GetComponent<ParticleSystem>().Play();
-                        FMODUnity.RuntimeManager.PlayOneShotAttached(boostSound.Path, gameObject); //added by anna
+                        FMODUnity.RuntimeManager.PlayOneShot(boostSound, gameObject.transform.position); //added by anna
                         //Added by Iain
                         //Boost start package
                         NetBoost netBoost = new NetBoost();
@@ -81,7 +81,7 @@ public class InventoryScript : MonoBehaviour
                     case SeedPacketScript.POWERUPS.Size_Increase:
                         gameObject.AddComponent<SizeIncrease>();
                         //added by anna
-                        FMODUnity.RuntimeManager.PlayOneShotAttached(sizeSound.Path, gameObject);
+                        FMODUnity.RuntimeManager.PlayOneShot(sizeSound, gameObject.transform.position);
                         break;
                     case SeedPacketScript.POWERUPS.Hot_Potato:
 
