@@ -19,6 +19,7 @@ public class InventoryScript : MonoBehaviour
     public FMODUnity.EventReference boostSound; //added by anna
     public FMODUnity.EventReference sizeSound; //added by anna
     public FMODUnity.EventReference poopSound; //added by anna
+    public FMODUnity.EventReference spinSound; //added by anna
 
     // Update is called once per frame
     void Update() {

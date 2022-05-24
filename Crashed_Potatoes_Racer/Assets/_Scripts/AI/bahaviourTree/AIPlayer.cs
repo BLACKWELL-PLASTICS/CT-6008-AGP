@@ -14,10 +14,6 @@ public class AIPlayer : MonoBehaviour
     public Rigidbody RBComponent { get; private set; }
     public FMODUnity.StudioEventEmitter emitter { get; private set; }
 
-    public FMODUnity.EventReference boost;
-    public FMODUnity.EventReference size;
-    public FMODUnity.EventReference poop;
-
     public float stoppingDistance = 15;
     public int currentWaypoint = 0;
     public Transform target;

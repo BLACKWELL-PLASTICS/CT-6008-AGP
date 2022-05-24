@@ -46,7 +46,7 @@ public class SizeState : Node
         //return NodeState.RUNNING;
 
         owner.gameObject.AddComponent<SizeIncrease>();
-        FMODUnity.RuntimeManager.PlayOneShot(owner.size, owner.gameObject.transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot(owner.InventoryComponent.sizeSound, owner.gameObject.transform.position);
         owner.InventoryComponent.UsePowerup();
         return NodeState.SUCCESS;
     }
