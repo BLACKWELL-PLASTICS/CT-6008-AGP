@@ -16,6 +16,10 @@ public class InventoryScript : MonoBehaviour
 
     public GameObject[] prefabs;
 
+    public FMODUnity.EventReference boostSound; //added by anna
+    public FMODUnity.EventReference sizeSound; //added by anna
+    public FMODUnity.EventReference poopSound; //added by anna
+
     // Update is called once per frame
     void Update() {
         if (GetComponent<AIPlayer>() == null)
@@ -52,10 +56,13 @@ public class InventoryScript : MonoBehaviour
                         netBirdPoop.m_Player = GetComponent<CarManagerScript>().m_playerNum;
                         Client.Instance.SendToServer(netBirdPoop);
                         //Added by Iain ~
+                        //added by anna
+                        FMODUnity.RuntimeManager.PlayOneShotAttached(poopSound.Path, gameObject);
                         break;
                     case SeedPacketScript.POWERUPS.Boost:
                         GetComponent<Controller>().Boost();
                         transform.Find("Boost").GetComponent<ParticleSystem>().Play();
+                        FMODUnity.RuntimeManager.PlayOneShotAttached(boostSound.Path, gameObject); //added by anna
                         //Added by Iain
                         //Boost start package
                         NetBoost netBoost = new NetBoost();
@@ -73,6 +80,8 @@ public class InventoryScript : MonoBehaviour
                         break;
                     case SeedPacketScript.POWERUPS.Size_Increase:
                         gameObject.AddComponent<SizeIncrease>();
+                        //added by anna
+                        FMODUnity.RuntimeManager.PlayOneShotAttached(sizeSound.Path, gameObject);
                         break;
                     case SeedPacketScript.POWERUPS.Hot_Potato:
 
