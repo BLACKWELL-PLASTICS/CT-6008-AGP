@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TriggerAudio : MonoBehaviour
 {
+    
     public FMODUnity.EventReference Event;
     public bool PlayOnAwake;
 
@@ -17,7 +18,7 @@ public class TriggerAudio : MonoBehaviour
 
     public void PlayOneShot()
     {
-        FMODUnity.RuntimeManager.PlayOneShotAttached(Event.Path, gameObject);
+        FMODUnity.RuntimeManager.PlayOneShot(Event, gameObject.transform.position);
     }
 
     public void PlayOneShot2D()
