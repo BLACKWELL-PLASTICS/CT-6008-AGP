@@ -112,6 +112,12 @@ public class MainMenuButtons : MonoBehaviour
         }
         MenuClient.Instance.m_IsHost = false;
     }
+    public void OnCloseSingleplayerButton()
+    {
+        Client.Instance.Shutdown();
+        Server.Instance.Shutdown();
+        MenuClient.Instance.m_IsHost = false;
+    }
 
     public void OnStartGameButton()
     {

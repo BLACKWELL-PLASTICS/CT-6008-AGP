@@ -189,33 +189,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1747
---- !u!114 &-5982662942120064184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Ptera
-  m_EditorClassIdentifier: 
-  Path: event:/Ptera
-  Guid:
-    Data1: 391465141
-    Data2: 1146585028
-    Data3: 1146125724
-    Data4: -730979523
-  Banks:
-  - {fileID: -3271121658061856688}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 10000
 --- !u!114 &-5966921846860062362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,7 +231,7 @@ MonoBehaviour:
   Path: Assets/Plugins/lvl1/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637889346756473525
+  lastModified: 637890085390617137
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -305,7 +278,7 @@ MonoBehaviour:
   Path: Assets/Plugins/lvl1/Build/Desktop/ARG.bank
   Name: ARG
   StudioPath: bank:/ARG
-  lastModified: 637891064544675898
+  lastModified: 637890085595999691
   FileSizes:
   - Name: Desktop
     Value: 5538048
@@ -337,6 +310,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1000
+--- !u!114 &-1126085132235793165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Ptera
+  m_EditorClassIdentifier: 
+  Path: event:/Ptera
+  Guid:
+    Data1: 391465141
+    Data2: 1146585028
+    Data3: 1146125724
+    Data4: -730979523
+  Banks:
+  - {fileID: -3271121658061856688}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 10000
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,13 +376,13 @@ MonoBehaviour:
   - {fileID: -6388928796941455519}
   - {fileID: 6919079424321149244}
   - {fileID: 7774059875705634801}
-  - {fileID: -5982662942120064184}
+  - {fileID: -1126085132235793165}
   EditorParameters: []
   MasterBanks:
   - {fileID: -5351324987820102597}
   StringsBanks:
   - {fileID: 2331918171055264261}
-  cacheTime: 637891064544696005
+  cacheTime: 637890085596009843
   cacheVersion: 10
 --- !u!114 &83554683493846561
 MonoBehaviour:
@@ -507,7 +507,7 @@ MonoBehaviour:
   Path: Assets/Plugins/lvl1/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637891064544696005
+  lastModified: 637890085596009843
   FileSizes:
   - Name: Desktop
     Value: 1790

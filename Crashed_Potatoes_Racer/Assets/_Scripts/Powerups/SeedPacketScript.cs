@@ -36,7 +36,10 @@ public class SeedPacketScript : MonoBehaviour {
                 netPickedUp.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
                 netPickedUp.m_PickUp = m_packetNum;
                 netPickedUp.m_Action = NetPickedUp.ACTION.APPEAR;
-                Client.Instance.SendToServer(netPickedUp);
+                if (Client.Instance.m_driver.IsCreated)
+                {
+                    Client.Instance.SendToServer(netPickedUp);
+                }
                 //Added by Iain ~
                 timer = 0.0f;
                 isActive = true;
@@ -72,7 +75,10 @@ public class SeedPacketScript : MonoBehaviour {
         }
         int i = Random.Range(1, 7);
         choice = (POWERUPS)i;
-        other.gameObject.GetComponent<InventoryScript>().AddPowerup(choice);
+        if (other.gameObject.GetComponent<InventoryScript>() != null)
+        {
+            other.gameObject.GetComponent<InventoryScript>().AddPowerup(choice);
+        }
         gameObject.GetComponent<MeshRenderer>().enabled = false;
         gameObject.GetComponent<MeshCollider>().enabled = false;
         //Added by Iain

@@ -19,11 +19,37 @@ public class Rocket : MonoBehaviour {
                     GetComponent<NavMeshAgent>().Warp(transform.position);
                     return;
                 }
+                Position[] positions = item.GetComponentsInChildren<Position>();
+                if (positions.Length > 1)
+                {
+                    if (positions[1] != null)
+                    {
+                        if (positions[1].currentPosition == i - 1)
+                        {
+                            target = item;
+                            GetComponent<NavMeshAgent>().Warp(transform.position);
+                            return;
+                        }
+                    }
+                }
             } else {
                 if (item.GetComponent<Position>().currentPosition == i + 1) {
                     target = item;
                     GetComponent<NavMeshAgent>().Warp(transform.position);
                     return;
+                }
+                Position[] positions = item.GetComponentsInChildren<Position>();
+                if (positions.Length > 1)
+                {
+                    if (positions[1] != null)
+                    {
+                        if (positions[1].currentPosition == i + 1)
+                        {
+                            target = item;
+                            GetComponent<NavMeshAgent>().Warp(transform.position);
+                            return;
+                        }
+                    }
                 }
             }
         }

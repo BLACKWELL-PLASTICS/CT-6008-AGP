@@ -38,7 +38,7 @@ public class WinCondition : MonoBehaviour
             }
         } else {
             // Disable Controller / AI script
-            if (gameObject.name == "Car_Reg(Clone)" || gameObject.name == "Car_MergeDrive(Clone)" || gameObject.name == "Car_MergeShoot(Clone)") {
+            if (gameObject.name == "Car_Reg(Clone)" || gameObject.name == "Car_MergeDrive(Clone)" || (gameObject.tag == "DisplayGunBase" && transform.parent.gameObject.name == "Car_MergeShoot(Clone)")) {
 
                 if (gameObject.GetComponent<Controller>() != null) {
                     gameObject.GetComponent<Controller>().enabled = false;
@@ -48,7 +48,8 @@ public class WinCondition : MonoBehaviour
                     Destroy(gameObject.GetComponent<MergedTimer>());
                 }
 
-            } else {
+            } else if (gameObject.GetComponent<AIPlayer>() != null)
+            {
                 gameObject.GetComponent<AIPlayer>().enabled = false;
             }
             // Lock Position
