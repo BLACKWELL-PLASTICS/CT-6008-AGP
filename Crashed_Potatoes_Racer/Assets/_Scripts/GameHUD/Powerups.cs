@@ -12,7 +12,7 @@ public class Powerups : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameObject.Find("Car_Reg(Clone)")) {
+        if (GameObject.Find("Car_Reg(Clone)") != null) {
             powerup = GameObject.Find("Car_Reg(Clone)").GetComponent<InventoryScript>().p1;
 
             switch (powerup) {
