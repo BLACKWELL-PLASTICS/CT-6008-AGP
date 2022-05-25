@@ -6,12 +6,16 @@ public class CameraShots : MonoBehaviour
 {
     [SerializeField]
     private Camera[] cameraObjects;
+    [SerializeField]
+    private GameObject gameHUD;
+
+    private bool isHUDActive = true;
 
     public void Update()
     {
         switch (Input.inputString)
         {
-            case "`":
+            case "-":
                 //Resets the camera to the kart's perspective
                 ActivateCamera(9);
                 break;
@@ -33,6 +37,15 @@ public class CameraShots : MonoBehaviour
             case "6":
                 ActivateCamera(5);
                 break;
+            case "7":
+                ActivateCamera(6);
+                break;
+            case "8":
+                ActivateCamera(7);
+                break;
+            case "=":
+                ToggleHUD();
+                break;
         }
     }
 
@@ -48,6 +61,20 @@ public class CameraShots : MonoBehaviour
             {
                 cameraObjects[i].gameObject.SetActive(false);
             }
+        }
+    }
+
+    public void ToggleHUD()
+    {
+        if (isHUDActive)
+        {
+            gameHUD.SetActive(false);
+            isHUDActive = false;
+        }
+        else
+        {
+            gameHUD.SetActive(true);
+            isHUDActive = true;
         }
     }
 }
