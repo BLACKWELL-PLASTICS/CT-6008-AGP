@@ -231,7 +231,7 @@ MonoBehaviour:
   Path: Assets/Plugins/lvl1/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637890023878336630
+  lastModified: 637890027372322892
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -278,10 +278,10 @@ MonoBehaviour:
   Path: Assets/Plugins/lvl1/Build/Desktop/ARG.bank
   Name: ARG
   StudioPath: bank:/ARG
-  lastModified: 637890654038997836
+  lastModified: 637890027372292352
   FileSizes:
   - Name: Desktop
-    Value: 5538048
+    Value: 5552256
   Exists: 1
 --- !u!114 &-3132587157091871395
 MonoBehaviour:
@@ -310,33 +310,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1000
---- !u!114 &-962370939125279992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Ptera
-  m_EditorClassIdentifier: 
-  Path: event:/Ptera
-  Guid:
-    Data1: 391465141
-    Data2: 1146585028
-    Data3: 1146125724
-    Data4: -730979523
-  Banks:
-  - {fileID: -3271121658061856688}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 10000
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,6 +329,7 @@ MonoBehaviour:
   EditorEvents:
   - {fileID: 247629122986976440}
   - {fileID: -8311511386784488682}
+  - {fileID: 6224595317072472378}
   - {fileID: 6641480297263074981}
   - {fileID: -9006340839597470257}
   - {fileID: -4586724439179149181}
@@ -376,13 +350,12 @@ MonoBehaviour:
   - {fileID: -6388928796941455519}
   - {fileID: 6919079424321149244}
   - {fileID: 7774059875705634801}
-  - {fileID: -962370939125279992}
   EditorParameters: []
   MasterBanks:
   - {fileID: -5351324987820102597}
   StringsBanks:
   - {fileID: 2331918171055264261}
-  cacheTime: 637890654039017847
+  cacheTime: 637890027372336450
   cacheVersion: 10
 --- !u!114 &83554683493846561
 MonoBehaviour:
@@ -507,10 +480,10 @@ MonoBehaviour:
   Path: Assets/Plugins/lvl1/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637890654039017847
+  lastModified: 637890027372336450
   FileSizes:
   - Name: Desktop
-    Value: 1790
+    Value: 1788
   Exists: 1
 --- !u!114 &4780206226357799951
 MonoBehaviour:
@@ -566,6 +539,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 12387
+--- !u!114 &6224595317072472378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Birds
+  m_EditorClassIdentifier: 
+  Path: event:/Birds
+  Guid:
+    Data1: 391465141
+    Data2: 1146585028
+    Data3: 1146125724
+    Data4: -730979523
+  Banks:
+  - {fileID: -3271121658061856688}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 10000
 --- !u!114 &6428596844848125921
 MonoBehaviour:
   m_ObjectHideFlags: 0
