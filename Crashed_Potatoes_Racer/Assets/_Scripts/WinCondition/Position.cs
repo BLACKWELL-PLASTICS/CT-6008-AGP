@@ -17,7 +17,7 @@ public class Position : MonoBehaviour {
         {
             currentPosition = GetComponent<MergedShootingControllerScript>().m_playerNum;
         }
-        if (gameObject.name == "Car_Reg(Clone)" || gameObject.name == "Car_MergeDrive(Clone)" || gameObject.name == "Car_MergeShoot(Clone)" || gameObject.tag == "DisplayGunBase") {
+        if (gameObject.name == "Car_Reg(Clone)" || gameObject.name == "Car_MergeDrive(Clone)" || (gameObject.tag == "DisplayGunBase" && transform.parent.gameObject.name == "Car_MergeShoot(Clone)")) {
             UI = GameObject.Find("Placing Prefab");
             if (Time.timeScale == 0) {
                 UI.SetActive(false);
@@ -56,7 +56,7 @@ public class Position : MonoBehaviour {
             }
         }
 
-        if (gameObject.name == "Car_Reg(Clone)" || gameObject.name == "Car_MergeDrive(Clone)" || gameObject.name == "Car_MergeShoot(Clone)" || gameObject.tag == "DisplayGunBase") {
+        if (gameObject.name == "Car_Reg(Clone)" || gameObject.name == "Car_MergeDrive(Clone)" || (gameObject.tag == "DisplayGunBase" && transform.parent.gameObject.name == "Car_MergeShoot(Clone)")) {
             {
                 if (Time.timeScale != 0) {
                     UI.SetActive(true);
@@ -89,6 +89,7 @@ public class Position : MonoBehaviour {
                     float carOneDistance = Vector3.Distance(checkpoint.transform.position, gameObject.transform.position);
                     float carTwoDistance = Vector3.Distance(checkpoint.transform.position, car.transform.position);
                     if (carOneDistance < carTwoDistance) {
+                        //might do both
                         newPosition--;
                     }
                 }

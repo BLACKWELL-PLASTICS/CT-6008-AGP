@@ -29,7 +29,11 @@ public class WinCheck : MonoBehaviour
                     isfinished[i] = drivableCars[i].GetComponent<WinCondition>().isFinished;
                     if (drivableCars[i].GetComponentInChildren<MergedShootingControllerScript>() != null)
                     {
-                        isfinished[isfinished.Length - 1 - withGun] = drivableCars[i].GetComponentInChildren<WinCondition>().isFinished;
+                        WinCondition[] winCondition = drivableCars[i].GetComponentsInChildren<WinCondition>();
+                        if (winCondition.Length > 1)
+                        {
+                            isfinished[isfinished.Length - 1 - withGun] = winCondition[1].isFinished;
+                        }
                         withGun++;
                     }
                 }
