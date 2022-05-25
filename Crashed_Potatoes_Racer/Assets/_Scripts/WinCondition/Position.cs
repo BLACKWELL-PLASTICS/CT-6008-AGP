@@ -9,8 +9,15 @@ public class Position : MonoBehaviour {
     GameObject UI;
 
     private void Start() {
-        currentPosition = GetComponent<CarManagerScript>().m_playerNum;
-        if (gameObject.name == "Car_Reg(Clone)" || gameObject.name == "Car_MergeDrive(Clone)" || gameObject.name == "Car_MergeShoot(Clone)") {
+        if (GetComponent<CarManagerScript>() != null)
+        {
+            currentPosition = GetComponent<CarManagerScript>().m_playerNum;
+        }
+        else
+        {
+            currentPosition = GetComponent<MergedShootingControllerScript>().m_playerNum;
+        }
+        if (gameObject.name == "Car_Reg(Clone)" || gameObject.name == "Car_MergeDrive(Clone)" || gameObject.name == "Car_MergeShoot(Clone)" || gameObject.tag == "DisplayGunBase") {
             UI = GameObject.Find("Placing Prefab");
             if (Time.timeScale == 0) {
                 UI.SetActive(false);
@@ -29,6 +36,14 @@ public class Position : MonoBehaviour {
         foreach (GameObject car in GameObject.Find("Manager").GetComponent<MultiplayerManager>().m_activeCars) {
             if (car != this.gameObject) {
                 CheckPosition(car);
+                WinCondition[] winConditions = car.GetComponentsInChildren<WinCondition>();
+                if (winConditions.Length > 1)
+                {
+                    if (winConditions[1] != null)
+                    {
+                        CheckPosition(winConditions[1].gameObject);
+                    }
+                }
             }
         }
 
@@ -41,7 +56,7 @@ public class Position : MonoBehaviour {
             }
         }
 
-        if (gameObject.name == "Car_Reg(Clone)" || gameObject.name == "Car_MergeDrive(Clone)" || gameObject.name == "Car_MergeShoot(Clone)") {
+        if (gameObject.name == "Car_Reg(Clone)" || gameObject.name == "Car_MergeDrive(Clone)" || gameObject.name == "Car_MergeShoot(Clone)" || gameObject.tag == "DisplayGunBase") {
             {
                 if (Time.timeScale != 0) {
                     UI.SetActive(true);

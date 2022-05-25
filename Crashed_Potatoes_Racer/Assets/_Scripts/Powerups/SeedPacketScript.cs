@@ -72,7 +72,10 @@ public class SeedPacketScript : MonoBehaviour {
         }
         int i = Random.Range(1, 7);
         choice = (POWERUPS)i;
-        other.gameObject.GetComponent<InventoryScript>().AddPowerup(choice);
+        if (other.gameObject.GetComponent<InventoryScript>() != null)
+        {
+            other.gameObject.GetComponent<InventoryScript>().AddPowerup(choice);
+        }
         gameObject.GetComponent<MeshRenderer>().enabled = false;
         gameObject.GetComponent<MeshCollider>().enabled = false;
         //Added by Iain

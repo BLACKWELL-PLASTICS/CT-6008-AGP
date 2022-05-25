@@ -11,10 +11,13 @@ public class PlayerHit : MonoBehaviour
     private bool m_hit = false;
     public void HitSpin()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(GetComponent<InventoryScript>().spinSound, gameObject.transform.position); //added by anna
+        if (GetComponent<InventoryScript>() != null)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(GetComponent<InventoryScript>().spinSound, gameObject.transform.position); //added by anna
+        }
         if (GetComponent<AIPlayer>() != null)
         {
-            GetComponent<AIPlayer>().decreaseCheck = true;
+            GetComponent<AIPlayer>().decreaseBoostCheck = true;
         }
         if (!m_hit)
         {

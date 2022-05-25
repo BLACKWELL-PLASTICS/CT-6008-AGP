@@ -18,6 +18,7 @@ public class AIPlayer : MonoBehaviour
     public int currentWaypoint = 0;
     public Transform target;
     public bool decreaseCheck = false;
+    public bool decreaseBoostCheck = false;
     public SeedPacketScript.POWERUPS powerUp1;
     public Vector3 originalPos;
     public Vector3 currentPos;
@@ -137,10 +138,15 @@ public class AIPlayer : MonoBehaviour
         speed = Mathf.Lerp(speed, 70, Time.deltaTime * speedIncrease);
 
     }
-    public void DeBoostSpeed()
+    public IEnumerator DeBoostSpeed()
     {
-        accel = Mathf.Lerp(accel, AIManager.GetMaxAcc, Time.deltaTime * speedDecrease);
-        speed = Mathf.Lerp(speed, AIManager.GetMaxSpeed, Time.deltaTime * speedDecrease);
+        accel = Mathf.Lerp(accel, 5, Time.deltaTime * speedDecrease * 2);
+        speed = Mathf.Lerp(speed, 5, Time.deltaTime * speedDecrease * 2);
+
+        yield return new WaitForSeconds(AIManager.GetSlowDownPeriod);
+
+        IncreaseSpeed();
+        decreaseBoostCheck = false;
 
     }
 

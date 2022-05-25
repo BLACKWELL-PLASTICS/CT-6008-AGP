@@ -9837,6 +9837,7 @@ GameObject:
   - component: {fileID: 4465120559905976665}
   - component: {fileID: 5163244094943753286}
   - component: {fileID: 7095379832744132066}
+  - component: {fileID: -3289513872075272381}
   m_Layer: 11
   m_Name: Car_OnlineReg
   m_TagString: Player
@@ -10016,6 +10017,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPosition: 0
+--- !u!114 &-3289513872075272381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8738164446682236303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7720ae635ccad874eab8172062184f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_rotAngle: 450
 --- !u!1001 &8738164444770912762
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10348,15 +10362,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e03a29604e1ce2e4fb3c87f01f27ee88, type: 3}
---- !u!1 &3089364327518602445 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6024569698297894926, guid: e03a29604e1ce2e4fb3c87f01f27ee88,
-    type: 3}
-  m_PrefabInstance: {fileID: 8738164445922090179}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2419682939554160247 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6399688274135253684, guid: e03a29604e1ce2e4fb3c87f01f27ee88,
+    type: 3}
+  m_PrefabInstance: {fileID: 8738164445922090179}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3089364327518602445 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6024569698297894926, guid: e03a29604e1ce2e4fb3c87f01f27ee88,
     type: 3}
   m_PrefabInstance: {fileID: 8738164445922090179}
   m_PrefabAsset: {fileID: 0}
