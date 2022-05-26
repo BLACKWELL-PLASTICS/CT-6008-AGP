@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1857,7 +1857,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -63.99994}
+  m_AnchoredPosition: {x: 0, y: -63.999954}
   m_SizeDelta: {x: 960, y: -128}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!1 &1066010042
@@ -3264,7 +3264,7 @@ PrefabInstance:
     - target: {fileID: 6390994472558545800, guid: 7e9fb77ac640bc143881d6a818375396,
         type: 3}
       propertyPath: m_Name
-      value: Car_ResultsDisplay
+      value: Car_ResultsDisplay(3rd)
       objectReference: {fileID: 0}
     - target: {fileID: 6390994472558545807, guid: 7e9fb77ac640bc143881d6a818375396,
         type: 3}
@@ -4155,7 +4155,7 @@ PrefabInstance:
     - target: {fileID: 6390994472558545800, guid: 7e9fb77ac640bc143881d6a818375396,
         type: 3}
       propertyPath: m_Name
-      value: Car_ResultsDisplay
+      value: Car_ResultsDisplay(1st)
       objectReference: {fileID: 0}
     - target: {fileID: 6390994472558545807, guid: 7e9fb77ac640bc143881d6a818375396,
         type: 3}
@@ -6007,7 +6007,7 @@ PrefabInstance:
     - target: {fileID: 6390994472558545800, guid: 7e9fb77ac640bc143881d6a818375396,
         type: 3}
       propertyPath: m_Name
-      value: Car_ResultsDisplay
+      value: Car_ResultsDisplay(2nd)
       objectReference: {fileID: 0}
     - target: {fileID: 6390994472558545807, guid: 7e9fb77ac640bc143881d6a818375396,
         type: 3}

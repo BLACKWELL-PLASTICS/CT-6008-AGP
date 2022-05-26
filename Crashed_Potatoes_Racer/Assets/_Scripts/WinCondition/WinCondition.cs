@@ -51,6 +51,7 @@ public class WinCondition : MonoBehaviour
             } else if (gameObject.GetComponent<AIPlayer>() != null)
             {
                 gameObject.GetComponent<AIPlayer>().enabled = false;
+                Destroy(gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>());
             }
             // Lock Position
             gameObject.transform.position = gameObject.transform.position;
