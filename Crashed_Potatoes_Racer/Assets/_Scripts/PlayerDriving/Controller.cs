@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using XInputDotNetPure;
 
 public class Controller : MonoBehaviour {
+    // Sphere Rigidbody
     public Rigidbody rb;
     float forwardAcceleration = 5500f;
     float reverseAcceleration = -3000f;
@@ -12,8 +13,10 @@ public class Controller : MonoBehaviour {
     float turnStrength = 100f;
     float gravityForce = 10f;
 
-    float speedInput, turnInput;
+    float speedInput = 0f;
+    float turnInput = 0f;
     
+    // Grounded and Layer 
     bool grounded;
     [SerializeField] LayerMask track;
     [SerializeField] LayerMask navMesh2;
@@ -23,12 +26,13 @@ public class Controller : MonoBehaviour {
 
     // Wheels
     [SerializeField] Transform frontLeftWheel, frontRightWheel;
-    float maxWheelTurn = 10;
+    float maxWheelTurn = 10f;
 
     // BOOSTING POWERUP
     bool isBoosting = false;
     float boostTimer = 0f;
 
+    // GUM POWERUP
     public bool isStuck = false;
     float gumTimer = 0f;
 
@@ -44,9 +48,8 @@ public class Controller : MonoBehaviour {
         emitter = GetComponent<FMODUnity.StudioEventEmitter>();
 
         if (SceneManager.GetActiveScene().buildIndex == 3) {
-            rb.mass = 40;
-            rb.drag = 0;
-            rb.angularDrag = 0;
+            rb.mass = 20;
+            rb.angularDrag = 10000f;
         }
     }
 
@@ -94,14 +97,14 @@ public class Controller : MonoBehaviour {
             // BOOSTING CODE
             if (isBoosting == true && boostTimer <= 3f) {
                 boostTimer += Time.deltaTime;
-                forwardAcceleration = 7000f;
+                forwardAcceleration = 5000f;
                 maxSpeed = 150f;
             } else {
                 isBoosting = false;
                 transform.Find("Boost").GetComponent<ParticleSystem>().Stop();
                 boostTimer = 0f;
                 maxSpeed = 70f;
-                forwardAcceleration = 5500f;
+                forwardAcceleration = 5000f;
             }
 
             // GUM CODE
@@ -114,20 +117,23 @@ public class Controller : MonoBehaviour {
                 isStuck = false;
                 gumTimer = 0f;
                 maxSpeed = 70f;
-                forwardAcceleration = 5500f;
+                forwardAcceleration = 5000f;
             }
         }
-
 
         // Reset Speed input each frame
         speedInput = 0f;
         // set speed input depending on movement
         if ((Input.GetAxisRaw("RT") > 0.01f && speedInput != maxSpeed) || (Input.GetKey(KeyCode.W) && speedInput != maxSpeed)) {
             speedInput = forwardAcceleration;
-            GamePad.SetVibration(index, 0.2f, 0.2f);
+            if (Time.timeScale > 0) {
+                GamePad.SetVibration(index, 0.2f, 0.2f);
+            }
         } else if ((Input.GetAxisRaw("LT") > 0.01f && speedInput != maxSpeed) || (Input.GetKey(KeyCode.W) && speedInput != maxSpeed)) {
             speedInput = reverseAcceleration;
+            if (Time.timeScale > 0) {
             GamePad.SetVibration(index, 0.1f, 0.1f);
+            }
         } else {
             GamePad.SetVibration(index, 0f, 0f);
         }
@@ -162,7 +168,6 @@ public class Controller : MonoBehaviour {
         
             transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
         }
-
         if (grounded) {
             rb.drag = 3f;
             if (Mathf.Abs(speedInput) > 0) {
@@ -177,5 +182,9 @@ public class Controller : MonoBehaviour {
     public void Boost() {
         boostTimer = 0f;
         isBoosting = true;
+    } 
+    public void TurnOffVibration() {
+        GamePad.SetVibration(index, 0f, 0f);
+
     }
 }

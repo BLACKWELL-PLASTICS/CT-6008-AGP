@@ -22,6 +22,12 @@ public class SeedPacketScript : MonoBehaviour {
     [SerializeField]
     public int m_packetNum;
 
+    public Animator itemAnim;
+
+    private void Start() {
+        itemAnim = GameObject.Find("Item Reserve").GetComponent<Animator>();
+    }
+
     // Update is called once per frame
     void Update() {
         transform.Rotate(-Vector3.forward, 75f * Time.deltaTime);
@@ -73,6 +79,34 @@ public class SeedPacketScript : MonoBehaviour {
         if (other.transform.tag != "Player") {
             return;
         }
+
+        isActive = false;
+
+        if (other.gameObject.name == "Car_Reg(Clone)") { // if the car is the player
+            itemAnim.SetBool("itemPickup", true);
+            //Added by Iain
+            //Packet start packet
+            NetPickedUp netPickedUp = new NetPickedUp();
+            netPickedUp.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
+            netPickedUp.m_PickUp = m_packetNum;
+            netPickedUp.m_Action = NetPickedUp.ACTION.DISAPPEAR;
+            Client.Instance.SendToServer(netPickedUp);
+            //Added by Iain ~
+            // Run animation then give powerup
+            StartCoroutine(AnimationDuration(other));
+        } else { // if the car isnt the player
+            // Give Powerup
+            GivePowerup(other);
+        }
+    }
+
+    IEnumerator AnimationDuration(Collider other) {
+        yield return new WaitForSeconds(2);
+        GivePowerup(other);
+    }
+
+    private void GivePowerup(Collider other) {
+        itemAnim.SetBool("itemPickup", false);
         int i = Random.Range(1, 7);
         choice = (POWERUPS)i;
         if (other.gameObject.GetComponent<InventoryScript>() != null)
@@ -81,16 +115,6 @@ public class SeedPacketScript : MonoBehaviour {
         }
         gameObject.GetComponent<MeshRenderer>().enabled = false;
         gameObject.GetComponent<MeshCollider>().enabled = false;
-        //Added by Iain
-        //Packet start packet
-        NetPickedUp netPickedUp = new NetPickedUp();
-        netPickedUp.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
-        netPickedUp.m_PickUp = m_packetNum;
-        netPickedUp.m_Action = NetPickedUp.ACTION.DISAPPEAR;
-        Client.Instance.SendToServer(netPickedUp);
-        //Added by Iain ~
-        isActive = false;
-        //Destroy(gameObject);
     }
 
     //Added by Iain
