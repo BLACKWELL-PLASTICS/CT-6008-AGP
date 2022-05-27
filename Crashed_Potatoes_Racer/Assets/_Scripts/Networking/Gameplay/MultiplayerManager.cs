@@ -64,40 +64,53 @@ public class MultiplayerManager : MonoBehaviour
 
     private void Start()
     {
+        //start on timescale 0
         Time.timeScale = 0;
+        //foreach start point
         for (int i = 0; i < m_startPoints.Length; i++)
         {
+            //if host
             if (PersistentInfo.Instance.m_currentPlayerNum == 1)
             {
+                //get pos rot
                 Vector3 pos = m_startPoints[i].transform.position;
                 Quaternion rot = m_startPoints[i].transform.rotation;
                 GameObject car;
+                //if player
                 if (i < PersistentInfo.Instance.m_connectedUsers)
                 {
+                    //if this
                     if (i == PersistentInfo.Instance.m_currentPlayerNum - 1)
                     {
+                        //spawn player
                         car = Instantiate(m_DivableCar, pos, rot);
                         //car = Instantiate(m_mergedShootPrefab, pos, rot);
                     }
                     else
                     {
+                        //spawn online
                         car = Instantiate(m_onlineCar, pos, rot);
                     }
                 }
                 else
                 {
+                    //spawn ai
                     car = Instantiate(m_AICar, pos, rot);
                 }
+                //set player num 
                 car.GetComponent<CarManagerScript>().m_playerNum = i + 1;
+                //give it this
                 car.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
                 if (i < PersistentInfo.Instance.m_carDesigns.Count)
                 {
+                    //spawn all car designs
                     car.GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_carDesigns[i].m_carChoice,
                                                                  PersistentInfo.Instance.m_carDesigns[i].m_wheelChoice,
                                                                  PersistentInfo.Instance.m_carDesigns[i].m_gunChoice);
                 }
                 else
                 {
+                    //randomise all ai car designs 
                     int body = Random.Range(0, 8);
                     int wheels = Random.Range(0, 12);
                     int guns = Random.Range(0, 3);
@@ -108,33 +121,42 @@ public class MultiplayerManager : MonoBehaviour
                     netAISpawn.m_Gun = guns;
                     Server.Instance.Broadcast(netAISpawn);
                 }
+                //add to cars
                 m_activeCars.Add(car);
             }
+            //if not host
             else
             {
+                //get spawn info
                 Vector3 pos = m_startPoints[i].transform.position;
                 Quaternion rot = m_startPoints[i].transform.rotation;
                 GameObject car;
                 if (i == PersistentInfo.Instance.m_currentPlayerNum - 1)
                 {
+                    //if this spawn drivable
                     car = Instantiate(m_DivableCar, pos, rot);;
                 }
                 else
                 {
+                    //spawn online
                     car = Instantiate(m_onlineCar, pos, rot);
                 }
+                //set cars info
                 car.GetComponent<CarManagerScript>().m_playerNum = i + 1;
                 car.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
                 if (i < PersistentInfo.Instance.m_carDesigns.Count)
                 {
+                    //spawn each car design
                     car.GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_carDesigns[i].m_carChoice,
                                                                  PersistentInfo.Instance.m_carDesigns[i].m_wheelChoice,
                                                                  PersistentInfo.Instance.m_carDesigns[i].m_gunChoice);
                 }
+                //don't spawn ai designs (host sends this data)
+                //add to car list
                 m_activeCars.Add(car);
             }
         }
-
+        //send that the player is loaded in
         NetGameCountdown netGameCountdown = new NetGameCountdown();
         netGameCountdown.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
         netGameCountdown.m_Action = NetGameCountdown.ACTION.READY;
@@ -144,10 +166,13 @@ public class MultiplayerManager : MonoBehaviour
 
     private void Update()
     {
+        //if host
         if (PersistentInfo.Instance.m_currentPlayerNum == 1 && m_timer == 0)
         {
+            //when all cars on all instances of the game are loaded in
             if (PersistentInfo.Instance.m_readyCars == PersistentInfo.Instance.m_connectedUsers)
             {
+                //start countdown
                 m_startCountdown = true;
                 m_startTime = Time.realtimeSinceStartup;
             }
@@ -157,6 +182,7 @@ public class MultiplayerManager : MonoBehaviour
             m_timer = Time.realtimeSinceStartup - m_startTime;
             if (m_timer < m_startingTimer)
             {
+                //send counting info
                 NetGameCountdown netGameCountdown = new NetGameCountdown();
                 netGameCountdown.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
                 netGameCountdown.m_Action = NetGameCountdown.ACTION.COUNTING;
@@ -165,6 +191,7 @@ public class MultiplayerManager : MonoBehaviour
             }
             else
             {
+                //send end of counting
                 m_startCountdown = false;
                 NetGameCountdown netGameCountdown = new NetGameCountdown();
                 netGameCountdown.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
@@ -208,7 +235,9 @@ public class MultiplayerManager : MonoBehaviour
 
     void Awake()
     {
+        //ensure timescale is 0
         Time.timeScale = 0;
+        //register events to start listening 
         RegisterEvenets();
     }
 
@@ -301,6 +330,7 @@ public class MultiplayerManager : MonoBehaviour
 
     public void MergeCars(GameObject a_car1, GameObject a_car2)
     {
+        //send merge data
         NetMerge netMerge = new NetMerge();
         netMerge.m_Player = a_car1.GetComponent<CarManagerScript>().m_playerNum;
         netMerge.m_Action = NetMerge.ACTION.MERGE;
@@ -324,6 +354,7 @@ public class MultiplayerManager : MonoBehaviour
     }
     GameObject GetPartToRotate(GameObject a_base, int a_index)
     {
+        //loop through gun parts to get
         GameObject currentPart = a_base;
 
         for (int i = 0; i <= a_index; i++)
@@ -336,6 +367,7 @@ public class MultiplayerManager : MonoBehaviour
 
 
     //Server
+    //most send data from server to client
     void OnMoveServer(NetMessage a_msg, NetworkConnection a_connection)
     {
         NetMakeMove netMakeMove = a_msg as NetMakeMove;
@@ -347,26 +379,32 @@ public class MultiplayerManager : MonoBehaviour
         switch (netMerge.m_Action)
         {
             case NetMerge.ACTION.MERGE:
+                //check if other player has also said they wanna merge
                 if (m_mergeCars.ContainsKey(netMerge.m_Other))
                 {
+                    //if other has 
                     if (m_mergeCars[netMerge.m_Other] == netMerge.m_Player)
                     {
+                        //remove from list and send merge to call
                         m_mergeCars.Remove(netMerge.m_Other);
                         Server.Instance.Broadcast(netMerge);
                     }
                     else
                     {
+                        //add to merge dict
                         m_mergeCars.Add(netMerge.m_Player, netMerge.m_Other);
                     }
                 }
                 else
                 {
+                    //add to merge dict
                     m_mergeCars.Add(netMerge.m_Player, netMerge.m_Other);
                 }
                 break;
             case NetMerge.ACTION.DEMERGE:
                 if (m_demergeCars.ContainsKey(netMerge.m_Other))
                 {
+                    //if other has said to demerge 
                     if (m_demergeCars[netMerge.m_Other] == netMerge.m_Player)
                     {
                         m_demergeCars.Remove(netMerge.m_Other);
@@ -441,11 +479,15 @@ public class MultiplayerManager : MonoBehaviour
     //Client
     void OnMoveClient(NetMessage a_msg)
     {
+        //set onlines pos & rot
         NetMakeMove netMakeMove = a_msg as NetMakeMove; 
+        //not self
         if (netMakeMove.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
         {
+            //go through active cars
             foreach (GameObject car in m_activeCars)
             {
+                //if car sent is this
                 if (car.GetComponent<CarManagerScript>().m_playerNum == netMakeMove.m_Player)
                 {
                     car.transform.position = new Vector3(netMakeMove.m_XPos, netMakeMove.m_YPos, netMakeMove.m_ZPos);
@@ -459,6 +501,7 @@ public class MultiplayerManager : MonoBehaviour
         NetMerge netMerge = a_msg as NetMerge;
         switch (netMerge.m_Action)
         {
+            //turn on or off merge
             case NetMerge.ACTION.ACTIVATE:
                 if (netMerge.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
                 {
@@ -488,6 +531,7 @@ public class MultiplayerManager : MonoBehaviour
                 GameObject car2 = null;
                 foreach (GameObject car in m_activeCars)
                 {
+                    //get this and other car
                     if (car.GetComponent<CarManagerScript>().m_playerNum == netMerge.m_Player)
                     {
                         car1 = car;
@@ -497,26 +541,33 @@ public class MultiplayerManager : MonoBehaviour
                         car2 = car;
                     }
                 }
+                //combine positions
                 Vector3 pos = new Vector3(car1.transform.position.x + (car2.transform.position.x - car1.transform.position.x) / 2,
                     car1.transform.position.y + (car2.transform.position.y - car1.transform.position.y) / 2,
                     car1.transform.position.z + (car2.transform.position.z - car1.transform.position.z) / 2);
                 Vector3 midDir = (car1.transform.eulerAngles + car2.transform.eulerAngles) / 2;
 
+                //spawns prefab based on where the player is driving or shooting
                 if (netMerge.m_Player == PersistentInfo.Instance.m_currentPlayerNum)
                 {
+                    //timer slider
                     m_timerSlider.SetActive(true);
+                    //spawen driv prefab
                     GameObject car = Instantiate(m_mergedDrivePrefab, pos, Quaternion.identity);
                     car.transform.eulerAngles = midDir;
                     car.transform.up = Vector3.up;
+                    //sapwn car design
                     car.GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_carDesigns[netMerge.m_Player - 1].m_carChoice,
                                                                  PersistentInfo.Instance.m_carDesigns[netMerge.m_Player - 1].m_wheelChoice,
                                                                  PersistentInfo.Instance.m_carDesigns[netMerge.m_Other - 1].m_gunChoice);
+                    //set cars values from other cars
                     car.GetComponent<CarManagerScript>().m_playerNum = netMerge.m_Player;
                     car.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum = netMerge.m_Other;
                     car.GetComponent<MergedTimer>().m_maxTimer = m_maxTimer;
                     car.GetComponent<WinCondition>().lap = car1.GetComponent<WinCondition>().lap;
                     car.GetComponent<WinCondition>().checkpointNumber = car1.GetComponent<WinCondition>().checkpointNumber;
                     car.GetComponent<WinCondition>().hasBeenChecked = car1.GetComponent<WinCondition>().hasBeenChecked;
+                    //get set guns data
                     WinCondition[] winConditions = car.GetComponentsInChildren<WinCondition>();
                     if (winConditions.Length > 1)
                     {
@@ -524,17 +575,23 @@ public class MultiplayerManager : MonoBehaviour
                         winConditions[1].checkpointNumber = car2.GetComponent<WinCondition>().checkpointNumber;
                         winConditions[1].hasBeenChecked = car2.GetComponent<WinCondition>().hasBeenChecked;
                     }
+                    //add to active cars
                     m_activeCars.Add(car);
                 }
                 else if (netMerge.m_Other == PersistentInfo.Instance.m_currentPlayerNum)
                 {
+                    //timer slider
                     m_timerSlider.SetActive(true);
+                    //spawen driv prefab
                     GameObject car = Instantiate(m_mergedShootPrefab, pos, Quaternion.identity);
+                    //sapwn car design
                     car.transform.eulerAngles = midDir;
                     car.transform.up = Vector3.up;
+                    //sapwn design
                     car.GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_carDesigns[netMerge.m_Player - 1].m_carChoice,
                                                                  PersistentInfo.Instance.m_carDesigns[netMerge.m_Player - 1].m_wheelChoice,
                                                                  PersistentInfo.Instance.m_carDesigns[netMerge.m_Other - 1].m_gunChoice);
+                    //set cars values
                     car.GetComponent<CarManagerScript>().m_playerNum = netMerge.m_Player;
                     car.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum = netMerge.m_Other;
                     car.GetComponent<MergedTimer>().m_maxTimer = m_maxTimer;
@@ -542,16 +599,19 @@ public class MultiplayerManager : MonoBehaviour
                     car.GetComponent<WinCondition>().checkpointNumber = car1.GetComponent<WinCondition>().checkpointNumber;
                     car.GetComponent<WinCondition>().hasBeenChecked = car1.GetComponent<WinCondition>().hasBeenChecked;
                     WinCondition[] winConditions = car.GetComponentsInChildren<WinCondition>();
+                    //set guns values
                     if (winConditions.Length > 1)
                     {
                         winConditions[1].lap = car2.GetComponent<WinCondition>().lap;
                         winConditions[1].checkpointNumber = car2.GetComponent<WinCondition>().checkpointNumber;
                         winConditions[1].hasBeenChecked = car2.GetComponent<WinCondition>().hasBeenChecked;
                     }
+                    //add to list
                     m_activeCars.Add(car);
                 }
                 else
                 {
+                    //spawn online same ways as others, just not with any human controls
                     GameObject car = Instantiate(m_mergedOnlinePrefab, pos, Quaternion.identity);
                     car.transform.eulerAngles = midDir;
                     car.transform.up = Vector3.up;
@@ -572,6 +632,7 @@ public class MultiplayerManager : MonoBehaviour
                     }
                     m_activeCars.Add(car);
                 }
+                //get rid of old cars
                 m_activeCars.Remove(car1);
                 Destroy(car1);
                 m_activeCars.Remove(car2);
@@ -581,6 +642,7 @@ public class MultiplayerManager : MonoBehaviour
                 GameObject mergedCar = null;
                 foreach (GameObject car in m_activeCars)
                 {
+                    //get his car
                     if (car.GetComponent<CarManagerScript>().m_playerNum == netMerge.m_Player || car.GetComponent<CarManagerScript>().m_playerNum == netMerge.m_Other)
                     {
                         mergedCar = car;
@@ -592,18 +654,22 @@ public class MultiplayerManager : MonoBehaviour
                 if (mergedCar.GetComponent<CarManagerScript>().m_playerNum == PersistentInfo.Instance.m_currentPlayerNum)
                 {
                     GameObject newCar = Instantiate(m_DivableCar, leftPos, mergedCar.transform.rotation);
+                    //spawn car design
                     newCar.GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponent<CarManagerScript>().m_playerNum - 1].m_carChoice,
                                                                     PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponent<CarManagerScript>().m_playerNum - 1].m_wheelChoice,
                                                                     PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponent<CarManagerScript>().m_playerNum - 1].m_gunChoice);
+                    //give information
                     newCar.GetComponent<WinCondition>().lap = mergedCar.GetComponent<WinCondition>().lap;
                     newCar.GetComponent<WinCondition>().checkpointNumber = mergedCar.GetComponent<WinCondition>().checkpointNumber;
                     newCar.GetComponent<WinCondition>().hasBeenChecked = mergedCar.GetComponent<WinCondition>().hasBeenChecked;
                     newCar.GetComponent<CarManagerScript>().m_playerNum = mergedCar.GetComponent<CarManagerScript>().m_playerNum;
                     newCar.GetComponent<CarManagerScript>().m_gameManagerHolder = this.gameObject;
+                    //set active
                     m_activeCars.Add(newCar);
                 }
                 else
                 {
+                    //spawn online same way as /\
                     GameObject newCar = Instantiate(m_onlineCar, leftPos, mergedCar.transform.rotation);
                     newCar.GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponent<CarManagerScript>().m_playerNum - 1].m_carChoice,
                                                                     PersistentInfo.Instance.m_carDesigns[mergedCar.GetComponent<CarManagerScript>().m_playerNum - 1].m_wheelChoice,
@@ -616,7 +682,7 @@ public class MultiplayerManager : MonoBehaviour
                     m_activeCars.Add(newCar);
                 }
 
-                //Spawn gunners car
+                //Spawn gunners car - same method as driver but spawns based on the gunners data
                 Vector3 rightPos = mergedCar.transform.position + (mergedCar.transform.right);
                 if (mergedCar.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum == PersistentInfo.Instance.m_currentPlayerNum)
                 {
@@ -663,6 +729,7 @@ public class MultiplayerManager : MonoBehaviour
                     {
                         if (car.GetComponent<CarManagerScript>().m_playerNum == netMerge.m_Player)
                         {
+                            //move the merged car
                             car.transform.position = new Vector3(netMerge.m_XPos, netMerge.m_YPos, netMerge.m_ZPos);
                             car.transform.rotation = new Quaternion(netMerge.m_XRot, netMerge.m_YRot, netMerge.m_ZRot, netMerge.m_WRot);
                         }
@@ -678,6 +745,7 @@ public class MultiplayerManager : MonoBehaviour
                         {
                             if (car.GetComponentInChildren<MergedShootingControllerScript>().m_playerNum == netMerge.m_Player)
                             {
+                                //rotation of gun
                                 GetPartToRotate(car.transform.GetChild(car.transform.childCount - 1).gameObject, 1).transform.rotation = new Quaternion(netMerge.m_XRot, netMerge.m_YRot, netMerge.m_ZRot, netMerge.m_WRot);
                                 GetPartToRotate(car.transform.GetChild(car.transform.childCount - 1).gameObject, 2).transform.rotation = new Quaternion(netMerge.m_secondXRot, netMerge.m_secondYRot, netMerge.m_secondZRot, netMerge.m_secondWRot);
                             }
@@ -695,6 +763,7 @@ public class MultiplayerManager : MonoBehaviour
         NetWall netWall = a_msg as NetWall;
         if (netWall.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
         {
+            //spawn with given pos and rot
             Vector3 pos = new Vector3(netWall.m_XPos, netWall.m_YPos, netWall.m_ZPos);
             Quaternion rot = new Quaternion(netWall.m_XRot, netWall.m_YRot, netWall.m_ZRot, netWall.m_WRot);
             GameObject wall = Instantiate(m_obstacle, pos, rot);
@@ -712,6 +781,7 @@ public class MultiplayerManager : MonoBehaviour
                     {
                         if (car.GetComponent<CarManagerScript>().m_playerNum == netGrow.m_CarNum)
                         {
+                            //scale the player up
                             car.GetComponent<CarManagerScript>().m_oPos = car.transform.position;
                             car.GetComponent<CarManagerScript>().m_OriginalScale = car.transform.localScale;
                             car.transform.localScale = car.GetComponent<CarManagerScript>().m_OriginalScale * 1.5f;
@@ -725,6 +795,7 @@ public class MultiplayerManager : MonoBehaviour
                     {
                         if (car.GetComponent<CarManagerScript>().m_playerNum == netGrow.m_CarNum)
                         {
+                            //scale the player down
                             Vector3 pos = car.transform.position;
                             car.transform.localScale = car.GetComponent<CarManagerScript>().m_OriginalScale;
                             car.transform.position = new Vector3(pos.x, pos.y - (car.GetComponent<CarManagerScript>().m_OriginalScale.y / 1.5f), pos.z);
@@ -747,9 +818,11 @@ public class MultiplayerManager : MonoBehaviour
                 case NetRocket.ACTION.FIRE:
                     foreach (GameObject car in m_activeCars)
                     {
+                        //when rocket fire packet received mimmic its spawning
                         if (car.GetComponent<CarManagerScript>().m_playerNum == netRocket.m_Player)
                         {
                             GameObject rocket = Instantiate(m_rocket, new Vector3(netRocket.m_XPos, netRocket.m_YPos, netRocket.m_ZPos), new Quaternion(netRocket.m_XRot, netRocket.m_YRot, netRocket.m_ZRot, netRocket.m_WRot));
+                            //set its owner (this calculatrs its target)
                             rocket.GetComponent<Rocket>().OwnerAndTarget(car.gameObject);
                         }
                     }
@@ -767,6 +840,7 @@ public class MultiplayerManager : MonoBehaviour
         {
             switch (netPickedUp.m_Action)
             {
+                //when the packet comes in saying packet is picked up show or hide the packet
                 case NetPickedUp.ACTION.APPEAR:
                     foreach (GameObject pickUp in m_seedPackets)
                     {
@@ -796,6 +870,7 @@ public class MultiplayerManager : MonoBehaviour
         NetBirdPoop netBirdPoop = a_msg as NetBirdPoop;
         if (PersistentInfo.Instance.m_currentPlayerNum == 1)
         {
+            //if host slow down ai
             foreach (GameObject car in m_activeCars)
             {
                 if (netBirdPoop.m_Player != car.GetComponent<CarManagerScript>().m_playerNum)
@@ -807,6 +882,7 @@ public class MultiplayerManager : MonoBehaviour
                 }
             }
         }
+        //if not self toggle the ui to show bird poop
         if (netBirdPoop.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
         {
             m_BirdPoop.GetComponent<BirdPoop>().ToogleActive();
@@ -818,11 +894,13 @@ public class MultiplayerManager : MonoBehaviour
         switch (netGameCountdown.m_Action)
         {
             case NetGameCountdown.ACTION.READY:
+                //checkw when players are loaded in
                 PersistentInfo.Instance.m_readyCars++;
                 break;
             case NetGameCountdown.ACTION.UNREADY:
                 PersistentInfo.Instance.m_readyCars--;
                 break;
+                //begins countdown 
             case NetGameCountdown.ACTION.COUNTING:
                 if (netGameCountdown.m_Count < 5.0f)
                 {
@@ -913,6 +991,8 @@ public class MultiplayerManager : MonoBehaviour
                 //    m_startUI[i] = null;
                 //}
                 //m_startUI = new GameObject[0];
+                
+                //sets ctime to 1 for game start
                 Time.timeScale = 1;
                 break;
             default:
@@ -928,9 +1008,14 @@ public class MultiplayerManager : MonoBehaviour
             {
                 if (car.GetComponent<CarManagerScript>().m_playerNum == netAISpawn.m_Player)
                 {
+                    //host spawns ai
+                    //this is then sent to other players for their ai to spawn. 
+                    //if player is still loaded in when packet is received it still works 
+                    //packets on loading are ketp
                     car.GetComponent<CustomisedSpawning>().Spawn(netAISpawn.m_Body,
                                                                  netAISpawn.m_Wheels,
                                                                  netAISpawn.m_Gun);
+                    //saves design for use in the results screeen
                     CarDesigns carDesigns = new CarDesigns();
                     carDesigns.m_carChoice = netAISpawn.m_Body;
                     carDesigns.m_wheelChoice = netAISpawn.m_Wheels;
@@ -944,12 +1029,14 @@ public class MultiplayerManager : MonoBehaviour
     void OnShootClient(NetMessage a_msg)
     {
         NetShoot netShoot = a_msg as NetShoot;
+        //switch on gun type
         switch (netShoot.m_Action)
         {
             case NetShoot.ACTION.EXPLOSIVE:
                 {
                     if (netShoot.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
                     {
+                        //sapwns the fired projectile 
                         Vector3 spawnPos = new Vector3(netShoot.m_XPos, netShoot.m_YPos, netShoot.m_ZPos);
                         Vector3 spawnDir = new Vector3(netShoot.m_XDir, netShoot.m_YDir, netShoot.m_ZDir);
                         GameObject projectile = Instantiate(m_explosivePrefab, spawnPos, Quaternion.identity);
@@ -959,6 +1046,7 @@ public class MultiplayerManager : MonoBehaviour
                 }
             case NetShoot.ACTION.HITSCAN:
                 {
+                    //hitscan weapon spawns display projectile
                     if (netShoot.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
                     {
                         Vector3 spawnPos = new Vector3(netShoot.m_XPos, netShoot.m_YPos, netShoot.m_ZPos);
@@ -967,6 +1055,7 @@ public class MultiplayerManager : MonoBehaviour
                         projectile.GetComponent<Rigidbody>().AddForce(spawnDir * netShoot.m_Force, ForceMode.Impulse);
                     }
 
+                    //if the hitscan has shot someone shoot them on this side
                     foreach (GameObject car in m_activeCars)
                     {
                         if (car.GetComponent<CarManagerScript>().m_playerNum == netShoot.m_Other)
@@ -978,6 +1067,7 @@ public class MultiplayerManager : MonoBehaviour
                 }
             case NetShoot.ACTION.MINE:
                 {
+                    //simulate spawning of mine prefab
                     if (netShoot.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
                     {
                         Vector3 spawnPos = new Vector3(netShoot.m_XPos, netShoot.m_YPos, netShoot.m_ZPos);
@@ -997,6 +1087,7 @@ public class MultiplayerManager : MonoBehaviour
         NetGum netGum = a_msg as NetGum;
         if (netGum.m_Player != PersistentInfo.Instance.m_currentPlayerNum)
         {
+            //spawn the gum on position given
             Vector3 pos = new Vector3(netGum.m_XPos, netGum.m_YPos, netGum.m_ZPos);
             Quaternion rot = new Quaternion(netGum.m_XRot, netGum.m_YRot, netGum.m_ZRot, netGum.m_WRot);
             GameObject gum = Instantiate(m_Gum, pos, rot);
@@ -1014,6 +1105,7 @@ public class MultiplayerManager : MonoBehaviour
                     {
                         if (car.GetComponent<CarManagerScript>().m_playerNum == netBoost.m_CarNum)
                         {
+                            //play the boost partical system
                             car.transform.Find("Boost").GetComponent<ParticleSystem>().Play();
                         }
                     }
@@ -1026,6 +1118,7 @@ public class MultiplayerManager : MonoBehaviour
                     {
                         if (car.GetComponent<CarManagerScript>().m_playerNum == netBoost.m_CarNum)
                         {
+                            //end the boost partical system - driving simulates slow down
                             car.transform.Find("Boost").GetComponent<ParticleSystem>().Stop();
                         }
                     }
@@ -1045,12 +1138,14 @@ public class MultiplayerManager : MonoBehaviour
                 {
                     foreach (GameObject car in m_activeCars)
                     {
+                        //when the player finishes send to all other instances of game
                         if (car.GetComponent<CarManagerScript>().m_playerNum == netFinished.m_Player)
                         {
                             car.GetComponent<WinCondition>().isFinished = true;
                             WinCondition[] winCondition = car.GetComponentsInChildren<WinCondition>();
                             if (winCondition.Length > 1)
                             {
+                                //if it has a gun say ended in that too
                                 winCondition[1].isFinished = true;
                             }
                         }
@@ -1060,31 +1155,38 @@ public class MultiplayerManager : MonoBehaviour
             case NetFinished.ACTION.ALL:
                 foreach (GameObject car in m_activeCars)
                 {
+                    //when finish is everyone
                     if (car.GetComponent<CarManagerScript>().m_playerNum - 1 < PersistentInfo.Instance.m_connectedNames.Count)
                     {
+                        //add the players name to list based on their position
                         PersistentInfo.Instance.m_winOrder[car.GetComponent<Position>().currentPosition - 1] = PersistentInfo.Instance.m_connectedNames[car.GetComponent<CarManagerScript>().m_playerNum - 1];
                         if (car.GetComponentInChildren<MergedShootingControllerScript>() != null)
                         {
+                            //if has gum check
                             GameObject subcar = car.GetComponentInChildren<MergedShootingControllerScript>().gameObject;
                             PersistentInfo.Instance.m_winOrder[subcar.GetComponent<Position>().currentPosition - 1] = PersistentInfo.Instance.m_connectedNames[subcar.GetComponent<MergedShootingControllerScript>().m_playerNum - 1];
                         }
                     }
                     else
                     {
+                        //if not a player name ai
                         PersistentInfo.Instance.m_winOrder[car.GetComponent<Position>().currentPosition - 1] = "AI";
                     }
 
                     if (car.GetComponent<CarManagerScript>().m_playerNum - 1 < PersistentInfo.Instance.m_carDesigns.Count)
                     {
+                        //if a player car set the design in the windesigns based on position
                         PersistentInfo.Instance.m_winDesigns[car.GetComponent<Position>().currentPosition - 1] = PersistentInfo.Instance.m_carDesigns[car.GetComponent<CarManagerScript>().m_playerNum - 1];
                         if (car.GetComponentInChildren<MergedShootingControllerScript>() != null)
                         {
+                            //if has gun add thats design too
                             GameObject subcar = car.GetComponentInChildren<MergedShootingControllerScript>().gameObject;
                             PersistentInfo.Instance.m_winDesigns[subcar.GetComponent<Position>().currentPosition - 1] = PersistentInfo.Instance.m_carDesigns[subcar.GetComponent<MergedShootingControllerScript>().m_playerNum - 1];
                         }
                     }
                     else
                     {
+                        //if its ai get it from ai designs
                         PersistentInfo.Instance.m_winDesigns[car.GetComponent<Position>().currentPosition - 1] = PersistentInfo.Instance.m_AIDesigns[(car.GetComponent<CarManagerScript>().m_playerNum - 1) - (PersistentInfo.Instance.m_carDesigns.Count)];
                     }
                 }
@@ -1108,6 +1210,8 @@ public class MultiplayerManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        //when this scene closed shutdown server and client but done clear its data
+        //unregister events to prevetn memory issues (static stuff)
         UnregisterEvenets();
         Client.Instance.Shutdown(false);
         if (PersistentInfo.Instance.m_currentPlayerNum == 1)
