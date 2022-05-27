@@ -102,4 +102,11 @@ public class MainMenuManager : MonoBehaviour
             }
         }
     }
+
+    public void QuitGame()
+    {
+        //Closes the game
+        Debug.Log("Game is closed.");
+        Application.Quit();
+    }
 }

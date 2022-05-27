@@ -9,8 +9,8 @@ public class MainMenuPreview : MonoBehaviour, ISelectHandler, IPointerEnterHandl
     private TextMeshProUGUI targetText;
     [SerializeField]
     private Image targetImage;
-    [SerializeField]
-    private string textUpdate;
+    [TextArea]
+    public string textUpdate;
     [SerializeField]
     private Sprite imageUpdate;
 
@@ -30,6 +30,10 @@ public class MainMenuPreview : MonoBehaviour, ISelectHandler, IPointerEnterHandl
     {
         //Updates the text and image when the player selects a menu option
         targetText.text = textUpdate;
-        targetImage.sprite = imageUpdate;
+
+        if (targetImage != null)
+        {
+            targetImage.sprite = imageUpdate;
+        }
     }
 }
