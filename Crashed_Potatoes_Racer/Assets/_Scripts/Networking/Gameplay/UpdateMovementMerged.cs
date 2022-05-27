@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿//////////////////////////////////////////////////
+/// Author: Iain Farlow                        ///
+/// Created: 17/03/2022                        ///
+/// Edited By:                                 ///
+/// Last Edited:                               ///
+//////////////////////////////////////////////////
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +20,7 @@ public class UpdateMovementMerged : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //send position data to other player for merged
         NetMerge netMerge = new NetMerge();
         netMerge.m_Player = GetComponent<CarManagerScript>().m_playerNum;
         netMerge.m_Action = NetMerge.ACTION.DRIVE;

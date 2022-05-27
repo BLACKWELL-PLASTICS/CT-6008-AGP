@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿//////////////////////////////////////////////////
+/// Created:                                   ///
+/// Author:                                    ///
+/// Edited By: Iain Farlow                     ///
+/// Last Edited: 24/02/2022                    ///
+//////////////////////////////////////////////////
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +20,7 @@ public class UpdateMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //send movement info every frame to other users
         NetMakeMove netMakeMove = new NetMakeMove();
         netMakeMove.m_Player = GetComponent<CarManagerScript>().m_playerNum;
         netMakeMove.m_XPos = gameObject.transform.position.x;

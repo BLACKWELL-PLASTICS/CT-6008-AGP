@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿//////////////////////////////////////////////////
+/// Author: Iain Farlow                        ///
+/// Created: 07/02/2022                        ///
+/// Edited By:                                 ///
+/// Last Edited:                               ///
+//////////////////////////////////////////////////
+
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Networking.Transport;
 using UnityEngine;
@@ -50,6 +57,8 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
+        //if txt is present user server address from that 
+        //(!!!!!!ADDED PURELY SO THAT IP CAN BE SET FOR LAN TESTING!!!!!!)
         Time.timeScale = 1;
         string path = Application.dataPath + "/../ServerAddress.txt";
         if (File.Exists(path))
@@ -68,6 +77,7 @@ public class MenuManager : MonoBehaviour
 
     private void Update()
     {
+        //if host simulate start countdown
         if (PersistentInfo.Instance.m_currentPlayerNum == 1 && !m_startCountdown)
         {
             if (PersistentInfo.Instance.m_readyCars == PersistentInfo.Instance.m_connectedUsers)
@@ -81,6 +91,7 @@ public class MenuManager : MonoBehaviour
             m_timer += Time.deltaTime;
             if (m_timer < m_startingTimer)
             {
+                //whilst counting ensure clients know current data
                 NetMenuCountdown netMenuCountdown = new NetMenuCountdown();
                 netMenuCountdown.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
                 netMenuCountdown.m_Action = NetMenuCountdown.ACTION.COUNTING;
@@ -89,6 +100,7 @@ public class MenuManager : MonoBehaviour
             }
             else
             {
+                //when done send clients go data
                 m_startCountdown = false;
                 NetMenuCountdown netMenuCountdown = new NetMenuCountdown();
                 netMenuCountdown.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
@@ -106,6 +118,8 @@ public class MenuManager : MonoBehaviour
 
     void RegisterEvenets()
     {
+        //register events to listen for them coming to manager
+
         //Server
         NetUtility.S_WELCOME += OnWelcomeServer;
         NetUtility.S_MENU_COUNTDOWN += OnMenuCountdownServer;
@@ -127,6 +141,8 @@ public class MenuManager : MonoBehaviour
     }
     void UnregisterEvenets()
     {
+        //unregister not neaded for server but for game is required to ensure memory is disposed of due to static function being used
+
         //Server
         NetUtility.S_WELCOME -= OnWelcomeServer;
         NetUtility.S_MENU_COUNTDOWN -= OnMenuCountdownServer;
@@ -155,6 +171,7 @@ public class MenuManager : MonoBehaviour
 
         for (int i = 0; i < PersistentInfo.Instance.m_connectedNames.Count; i++)
         {
+            //send others data to new client
             NetOtherConnected netOthersConnected = new NetOtherConnected();
             netOthersConnected.m_PlayerCount = PersistentInfo.Instance.m_connectedUsers;
             netOthersConnected.m_PlayerName = PersistentInfo.Instance.m_connectedNames[i];
@@ -164,10 +181,12 @@ public class MenuManager : MonoBehaviour
             Server.Instance.SendToClient(a_connection, netOthersConnected);
         }
 
+        //send clients data back
         netWelcome.m_PlayerCount = PersistentInfo.Instance.m_connectedUsers;
         netWelcome.m_PlayerNumber = PersistentInfo.Instance.m_connectedUsers;
         netWelcome.m_levelNum = PersistentInfo.Instance.m_levelNum;
         Server.Instance.SendToClient(a_connection, netWelcome);
+        //send new data to other clients
         NetOtherConnected netOtherConnected = new NetOtherConnected();
         netOtherConnected.m_PlayerCount = PersistentInfo.Instance.m_connectedUsers;
         netOtherConnected.m_PlayerName = netWelcome.m_PlayerName;
@@ -178,22 +197,25 @@ public class MenuManager : MonoBehaviour
     }
     void OnMenuCountdownServer(NetMessage a_msg, NetworkConnection a_connection)
     {
+        //send data to others
         NetMenuCountdown netMenuCountdown = a_msg as NetMenuCountdown;
         Server.Instance.Broadcast(netMenuCountdown);
     }
     void OnCustomiserUpdateServer(NetMessage a_msg, NetworkConnection a_connection)
     {
+        //procces chnage car design
         NetCustomiserUpdate netCustomiserUpdate = a_msg as NetCustomiserUpdate;
         PersistentInfo.Instance.m_carDesigns[netCustomiserUpdate.m_Player - 1].m_carChoice = netCustomiserUpdate.m_CarBody;
         PersistentInfo.Instance.m_carDesigns[netCustomiserUpdate.m_Player - 1].m_wheelChoice = netCustomiserUpdate.m_CarWheels;
         PersistentInfo.Instance.m_carDesigns[netCustomiserUpdate.m_Player - 1].m_gunChoice = netCustomiserUpdate.m_CarGun;
-
+        //send data to others
         Server.Instance.Broadcast(netCustomiserUpdate);
     }
 
     //Client
     void OnWelcomeClient(NetMessage a_msg)
     {
+        //procces recived data
         NetWelcome netWelcome = a_msg as NetWelcome;
         PersistentInfo.Instance.m_connectedUsers = netWelcome.m_PlayerCount;
         PersistentInfo.Instance.m_currentPlayerNum = netWelcome.m_PlayerNumber;
@@ -205,25 +227,29 @@ public class MenuManager : MonoBehaviour
         PersistentInfo.Instance.m_carDesigns.Add(carDesign);
         PersistentInfo.Instance.m_levelNum = netWelcome.m_levelNum;
 
-
+        //menu chnaged for singlepayer
         if (PersistentInfo.Instance.m_singleplayer)
         {
             m_mainMenuManager.SetActiveMenu(9);
         }
+        //menu chnage for multiplayer
         else
         {
+            //show connected values
             m_connectedPlayerText.GetComponent<UnityEngine.UI.Text>().text = $"You are player {PersistentInfo.Instance.m_currentPlayerNum} of {PersistentInfo.Instance.m_connectedUsers}";
             for (int i = 0; i < PersistentInfo.Instance.m_connectedNames.Count; i++)
             {
                 m_connectedOtherTexts[i].GetComponent<UnityEngine.UI.Text>().text = $"{PersistentInfo.Instance.m_connectedNames[i]}";
             }
 
+            //host ui setup
             if (PersistentInfo.Instance.m_currentPlayerNum == 1)
             {
                 m_connectedDisconnectButton.SetActive(false);
                 m_connectedCloseServerButton.SetActive(true);
                 m_connectedStartButton.SetActive(true);
             }
+            //non host ui setup
             else
             {
                 m_connectedDisconnectButton.SetActive(true);
@@ -247,6 +273,7 @@ public class MenuManager : MonoBehaviour
         //m_connectionFailedPanel.SetActive(true);
         //m_connectingPanel.SetActive(false);
 
+        //switch on reason to show player why they could not connect
         switch (reason)
         {
             case NetUnwelcome.REASON.FULL:
@@ -263,6 +290,7 @@ public class MenuManager : MonoBehaviour
 
     void OnOtherConnectedClient(NetMessage a_msg)
     {
+        //procces new data 
         NetOtherConnected netOtherConnected = a_msg as NetOtherConnected;
         PersistentInfo.Instance.m_connectedUsers = netOtherConnected.m_PlayerCount;
         PersistentInfo.Instance.m_connectedNames.Add(netOtherConnected.m_PlayerName);
@@ -272,6 +300,7 @@ public class MenuManager : MonoBehaviour
         carDesign.m_gunChoice = netOtherConnected.m_CarGun;
         PersistentInfo.Instance.m_carDesigns.Add(carDesign);
 
+        //chanage ui to show change
         m_connectedPlayerText.GetComponent<UnityEngine.UI.Text>().text = $"You are player {PersistentInfo.Instance.m_currentPlayerNum} of {PersistentInfo.Instance.m_connectedUsers}";
         for (int i = 0; i < PersistentInfo.Instance.m_connectedNames.Count; i++)
         {
@@ -280,6 +309,7 @@ public class MenuManager : MonoBehaviour
     }
     void OnOtherDisconnectedClient(NetMessage a_msg)
     {
+        //remove player number stuff
         NetOtherDisconnected netOtherDisconnected = a_msg as NetOtherDisconnected;
         PersistentInfo.Instance.m_connectedUsers--;
         if (PersistentInfo.Instance.m_currentPlayerNum > (netOtherDisconnected.m_PlayerNum + 1))
@@ -289,6 +319,7 @@ public class MenuManager : MonoBehaviour
         PersistentInfo.Instance.m_connectedNames.RemoveAt(netOtherDisconnected.m_PlayerNum);
         PersistentInfo.Instance.m_carDesigns.RemoveAt(netOtherDisconnected.m_PlayerNum);
 
+        //update ui
         m_connectedPlayerText.GetComponent<UnityEngine.UI.Text>().text = $"You are player {PersistentInfo.Instance.m_currentPlayerNum} of {PersistentInfo.Instance.m_connectedUsers}";
         for (int i = 0; i < PersistentInfo.Instance.m_connectedNames.Count; i++)
         {
@@ -309,13 +340,16 @@ public class MenuManager : MonoBehaviour
         NetMenuCountdown netMenuCountdown = a_msg as NetMenuCountdown;
         switch (netMenuCountdown.m_Action)
         {
+            //get ready data
             case NetMenuCountdown.ACTION.READY:
                 PersistentInfo.Instance.m_readyCars++;
                 break;
+                //unready (remove from ready count)
             case NetMenuCountdown.ACTION.UNREADY:
                 PersistentInfo.Instance.m_readyCars--;
                 break;
             case NetMenuCountdown.ACTION.COUNTING:
+                //based currtent count from host set ui
                 if (netMenuCountdown.m_Count < 1.0f)
                 {
                     for (int i = 0; i < m_startUI.Length; i++)
@@ -472,6 +506,7 @@ public class MenuManager : MonoBehaviour
                 }
                 break;
             case NetMenuCountdown.ACTION.GO:
+                //when host send go message start game
                 for (int i = 0; i < m_startUI.Length; i++)
                 {
                     if (i != 10)
@@ -496,13 +531,14 @@ public class MenuManager : MonoBehaviour
     }
     void OnCustomiserUpdateClient(NetMessage a_msg)
     {
+        //set clients data on this side
         NetCustomiserUpdate netCustomiserUpdateIn = a_msg as NetCustomiserUpdate;
         PersistentInfo.Instance.m_carDesigns[netCustomiserUpdateIn.m_Player - 1].m_carChoice = netCustomiserUpdateIn.m_CarBody;
         PersistentInfo.Instance.m_carDesigns[netCustomiserUpdateIn.m_Player - 1].m_wheelChoice = netCustomiserUpdateIn.m_CarWheels;
         PersistentInfo.Instance.m_carDesigns[netCustomiserUpdateIn.m_Player - 1].m_gunChoice = netCustomiserUpdateIn.m_CarGun;
     }
 
-    //Menu Client
+    //Menu Client - proccess server messages that come from the menu server (dedicated server)
     void OnServerStart(ServerMessage a_msg)
     {
         ServerHostStart serverStart = a_msg as ServerHostStart;

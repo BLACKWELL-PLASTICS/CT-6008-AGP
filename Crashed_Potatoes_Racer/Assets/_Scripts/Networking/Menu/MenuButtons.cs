@@ -1,4 +1,12 @@
-﻿using System.Collections;
+﻿//      !!DEPRICATED!!      //
+//////////////////////////////////////////////////
+/// Author: Iain Farlow                        ///
+/// Created: 07/02/2022                        ///
+/// Edited By: Henry Northway                  ///
+/// Last Edited:                               ///
+//////////////////////////////////////////////////
+
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -62,6 +70,7 @@ public class MenuButtons : MonoBehaviour
     }
     public void OnNameInputField(GameObject a_inputField)
     {
+        //name set to persitent info for storage
         string text = a_inputField.GetComponent<UnityEngine.UI.Text>().text;
         if (text !=  null && text.Length != 0)
         {
@@ -84,12 +93,15 @@ public class MenuButtons : MonoBehaviour
     }
     public void OnHostButton(GameObject a_inputField)
     {
+        //send server data to menu server
         ServerHostStart serverHostStart = new ServerHostStart();
         serverHostStart.m_ServerName = a_inputField.GetComponent<UnityEngine.UI.Text>().text;
         serverHostStart.m_ServerIP = GetLocalIPv4();
         MenuClient.Instance.SendToServer(serverHostStart);
+        //initliser server and client
         Server.Instance.Initlialise(8008);
         Client.Instance.m_clientName = PersistentInfo.Instance.m_currentPlayerName;
+        //connect to self
         Client.Instance.Initlialise("127.0.0.1", 8008);
         m_connectingPanel.SetActive(true);
         m_onlineMenuPanel.SetActive(false);
@@ -97,6 +109,7 @@ public class MenuButtons : MonoBehaviour
     }
     public void OnConnectButton(GameObject a_inputField)
     {
+        //connec to enter direct address
         Client.Instance.m_clientName = PersistentInfo.Instance.m_currentPlayerName;
         Client.Instance.Initlialise(a_inputField.GetComponent<UnityEngine.UI.Text>().text, 8008);
         m_connectingPanel.SetActive(true);
@@ -149,9 +162,11 @@ public class MenuButtons : MonoBehaviour
     }
     public void OnCloseServerButton()
     {
+        //send server end message
         ServerHostEnd serverHostEnd = new ServerHostEnd();
         serverHostEnd.m_ServerIP = GetLocalIPv4();
         MenuClient.Instance.SendToServer(serverHostEnd);
+        //shutdown server and client
         Client.Instance.Shutdown();
         Server.Instance.Shutdown();
         foreach (GameObject text in m_connectedOtherTexts)
@@ -168,6 +183,7 @@ public class MenuButtons : MonoBehaviour
     }
     public void OnReadyButton()
     {
+        //ready toggle - when all are ready gmae countdown will trigger
         if (!m_isReady)
         {
             m_readyText.GetComponent<TextMeshPro>().text = "Unready";
@@ -187,12 +203,14 @@ public class MenuButtons : MonoBehaviour
         m_isReady = !m_isReady;
     }
 
+    //get ipv4 address used to show host address
     string GetLocalIPv4()
     {
         return Dns.GetHostEntry(Dns.GetHostName()).AddressList.First(f => f.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork).ToString();
     }
     private void OnDestroy()
     {
+        //closed server on close (prevents server being listed when game closes)
         if (PersistentInfo.Instance.m_currentPlayerNum == 1)
         {
             ServerHostEnd serverHostEnd = new ServerHostEnd();
