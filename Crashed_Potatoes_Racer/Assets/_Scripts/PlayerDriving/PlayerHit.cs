@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿//////////////////////////////////////////////////
+/// Author: Iain Farlow                        ///
+/// Created: 07/05/2022                        ///
+/// Edited By: Anna Morgan                     ///
+/// Last Edited:                               ///
+//////////////////////////////////////////////////
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,10 +24,12 @@ public class PlayerHit : MonoBehaviour
         }
         if (GetComponent<AIPlayer>() != null)
         {
+            //decresse speed for AI
             GetComponent<AIPlayer>().decreaseBoostCheck = true;
         }
         if (!m_hit)
         {
+            //rnd for direction of spin
             int rnd = Random.Range(0, 2);
             if (rnd == 0)
             {
@@ -38,11 +47,13 @@ public class PlayerHit : MonoBehaviour
     {
         if (m_aculumlatedRoation > 360.0f)
         {
+            //reset
             m_aculumlatedRoation = 0.0f;
             m_hit = false;
         }
         if (m_hit)
         {
+            //rotate player for spin out 
             if (m_clockwise)
             {
                 transform.RotateAround(transform.position, Vector3.up, m_rotAngle * Time.deltaTime);

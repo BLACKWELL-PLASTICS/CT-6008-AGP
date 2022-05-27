@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿//////////////////////////////////////////////////
+/// Author: Iain Farlow                        ///
+/// Created: 22/03/2022                        ///
+/// Edited By:                                 ///
+/// Last Edited:                               ///
+//////////////////////////////////////////////////
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,6 +36,7 @@ public class MergedTimer : MonoBehaviour
         }
         else
         {
+            //send demerge data based on type of car player is using
             if (m_drivingVarient)
             {
                 NetMerge netMerge = new NetMerge();
@@ -71,6 +79,7 @@ public class MergedTimer : MonoBehaviour
                 //netMerge.m_lapNum = GetComponent<WinCondition>().checkpointNumber;
                 Client.Instance.SendToServer(netMerge);
             }
+            //reset timer bar
             m_timerBar.GetComponent<UnityEngine.UI.Slider>().value = 1;
             m_timerBar.SetActive(false);
             Destroy(this);

@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿//////////////////////////////////////////////////
+/// Author: Iain Farlow                        ///
+/// Created: 26/01/2022                        ///
+/// Edited By:                                 ///
+/// Last Edited:                               ///
+//////////////////////////////////////////////////
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using XInputDotNetPure;
@@ -40,6 +47,7 @@ public class MergedShootingControllerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //prevent infinate firing
         if (m_shootTimer < m_shootTimerMax && !m_canFire)
         {
             m_shootTimer += Time.deltaTime;
@@ -110,8 +118,10 @@ public class MergedShootingControllerScript : MonoBehaviour
             //    Fire();
             //}
 
+            //check roations to allow for capping
             if (GetPartToRotate(this.gameObject, 2).transform.localEulerAngles.y < 180.0f)
             {
+                //cap verticals
                 if (GetPartToRotate(this.gameObject, 2).transform.localEulerAngles.y + verticalRotation < m_verticalCap)
                 {
                     GetPartToRotate(this.gameObject, 2).transform.Rotate(0, verticalRotation, 0);
@@ -119,6 +129,7 @@ public class MergedShootingControllerScript : MonoBehaviour
             }
             else
             {
+                //cap verticals
                 if (GetPartToRotate(this.gameObject, 2).transform.localEulerAngles.y - 360 + verticalRotation > -m_verticalCap)
                 {
                     GetPartToRotate(this.gameObject, 2).transform.Rotate(0, verticalRotation, 0);
@@ -126,6 +137,7 @@ public class MergedShootingControllerScript : MonoBehaviour
             }
             if (GetPartToRotate(this.gameObject, 1).transform.localEulerAngles.z < 180.0f)
             {
+                //cap horrizontal
                 if (GetPartToRotate(this.gameObject, 1).transform.localEulerAngles.z + horizontalRotation < m_horizontalCap)
                 {
                     GetPartToRotate(this.gameObject, 1).transform.Rotate(0, 0, horizontalRotation);
@@ -133,12 +145,14 @@ public class MergedShootingControllerScript : MonoBehaviour
             }
             else
             {
+                //cap horrizontal
                 if (GetPartToRotate(this.gameObject, 1).transform.localEulerAngles.z - 360 + horizontalRotation > -m_horizontalCap)
                 {
                     GetPartToRotate(this.gameObject, 1).transform.Rotate(0, 0, horizontalRotation);
                 }
             }
 
+            //send rotational data to the other clients for siluation
             NetMerge netMerge = new NetMerge();
             netMerge.m_Player = m_playerNum;
             netMerge.m_Action = NetMerge.ACTION.SHOOT;
@@ -158,6 +172,7 @@ public class MergedShootingControllerScript : MonoBehaviour
         }
     }
 
+    //loop through limbs of the gun to get correct part to rotate
     GameObject GetPartToRotate(GameObject a_base, int a_index)
     {
         GameObject currentPart = a_base;
@@ -174,10 +189,12 @@ public class MergedShootingControllerScript : MonoBehaviour
     {
         switch (PersistentInfo.Instance.m_carDesign.m_gunChoice)
         {
+            //explosive varient
             case 0:
                 {
                     Vector3 fireAngle = (m_gun.transform.right + (m_gun.transform.forward * 0.5f));
 
+                    //send over fire data
                     NetShoot netShoot = new NetShoot();
                     netShoot.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
                     netShoot.m_Action = NetShoot.ACTION.EXPLOSIVE;
@@ -190,18 +207,21 @@ public class MergedShootingControllerScript : MonoBehaviour
                     netShoot.m_YDir = fireAngle.y;
                     netShoot.m_ZDir = fireAngle.z;
                     Client.Instance.SendToServer(netShoot);
-
+                    //instanticate and apply force
                     projectile = Instantiate(m_explosivePrefab, m_gun.transform.position, Quaternion.identity);
                     projectile.GetComponent<Rigidbody>().AddForce(fireAngle * m_arcForce, ForceMode.Impulse);
                     break;
                 }
+            // hitscan gun
             case 1:
                 {
+                    //raycast forward to see if hits player
                     RaycastHit hit;
                     if (Physics.Raycast(m_gun.transform.position, m_gun.transform.right, out hit, 100000.0f, 11, QueryTriggerInteraction.Collide))
                     {
                         if (hit.transform.gameObject.tag == "Player")
                         {
+                            //send over hit data to cause player to spin
                             NetShoot netShoot = new NetShoot();
                             netShoot.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
                             netShoot.m_Action = NetShoot.ACTION.HITSCAN;
@@ -217,6 +237,7 @@ public class MergedShootingControllerScript : MonoBehaviour
                         }
                         else
                         {
+                            //if missed still send data but without other to have hit
                             NetShoot netShoot = new NetShoot();
                             netShoot.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
                             netShoot.m_Action = NetShoot.ACTION.HITSCAN;
@@ -236,10 +257,11 @@ public class MergedShootingControllerScript : MonoBehaviour
                     projectile.GetComponent<Rigidbody>().AddForce(m_gun.transform.right * m_fireForce, ForceMode.Impulse);
                     break;
                 }
+            //mine 
             case 2:
                 {
                     Vector3 fireAngle = (m_gun.transform.right + (m_gun.transform.forward * 0.5f));
-
+                    //send fire data
                     NetShoot netShoot = new NetShoot();
                     netShoot.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
                     netShoot.m_Action = NetShoot.ACTION.MINE;
@@ -252,7 +274,7 @@ public class MergedShootingControllerScript : MonoBehaviour
                     netShoot.m_YDir = fireAngle.y;
                     netShoot.m_ZDir = fireAngle.z;
                     Client.Instance.SendToServer(netShoot);
-
+                    //spawn and apply force
                     projectile = Instantiate(m_minePrefab, m_gun.transform.position, Quaternion.identity);
                     projectile.GetComponent<Rigidbody>().AddForce(fireAngle * m_arcForce, ForceMode.Impulse);
                     break;

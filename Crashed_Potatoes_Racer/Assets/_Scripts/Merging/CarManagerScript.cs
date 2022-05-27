@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿//////////////////////////////////////////////////
+/// Author: Iain Farlow                        ///
+/// Created: 26/01/2022                        ///
+/// Edited By:                                 ///
+/// Last Edited:                               ///
+//////////////////////////////////////////////////
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +30,7 @@ public class CarManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //get multiplayer manager
         if (m_gameManagerHolder != null)
         {
             m_mm = m_gameManagerHolder.GetComponent<MultiplayerManager>();
@@ -30,16 +38,11 @@ public class CarManagerScript : MonoBehaviour
         m_mergeOn = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void ToggleMerging(bool m_sendToServer)
     {
         m_mergeOn = !m_mergeOn;
         GameObject mergeUI = null;
+        //get ui element to show merging
         for(int i = 0; i < transform.childCount; i++)
         {
             if (transform.GetChild(i).tag == "MergeUI")
@@ -50,6 +53,7 @@ public class CarManagerScript : MonoBehaviour
         if (m_mergeOn)
         {
             mergeUI.GetComponent<Renderer>().material = m_canMergeMaterial;
+            //send data that option to emrge is available  
             if (m_sendToServer)
             {
                 NetMerge netMerge = new NetMerge();
@@ -69,6 +73,7 @@ public class CarManagerScript : MonoBehaviour
         else
         {
             mergeUI.GetComponent<Renderer>().material = m_normalMaterial;
+            //send data that option to emrge is not available  
             if (m_sendToServer)
             {
                 NetMerge netMerge = new NetMerge();
@@ -88,6 +93,7 @@ public class CarManagerScript : MonoBehaviour
     }
     public void EnteredMerge(GameObject a_other)
     {
+        //merge the cars
         m_mm.MergeCars(this.gameObject, a_other);
     }
 }

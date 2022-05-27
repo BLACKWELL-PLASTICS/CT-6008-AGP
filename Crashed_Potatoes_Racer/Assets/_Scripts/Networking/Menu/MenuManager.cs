@@ -51,7 +51,7 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
-        string path = Application.dataPath + "/../ServerAdress.txt";
+        string path = Application.dataPath + "/../ServerAddress.txt";
         if (File.Exists(path))
         {
             StreamReader stream = new StreamReader(path);

@@ -1,4 +1,11 @@
-﻿using System;
+﻿//////////////////////////////////////////////////
+/// Author: Iain Farlow                        ///
+/// Created: 03/02/2022                        ///
+/// Edited By:                                 ///
+/// Last Edited: 01/03/2022                    ///
+//////////////////////////////////////////////////
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Networking.Transport;
@@ -15,11 +22,14 @@ public static class ServerUtility
 {
     public static void OnData(DataStreamReader a_stream, NetworkConnection a_connection, Server a_server = null)
     {
+        //read data
         ServerMessage msg = null;
         OpCode opCode = (OpCode)a_stream.ReadByte();
+        //switch on opCode - this defines what each packet does
         switch (opCode)
         {
             case OpCode.KEEP_ALIVE:
+                //create server message - with relevant data 
                 msg = new ServerKeepAlive(a_stream);
                 break;
             case OpCode.SERVER_START:
@@ -36,6 +46,7 @@ public static class ServerUtility
                 break;
         }
 
+        //to check where is received if needed 
         if (a_server != null)
         {
             msg.RevievedOnServer(a_connection);

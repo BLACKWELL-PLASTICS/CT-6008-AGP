@@ -1,6 +1,6 @@
 ﻿//////////////////////////////////////////////////
-/// Created:                                   ///
-/// Author:                                    ///
+/// Author: Iain Farlow                        ///
+/// Created: 17/03/2022                        ///
 /// Edited By: Henry Northway                  ///
 /// Last Edited: 04/05/2022                    ///
 //////////////////////////////////////////////////
@@ -117,6 +117,7 @@ public class GameMenuManager : MonoBehaviour
             }
         }
 
+        //ensure graphics raycast is on for ui elemets 
         foreach (var raycaster in Transform.FindObjectsOfType<GraphicRaycaster>())
         {
             raycaster.enabled = true;

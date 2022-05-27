@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿//////////////////////////////////////////////////
+/// Author: Iain Farlow                        ///
+/// Created: 24/05/2022                        ///
+/// Edited By: Henry Northway                  ///
+/// Last Edited:                               ///
+//////////////////////////////////////////////////
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -19,17 +26,28 @@ public class ResultsManager : MonoBehaviour
 
     void Start()
     {
-        //Updates the car models for top-three
-        for (int i = 0; i < m_cars.Length; i++)
-        {
-            m_cars[i].GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_winDesigns[i].m_carChoice, PersistentInfo.Instance.m_winDesigns[i].m_wheelChoice, PersistentInfo.Instance.m_winDesigns[i].m_gunChoice);
-        }
-
         //Updates the name and icons of each player strip
         for (int i = 0; i < PersistentInfo.Instance.m_winOrder.Length; i++)
         {
-            m_nameFields[i].text = PersistentInfo.Instance.m_winOrder[i];
-            m_iconFields[i].sprite = UpdateIcon(PersistentInfo.Instance.m_winDesigns[i].m_carChoice);
+            //if data exists assign it (there is currently a bug with the player position script that causing an issue with here)
+            if (PersistentInfo.Instance.m_winOrder[i] != null)
+            {
+                m_nameFields[i].text = PersistentInfo.Instance.m_winOrder[i];
+            }
+        }
+
+        for (int i = 0; i < PersistentInfo.Instance.m_winDesigns.Length; i++)
+        {
+            //if data exists assign it (there is currently a bug with the player position script that causing an issue with here)
+            if (PersistentInfo.Instance.m_winDesigns[i] != null)
+            {
+                //Updates the car models for top-three
+                if (i < m_cars.Length)
+                {
+                    m_cars[i].GetComponent<CustomisedSpawning>().Spawn(PersistentInfo.Instance.m_winDesigns[i].m_carChoice, PersistentInfo.Instance.m_winDesigns[i].m_wheelChoice, PersistentInfo.Instance.m_winDesigns[i].m_gunChoice);
+                }
+                m_iconFields[i].sprite = UpdateIcon(PersistentInfo.Instance.m_winDesigns[i].m_carChoice);
+            }
         }
     }
 

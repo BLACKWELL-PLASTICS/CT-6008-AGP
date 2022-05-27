@@ -20,6 +20,7 @@ public class BirdPoop : MonoBehaviour
             timer -= Time.deltaTime;
             if (timer < 0.0f)
             {
+                //turn on/ off bird poop
                 ToogleActive();
             }
         }
@@ -28,6 +29,7 @@ public class BirdPoop : MonoBehaviour
     bool isActive = false;
     public void ToogleActive()
     {
+        //set if active
         isActive = !isActive;
         this.gameObject.SetActive(isActive);
         timer = 3.5f;

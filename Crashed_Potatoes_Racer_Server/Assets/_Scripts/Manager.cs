@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿//////////////////////////////////////////////////
+/// Author: Iain Farlow                        ///
+/// Created: 03/02/2022                        ///
+/// Edited By:                                 ///
+/// Last Edited: 01/03/2022                    ///
+//////////////////////////////////////////////////
+
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Networking.Transport;
 using UnityEngine;
@@ -9,6 +16,7 @@ public class Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //initlise server
         Server.Instance.Initlialise(8009);
     }
 
@@ -19,18 +27,23 @@ public class Manager : MonoBehaviour
 
     void RegisterEvenets()
     {
+        //register events to listen for them coming to manager
         ServerUtility.S_SERVER_START += OnServerStart;
         ServerUtility.S_SERVER_END += OnServerEnd;
         ServerUtility.S_LIST_REQUEST += OnListRequest;
     }
     void UnregisterEvenets()
     {
-
+        //unregister not neaded for server but for game is required to ensure memory is disposed of due to static function being used
+        ServerUtility.S_SERVER_START -= OnServerStart;
+        ServerUtility.S_SERVER_END -= OnServerEnd;
+        ServerUtility.S_LIST_REQUEST -= OnListRequest;
     }
 
     //Menu Server
     void OnServerStart(ServerMessage a_msg, NetworkConnection a_connection)
     {
+        //send over data to all clients
         ServerHostStart serverStart = a_msg as ServerHostStart;
         ServerInfo serverInfo = new ServerInfo();
         serverInfo.m_IP = serverStart.m_ServerIP;
@@ -41,6 +54,7 @@ public class Manager : MonoBehaviour
     }
     void OnServerEnd(ServerMessage a_msg, NetworkConnection a_connection)
     {
+        //when server is closed go through list of server and remove it
         ServerHostEnd serverEnd = a_msg as ServerHostEnd;
         for (int i = 0; i < m_servers.Count; i++)
         {
@@ -53,6 +67,7 @@ public class Manager : MonoBehaviour
     }
     void OnListRequest(ServerMessage a_msg, NetworkConnection a_connection)
     {
+        //dispatch information to clients who has requested the server list
         foreach (ServerInfo serverInfo in m_servers)
         {
             ServerListRequest serverListRequest = new ServerListRequest();
@@ -62,7 +77,12 @@ public class Manager : MonoBehaviour
             Server.Instance.SendToClient(a_connection, serverListRequest);
         }
     }
+    private void OnDestroy()
+    {
+        UnregisterEvenets();
+    }
 }
+
 
 public class ServerInfo
 {

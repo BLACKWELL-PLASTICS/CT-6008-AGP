@@ -83,7 +83,6 @@ public class SeedPacketScript : MonoBehaviour {
         isActive = false;
 
         if (other.gameObject.name == "Car_Reg(Clone)") { // if the car is the player
-            itemAnim.SetBool("itemPickup", true);
             //Added by Iain
             //Packet start packet
             NetPickedUp netPickedUp = new NetPickedUp();
@@ -93,6 +92,9 @@ public class SeedPacketScript : MonoBehaviour {
             Client.Instance.SendToServer(netPickedUp);
             //Added by Iain ~
             // Run animation then give powerup
+            itemAnim.SetBool("itemPickup", true);
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
+            gameObject.GetComponent<MeshCollider>().enabled = false;
             StartCoroutine(AnimationDuration(other));
         } else { // if the car isnt the player
             // Give Powerup
@@ -113,8 +115,6 @@ public class SeedPacketScript : MonoBehaviour {
         {
             other.gameObject.GetComponent<InventoryScript>().AddPowerup(choice);
         }
-        gameObject.GetComponent<MeshRenderer>().enabled = false;
-        gameObject.GetComponent<MeshCollider>().enabled = false;
     }
 
     //Added by Iain
