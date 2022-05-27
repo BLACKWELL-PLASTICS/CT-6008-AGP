@@ -1,4 +1,11 @@
-﻿using Unity.Networking.Transport;
+﻿//////////////////////////////////////////////////
+/// Author: Iain Farlow                        ///
+/// Created:                                   ///
+/// Edited By:                                 ///
+/// Last Edited:                               ///
+//////////////////////////////////////////////////
+
+using Unity.Networking.Transport;
 using UnityEngine;
 
 public class NetBirdPoop : NetMessage

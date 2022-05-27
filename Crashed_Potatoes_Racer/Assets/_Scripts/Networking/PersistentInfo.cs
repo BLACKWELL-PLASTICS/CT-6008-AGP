@@ -1,4 +1,11 @@
-﻿using System;
+﻿//////////////////////////////////////////////////
+/// Author: Iain Farlow                        ///
+/// Created:                                   ///
+/// Edited By:                                 ///
+/// Last Edited:                               ///
+//////////////////////////////////////////////////
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +33,7 @@ class PersistentInfo : MonoBehaviour
     {
         if (Instance == null)
         {
+            //on awake set base values
             Instance = this;
             m_singleplayer = false;
             m_connectedNames = new List<string>();
@@ -43,6 +51,7 @@ class PersistentInfo : MonoBehaviour
     }
     public void Clear()
     {
+        //clear if needed to reset
         m_singleplayer = false;
         m_connectedUsers = 0;
         m_connectedNames.Clear();

@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿//////////////////////////////////////////////////
+/// Author: Iain Farlow                        ///
+/// Created:                                   ///
+/// Edited By:                                 ///
+/// Last Edited:                               ///
+//////////////////////////////////////////////////
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +19,7 @@ public class DontDestroyOnLoad : MonoBehaviour
     {
         m_DDOLCount = FindObjectsOfType<DontDestroyOnLoad>().Length;
 
+        //ensure there is only one instance of this
         if (m_DDOLCount == 1)
         {
             m_firstDDOL = true;
@@ -20,6 +28,7 @@ public class DontDestroyOnLoad : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        //dont destroy between scenes
         DontDestroyOnLoad(this.gameObject);
     }
 }

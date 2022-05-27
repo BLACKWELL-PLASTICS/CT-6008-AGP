@@ -1,4 +1,11 @@
-﻿using System;
+﻿//////////////////////////////////////////////////
+/// Author: Iain Farlow                        ///
+/// Created: 07/02/2022                        ///
+/// Edited By:                                 ///
+/// Last Edited:                               ///
+//////////////////////////////////////////////////
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Networking.Transport;
@@ -6,6 +13,7 @@ using UnityEngine;
 
 public enum ServerOpCode
 {
+    //messages op cdoes used to identify them
     KEEP_ALIVE = 1,
     WELCOME = 2,
     UNWELCOME = 3,
@@ -36,6 +44,7 @@ public static class NetUtility
         ServerOpCode opCode = (ServerOpCode)a_stream.ReadByte();
         switch (opCode)
         {
+            //swtich on op code to allow for packets to be proccessed 
             case ServerOpCode.KEEP_ALIVE:
                 msg = new NetKeepAlive(a_stream);
                 break;
@@ -104,6 +113,7 @@ public static class NetUtility
                 break;
         }
 
+        //check whether received on server or client
         if (a_server != null)
         {
             msg.RevievedOnServer(a_connection);

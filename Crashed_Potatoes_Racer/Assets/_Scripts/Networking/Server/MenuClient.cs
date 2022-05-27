@@ -1,4 +1,11 @@
-﻿using System;
+﻿//////////////////////////////////////////////////
+/// Created: 07/02/2022                        ///
+/// Author: Iain Farlow                        ///
+/// Edited By:                                 ///
+/// Last Edited: 14/02/2022                    ///
+//////////////////////////////////////////////////
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Networking.Transport;
@@ -12,6 +19,7 @@ public class MenuClient : MonoBehaviour
     public bool m_IsHost { get; set; }
     void Awake()
     {
+        //set instance
         Instance = this;
     }
 
@@ -23,7 +31,9 @@ public class MenuClient : MonoBehaviour
 
     public void Initlialise(string a_ip, ushort a_port)
     {
+        //create driver
         m_driver = NetworkDriver.Create();
+        //set ip
         NetworkEndPoint endPoint = NetworkEndPoint.Parse(a_ip, a_port);
 
         m_connection = m_driver.Connect(endPoint);
@@ -31,7 +41,7 @@ public class MenuClient : MonoBehaviour
         Debug.Log("Attempting to connect to Menu Server at: " + endPoint.Address);
 
         m_isActive = true;
-
+        //register events
         RegisterToEvent();
     }
     public void Shutdown()
@@ -48,6 +58,7 @@ public class MenuClient : MonoBehaviour
     {
         if (m_IsHost)
         {
+            //if hosting send close server info
             ServerHostEnd serverHostEnd = new ServerHostEnd();
             serverHostEnd.m_ServerIP = GetLocalIPv4();
             MenuClient.Instance.SendToServer(serverHostEnd);
@@ -61,9 +72,9 @@ public class MenuClient : MonoBehaviour
         {
             return;
         }
-
+        //keep alive sends message to ensure that there is not a timeout on the server
         m_driver.ScheduleUpdate().Complete();
-
+        //ensure the client is still okay
         CheckAlive();
 
         UpdateMessagePump();
@@ -72,6 +83,7 @@ public class MenuClient : MonoBehaviour
     {
         if (!m_connection.IsCreated && m_isActive)
         {
+            //if it looses connection
             Debug.Log("Lost connection to server");
             m_connectionDropped?.Invoke();
             Shutdown();
@@ -81,20 +93,24 @@ public class MenuClient : MonoBehaviour
     {
         DataStreamReader stream;
         NetworkEvent.Type cmd;
+        //if connection defaults
         while ((cmd = m_connection.PopEvent(m_driver, out stream)) != NetworkEvent.Type.Empty)
         {
             if (cmd == NetworkEvent.Type.Connect)
             {
+                //confirm connection
                 ServerListRequest serverListRequest = new ServerListRequest();
                 SendToServer(serverListRequest);
                 Debug.Log("Connected to Menu Server");
             }
             else if (cmd == NetworkEvent.Type.Data)
             {
+                //proccess data
                 ServerUtility.OnData(stream, default(NetworkConnection));
             }
             else if (cmd == NetworkEvent.Type.Disconnect)
             {
+                //disconnect
                 Debug.Log("Client got disconnected from server");
                 m_connection = default(NetworkConnection);
                 m_connectionDropped?.Invoke();
@@ -110,6 +126,7 @@ public class MenuClient : MonoBehaviour
         a_msg.Serialize(ref writer);
         m_driver.EndSend(writer);
     }
+    //keep aqlives are to ensure drop doesnt happen
     private void RegisterToEvent()
     {
         ServerUtility.C_KEEP_ALIVE += OnKeepAlive;
@@ -122,7 +139,7 @@ public class MenuClient : MonoBehaviour
     {
         SendToServer(a_msg);
     }
-
+    //gets ip
     string GetLocalIPv4()
     {
         return Dns.GetHostEntry(Dns.GetHostName()).AddressList.First(f => f.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork).ToString();

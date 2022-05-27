@@ -32,6 +32,7 @@ public class ServerButton : MonoBehaviour
 
     public void SetUI()
     {
+        //sets relevent areas of the server button
         m_nameTextField.GetComponent<Text>().text = m_nameText;
         m_passwordProtectedTextField.GetComponent<Text>().text = m_passwordProtectedText;
         m_pingTextField.GetComponent<Text>().text = m_pingText;
@@ -41,11 +42,13 @@ public class ServerButton : MonoBehaviour
 
     public void OnServerConnect()
     {
+        //onclick
         Transform thisParent = gameObject.transform.parent;
         while (thisParent != null)
         {
             if (thisParent.GetComponent<MenuManager>() != null)
             {
+                //connect to server
                 thisParent.GetComponent<MenuManager>().ConnectToServer(m_adress);
                 thisParent = null;
             }
