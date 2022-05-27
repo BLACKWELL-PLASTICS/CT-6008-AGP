@@ -12,7 +12,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     private Button[] activeButton;
     [SerializeField]
-    private Button[] backButton;
+    public Button[] backButton;
 
     private int activeMenu = 0;
     private Button currentBackButton;

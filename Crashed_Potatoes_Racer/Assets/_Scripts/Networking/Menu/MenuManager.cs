@@ -1,7 +1,7 @@
 ﻿//////////////////////////////////////////////////
 /// Author: Iain Farlow                        ///
 /// Created: 07/02/2022                        ///
-/// Edited By:                                 ///
+/// Edited By: Henry Northway                  ///
 /// Last Edited:                               ///
 //////////////////////////////////////////////////
 
@@ -245,16 +245,20 @@ public class MenuManager : MonoBehaviour
             //host ui setup
             if (PersistentInfo.Instance.m_currentPlayerNum == 1)
             {
+                //toggle what back button is active - close server or dc
                 m_connectedDisconnectButton.SetActive(false);
                 m_connectedCloseServerButton.SetActive(true);
-                m_connectedStartButton.SetActive(true);
+                m_mainMenuManager.backButton[7] = m_connectedCloseServerButton.GetComponent<UnityEngine.UI.Button>();
+                //m_connectedStartButton.SetActive(true);
+                
             }
             //non host ui setup
             else
             {
                 m_connectedDisconnectButton.SetActive(true);
                 m_connectedCloseServerButton.SetActive(false);
-                m_connectedStartButton.SetActive(false);
+                m_mainMenuManager.backButton[7] = m_connectedDisconnectButton.GetComponent<UnityEngine.UI.Button>();
+                //m_connectedStartButton.SetActive(false);
             }
 
             m_mainMenuManager.SetActiveMenu(7);

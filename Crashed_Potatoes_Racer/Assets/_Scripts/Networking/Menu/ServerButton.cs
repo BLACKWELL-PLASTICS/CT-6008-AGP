@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿//////////////////////////////////////////////////
+/// Author: Iain Farlow                        ///
+/// Created: 09/02/2022                        ///
+/// Edited By:                                 ///
+/// Last Edited:                               ///
+//////////////////////////////////////////////////
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
