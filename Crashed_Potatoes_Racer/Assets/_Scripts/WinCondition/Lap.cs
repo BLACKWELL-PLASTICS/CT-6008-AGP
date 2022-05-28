@@ -19,7 +19,8 @@ public class Lap : MonoBehaviour
             other.GetComponent<WinCondition>().checkpointNumber++;
             if (other.GetComponentInChildren<MergedShootingControllerScript>() != null)
             {
-                other.GetComponentInChildren<WinCondition>().checkpointNumber++;
+                WinCondition[] wc = other.GetComponentsInChildren<WinCondition>();
+                wc[1].checkpointNumber++;
             }
 
             Debug.Log(other.GetComponent<WinCondition>().checkpointNumber);
