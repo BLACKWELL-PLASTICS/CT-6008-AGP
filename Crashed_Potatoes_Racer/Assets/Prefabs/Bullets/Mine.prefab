@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4039936015945174054}
   - component: {fileID: -1597861427333799582}
   - component: {fileID: 3322149397306207215}
+  - component: {fileID: 2651101705356729484}
   m_Layer: 0
   m_Name: Mine
   m_TagString: Untagged
@@ -161,13 +162,43 @@ MonoBehaviour:
     Path: event:/Fire
   Event: 
   PlayEvent: 1
-  StopEvent: 2
+  StopEvent: 0
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
   Params: []
   OverrideAttenuation: 1
   OverrideMinDistance: 10
+  OverrideMaxDistance: 20
+--- !u!114 &2651101705356729484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3020330417796906382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1475199267
+      Data2: 1160788501
+      Data3: -1117550974
+      Data4: -54409336
+    Path: event:/Rocket 2
+  Event: 
+  PlayEvent: 2
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
   OverrideMaxDistance: 20
 --- !u!1 &7799160163232254097
 GameObject:
