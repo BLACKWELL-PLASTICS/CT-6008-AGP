@@ -57,8 +57,8 @@ public class SizeIncrease : MonoBehaviour {
             netGrow.m_CarNum = GetComponent<CarManagerScript>().m_playerNum;
             netGrow.m_Action = NetGrow.ACTION.END;
             Client.Instance.SendToServer(netGrow);
-            Destroy(gameObject.GetComponent<SizeIncrease>());
             //Added by Iain ~
+            Destroy(gameObject.GetComponent<SizeIncrease>());
         }
     }
 
