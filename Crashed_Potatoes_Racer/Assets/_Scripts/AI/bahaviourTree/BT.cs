@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BT : BTBase
+public class BT : BTBase //stacked bheaviour tree for power ups - by anna
 {
     //composities
-    private Selector rootSelector; //power up or none
+    private Selector rootSelector; 
     private Selector powerUpSelector;
     private Sequencer rocketSequence;
     private Sequencer floatySequence;
@@ -35,7 +35,7 @@ public class BT : BTBase
 
     public BT(AIPlayer owner) : base(owner)
     {
-
+        //setting up all connections to scripts
         rootSelector = new Selector(owner);
         powerUpSelector = new Selector(owner);
         rocketSequence = new Sequencer(owner);
@@ -68,32 +68,33 @@ public class BT : BTBase
         rootSelector.AddNode(powerUpSelector);
         //rootSelector.AddNode(waypointNode);
 
+        //selector for all power ups
         powerUpSelector.AddNode(rocketSequence);
         powerUpSelector.AddNode(floatySequence);
         powerUpSelector.AddNode(sizeSequence);
         powerUpSelector.AddNode(boostSequence);
         powerUpSelector.AddNode(gumSequence);
         powerUpSelector.AddNode(birdSequence);
-
+        //sequence for rocket checking if active, checks if player in front in range, then fires
         rocketSequence.AddNode(rocketCheck);
         rocketSequence.AddNode(rangeCheck);
         rocketSequence.AddNode(rocketFire);
-
+        //sequence for floaty checking if active, checks if player behind in range, then fires
         floatySequence.AddNode(floatyCheck);
         floatySequence.AddNode(rangeCheckBack);
         floatySequence.AddNode(floatyFire);
-
+        //sequence for size checking if active, checks if player in front in range, then fires
         sizeSequence.AddNode(sizeCheck);
         sizeSequence.AddNode(rangeCheck);
         sizeSequence.AddNode(sizeIncrease);
-
+        //sequence for boost checking if active, then fires
         boostSequence.AddNode(boostCheck);
         boostSequence.AddNode(boostStart);
-
+        //sequence for gum checking if active, checks if player behind in range, then fires
         gumSequence.AddNode(gumCheck);
         gumSequence.AddNode(rangeCheckBack);
         gumSequence.AddNode(gumFire);
-
+        //sequence for bird checking if active, then fires
         birdSequence.AddNode(birdCheck);
         birdSequence.AddNode(birdFire);
     }

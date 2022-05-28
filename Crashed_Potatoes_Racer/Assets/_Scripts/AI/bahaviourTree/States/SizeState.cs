@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SizeState : Node
+public class SizeState : Node //state for using size up power up by anna 
 {
 
     public SizeState(AIPlayer owner) : base(owner)
@@ -45,9 +45,9 @@ public class SizeState : Node
         ////grow packet
         //return NodeState.RUNNING;
 
-        owner.gameObject.AddComponent<SizeIncrease>();
-        FMODUnity.RuntimeManager.PlayOneShot(owner.InventoryComponent.sizeSound, owner.gameObject.transform.position);
-        owner.InventoryComponent.UsePowerup();
-        return NodeState.SUCCESS;
+        owner.gameObject.AddComponent<SizeIncrease>(); //adds size up script
+        FMODUnity.RuntimeManager.PlayOneShot(owner.InventoryComponent.sizeSound, owner.gameObject.transform.position); //plays sound effect
+        owner.InventoryComponent.UsePowerup(); //uses power up
+        return NodeState.SUCCESS; //returns success
     }
 }

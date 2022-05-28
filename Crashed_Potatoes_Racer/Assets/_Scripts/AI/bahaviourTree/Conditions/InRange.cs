@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InRange : Node
+public class InRange : Node//checks if their is a car in range in front - by anna
 {
     public InRange(AIPlayer owner) : base(owner)
     {
@@ -11,40 +11,40 @@ public class InRange : Node
 
     public override NodeState Update()
     {
-        Debug.DrawRay(owner.transform.position, owner.transform.TransformDirection(Vector3.forward) * AIManager.GetDetectionRay, Color.red);
-        if (VisionCheck() == true)
+        Debug.DrawRay(owner.transform.position, owner.transform.TransformDirection(Vector3.forward) * AIManager.GetDetectionRay, Color.red);//draw a red ray to notice they have power up
+        if (VisionCheck() == true)//if vision cone detects car
         {
-            Debug.Log("AI - forward player in range");
-            Debug.DrawRay(owner.transform.position, owner.transform.TransformDirection(Vector3.forward) * AIManager.GetDetectionRay, Color.green);
-            return NodeState.SUCCESS;
+            Debug.Log("AI - forward player in range"); //log
+            Debug.DrawRay(owner.transform.position, owner.transform.TransformDirection(Vector3.forward) * AIManager.GetDetectionRay, Color.green);//draw a green ray to show firing
+            return NodeState.SUCCESS;//return success
         }
         //owner.target = FindClosestCar();
-        return NodeState.FAILURE;
+        return NodeState.FAILURE;//return fail
     }
 
-    private bool VisionCheck()
+    private bool VisionCheck()//vision cone 
     {
-        Collider[] targetsInVR = Physics.OverlapSphere(owner.transform.position, AIManager.GetDetectionRay, LayerMask.GetMask("Player"));
+        Collider[] targetsInVR = Physics.OverlapSphere(owner.transform.position, AIManager.GetDetectionRay, LayerMask.GetMask("Player"));//gets all colliders in distance listed as player
 
-        for (int i = 0; i < targetsInVR.Length; i++)
+        for (int i = 0; i < targetsInVR.Length; i++)//loops through
         {
-            Transform target = targetsInVR[i].transform;
-            if(target != owner.transform)
+            Transform target = targetsInVR[i].transform; //sets as target
+            if (target != owner.transform)//if not this cars transform
             {
-                Vector3 dirToTarget = (target.position - owner.transform.position).normalized;
-                if (Vector3.Angle(owner.transform.TransformDirection(Vector3.forward), dirToTarget) < AIManager.GetDetectionAngle)
+                Vector3 dirToTarget = (target.position - owner.transform.position).normalized; //calculate direction to target
+                if (Vector3.Angle(owner.transform.TransformDirection(Vector3.forward), dirToTarget) < AIManager.GetDetectionAngle)//if within that angle
                 {
-                    float dstToTarget = Vector3.Distance(target.position, owner.transform.position);
-                    if (!Physics.Raycast(owner.transform.position, dirToTarget, dstToTarget, LayerMask.GetMask("OffNav"))) //stuff like cave or walls or volcano
+                    float dstToTarget = Vector3.Distance(target.position, owner.transform.position);//calculate disatnce
+                    if (!Physics.Raycast(owner.transform.position, dirToTarget, dstToTarget, LayerMask.GetMask("OffNav"))) //if nothing is inbetween such as walls or cave
                     {
-                        return true;
+                        return true; //return true
                     }
                 }
             }
             
         }
 
-        return false;
+        return false;//return false
     }
 
 }

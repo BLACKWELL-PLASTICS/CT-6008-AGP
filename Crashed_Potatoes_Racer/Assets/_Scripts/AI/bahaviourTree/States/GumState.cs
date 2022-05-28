@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GumState : Node
+public class GumState : Node //state for preforming gum power - by anna
 {
-    private GameObject gum;
-    private Vector3 eulerAngle;
-    private Quaternion currentRot;
+    private GameObject gum; // temp object for gum object
+    private Vector3 eulerAngle; //temp vector for rotation
+    private Quaternion currentRot; //temp for curretn rotation
     public GumState(AIPlayer owner) : base(owner)
     {
 
@@ -14,13 +14,13 @@ public class GumState : Node
 
     public override NodeState Update()
     {
-        Vector3 pos = owner.transform.position - (owner.transform.forward * 2);
-        gum = Object.Instantiate(AIManager.GetPowerUp[2], pos, Quaternion.identity);
-        owner.InventoryComponent.UsePowerup();
+        Vector3 pos = owner.transform.position - (owner.transform.forward * 2); //creates a posotion for spawning gum
+        gum = Object.Instantiate(AIManager.GetPowerUp[2], pos, Quaternion.identity); //creates gum 
+        owner.InventoryComponent.UsePowerup(); //uses power up
 
-        eulerAngle = new Vector3(-90f, 0f, 0f);
-        currentRot.eulerAngles = eulerAngle;
-        gum.transform.rotation = currentRot;
+        eulerAngle = new Vector3(-90f, 0f, 0f); //sets up rotation change
+        currentRot.eulerAngles = eulerAngle; //sets current to change
+        gum.transform.rotation = currentRot; //rotates gum
 
 
         //Added by Iain
@@ -38,7 +38,7 @@ public class GumState : Node
         Client.Instance.SendToServer(netGum);
         //Added by Iain ~
 
-        return NodeState.SUCCESS;
+        return NodeState.SUCCESS; //returns success
     }
 }
 

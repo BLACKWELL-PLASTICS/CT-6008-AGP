@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIManager : MonoBehaviour
+public class AIManager : MonoBehaviour //static variable script, accessible by all scripts, allows designers and programmers to easily tweak ai values - By Anna
 {
-    private static AIManager instance;
+    private static AIManager instance; //instance of this class
 
     //car ai
     [Header("Car Variables")]
+    //waypoints
     public Transform[] wayPoints;
     public Transform[] wayPoints2;
     public Transform[] wayPoints3;
@@ -16,16 +17,23 @@ public class AIManager : MonoBehaviour
     public Transform[] wayPoints6;
     public Transform[] wayPoints7;
     public Transform[] wayPoints8;
+    //power up prefabs
     public GameObject[] powerUps;
+    //max speed and acceleration
     public float maxSpeed;
     public float maxAcc;
+    //speed in which it speeds up again
     public float speedIncrease;
+    //time it slows down for
     public float slowDownPeriod;
+    //distance it needs to be for it to waypoint before stopping
     public float stoppingRay;
+    //length of detection ray, detecting corners and players
     public float detectionRay;
+    //angle for vision cones
     public float detectionAngle;
 
-    //car get/set
+    //car getert/setter
     public static float GetMaxAcc { get { return instance.maxAcc; } }
     public static float GetMaxSpeed { get { return instance.maxSpeed; } }
     public static float GetIncrease { get { return instance.speedIncrease; } }
@@ -46,7 +54,7 @@ public class AIManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        instance = this; //set instance to this
                
     }
     

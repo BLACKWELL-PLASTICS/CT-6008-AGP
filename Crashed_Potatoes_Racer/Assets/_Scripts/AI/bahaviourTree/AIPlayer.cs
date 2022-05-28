@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AIPlayer : MonoBehaviour
+public class AIPlayer : MonoBehaviour //main script for ai, deals with speed and movement - by anna 
 {
+    //definitions of variables used by the AI
     [HideInInspector]
     public static List<AIPlayer> carList = new List<AIPlayer>();
 
@@ -19,10 +20,12 @@ public class AIPlayer : MonoBehaviour
     public Transform target;
     public bool decreaseCheck = false;
     public bool decreaseBoostCheck = false;
+    //power up
     public SeedPacketScript.POWERUPS powerUp1;
     public Vector3 originalPos;
     public Vector3 currentPos;
     public Vector3 originalScale;
+    //temp timer
     public float timer = 0;
 
     [SerializeField]
@@ -44,20 +47,21 @@ public class AIPlayer : MonoBehaviour
     private BT bahaviourTree;
     private void Start()
     {
-        randomInOut = Random.Range(0, 2);
+        //random values for waypoint systems
+        randomInOut = Random.Range(0, 2); 
         randomSecret = Random.Range(0, 6);
         randomRoute = Random.Range(0, 4);
 
-        target = AIManager.GetWaypoints[0];
+        target = AIManager.GetWaypoints[0]; //set target to first waypoint
 
-        carList.Add(this);
-        NavComponent = gameObject.GetComponent<NavMeshAgent>();
-        RBComponent = gameObject.GetComponent<Rigidbody>();
-        InventoryComponent = gameObject.GetComponent<InventoryScript>();
-        RenderComponent = GetComponent<Renderer>();
-        emitter = GetComponent<FMODUnity.StudioEventEmitter>();
+        carList.Add(this); //adds current car to list
+        NavComponent = gameObject.GetComponent<NavMeshAgent>(); //connection to nav mesh agent
+        RBComponent = gameObject.GetComponent<Rigidbody>(); //connection to rigid body
+        InventoryComponent = gameObject.GetComponent<InventoryScript>(); //connection to inventory script
+        RenderComponent = GetComponent<Renderer>(); //connection to renderer component - not needed
+        emitter = GetComponent<FMODUnity.StudioEventEmitter>(); //connection to fmod car sound emitter
 
-        //ray locations for up orientation
+        //ray locations for up orientation - not used
         backLeft = gameObject.transform.Find("backLeft").transform;
         backRight = gameObject.transform.Find("backRight").transform;
         frontLeft = gameObject.transform.Find("frontLeft").transform;
@@ -78,7 +82,7 @@ public class AIPlayer : MonoBehaviour
     private void Update()
     {
         //waypoints
-        if(    AIManager.GetWaypoints8.Length == 0)
+        if(    AIManager.GetWaypoints8.Length == 0) //checks which waypoint system for each level to use
         {
             WayPoint3();
         }
@@ -91,36 +95,40 @@ public class AIPlayer : MonoBehaviour
         //transform.up = Vector3.Lerp(transform.up, OrientateUp(), Time.deltaTime);
 
         //power ups
-        powerUp1 = InventoryComponent.p1;
-        currentPos = transform.position;
+        powerUp1 = InventoryComponent.p1; //set current power up to power up temp value
+        currentPos = transform.position; //set current to current position
 
-        bahaviourTree.Update();
+        bahaviourTree.Update(); //update the behaviour tree
 
-        NavComponent.speed = speed;
-        emitter.SetParameter("Speed", NavComponent.speed);
-        NavComponent.acceleration = accel;
+        NavComponent.speed = speed; //set speed to temp value
+        emitter.SetParameter("Speed", NavComponent.speed); //adjust car sound with the speed
+        NavComponent.acceleration = accel; //set accleration to temp value
 
-        NavComponent.SetDestination(target.position);
+        NavComponent.SetDestination(target.position); //move towards target
 
-        if(powerUp1 == SeedPacketScript.POWERUPS.None)
+        if(powerUp1 == SeedPacketScript.POWERUPS.None) //if power up is empty
         {
-            InventoryComponent.MovePowerup();
+            InventoryComponent.MovePowerup(); //move the second power up to first power up
         }
 
-        if(decreaseCheck == true)
+        if(decreaseCheck == true) //if decrease is triggered
         {
             StartCoroutine(DecreaseSpeed());
         }
+        if (decreaseBoostCheck == true) //if decrease is triggered for boost
+        {
+            StartCoroutine(DeBoostSpeed());
+        }
     }
 
-    public void IncreaseSpeed()
+    public void IncreaseSpeed() //slowly increase speed to max
     {
         accel = Mathf.Lerp(accel, AIManager.GetMaxAcc, Time.deltaTime * speedIncrease);
         speed = Mathf.Lerp(speed, AIManager.GetMaxSpeed, Time.deltaTime * speedIncrease);
 
     }
 
-    public IEnumerator DecreaseSpeed()
+    public IEnumerator DecreaseSpeed() //decrease speed slowly then wait for a period before speeding back up
     {
         accel = Mathf.Lerp(accel, 10.0f, Time.deltaTime * speedDecrease);
         speed = Mathf.Lerp(speed, 10.0f, Time.deltaTime * speedDecrease);
@@ -132,13 +140,13 @@ public class AIPlayer : MonoBehaviour
     }
 
     //boosting
-    public void BoostSpeed()
+    public void BoostSpeed() //function for slowly increasing the speed to an even higher value for boosting
     {
         accel = Mathf.Lerp(accel, 70, Time.deltaTime * speedIncrease);
         speed = Mathf.Lerp(speed, 70, Time.deltaTime * speedIncrease);
 
     }
-    public IEnumerator DeBoostSpeed()
+    public IEnumerator DeBoostSpeed() //function which slow decreases speed to a very low amount for when power ups effect AI then speeds them back up
     {
         accel = Mathf.Lerp(accel, 5, Time.deltaTime * speedDecrease * 2);
         speed = Mathf.Lerp(speed, 5, Time.deltaTime * speedDecrease * 2);
@@ -150,204 +158,204 @@ public class AIPlayer : MonoBehaviour
 
     }
 
-    private void WayPoint3()
+    private void WayPoint3()//waypoint system for lvl 1
     {
-        if (IsCorner() == true)
+        if (IsCorner() == true)//if there is a corner
         {
-            decreaseCheck = true;
+            decreaseCheck = true;//decrease speed
         }
-        else
+        else //if not 
         {
-            IncreaseSpeed();
+            IncreaseSpeed();//increase speed
         }
 
-        if (randomSecret == 3)
+        if (randomSecret == 3)  //short cut route
         {
-            float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints3[currentWaypoint].transform.position);
-            if (dist <= stoppingDistance)
+            float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints3[currentWaypoint].transform.position); //distance from ai to current waypoint
+            if (dist <= stoppingDistance)//if within stopping distance
             {
                 Debug.Log("waypoint +");
-                currentWaypoint++;
-                if (currentWaypoint >= AIManager.GetWaypoints3.Length)
+                currentWaypoint++;//move to next waypoint
+                if (currentWaypoint >= AIManager.GetWaypoints3.Length)//if not more waypoints
                 {
-                    currentWaypoint = 0;
+                    currentWaypoint = 0;//reset waypoints
                 }
             }
-            target = AIManager.GetWaypoints3[currentWaypoint].transform;
+            target = AIManager.GetWaypoints3[currentWaypoint].transform;//set target to waypoint
         }
         else
         {
-            if (randomInOut == 0)
+            if (randomInOut == 0) //route one
             {
-                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints[currentWaypoint].transform.position);
-                if (dist <= stoppingDistance)
+                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints[currentWaypoint].transform.position); //distance from ai to current waypoint
+                if (dist <= stoppingDistance)//if within stopping distance
                 {
                     Debug.Log("waypoint +");
-                    currentWaypoint++;
-                    if (currentWaypoint >= AIManager.GetWaypoints.Length)
+                    currentWaypoint++;//move to next waypoint
+                    if (currentWaypoint >= AIManager.GetWaypoints.Length)//if not more waypoints
                     {
-                        currentWaypoint = 0;
+                        currentWaypoint = 0;//reset waypoints
                     }
                 }
-                target = AIManager.GetWaypoints[currentWaypoint].transform;
+                target = AIManager.GetWaypoints[currentWaypoint].transform;//set target to waypoint
             }
-            else if (randomInOut == 1)
+            else if (randomInOut == 1) //route two
             {
-                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints2[currentWaypoint].transform.position);
-                if (dist <= stoppingDistance)
+                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints2[currentWaypoint].transform.position); //distance from ai to current waypoint
+                if (dist <= stoppingDistance)//if within stopping distance
                 {
                     Debug.Log("waypoint +");
-                    currentWaypoint++;
-                    if (currentWaypoint >= AIManager.GetWaypoints2.Length)
+                    currentWaypoint++;//move to next waypoint
+                    if (currentWaypoint >= AIManager.GetWaypoints2.Length)//if not more waypoints
                     {
-                        currentWaypoint = 0;
+                        currentWaypoint = 0;//reset waypoints
                     }
                 }
-                target = AIManager.GetWaypoints2[currentWaypoint].transform;
+                target = AIManager.GetWaypoints2[currentWaypoint].transform;//set target to waypoint
             }
         }
 
     }
 
-    private void WayPoint8()
+    private void WayPoint8() //waypoint system for lvl 2
     {
-        if (IsCorner() == true)
+        if (IsCorner() == true) //if there is a corner
         {
-            decreaseCheck = true;
+            decreaseCheck = true; //decrease speed
         }
-        else
+        else //if not 
         {
-            IncreaseSpeed();
+            IncreaseSpeed(); //increase speed
         }
 
-        if(randomRoute == 0)
+        if(randomRoute == 0) //route one
         {
-            if (randomInOut == 0)
+            if (randomInOut == 0) //left side of route
             {
-                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints[currentWaypoint].transform.position);
-                if (dist <= stoppingDistance)
+                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints[currentWaypoint].transform.position); //distance from ai to current waypoint
+                if (dist <= stoppingDistance) //if within stopping distance
                 {
                     Debug.Log("waypoint +");
-                    currentWaypoint++;
-                    if (currentWaypoint >= AIManager.GetWaypoints.Length)
+                    currentWaypoint++; //move to next waypoint
+                    if (currentWaypoint >= AIManager.GetWaypoints.Length) //if not more waypoints
                     {
-                        currentWaypoint = 0;
+                        currentWaypoint = 0; //reset waypoints
                     }
                 }
-                target = AIManager.GetWaypoints[currentWaypoint].transform;
+                target = AIManager.GetWaypoints[currentWaypoint].transform; //set target to waypoint
             }
-            else if (randomInOut == 1)
+            else if (randomInOut == 1) //right side of route
             {
-                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints2[currentWaypoint].transform.position);
-                if (dist <= stoppingDistance)
+                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints2[currentWaypoint].transform.position);//distance from ai to current waypoint
+                if (dist <= stoppingDistance)//if within stopping distance
                 {
                     Debug.Log("waypoint +");
-                    currentWaypoint++;
-                    if (currentWaypoint >= AIManager.GetWaypoints2.Length)
+                    currentWaypoint++;//move to next waypoint
+                    if (currentWaypoint >= AIManager.GetWaypoints2.Length)//if not more waypoints
                     {
-                        currentWaypoint = 0;
+                        currentWaypoint = 0;//reset waypoints
                     }
                 }
-                target = AIManager.GetWaypoints2[currentWaypoint].transform;
+                target = AIManager.GetWaypoints2[currentWaypoint].transform; //set target to waypoint
             }
         }
-        else if(randomRoute == 1)
+        else if(randomRoute == 1) //route 2
         {
-            if (randomInOut == 0)
+            if (randomInOut == 0) //left side of route
             {
-                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints3[currentWaypoint].transform.position);
-                if (dist <= stoppingDistance)
+                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints3[currentWaypoint].transform.position);//distance from ai to current waypoint
+                if (dist <= stoppingDistance)//if within stopping distance
                 {
                     Debug.Log("waypoint +");
-                    currentWaypoint++;
-                    if (currentWaypoint >= AIManager.GetWaypoints3.Length)
+                    currentWaypoint++;//move to next waypoint
+                    if (currentWaypoint >= AIManager.GetWaypoints3.Length)//if not more waypoints
                     {
-                        currentWaypoint = 0;
+                        currentWaypoint = 0;//reset waypoints
                     }
                 }
-                target = AIManager.GetWaypoints3[currentWaypoint].transform;
+                target = AIManager.GetWaypoints3[currentWaypoint].transform; //set target to waypoint
             }
-            else if (randomInOut == 1)
+            else if (randomInOut == 1) //right side of route
             {
-                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints4[currentWaypoint].transform.position);
-                if (dist <= stoppingDistance)
+                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints4[currentWaypoint].transform.position);//distance from ai to current waypoint
+                if (dist <= stoppingDistance)//if within stopping distance
                 {
                     Debug.Log("waypoint +");
-                    currentWaypoint++;
-                    if (currentWaypoint >= AIManager.GetWaypoints4.Length)
+                    currentWaypoint++;//move to next waypoint
+                    if (currentWaypoint >= AIManager.GetWaypoints4.Length)//if not more waypoints
                     {
-                        currentWaypoint = 0;
+                        currentWaypoint = 0;//reset waypoints
                     }
                 }
-                target = AIManager.GetWaypoints4[currentWaypoint].transform;
+                target = AIManager.GetWaypoints4[currentWaypoint].transform; //set target to waypoint
             }
         }
-        else if (randomRoute == 2)
+        else if (randomRoute == 2)//route 3
         {
-            if (randomInOut == 0)
+            if (randomInOut == 0)//left side of route
             {
-                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints5[currentWaypoint].transform.position);
-                if (dist <= stoppingDistance)
+                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints5[currentWaypoint].transform.position);//distance from ai to current waypoint
+                if (dist <= stoppingDistance)//if within stopping distance
                 {
                     Debug.Log("waypoint +");
-                    currentWaypoint++;
-                    if (currentWaypoint >= AIManager.GetWaypoints5.Length)
+                    currentWaypoint++;//move to next waypoint
+                    if (currentWaypoint >= AIManager.GetWaypoints5.Length)//if not more waypoints
                     {
-                        currentWaypoint = 0;
+                        currentWaypoint = 0;//reset waypoints
                     }
                 }
-                target = AIManager.GetWaypoints5[currentWaypoint].transform;
+                target = AIManager.GetWaypoints5[currentWaypoint].transform; //set target to waypoint
             }
-            else if (randomInOut == 1)
+            else if (randomInOut == 1)//right side of route
             {
-                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints6[currentWaypoint].transform.position);
-                if (dist <= stoppingDistance)
+                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints6[currentWaypoint].transform.position);//distance from ai to current waypoint
+                if (dist <= stoppingDistance)//if within stopping distance
                 {
                     Debug.Log("waypoint +");
-                    currentWaypoint++;
-                    if (currentWaypoint >= AIManager.GetWaypoints6.Length)
+                    currentWaypoint++;//move to next waypoint
+                    if (currentWaypoint >= AIManager.GetWaypoints6.Length)//if not more waypoints
                     {
-                        currentWaypoint = 0;
+                        currentWaypoint = 0;//reset waypoints
                     }
                 }
-                target = AIManager.GetWaypoints6[currentWaypoint].transform;
+                target = AIManager.GetWaypoints6[currentWaypoint].transform; //set target to waypoint
             }
         }
-        else if (randomRoute == 3)
+        else if (randomRoute == 3)//route 4
         {
-            if (randomInOut == 0)
+            if (randomInOut == 0)//left side of route
             {
-                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints7[currentWaypoint].transform.position);
-                if (dist <= stoppingDistance)
+                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints7[currentWaypoint].transform.position);//distance from ai to current waypoint
+                if (dist <= stoppingDistance)//if within stopping distance
                 {
                     Debug.Log("waypoint +");
-                    currentWaypoint++;
-                    if (currentWaypoint >= AIManager.GetWaypoints7.Length)
+                    currentWaypoint++;//move to next waypoint
+                    if (currentWaypoint >= AIManager.GetWaypoints7.Length)//if not more waypoints
                     {
-                        currentWaypoint = 0;
+                        currentWaypoint = 0;//reset waypoints
                     }
                 }
-                target = AIManager.GetWaypoints7[currentWaypoint].transform;
+                target = AIManager.GetWaypoints7[currentWaypoint].transform; //set target to waypoint
             }
-            else if (randomInOut == 1)
+            else if (randomInOut == 1)//right side of route
             {
-                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints8[currentWaypoint].transform.position);
-                if (dist <= stoppingDistance)
+                float dist = Vector3.Distance(transform.position, AIManager.GetWaypoints8[currentWaypoint].transform.position);//distance from ai to current waypoint
+                if (dist <= stoppingDistance)//if within stopping distance
                 {
                     Debug.Log("waypoint +");
-                    currentWaypoint++;
-                    if (currentWaypoint >= AIManager.GetWaypoints8.Length)
+                    currentWaypoint++;//move to next waypoint
+                    if (currentWaypoint >= AIManager.GetWaypoints8.Length)//if not more waypoints
                     {
-                        currentWaypoint = 0;
+                        currentWaypoint = 0;//reset waypoints
                     }
                 }
-                target = AIManager.GetWaypoints8[currentWaypoint].transform;
+                target = AIManager.GetWaypoints8[currentWaypoint].transform; //set target to waypoint
             }
         }
 
     }
 
-    private bool IsCorner()
+    private bool IsCorner() //checks if there is a corner in range and returns true if so
     {
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * AIManager.GetStoppingRay, Color.white);
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out RaycastHit hit, AIManager.GetStoppingRay, LayerMask.GetMask("Corner")))
@@ -361,7 +369,7 @@ public class AIPlayer : MonoBehaviour
         }
     }
 
-    private Vector3 OrientateUp()
+    private Vector3 OrientateUp() //script for making ai stay flat with the ground - not used as models orientation is scewed and other code uses that orientation
     {
         Physics.Raycast(backLeft.position + Vector3.up, Vector3.down, out RaycastHit lBack);
         Physics.Raycast(backRight.position + Vector3.up, Vector3.down, out RaycastHit rBack);
