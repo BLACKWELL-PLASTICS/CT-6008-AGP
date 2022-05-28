@@ -1,4 +1,10 @@
-﻿using UnityEngine;
+﻿//////////////////////////////////////////////////
+/// Created:                                   ///
+/// Author: Oliver Blackwell                   ///
+/// Edited By:			                       ///
+/// Last Edited:		                       ///
+//////////////////////////////////////////////////
+using UnityEngine;
 using System;
 
 public class BezierSpline : MonoBehaviour
@@ -85,6 +91,7 @@ public class BezierSpline : MonoBehaviour
 			points[i], points[i + 1], points[i + 2], points[i + 3], t)) - transform.position;
 	}
 
+	// Direction of the spline
 	public Vector3 GetDirection(float t) {
 		return GetVelocity(t).normalized;
 	}
@@ -167,7 +174,7 @@ public class BezierSpline : MonoBehaviour
 		}
 	}
 
-	// Reset
+	// Reset spline
 	public void Reset() {
 		points = new Vector3[] {
 			new Vector3(1f, 0f, 0f),

@@ -1,4 +1,10 @@
-﻿using UnityEngine;
+﻿//////////////////////////////////////////////////
+/// Created:                                   ///
+/// Author: Oliver Blackwell                   ///
+/// Edited By:			                       ///
+/// Last Edited:		                       ///
+//////////////////////////////////////////////////
+using UnityEngine;
 
 public class BezierCurve : MonoBehaviour {
 

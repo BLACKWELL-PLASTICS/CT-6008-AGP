@@ -1,6 +1,6 @@
 ﻿//////////////////////////////////////////////////
 /// Created:                                   ///
-/// Author:                                    ///
+/// Author: Oliver Blackwell                   ///
 /// Edited By: Iain Farlow                     ///
 /// Last Edited: 10/03/2022                    ///
 //////////////////////////////////////////////////
@@ -32,6 +32,7 @@ public class SizeIncrease : MonoBehaviour {
         }
         transform.position = new Vector3(currentPos.x, currentPos.y + 1f, currentPos.z);
         sphere.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+
         //Added by Iain
         //grow packet
         NetGrow netGrow = new NetGrow();
@@ -50,6 +51,7 @@ public class SizeIncrease : MonoBehaviour {
             transform.localScale = originalScale;
             timer = 0f;
             transform.position = new Vector3(currentPos.x, currentPos.y, currentPos.z);
+
             //Added by Iain
             //shrink package
             NetGrow netGrow = new NetGrow();

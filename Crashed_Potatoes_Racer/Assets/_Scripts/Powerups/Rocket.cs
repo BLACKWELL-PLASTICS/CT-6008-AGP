@@ -1,8 +1,8 @@
 ﻿//////////////////////////////////////////////////
 /// Created:                                   ///
-/// Author:                                    ///
+/// Author: Oliver Blackwell                   ///
 /// Edited By: Iain Farlow                     ///
-/// Last Edited: 25/05/2022                    ///
+/// Last Edited: 28/05/2022                    ///
 //////////////////////////////////////////////////
 
 using System.Collections;
@@ -15,10 +15,12 @@ public class Rocket : MonoBehaviour {
     GameObject target;
     GameObject owner;
     NavMeshAgent agent;
+    // Set the Rockets owner and target
     public void OwnerAndTarget(GameObject owner)
     {
-        int i = owner.GetComponent<Position>().currentPosition;
-        this.owner = owner;
+        int i = owner.GetComponent<Position>().currentPosition; 
+        this.owner = owner; // Set Owner
+
         foreach (GameObject item in GameObject.FindGameObjectsWithTag("Player")) {
             if (i != 1) {
                 if (item.GetComponent<Position>().currentPosition == i - 1) {
