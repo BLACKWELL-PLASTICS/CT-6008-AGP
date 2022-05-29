@@ -787,6 +787,8 @@ public class MultiplayerManager : MonoBehaviour
                             car.transform.localScale = car.GetComponent<CarManagerScript>().m_OriginalScale * 1.5f;
                             Vector3 pos = transform.position;
                             car.transform.position = new Vector3(pos.x, pos.y + (car.GetComponent<CarManagerScript>().m_OriginalScale.y / 1.5f), pos.y);
+                            //collision check
+                            car.AddComponent<SizeIncreaseOnlineReplicte>();
                         }
                     }
                     break;
@@ -799,6 +801,12 @@ public class MultiplayerManager : MonoBehaviour
                             Vector3 pos = car.transform.position;
                             car.transform.localScale = car.GetComponent<CarManagerScript>().m_OriginalScale;
                             car.transform.position = new Vector3(pos.x, pos.y - (car.GetComponent<CarManagerScript>().m_OriginalScale.y / 1.5f), pos.z);
+
+                            //removes size online
+                            if (car.GetComponent<SizeIncreaseOnlineReplicte>() != null)
+                            {
+                                Destroy(car.GetComponent<SizeIncreaseOnlineReplicte>());
+                            }
                         }
                     }
                     break;
@@ -1107,6 +1115,7 @@ public class MultiplayerManager : MonoBehaviour
                         {
                             //play the boost partical system
                             car.transform.Find("Boost").GetComponent<ParticleSystem>().Play();
+                            car.gameObject.AddComponent<BoostOnlineVisualTrigger>();
                         }
                     }
                 }
