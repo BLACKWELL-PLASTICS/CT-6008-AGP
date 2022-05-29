@@ -20,7 +20,7 @@ public class BoostState : Node //state for preforming boost power up - by anna
             owner.transform.Find("Boost").GetComponent<ParticleSystem>().Stop(); //stops vfx
             owner.timer = 0f; //resets timer
             //Added by Iain
-            //Boost start package
+            //Boost start packet
             NetBoost netBoost = new NetBoost();
             netBoost.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
             netBoost.m_CarNum = owner.GetComponent<CarManagerScript>().m_playerNum;

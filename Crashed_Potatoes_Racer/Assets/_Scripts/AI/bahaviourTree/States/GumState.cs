@@ -24,7 +24,7 @@ public class GumState : Node //state for preforming gum power - by anna
 
 
         //Added by Iain
-        //gum start package
+        //gum start packet
         NetGum netGum = new NetGum();
         netGum.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
         netGum.m_Action = NetGum.ACTION.LAND;

@@ -17,7 +17,7 @@ public class RocketState : Node //state of firing rocket - by anna
         //Added by Iain
         Vector3 spawnPos = owner.transform.position + (owner.transform.forward * 2);
         Quaternion spawnRot = Quaternion.LookRotation(owner.gameObject.transform.forward, owner.gameObject.transform.up);
-        //Rocket start package
+        //Rocket start packet
         NetRocket netRocket = new NetRocket();
         netRocket.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
         netRocket.m_Action = NetRocket.ACTION.FIRE;

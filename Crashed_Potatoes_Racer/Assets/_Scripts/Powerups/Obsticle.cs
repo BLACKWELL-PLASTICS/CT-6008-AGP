@@ -23,7 +23,7 @@ public class Obsticle : MonoBehaviour {
         currentRot.eulerAngles = eulerAngle;
         wall.transform.rotation = currentRot;
         //Added by Iain
-        //Wall start package
+        //Wall start packet
         NetWall netWall = new NetWall();
         netWall.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
         netWall.m_Action = NetWall.ACTION.LAND;

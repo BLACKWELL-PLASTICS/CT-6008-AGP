@@ -33,7 +33,7 @@ public class InventoryScript : MonoBehaviour
                         //Added by Iain
                         Vector3 spawnPos = transform.position + (transform.forward * 2);
                         Quaternion spawnRot = Quaternion.LookRotation(this.gameObject.transform.forward, this.gameObject.transform.up);
-                        //Rocket start package
+                        //Rocket start packet
                         NetRocket netRocket = new NetRocket();
                         netRocket.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
                         netRocket.m_Action = NetRocket.ACTION.FIRE;

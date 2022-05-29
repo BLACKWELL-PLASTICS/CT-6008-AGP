@@ -1,7 +1,7 @@
 ﻿//////////////////////////////////////////////////
 /// Created:                                   ///
 /// Author: Oliver Blackwell                   ///
-/// Edited By: Iain Farlow                     ///
+/// Edited By: Iain Farlow && Henry Northway   ///
 /// Last Edited: 25/05/2022                    ///
 //////////////////////////////////////////////////
 
@@ -54,8 +54,11 @@ public class WinCondition : MonoBehaviour
                 if(gameObject.GetComponent<MergedTimer>() != null){
                     Destroy(gameObject.GetComponent<MergedTimer>());
                 }
+                //GameObject.Find("Race End Prompt").SetActive(true);
 
-            } else if (gameObject.GetComponent<AIPlayer>() != null)
+
+            }
+            else if (gameObject.GetComponent<AIPlayer>() != null)
             {
                 gameObject.GetComponent<AIPlayer>().enabled = false;
                 Destroy(gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>());

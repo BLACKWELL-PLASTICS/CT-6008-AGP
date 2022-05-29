@@ -5356,6 +5356,7 @@ MonoBehaviour:
   currentWaypoint: 0
   target: {fileID: 0}
   decreaseCheck: 0
+  decreaseBoostCheck: 0
   powerUp1: 0
   originalPos: {x: 0, y: 0, z: 0}
   currentPos: {x: 0, y: 0, z: 0}
@@ -5483,7 +5484,7 @@ MonoBehaviour:
     Path: event:/car
   Event: 
   PlayEvent: 1
-  StopEvent: 0
+  StopEvent: 2
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0

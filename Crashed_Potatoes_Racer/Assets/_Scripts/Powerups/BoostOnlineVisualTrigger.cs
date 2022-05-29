@@ -22,6 +22,7 @@ public class BoostOnlineVisualTrigger : MonoBehaviour
         }
         else
         {
+            //timer off for vfx
             transform.Find("Boost").GetComponent<ParticleSystem>().Stop();
             Destroy(this);
         }

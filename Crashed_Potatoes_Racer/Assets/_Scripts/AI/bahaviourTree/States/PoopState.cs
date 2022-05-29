@@ -12,6 +12,7 @@ public class PoopState : Node //state which preforms bird poop power up - by ann
     public override NodeState Update()
     {
         //network stuff by iain
+        //poop start packet
         NetBirdPoop netBirdPoop = new NetBirdPoop();
         netBirdPoop.m_Player = owner.GetComponent<CarManagerScript>().m_playerNum;
         Client.Instance.SendToServer(netBirdPoop);

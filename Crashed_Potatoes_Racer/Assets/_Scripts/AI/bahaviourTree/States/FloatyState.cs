@@ -22,7 +22,7 @@ public class FloatyState : Node //state for preforming floaty power up - by anna
         eulerAngle = new Vector3(-90f, 0f, 0f);//sets up rotation change
         currentRot.eulerAngles = eulerAngle;//sets current to change
         wall.transform.rotation = currentRot;//rotates gum
-        //Wall start package -- Iain
+        //Wall start packet -- Iain
         NetWall netWall = new NetWall();
         netWall.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
         netWall.m_Action = NetWall.ACTION.LAND;

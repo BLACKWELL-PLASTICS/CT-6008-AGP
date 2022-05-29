@@ -354,6 +354,7 @@ public class MenuManager : MonoBehaviour
                 break;
             case NetMenuCountdown.ACTION.COUNTING:
                 //based currtent count from host set ui
+                m_connectedDisconnectButton.GetComponent<UnityEngine.UI.Button>().interactable = false;
                 if (netMenuCountdown.m_Count < 1.0f)
                 {
                     for (int i = 0; i < m_startUI.Length; i++)
