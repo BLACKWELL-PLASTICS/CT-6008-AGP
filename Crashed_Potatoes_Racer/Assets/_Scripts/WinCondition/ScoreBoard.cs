@@ -1,4 +1,5 @@
 ﻿// DEPRICATED - NOT IN USE ANYMORE
+// Author: Oliver Blackwell
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

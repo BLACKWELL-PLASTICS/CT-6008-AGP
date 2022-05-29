@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿//////////////////////////////////////////////////
+/// Created:                                   ///
+/// Author: Oliver Blackwell                   ///
+/// Edited By:			                       ///
+/// Last Edited:		                       ///
+//////////////////////////////////////////////////
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -97,27 +103,27 @@ public class Controller : MonoBehaviour {
             // BOOSTING CODE
             if (isBoosting == true && boostTimer <= 3f) {
                 boostTimer += Time.deltaTime;
-                forwardAcceleration = 5000f;
+                forwardAcceleration = 4250f;
                 maxSpeed = 150f;
             } else {
                 isBoosting = false;
                 transform.Find("Boost").GetComponent<ParticleSystem>().Stop();
                 boostTimer = 0f;
                 maxSpeed = 70f;
-                forwardAcceleration = 5000f;
+                forwardAcceleration = 3750f;
             }
 
             // GUM CODE
             if (isStuck == true && gumTimer <= 3f) {
                 gumTimer += Time.deltaTime;
-                forwardAcceleration = 2000f;
+                forwardAcceleration = 1500f;
                 maxSpeed = 30f;
             } else {
                 transform.Find("Smoke").GetComponent<ParticleSystem>().Stop();
                 isStuck = false;
                 gumTimer = 0f;
                 maxSpeed = 70f;
-                forwardAcceleration = 5000f;
+                forwardAcceleration = 3750f;
             }
         }
 
@@ -129,7 +135,7 @@ public class Controller : MonoBehaviour {
             if (Time.timeScale > 0) {
                 GamePad.SetVibration(index, 0.2f, 0.2f);
             }
-        } else if ((Input.GetAxisRaw("LT") > 0.01f && speedInput != maxSpeed) || (Input.GetKey(KeyCode.W) && speedInput != maxSpeed)) {
+        } else if ((Input.GetAxisRaw("LT") > 0.01f && speedInput != maxSpeed) || (Input.GetKey(KeyCode.S) && speedInput != maxSpeed)) {
             speedInput = reverseAcceleration;
             if (Time.timeScale > 0) {
             GamePad.SetVibration(index, 0.1f, 0.1f);

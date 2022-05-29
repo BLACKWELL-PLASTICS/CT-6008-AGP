@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//public class WaypointState : Node
+//public class WaypointState : Node not used - by anna
 //{
 //    public WaypointState(AIPlayer owner) : base(owner)
 //    {

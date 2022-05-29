@@ -1,6 +1,6 @@
 ﻿//////////////////////////////////////////////////
 /// Created:                                   ///
-/// Author:                                    ///
+/// Author: Oliver Blackwell                   ///
 /// Edited By: Iain Farlow                     ///
 /// Last Edited: 29/04/2022                    ///
 //////////////////////////////////////////////////
@@ -83,10 +83,6 @@ public class InventoryScript : MonoBehaviour
                         gameObject.AddComponent<SizeIncrease>();
                         //added by anna
                         FMODUnity.RuntimeManager.PlayOneShot(sizeSound, gameObject.transform.position);
-                        break;
-                    case SeedPacketScript.POWERUPS.Hot_Potato:
-
-                        Debug.Log("HP");
                         break;
                 }
                 UsePowerup();

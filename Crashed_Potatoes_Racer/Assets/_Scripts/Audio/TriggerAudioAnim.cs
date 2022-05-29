@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerAudioAnim : StateMachineBehaviour
+public class TriggerAudioAnim : StateMachineBehaviour //- By Anna
 {
     public FMODUnity.EventReference Event;
     //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) //animation function for playing sounds on the splat animation
     {
         FMODUnity.RuntimeManager.PlayOneShot(Event, Vector3.zero);
     }

@@ -1,6 +1,6 @@
 ﻿//////////////////////////////////////////////////
 /// Created:                                   ///
-/// Author:                                    ///
+/// Author: Oliver Blackwell                   ///
 /// Edited By: Iain Farlow                     ///
 /// Last Edited: 24/05/2022                    ///
 //////////////////////////////////////////////////
@@ -17,13 +17,13 @@ public class Lap : MonoBehaviour
         if (other.gameObject.tag == "Player") {
             other.GetComponent<WinCondition>().hasBeenChecked[individualNo] = !other.GetComponent<WinCondition>().hasBeenChecked[individualNo];
             other.GetComponent<WinCondition>().checkpointNumber++;
-            if (other.GetComponentInChildren<MergedShootingControllerScript>() != null)
+            if (other.GetComponentInChildren<MergedShootingControllerScript>() != null) // Added by iain
             {
                 WinCondition[] wc = other.GetComponentsInChildren<WinCondition>();
                 wc[1].checkpointNumber++;
             }
 
-            Debug.Log(other.GetComponent<WinCondition>().checkpointNumber);
+            //Debug.Log(other.GetComponent<WinCondition>().checkpointNumber);
         }
     }
 }

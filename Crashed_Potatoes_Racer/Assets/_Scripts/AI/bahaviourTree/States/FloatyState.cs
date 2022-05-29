@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FloatyState : Node
+public class FloatyState : Node //state for preforming floaty power up - by anna
 {
-    private GameObject wall;
-    private Vector3 eulerAngle;
-    private Quaternion currentRot;
+    private GameObject wall;// temp object for floaty object
+    private Vector3 eulerAngle; //temp vector for rotation
+    private Quaternion currentRot; //temp for curretn rotation
 
     public FloatyState(AIPlayer owner) : base(owner)
     {
@@ -15,13 +15,13 @@ public class FloatyState : Node
 
     public override NodeState Update()
     {
-        Vector3 pos = owner.transform.position - owner.transform.forward;
-        wall = Object.Instantiate(AIManager.GetPowerUp[1], pos, Quaternion.identity);
-        owner.InventoryComponent.UsePowerup();
+        Vector3 pos = owner.transform.position - owner.transform.forward;//creates a posotion for spawning floaty
+        wall = Object.Instantiate(AIManager.GetPowerUp[1], pos, Quaternion.identity);//creates floaty 
+        owner.InventoryComponent.UsePowerup(); //uses power up
 
-        eulerAngle = new Vector3(-90f, 0f, 0f);
-        currentRot.eulerAngles = eulerAngle;
-        wall.transform.rotation = currentRot;
+        eulerAngle = new Vector3(-90f, 0f, 0f);//sets up rotation change
+        currentRot.eulerAngles = eulerAngle;//sets current to change
+        wall.transform.rotation = currentRot;//rotates gum
         //Wall start package -- Iain
         NetWall netWall = new NetWall();
         netWall.m_Player = PersistentInfo.Instance.m_currentPlayerNum;
@@ -35,6 +35,6 @@ public class FloatyState : Node
         netWall.m_WRot = wall.transform.rotation.w;
         Client.Instance.SendToServer(netWall);
 
-        return NodeState.SUCCESS;
+        return NodeState.SUCCESS;//returns success
     }
 }

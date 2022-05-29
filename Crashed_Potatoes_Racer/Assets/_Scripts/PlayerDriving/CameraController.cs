@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿//////////////////////////////////////////////////
+/// Created:                                   ///
+/// Author: Oliver Blackwell                   ///
+/// Edited By:			                       ///
+/// Last Edited:		                       ///
+//////////////////////////////////////////////////
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

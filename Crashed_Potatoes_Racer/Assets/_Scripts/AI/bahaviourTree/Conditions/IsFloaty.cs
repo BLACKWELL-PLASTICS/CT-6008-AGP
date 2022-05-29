@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IsFloaty : Node
+public class IsFloaty : Node //checks whether floaty power up is active - by anna
 {
     public IsFloaty(AIPlayer owner) : base(owner)
     {
@@ -11,13 +11,13 @@ public class IsFloaty : Node
 
     public override NodeState Update()
     {
-        if (owner.powerUp1 == SeedPacketScript.POWERUPS.Obsticles)
+        if (owner.powerUp1 == SeedPacketScript.POWERUPS.Obsticles) //if power up is floaty
         {
-            return NodeState.SUCCESS;
+            return NodeState.SUCCESS;//return success
         }
         else
         {
-            return NodeState.FAILURE;
+            return NodeState.FAILURE;//reyurn fail
         }
     }
 }

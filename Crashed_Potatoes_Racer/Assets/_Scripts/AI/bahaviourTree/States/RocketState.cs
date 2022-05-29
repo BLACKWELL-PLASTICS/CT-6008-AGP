@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RocketState : Node
+public class RocketState : Node //state of firing rocket - by anna
 {
     public RocketState(AIPlayer owner) : base(owner)
     {
@@ -11,8 +11,9 @@ public class RocketState : Node
 
     public override NodeState Update()
     {
+        //creates rocket object from power up list
         GameObject rocket = Object.Instantiate(AIManager.GetPowerUp[0], owner.transform.position + (owner.transform.forward * 2), Quaternion.LookRotation(owner.gameObject.transform.forward, owner.gameObject.transform.up));
-        rocket.GetComponent<Rocket>().OwnerAndTarget(owner.gameObject);
+        rocket.GetComponent<Rocket>().OwnerAndTarget(owner.gameObject); //sets as parent
         //Added by Iain
         Vector3 spawnPos = owner.transform.position + (owner.transform.forward * 2);
         Quaternion spawnRot = Quaternion.LookRotation(owner.gameObject.transform.forward, owner.gameObject.transform.up);
@@ -29,7 +30,7 @@ public class RocketState : Node
         netRocket.m_WRot = spawnRot.w;
         Client.Instance.SendToServer(netRocket);
         //Added by Iain ~
-        owner.InventoryComponent.UsePowerup();
-        return NodeState.SUCCESS;
+        owner.InventoryComponent.UsePowerup(); //uses power up
+        return NodeState.SUCCESS; //returns success
     }
 }
