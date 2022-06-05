@@ -15,15 +15,14 @@ public class Powerups : MonoBehaviour
 
     public SeedPacketScript.POWERUPS powerup;
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateIcon()
     {
         if (GameObject.Find("Car_Reg(Clone)") != null) {
             powerup = GameObject.Find("Car_Reg(Clone)").GetComponent<InventoryScript>().p1;
 
             switch (powerup) {
                 case SeedPacketScript.POWERUPS.None:
-                    gameObject.GetComponent<Image>().overrideSprite = sprites[6];
+                    gameObject.GetComponent<Image>().overrideSprite = null;
                     break;
                 case SeedPacketScript.POWERUPS.Forward_Projectile:
                     gameObject.GetComponent<Image>().overrideSprite = sprites[0];
@@ -45,7 +44,7 @@ public class Powerups : MonoBehaviour
                     break;
             }
         } else {
-            gameObject.GetComponent<Image>().overrideSprite = sprites[6];
+            gameObject.GetComponent<Image>().overrideSprite = null;
         }
 
     }

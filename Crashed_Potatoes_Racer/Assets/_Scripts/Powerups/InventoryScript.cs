@@ -1,8 +1,8 @@
 ﻿//////////////////////////////////////////////////
 /// Created:                                   ///
 /// Author: Oliver Blackwell                   ///
-/// Edited By: Iain Farlow                     ///
-/// Last Edited: 29/04/2022                    ///
+/// Edited By: Henry Northway                  ///
+/// Last Edited: 05/06/2022                    ///
 //////////////////////////////////////////////////
 
 using System.Collections;
@@ -20,6 +20,13 @@ public class InventoryScript : MonoBehaviour
     public FMODUnity.EventReference sizeSound; //added by anna
     public FMODUnity.EventReference poopSound; //added by anna
     public FMODUnity.EventReference spinSound; //added by anna
+
+    public Powerups m_itemIconScript; //added by Henry
+
+    void Start()
+    {
+        m_itemIconScript = GameObject.Find("Item Icon (Power-Up)").GetComponent<Powerups>();
+    }
 
     // Update is called once per frame
     void Update() {
@@ -93,6 +100,7 @@ public class InventoryScript : MonoBehaviour
     public void AddPowerup(SeedPacketScript.POWERUPS power) {
         if (p1 == SeedPacketScript.POWERUPS.None) {
             p1 = power;
+            m_itemIconScript.UpdateIcon();
         } else if (p2 == SeedPacketScript.POWERUPS.None) {
             p2 = power;
         } else {
@@ -103,10 +111,12 @@ public class InventoryScript : MonoBehaviour
     public void MovePowerup() {
         p1 = p2;
         p2 = SeedPacketScript.POWERUPS.None;
+        m_itemIconScript.UpdateIcon();
     }
 
     public void UsePowerup() {
         p1 = SeedPacketScript.POWERUPS.None;
+        m_itemIconScript.UpdateIcon();
         MovePowerup();
     }
 }
